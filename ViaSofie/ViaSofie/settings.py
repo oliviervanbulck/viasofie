@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'dossiers',
     'gebruikers',
     'panden',
+    'talen',
 ]
 
 MIDDLEWARE_CLASSES = [

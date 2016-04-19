@@ -4,14 +4,18 @@ from django.db import models
 
 
 # Create your models here.
-class Gebruiker(models.Model):
+class Permissie(models.Model):
+    label = models.CharField(max_length=10, unique=True)
+
+
+class Rol(models.Model):
     naam = models.CharField(max_length=255)
-    voornaam = models.CharField(max_length=255)
-    telefoonnummer = models.CharField(max_length=255)
-    email = models.CharField(max_length=255, unique=True)
-    wachtwoord = models.CharField(max_length=255)
-    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    adres = models.ForeignKey(Adres, on_delete=models.CASCADE)
+    permissies = models.ManyToManyField(Permissie)
+
+
+class Land(models.Model):
+    naam = models.CharField(max_length=255)
+    landcode = models.CharField(max_length=2)
 
 
 class Adres(models.Model):
@@ -22,15 +26,14 @@ class Adres(models.Model):
     land = models.ForeignKey(Land, on_delete=models.CASCADE)
 
 
-class Land(models.Model):
+class Gebruiker(models.Model):
     naam = models.CharField(max_length=255)
-    landcode = models.CharField(max_length=2)
+    voornaam = models.CharField(max_length=255)
+    telefoonnummer = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, unique=True)
+    wachtwoord = models.CharField(max_length=255)
+    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+    adres = models.ForeignKey(Adres, on_delete=models.CASCADE)
 
 
-class Rol(models.Model):
-    naam = models.CharField(max_length=255)
-    permissies = models.ManyToManyField(Permissie)
 
-
-class Permissie(models.Model):
-    label = models.CharField(max_length=10, unique=True)
