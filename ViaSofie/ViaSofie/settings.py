@@ -78,12 +78,25 @@ WSGI_APPLICATION = 'ViaSofie.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# Dit is slechts een test server!!
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'viasofie',
+        'USER': 'adminViaSofie',
+        'PASSWORD': 'Test123',
+        'HOST': 'octamir.eu',
+        'PORT': '3306',
     }
 }
+
+# Originele SQLite connectie
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 
 # Password validation
