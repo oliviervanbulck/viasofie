@@ -1,5 +1,5 @@
-.idea/*
-ViaSofie/.idea/*
+.idea\*
+ViaSofie\.idea\*
 *.pyc
 *.sqlite*
-ViaSofie/.idea/workspace.xml
+ViaSofie\.idea\workspace.xml
