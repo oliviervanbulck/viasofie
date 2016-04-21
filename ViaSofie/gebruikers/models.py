@@ -1,24 +1,20 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Permissie(models.Model):
-    label = models.CharField(max_length=10, unique=True)
-
-
-class Rol(models.Model):
-    naam = models.CharField(max_length=255)
-    permissies = models.ManyToManyField(Permissie)
-
-
 class Land(models.Model):
+    class Meta:
+        verbose_name_plural = "Landen"
     naam = models.CharField(max_length=255)
     landcode = models.CharField(max_length=2)
 
 
 class Adres(models.Model):
+    class Meta:
+        verbose_name_plural = "Adressen"
     straat = models.CharField(max_length=255)
     huisnummer = models.CharField(max_length=10)
     postcode = models.CharField(max_length=10)
@@ -26,13 +22,10 @@ class Adres(models.Model):
     land = models.ForeignKey('Land', on_delete=models.CASCADE)
 
 
+#Gebruiker is extent van User object
 class Gebruiker(models.Model):
-    naam = models.CharField(max_length=255)
-    voornaam = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     telefoonnummer = models.CharField(max_length=255)
-    email = models.CharField(max_length=255, unique=True)
-    wachtwoord = models.CharField(max_length=255)
-    rol = models.ForeignKey('Rol', on_delete=models.CASCADE)
     adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
 
 

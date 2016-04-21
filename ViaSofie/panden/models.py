@@ -2,17 +2,23 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
 
+# Create your models here.
 class Type(models.Model):
+    class Meta:
+        verbose_name_plural = "Types"
     type = models.CharField(max_length=255)
 
 
 class Kenmerk(models.Model):
+    class Meta:
+        verbose_name_plural = "Kenmerken"
     benaming = models.CharField(max_length=50)
 
 
 class Pand(models.Model):
+    class Meta:
+        verbose_name_plural = "Panden"
     prijs = models.FloatField()
     bouwjaar = models.DateField()
     oppervlakte = models.FloatField()
@@ -24,12 +30,16 @@ class Pand(models.Model):
 
 
 class PandImmoLink(models.Model):
+    class Meta:
+        verbose_name_plural = "Immolinks"
     site_beschrijving = models.CharField(max_length=255)
     site_link = models.CharField(max_length=255)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
 
 class Foto(models.Model):
+    class Meta:
+        verbose_name_plural = "Foto's"
     foto_link = models.CharField(max_length=255)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
@@ -37,6 +47,7 @@ class Foto(models.Model):
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)
+        verbose_name_plural = "Kenmerken per pand"
     aantal = models.PositiveSmallIntegerField()
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     kenmerk = models.ForeignKey('Kenmerk', on_delete=models.CASCADE)
