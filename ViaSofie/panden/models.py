@@ -19,6 +19,7 @@ class Pand(models.Model):
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
     gebruiker = models.ForeignKey(Gebruiker, on_delete=models.CASCADE)
     adres = models.ForeignKey(Adres, on_delete=models.CASCADE)
+    kenmerken = models.ManyToManyField(Kenmerk, through='PandKenmerkPerPand')
 
 
 class PandImmoLink(models.Model):
