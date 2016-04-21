@@ -16,5 +16,5 @@ class TaalcodePerLabel(models.Model):
         unique_together = (('label', 'taalcode',),)
 
     vertaling = models.CharField(max_length=255)
-    label = models.ForeignKey(Label, on_delete=models.CASCADE)
-    taalcode = models.ForeignKey(Taalcode, on_delete=models.CASCADE)
+    label = models.ForeignKey('Label', on_delete=models.CASCADE)
+    taalcode = models.ForeignKey('Taalcode', on_delete=models.CASCADE)

@@ -23,7 +23,7 @@ class Adres(models.Model):
     huisnummer = models.CharField(max_length=10)
     postcode = models.CharField(max_length=10)
     gemeente = models.CharField(max_length=255)
-    land = models.ForeignKey(Land, on_delete=models.CASCADE)
+    land = models.ForeignKey('Land', on_delete=models.CASCADE)
 
 
 class Gebruiker(models.Model):
@@ -32,8 +32,8 @@ class Gebruiker(models.Model):
     telefoonnummer = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     wachtwoord = models.CharField(max_length=255)
-    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    adres = models.ForeignKey(Adres, on_delete=models.CASCADE)
+    rol = models.ForeignKey('Rol', on_delete=models.CASCADE)
+    adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
 
 
 
