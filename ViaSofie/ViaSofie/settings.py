@@ -89,18 +89,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'viasofie',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '192.168.84.95',
-        'PORT': '3306',
-    }
-}
-"""
+
 # Originele SQLite connectie
 #DATABASES = {
 #    'default': {
