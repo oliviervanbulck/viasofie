@@ -10,6 +10,8 @@ from gebruikers.models import Adres
 class Type(models.Model):
     type = models.CharField(max_length=255)
 
+class Kenmerk(models.Model):
+    benaming = models.CharField(max_length=50)
 
 class Pand(models.Model):
     prijs = models.FloatField()
@@ -31,10 +33,6 @@ class PandImmoLink(models.Model):
 class Foto(models.Model):
     foto_link = models.CharField(max_length=255)
     pand = models.ForeignKey(Pand, on_delete=models.CASCADE)
-
-
-class Kenmerk(models.Model):
-    benaming = models.CharField(max_length=50)
 
 
 class PandKenmerkPerPand(models.Model):
