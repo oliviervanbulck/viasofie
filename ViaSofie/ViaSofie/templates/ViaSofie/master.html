@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>ViaSofie</title>
 </head>
 <body>
+    <div><img src="{% static "ViaSofie/logo2.png" %}" alt="ViaSofie" /></div>
     {% block content %}{% endblock %}
 </body>
 </html>
