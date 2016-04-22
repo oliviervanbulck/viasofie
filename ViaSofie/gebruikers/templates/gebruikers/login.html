@@ -6,7 +6,7 @@
     </div>
     {% endif %}
     <div id="login">
-        <form class="form-horizontal" name="LoginForm" action="/gebruiker/" method="post">
+        <form class="form-horizontal" name="LoginForm" action="/gebruiker/login/" method="post">
         {% csrf_token %}
         {% if next %}
             <input type="hidden" name="next" value="{{ next }}" />

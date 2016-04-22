@@ -16,9 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from . import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dossier/', include('dossiers.urls')),
     url(r'^panden/', include('panden.urls')),
     url(r'^gebruiker/', include('gebruikers.urls')),
+
+    url(r'^$', views.index, name='index'),
+    url(r'^about/$', views.about, name='ViaSofie.about'),
+    url(r'^contact/$', views.contact, name='ViaSofie.contact'),
+    url(r'^services/$', views.services, name='ViaSofie.services'),
 ]
