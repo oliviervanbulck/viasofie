@@ -31,7 +31,7 @@ class Pand(models.Model):
     algemene_beschrijving = models.TextField()
     type = models.ForeignKey('Type', on_delete=models.CASCADE)
     gebruiker = models.ForeignKey('gebruikers.Gebruiker', on_delete=models.CASCADE)
-    adres = models.ForeignKey('gebruikers.Adres', on_delete=models.CASCADE)
+    adres = models.OneToOneField('gebruikers.Adres', on_delete=models.CASCADE, null=True)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
 
     def __str__(self):

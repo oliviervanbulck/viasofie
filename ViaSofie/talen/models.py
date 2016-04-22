@@ -4,6 +4,9 @@ from django.db import models
 
 
 # Create your models here.
+from django.utils.encoding import python_2_unicode_compatible
+
+
 class Label(models.Model):
     class Meta:
         verbose_name_plural = "Labels"
@@ -22,6 +25,7 @@ class Taalcode(models.Model):
         return self.taalcode
 
 
+@python_2_unicode_compatible
 class TaalcodePerLabel(models.Model):
     class Meta:
         unique_together = (('label', 'taalcode',),)
