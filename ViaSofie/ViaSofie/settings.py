@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'gebruikers',
     'panden',
     'talen',
+    'ViaSofie',
 ]
 
 MIDDLEWARE_CLASSES = [
