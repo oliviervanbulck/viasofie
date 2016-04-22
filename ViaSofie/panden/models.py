@@ -9,11 +9,17 @@ class Type(models.Model):
         verbose_name_plural = "Types"
     type = models.CharField(max_length=255)
 
+    def __str__(self):
+        return str(self.type)
+
 
 class Kenmerk(models.Model):
     class Meta:
         verbose_name_plural = "Kenmerken"
     benaming = models.CharField(max_length=50)
+
+    def __str__(self):
+        return str(self.benaming)
 
 
 class Pand(models.Model):
@@ -28,6 +34,9 @@ class Pand(models.Model):
     adres = models.ForeignKey('gebruikers.Adres', on_delete=models.CASCADE)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
 
+    def __str__(self):
+        return str(self.type) + ' - ' + str(self.adres)
+
 
 class PandImmoLink(models.Model):
     class Meta:
@@ -36,11 +45,14 @@ class PandImmoLink(models.Model):
     site_link = models.CharField(max_length=255)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.site_beschrijving) + ' - ' + str(self.pand)
+
 
 class Foto(models.Model):
     class Meta:
         verbose_name_plural = "Foto's"
-    foto_link = models.CharField(max_length=255)
+    foto = models.ImageField(null=True)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
 
@@ -51,3 +63,6 @@ class PandKenmerkPerPand(models.Model):
     aantal = models.PositiveSmallIntegerField()
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     kenmerk = models.ForeignKey('Kenmerk', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.kenmerk) + ' - ' + str(self.aantal) + ' - ' + str(self.pand)

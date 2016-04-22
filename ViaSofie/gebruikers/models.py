@@ -11,6 +11,9 @@ class Land(models.Model):
     naam = models.CharField(max_length=255)
     landcode = models.CharField(max_length=2)
 
+    def __str__(self):
+        return str(self.naam) + ' - ' + str(self.landcode)
+
 
 class Adres(models.Model):
     class Meta:
@@ -21,12 +24,15 @@ class Adres(models.Model):
     gemeente = models.CharField(max_length=255)
     land = models.ForeignKey('Land', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '%s %s, %s %s' % (str(self.straat), str(self.huisnummer), str(self.postcode), str(self.gemeente))
+
 
 #Gebruiker is extent van User object
 class Gebruiker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     telefoonnummer = models.CharField(max_length=255)
-    adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
+    adres = models.OneToOneField('Adres', on_delete=models.CASCADE)
 
-
-
+    def __str__(self):
+        return '%s %s (%s)' % (str(self.user.first_name), str(self.user.last_name), str(self.user.email))
