@@ -31,7 +31,7 @@ class Adres(models.Model):
         return '%s %s, %s %s' % (self.straat, self.huisnummer, self.postcode, self.gemeente)
 
 
-#Gebruiker is extent van User object
+# Gebruiker is extent van User object
 class Gebruiker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     telefoonnummer = models.CharField(max_length=255)

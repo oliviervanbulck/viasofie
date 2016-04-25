@@ -1,4 +1,5 @@
 {% extends "ViaSofie/master.html" %}
+{% load staticfiles %}
 {% block content %}
     <div class="container-fluid bg-2 text-center">
         <div class="panel panel-default">
@@ -58,8 +59,10 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
+    <div class="container">
+        <!--<img src="{{ foto.foto.url }}" />-->
+    </div>
     </div>
 {% endblock %}

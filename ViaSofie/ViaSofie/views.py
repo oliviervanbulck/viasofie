@@ -2,8 +2,12 @@ from django.shortcuts import render
 
 
 # Create your views here.
+from panden.models import Foto
+
+
 def index(request):
-    return render(request, 'ViaSofie/index.html', {})
+    foto = Foto.objects.first()
+    return render(request, 'ViaSofie/index.html', {'foto': foto})
 
 
 def about(request):
