@@ -1,9 +1,13 @@
+#Models voor panden gebaseerd op het ERD
+
 from __future__ import unicode_literals
 
 from django.db import models
 
 
 # Create your models here.
+
+#ERD tabel Type
 class Type(models.Model):
     class Meta:
         verbose_name_plural = "Types"
@@ -12,7 +16,7 @@ class Type(models.Model):
     def __str__(self):
         return str(self.type)
 
-
+#ERD tabel Kenmerk
 class Kenmerk(models.Model):
     class Meta:
         verbose_name_plural = "Kenmerken"
@@ -21,7 +25,7 @@ class Kenmerk(models.Model):
     def __str__(self):
         return str(self.benaming)
 
-
+#ERD tabel Pand
 class Pand(models.Model):
     class Meta:
         verbose_name_plural = "Panden"
@@ -37,7 +41,7 @@ class Pand(models.Model):
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)
 
-
+#ERD tabel PandImmoLink
 class PandImmoLink(models.Model):
     class Meta:
         verbose_name_plural = "Immolinks"
@@ -48,14 +52,14 @@ class PandImmoLink(models.Model):
     def __str__(self):
         return str(self.site_beschrijving) + ' - ' + str(self.pand)
 
-
+#ERD tabel Foto
 class Foto(models.Model):
     class Meta:
         verbose_name_plural = "Foto's"
     foto = models.ImageField(null=True)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
-
+#ERD tabel PandKenmerkPerPand
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)

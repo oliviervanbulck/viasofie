@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 # Create your views here.
 from panden.models import Foto
 
@@ -20,3 +19,4 @@ def contact(request):
 
 def services(request):
     return render(request, 'ViaSofie/services.html', {})
+
