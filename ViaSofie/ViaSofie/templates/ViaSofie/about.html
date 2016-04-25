@@ -1,8 +1,9 @@
 {% extends "ViaSofie/master2.html" %}
+{% load staticfiles %}
 {% block content %}
 <style>
 #cssmenu {
-  background: #333;
+  background: #121212;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -15,9 +16,9 @@
   list-style: none;
 }
 #cssmenu a {
-  background: #333;
+  background: #e8e8e8;
   border-bottom: 1px solid #393939;
-  color: #ccc;
+  color: #0d3532;
   display: block;
   margin: 0;
   padding: 8px 12px;
@@ -25,7 +26,7 @@
   font-weight: normal;
 }
 #cssmenu a:hover {
-  background: #2580a2 url("images/hover.gif") left center no-repeat;
+  background: #2580a2  left center no-repeat;
   color: #fff;
   padding-bottom: 8px;
 }
@@ -36,9 +37,9 @@
              style="width:304px;height:228px;padding-right: 15px;padding-top: 15px;">
 		<div id='cssmenu' style="text-align: left">
 			<ul>
-				<li class='active'><a href='#'><span>Services</span></a></li>
-				<li><a href='#'><span>Over Sofie</span></a></li>
-				<li class='last'><a href='#'><span>Over ViaSofie</span></a></li>
+				<li class='active'><a href='#'><span><img src="{% static "ViaSofie/SleutelIcon.png" %}"> </img>Services</span></a></li>
+				<li><a href='#'><span><img src="{% static "ViaSofie/SleutelIcon.png" %}"> </img>Over Sofie</span></a></li>
+				<li class='last'><a href='#'><span><img src="{% static "ViaSofie/SleutelIcon.png" %}"> </img>Over ViaSofie</span></a></li>
 			</ul>
 		</div>
         <div class="panel-body text-center">
