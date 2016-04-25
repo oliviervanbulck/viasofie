@@ -1,8 +1,10 @@
+#Models voor dossiers gebaseerd op het ERD
+
 from __future__ import unicode_literals
 
 from django.db import models
 
-
+#ERD tabel Dossier
 class Dossier(models.Model):
     class Meta:
         verbose_name_plural = "Dossiers"
@@ -12,7 +14,7 @@ class Dossier(models.Model):
     def __str__(self):
         return 'Dossier: ' + str(self.pand)
 
-
+#ERD tabel StavazaLijnen
 class StavazaLijn(models.Model):
     class Meta:
         verbose_name_plural = "Stavazalijnen"
@@ -23,7 +25,7 @@ class StavazaLijn(models.Model):
     def __str__(self):
         return str(self.dossier.pand) + str(self.stavaza.status)
 
-
+#ERD tabel Stavaza
 class Stavaza(models.Model):
     class Meta:
         verbose_name_plural = "Stavaza's"
@@ -32,7 +34,7 @@ class Stavaza(models.Model):
     def __str__(self):
         return str(self.status)
 
-
+#ERD tabel DossierDocLijnen
 class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
@@ -44,7 +46,7 @@ class DossierDocLijn(models.Model):
     def __str__(self):
         return '%s: %s (%s)' % (str(self.dossier), str(self.beschrijving), str(self.status))
 
-
+#ERD tabel DossierDocStatus
 class DossierDocStatus(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Statussen"
@@ -53,7 +55,7 @@ class DossierDocStatus(models.Model):
     def __str__(self):
         return str(self.status)
 
-
+#ERD tabel DossierDocBeschrijving
 class DossierDocBeschrijving(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Beschrijvingen"
