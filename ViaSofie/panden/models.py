@@ -8,6 +8,9 @@ from django.db import models
 # Create your models here.
 
 #ERD tabel Type
+from django.utils.encoding import python_2_unicode_compatible
+
+
 class Type(models.Model):
     class Meta:
         verbose_name_plural = "Types"
@@ -25,6 +28,8 @@ class Kenmerk(models.Model):
     def __str__(self):
         return str(self.benaming)
 
+
+@python_2_unicode_compatible
 #ERD tabel Pand
 class Pand(models.Model):
     class Meta:
