@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ViaSofie',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'gebruikers',
     'panden',
     'talen',
-    'ViaSofie',
 ]
 
 MIDDLEWARE_CLASSES = [
