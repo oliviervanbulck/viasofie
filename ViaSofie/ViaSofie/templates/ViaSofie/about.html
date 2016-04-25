@@ -1,10 +1,46 @@
 {% extends "ViaSofie/master2.html" %}
 {% block content %}
+
+#cssmenu {
+  background: #333;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 12em;
+}
+#cssmenu li {
+  font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#cssmenu a {
+  background: #333;
+  border-bottom: 1px solid #393939;
+  color: #ccc;
+  display: block;
+  margin: 0;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-weight: normal;
+}
+#cssmenu a:hover {
+  background: #2580a2 url("images/hover.gif") left center no-repeat;
+  color: #fff;
+  padding-bottom: 8px;
+}
+
 <div class="container-fluid bg-2 text-right ">
     <div class="panel panel-default">
         <img src="./Images/placeholder.png" alt="profile"
              style="width:304px;height:228px;padding-right: 15px;padding-top: 15px;">
-
+		<div id='cssmenu' style="text-align: left">
+			<ul>
+				<li class='active'><a href='#'><span>Services</span></a></li>
+				<li><a href='#'><span>Over Sofie</span></a></li>
+				<li class='last'><a href='#'><span>Over ViaSofie</span></a></li>
+			</ul>
+		</div>
         <div class="panel-body text-center">
             <p>Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text
                 Placeholder text Placeholder text Placeholder text Placeholder text</p>
