@@ -4,8 +4,8 @@
     <style>
     .carousel-indicators li {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 7px;
+    height: 7px;
     margin: 10px;
     text-indent: 0;
     cursor: pointer;
@@ -15,11 +15,26 @@
     box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
 }
 .carousel-indicators .active {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     margin: 10px;
     background-color: #e8e8e8;
 }
+    .carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+    .carousel,.item,.active{
+        height:100%;
+        width:100%;
+    }
+    .carousel-inner{
+        height:100%;
+        width:100%;
+    }
+    .body{
+        height:100%;
+        width:100%;
+    }
     </style>
     <div class="container-fluid bg-2 text-center">
         <div class="panel panel-default">
