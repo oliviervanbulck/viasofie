@@ -7,8 +7,6 @@ from datetime import datetime
 
 class DossiersTestCase(TestCase):
     def setUp(self):
-        print 'yuuuuu'
-
         # Dossier setup
         testKenmerk = Kenmerk.objects.create(benaming="aantalBadkamers")
         testUser = User.objects.create(username="Bartje", email="bartje@nva.be")
@@ -30,9 +28,7 @@ class DossiersTestCase(TestCase):
                                         gebruiker=testGebruiker,
                                         adres=testAdres)
         Dossier.objects.create(actief=True,pand=testPand1)
-        print 'ayyyyy'
 
     def test_dossier(self):
-        print Dossier.objects.all()
         dossier = Dossier.objects.first()
         self.assertEqual(dossier.pand.prijs, 10000.10)
