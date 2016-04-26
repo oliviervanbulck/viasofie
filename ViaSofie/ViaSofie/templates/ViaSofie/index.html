@@ -29,7 +29,11 @@
         .carousel .item {
             width: 100%; /*slider width*/
             max-height: 600px; /*slider height*/
-
+ user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
         }
 
         .carousel .item img {
@@ -84,13 +88,18 @@
             </a>
         </div>
     </section>
-    <div class="container-fluid bg-2 text-center" style="position: absolute;top:300px; bottom: 0; left: 0;right: 0; margin: auto;  ">
+
+    <div class="bg-2 text-center" style="position: absolute;top:300px; bottom: 0; left: 0;right: 0; margin-left: 200px; margin-right: 200px;">
         <div>
-            <div>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span> Search
-                </button>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <input type="text" id="url" name="url" style="background-color: rgba(80,80,80,0.7 ); width: 700px; height:40px ; border: 1px solid white; border-radius: 6px;" />
+                    <button type="button" class="btn btn-default" style="background-color: rgba(80,80,80,0.7 ); color: white; height:40px ">
+                        <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                </div>
             </div>
+
 
         </div>
     </div>
