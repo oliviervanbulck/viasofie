@@ -7,17 +7,18 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 12em;
+  width: 14em;
 }
 #cssmenu li {
-  font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+  font: 67.5% 
+  font-family: RopaSansPro-Italic;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 #cssmenu a {
   background: #e8e8e8;
-  border-bottom: 1px solid #393939;
+  border: 1px solid #393939;
   color: #0d3532;
   display: block;
   margin: 0;
@@ -30,10 +31,18 @@
   color: #fff;
   padding-bottom: 8px;
 }
+#mainbody {
+font-family: RopaSansPro-Italic;
+font-size: 16px;
+
+}
+#profile {
+  
+}
 </style>
 <div class="container-fluid bg-2 text-right ">
-    <div class="panel panel-default">
-        <img src="./Images/placeholder.png" alt="profile"
+    <div id="profile" class="panel panel-default">
+        <img src="{% static "ViaSofie/placeholder.png" %}" alt="profile"
              style="width:304px;height:228px;padding-right: 15px;padding-top: 15px;">
 		<div id='cssmenu' style="text-align: left">
 			<ul>
@@ -42,7 +51,7 @@
 				<li class='last'><a href='#'><span><img src="{% static "ViaSofie/SleutelIcon.png" %}"> </img>Over ViaSofie</span></a></li>
 			</ul>
 		</div>
-        <div class="panel-body text-center">
+        <div id="mainbody" class="panel-body text-center">
             <p>Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text
                 Placeholder text Placeholder text Placeholder text Placeholder text</p>
             <p>Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text
