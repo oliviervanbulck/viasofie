@@ -10,8 +10,11 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <title>Title</title>
+    {% block headcontent %}
+    {% endblock %}
 </head>
 <body>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header navbar-logo">
@@ -22,9 +25,11 @@
         </div>
         <ul class="nav navbar-nav">
 
-            <li class=active"><a href="{% url 'ViaSofie.about' %}">Over ons</a></li>
-            <li><a href="{% url 'panden.index' %}">Panden</a></li>
+            <li class="active" ><a href="{% url 'panden.index' %}">Panden</a></li>
+            <li ><a href="{% url 'ViaSofie.about' %}">Over ons</a></li>
             <li><a href="{% url 'ViaSofie.contact' %}">Contact</a></li>
+
+
         </ul>
         {% if not user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
