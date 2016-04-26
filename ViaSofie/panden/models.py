@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from django.contrib import admin
 from django.db import models
 
 
@@ -30,7 +31,7 @@ class Kenmerk(models.Model):
 
 
 @python_2_unicode_compatible
-#ERD tabel Pand
+# ERD tabel Pand
 class Pand(models.Model):
     class Meta:
         verbose_name_plural = "Panden"
@@ -46,7 +47,8 @@ class Pand(models.Model):
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)
 
-#ERD tabel PandImmoLink
+
+# ERD tabel PandImmoLink
 class PandImmoLink(models.Model):
     class Meta:
         verbose_name_plural = "Immolinks"
@@ -57,14 +59,19 @@ class PandImmoLink(models.Model):
     def __str__(self):
         return str(self.site_beschrijving) + ' - ' + str(self.pand)
 
-#ERD tabel Foto
+
+# ERD tabel Foto
 class Foto(models.Model):
     class Meta:
         verbose_name_plural = "Foto's"
     foto = models.ImageField(null=True)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
-#ERD tabel PandKenmerkPerPand
+    def __str__(self):
+        return self.pand_foto()
+
+
+# ERD tabel PandKenmerkPerPand
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)
