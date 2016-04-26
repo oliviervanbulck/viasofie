@@ -23,27 +23,25 @@
     .carousel-control.left, .carousel-control.right {
     background-image: none
 }
-    .carousel,.item,.active{
-        height:100%;
-        width:100%;
+    .carousel .item {
+    width: 100%; /*slider width*/
+    max-height: 600px; /*slider height*/
+}
+.carousel .item img {
+    width: 100%; /*img width*/
+    max-height: 600px;
+}
+/*full width container*/
+@media (max-width: 767px) {
+    .block {
+        margin-left: -20px;
+        margin-right: -20px;
     }
-    .carousel-inner{
-        height:100%;
-        width:100%;
-    }
-    .body{
-        height:100%;
-        width:100%;
-    }
+}
+
     </style>
-    <div class="container-fluid bg-2 text-center">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span> Search
-                </button>
-            </div>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <section class="block" style="padding-bottom: 20px">
+     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -74,6 +72,15 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        </section>
+    <div class="container-fluid bg-2 text-center">
+        <div>
+            <div >
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+
         </div>
         <div class="container bg-3 text-center">
             <div class="panel panel-default">
