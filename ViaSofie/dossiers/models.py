@@ -69,4 +69,4 @@ class DossierDocBeschrijving(models.Model):
     kan_doc_bevatten = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.dossier_naam)
+        return "Dossiernaam moet hier komen!"
