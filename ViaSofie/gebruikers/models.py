@@ -36,10 +36,11 @@ class Adres(models.Model):
 
 
 # Gebruiker is extent van User object
+@python_2_unicode_compatible
 class Gebruiker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     telefoonnummer = models.CharField(max_length=255)
     adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s %s (%s)' % (str(self.user.first_name), str(self.user.last_name), str(self.user.email))
+        return '%s %s (%s)' % (self.user.first_name, self.user.last_name, self.user.email)
