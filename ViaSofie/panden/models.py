@@ -43,6 +43,7 @@ class Pand(models.Model):
     gebruiker = models.ForeignKey('gebruikers.Gebruiker', on_delete=models.CASCADE)
     adres = models.OneToOneField('gebruikers.Adres', on_delete=models.CASCADE, null=True)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
+    dossier = models.OneToOneField('dossiers.Dossier', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)
@@ -68,7 +69,10 @@ class Foto(models.Model):
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.pand_foto()
+        return self.foto.url
+
+    def get_admin_url(self):
+        return "/admin/panden/foto/%d/" % self.id
 
 
 # ERD tabel PandKenmerkPerPand

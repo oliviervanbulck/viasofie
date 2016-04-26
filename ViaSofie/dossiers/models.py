@@ -6,14 +6,16 @@ from django.db import models
 
 
 # ERD tabel Dossier
+from panden.models import Pand
+
+
 class Dossier(models.Model):
     class Meta:
         verbose_name_plural = "Dossiers"
     actief = models.BooleanField(default=True)
-    pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'Dossier: ' + str(self.pand)
+        return 'Dossier: ' + Pand.objects.filter(dossier_id=self.id).first().__str__()
 
 
 # ERD tabel StavazaLijnen
