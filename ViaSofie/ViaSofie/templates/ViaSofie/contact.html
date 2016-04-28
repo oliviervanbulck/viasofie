@@ -1,6 +1,28 @@
 {% extends "ViaSofie/master.html" %}
 {% block content %}
-<div class="container-fluid bg-2 text-center">
+    <style>
+
+    iframe {
+      width:600px;
+        height:450px;
+        frameborder:2;
+        border:ridge;
+
+    }
+    #contact {
+
+    }
+    #facebook {
+       width:180px;
+        height:70px;
+        border:none;
+        overflow:hidden;
+        scrolling:no;
+        frameborder:0;
+        allowTransparency:true;
+    }
+    </style>
+<div id="contact" class="container bg-2 text-center">
     <div class="panel panel-default">
         <div class="panel-body">
             <form role="form">
@@ -18,4 +40,10 @@
         </div>
     </div>
 </div>
+<div id="holder" class="container" >
+    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d14132.274223900284!2d4.4153278906692925!3d51.23276649094736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x4171becbc9fedc3b%3A0x46b248d36dfe64!2sArtesis+Plantijn+Hogeschool+Antwerpen%2C+Lange+Nieuwstraat+101%2C+2000+Antwerpen!3m2!1d51.2196857!2d4.4119934!5e0!3m2!1snl!2sbe!4v1461846821030"  allowfullscreen></iframe>
+
+<iframe id="facebook" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=180&height=70&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" ></iframe>
+</div>
+
 {% endblock %}
