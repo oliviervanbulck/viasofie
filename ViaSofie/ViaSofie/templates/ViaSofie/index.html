@@ -81,14 +81,20 @@
         }
 #panden {
     padding-top: 40px;
-
+    font-family: "Ropa Sans Pro";
 
 }
+
+    .header {
+        padding-left: 0 !important;
+        padding-right:0 !important;
+    }
 
     </style>
 {% endblock %}
 
 {% block content %}
+    <div class="container-fluid header">
     <section class="block">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -139,25 +145,26 @@
 
         </div>
     </div>
+    </div>
 
 
-<div id="panden" class="row">
+<div id="panden" class="container-fluid" class="row">
     <div class="col-md-4 text-center">
-      <img  class="img-rounded" src="{% static "ViaSofie/huis1.jpg" %}" width="400" height="400">
+      <img  class="img-rounded"  src="{% static "ViaSofie/huis1.jpg" %}" style="max-width:100%;">
       <h2>Lakeside villa </h2>
-      <p>€100.000</p>
+      <p>Casinostraat 45 &emsp; €100.000</p>
 
     </div>
     <div class="col-md-4 text-center">
-      <img  class="img-rounded" src="{% static "ViaSofie/huis2.jpg" %}"width="400" height="400">
+      <img  class="img-rounded"  src="{% static "ViaSofie/huis2.jpg" %}" style="max-width:100%;">
       <h2>Modern villa</h2>
-      <p>€250.000</p>
+      <p> Greenvile Boulevard 13 &emsp; €250.000</p>
 
     </div>
     <div class="col-md-4 text-center">
-      <img  class="img-rounded" src="{% static "ViaSofie/huis3.jpg" %}"width="400" height="400" >
+      <img  class="img-rounded"  src="{% static "ViaSofie/huis3.jpg" %}" style="max-width:100%;" >
       <h2>Classic landhouse</h2>
-      <p>€340.000</p>
+      <p>Timothy Square 5  &emsp;€340.000</p>
 
     </div>
   </div><!-- /.row -->
