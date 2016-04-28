@@ -124,6 +124,10 @@
                     <div id="three" class="item">
                         <img src="{% static "ViaSofie/huis3.jpg" %}" alt="h3" style="margin: 0 auto;">
                     </div>
+
+                    <div id="three" class="item">
+                        <img src="http://placehold.it/1366x4000" alt="h3" style="margin: 0 auto;">
+                    </div>
                 </div>
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -153,32 +157,17 @@
             </div>
         </div>
     </div>
-
-
-    <div id="panden" class="container-fluid">
-        <div class="row">
+    <div id="panden" class="container-fluid" class="row">
+        {% for pand in panden %}
             <div class="col-md-4 text-center">
-                <img class="img-rounded" src="{% static "ViaSofie/huis1.jpg" %}" style="max-width:100%;">
-                <h2>Lakeside villa </h2>
-                <p>Casinostraat 45 &emsp; €100.000</p>
-
+                {% with pand.foto_set.all|first as foto %}
+                    <img class="img-rounded" src="{{ foto }}" style="max-width:100%;">
+                {% endwith %}
+                <h2>{{ pand.type }} </h2>
+                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
             </div>
-            <div class="col-md-4 text-center">
-                <img class="img-rounded" src="{% static "ViaSofie/huis2.jpg" %}" style="max-width:100%;">
-                <h2>Modern villa</h2>
-                <p> Greenvile Boulevard 13 &emsp; €250.000</p>
-
-            </div>
-            <div class="col-md-4 text-center">
-                <img class="img-rounded" src="{% static "ViaSofie/huis3.jpg" %}" style="max-width:100%;">
-                <h2>Classic landhouse</h2>
-                <p>Timothy Square 5 &emsp;€340.000</p>
-
-            </div>
-        </div>
+        {% endfor %}
     </div><!-- /.row -->
-
-
     <div id="references" class="container">
         <div class="row">
             <div class="col-md-4 text-center">
