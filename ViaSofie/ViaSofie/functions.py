@@ -3,5 +3,5 @@ import random
 
 
 def get_random_actieve_panden(aantal):
-    panden = [pand for pand in Pand.objects.all() if pand.dossier.actief]
+    panden = Pand.objects.filter(dossier__actief=True)
     return random.sample(panden, min(aantal, len(panden)))
