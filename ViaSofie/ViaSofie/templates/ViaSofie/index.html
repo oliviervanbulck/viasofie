@@ -156,6 +156,18 @@
 
 
     <div id="panden" class="container-fluid" class="row">
+
+        {% for pand in panden %}
+            <div class="col-md-4 text-center">
+                {% with pand.foto_set.all|first as foto %}
+                    <img class="img-rounded" src="{{ foto }}" style="max-width:100%;">
+                {% endwith %}
+                <h2>{{ pand.type }} </h2>
+                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
+            </div>
+        {% endfor %}
+
+    <!--
         <div class="col-md-4 text-center">
             <img class="img-rounded" src="{% static "ViaSofie/huis1.jpg" %}" style="max-width:100%;">
             <h2>Lakeside villa </h2>
@@ -174,6 +186,7 @@
             <p>Timothy Square 5 &emsp;€340.000</p>
 
         </div>
+     -->
     </div><!-- /.row -->
 
 
