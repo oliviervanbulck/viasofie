@@ -62,10 +62,10 @@
             outline-width: 0;
         }
 
-        .carousel input {
-            background-color: rgba(80,80,80,0.7 );
+        #search {
+            background-color: rgba(80, 80, 80, 0.7);
             width: 700px;
-            height:40px;
+            height: 50px;
             border: 1px solid white;
             border-radius: 6px;
             color: white;
@@ -73,12 +73,18 @@
             padding-right: 13px;
         }
 
-        .carousel .btn {
-            background-color: rgba(80,80,80,0.7 );
+        #btnsearch {
+            background-color: rgba(80, 80, 80, 0.7);
             color: white;
-            height:40px;
-            margin-top:-3px;
+            height: 50px;
+            margin-top: -3px;
         }
+#panden {
+    padding-top: 40px;
+
+
+}
+
     </style>
 {% endblock %}
 
@@ -122,8 +128,9 @@
         <div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <input type="text" id="url" name="url" placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-                    <button type="button" class="btn btn-default">
+                    <input type="text" id="search" name="search"
+                           placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+                    <button type="button" id="btnsearch" class="btn btn-default">
                         <span class="glyphicon glyphicon-search"></span> Zoeken
                     </button>
                 </div>
@@ -132,6 +139,33 @@
 
         </div>
     </div>
+
+
+<div id="panden" class="row">
+    <div class="col-md-4 text-center">
+      <img  class="img-rounded" src="{% static "ViaSofie/huis1.jpg" %}" width="400" height="400">
+      <h2>Lakeside villa </h2>
+      <p>€100.000</p>
+
+    </div>
+    <div class="col-md-4 text-center">
+      <img  class="img-rounded" src="{% static "ViaSofie/huis2.jpg" %}"width="400" height="400">
+      <h2>Modern villa</h2>
+      <p>€250.000</p>
+
+    </div>
+    <div class="col-md-4 text-center">
+      <img  class="img-rounded" src="{% static "ViaSofie/huis3.jpg" %}"width="400" height="400" >
+      <h2>Classic landhouse</h2>
+      <p>€340.000</p>
+
+    </div>
+  </div><!-- /.row -->
+
+
+
+
+
     <div class="container bg-3 text-center">
         <div class="panel panel-default">
             <div class="panel-body">
