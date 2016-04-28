@@ -6,11 +6,26 @@ from django.contrib.admin import SimpleListFilter
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand
 
 
+class PandFotoFilter(admin.SimpleListFilter):
+    title = 'Pand'
+    parameter_name = 'pand'
+
+    def lookups(self, request, model_admin):
+        panden = Pand.objects.filter(dossier__actief=True)
+        return [(p.id, p.__str__) for p in panden]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(pand__id__exact=self.value())
+        else:
+            return queryset
+
+
 class FotoAdmin(admin.ModelAdmin):
     list_display = ('pand_foto',)
     list_per_page = 10
     readonly_fields = ('pand_foto',)
-    list_filter = (('pand', admin.RelatedOnlyFieldListFilter),)
+    list_filter = (PandFotoFilter,)
 
     def pand_foto(self, obj):
         return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
