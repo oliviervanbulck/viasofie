@@ -1,4 +1,4 @@
-#Models voor panden gebaseerd op het ERD
+# Models voor panden gebaseerd op het ERD
 
 from __future__ import unicode_literals
 
@@ -8,7 +8,7 @@ from django.db import models
 
 # Create your models here.
 
-#ERD tabel Type
+# ERD tabel Type
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -20,7 +20,8 @@ class Type(models.Model):
     def __str__(self):
         return str(self.type)
 
-#ERD tabel Kenmerk
+
+# ERD tabel Kenmerk
 class Kenmerk(models.Model):
     class Meta:
         verbose_name_plural = "Kenmerken"

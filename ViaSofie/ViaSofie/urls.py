@@ -16,9 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from ViaSofie import settings
 from . import views
+
+admin.site.site_header = settings.ADMIN_SITE_HEADER
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

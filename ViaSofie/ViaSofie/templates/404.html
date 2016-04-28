@@ -1,9 +1,9 @@
 
 {% extends "ViaSofie/master.html" %}
+{% load staticfiles %}
 {% block content %}
 <div class="container" style="text-align:center;font-size:40px; font-family:RopaSansPro">
-<img src="./Images/404.png" alt="404"  > </img>
+<img src="{% static "ViaSofie/404.png" %}" alt="404"  > </img>
 <p>De pagina die u zoekt bevindt zich niet op dit adres </p>
 </div>
-
 {% endblock %}
