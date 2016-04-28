@@ -15,7 +15,8 @@ class Dossier(models.Model):
     actief = models.BooleanField(default=True)
 
     def __str__(self):
-        return 'Dossier: ' + Pand.objects.filter(dossier_id=self.id).first().__str__()
+        pand = Pand.objects.filter(dossier_id=self.id)
+        return 'Dossier: ' + (str(pand.first()) if pand.count() == 1 else 'Nog niet gekoppeld aan een pand')
 
 
 # ERD tabel StavazaLijnen
