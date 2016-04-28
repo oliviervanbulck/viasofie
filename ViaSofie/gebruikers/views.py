@@ -9,22 +9,20 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     context = {
     }
-    return render(request, 'gebruikers/login.html', context)
+    return render(request, 'gebruikers/profile.html', context)
 
 
 def login_user(request):
     if request.POST:
+        logout(request)
         username = password = ''
-        #logout(request)
         username = request.POST['username']
         password = request.POST['password']
 
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/gebruiker')
     return HttpResponseRedirect('/')
-    #return render(request, 'gebruikers/login.html', context=RequestContext(request))
 
 
 def logout_user(request):

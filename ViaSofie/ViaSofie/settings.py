@@ -25,7 +25,7 @@ SECRET_KEY = '&$$)-#w#nc7$z+kt4juh(ac5#d@c0*$o#j5#p*6-pdzpae8vm#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -151,3 +151,5 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+ADMIN_SITE_HEADER = "ViaSofie Admin"
