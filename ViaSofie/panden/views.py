@@ -6,6 +6,7 @@ from django.template import loader
 def index(request):
     test = "Hello world!"
     context = {
-        'test': test
+        'test': test,
+        'nbar': 'panden'
     }
     return render(request, 'panden/index.html', context)
