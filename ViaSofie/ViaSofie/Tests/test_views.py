@@ -1,4 +1,9 @@
+from webbrowser import browser
+
 from django.test import TestCase
+from django_selenium.livetestcases import *
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 
 class ViaSofieViewsTest(TestCase):
@@ -9,6 +14,7 @@ class ViaSofieViewsTest(TestCase):
         self.assertTrue('foto' in resp.context)
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'home')
+
 
     def test_dossier(self):
         resp = self.client.get('/dossiers/')
@@ -37,3 +43,16 @@ class ViaSofieViewsTest(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'contact')
+
+
+class ViaSofieSeleniumTests(SeleniumLiveTestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.addCleanup(self.browser.quit)
+
+    def testPageTitle(self):
+        self.browser.get('localhost:8000')
+        self.browser.find_element_by_link_text("Panden").click()
+        self.assertEqual(self.browser.find_element_by_class_name("active").text, "Panden")
+
