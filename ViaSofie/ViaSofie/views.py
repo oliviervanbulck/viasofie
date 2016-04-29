@@ -18,9 +18,11 @@ def index(request):
     AANTAL_PANDEN = 3
 
     foto = Foto.objects.first()
+    panden = get_random_actieve_panden(AANTAL_PANDEN)
 
     context = {
-        'panden': get_random_actieve_panden(AANTAL_PANDEN),
+        'panden': panden,
+        'aantal_panden': len(panden),
         'foto': foto,
         'nbar': 'home'
     }

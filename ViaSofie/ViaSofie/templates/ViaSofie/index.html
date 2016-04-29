@@ -155,7 +155,14 @@
     </div>
     <div id="panden" class="container-fluid" class="row">
         {% for pand in panden %}
-            <div class="col-md-4 text-center">
+            {# Afhankelijk van het aantal panden die er actief zijn moet de layout worden aangepast #}
+            {% if aantal_panden == 1 %}
+                <div class="col-md-12 text-center">
+            {% elif aantal_panden == 2 %}
+                <div class="col-md-6 text-center">
+            {% else %}
+                <div class="col-md-4 text-center">
+            {% endif %}
                 {% with pand.foto_set.all|first as foto %}
                     <img class="img-rounded" src="{{ foto }}" style="max-width:100%;">
                 {% endwith %}
