@@ -21,10 +21,11 @@ def login_user(request):
 
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
+            if user.is_active:
+                login(request, user)
     return HttpResponseRedirect('/')
 
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/gebruiker')
+    return HttpResponseRedirect('/')
