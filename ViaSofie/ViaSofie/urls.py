@@ -24,7 +24,6 @@ from . import views
 
 admin.site.site_header = settings.ADMIN_SITE_HEADER
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dossier/', include('dossiers.urls')),
@@ -34,5 +33,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='ViaSofie.about'),
     url(r'^contact/$', views.contact, name='ViaSofie.contact'),
-    url(r'^services/$', views.services, name='ViaSofie.services'),
+    url(r'^about/services/$', views.services, name='ViaSofie.services'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
