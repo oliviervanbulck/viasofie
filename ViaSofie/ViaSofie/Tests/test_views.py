@@ -51,8 +51,11 @@ class ViaSofieSeleniumTests(SeleniumLiveTestCase):
         self.browser = webdriver.Firefox()
         self.addCleanup(self.browser.quit)
 
-    def testPageTitle(self):
+    def testMenubalk(self):
         self.browser.get('localhost:8000')
         self.browser.find_element_by_link_text("Panden").click()
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Panden")
-
+        self.browser.find_element_by_link_text("Over ons").click()
+        self.assertEqual(self.browser.find_element_by_class_name("active").text, "Over ons")
+        self.browser.find_element_by_link_text("Contact").click()
+        self.assertEqual(self.browser.find_element_by_class_name("active").text, "Contact")
