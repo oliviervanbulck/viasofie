@@ -13,6 +13,7 @@ def index(request):
 
 
 def login_user(request):
+    redirect_url = '/'
     if request.POST:
         logout(request)
         username = password = ''
@@ -23,7 +24,9 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-    return HttpResponseRedirect('/')
+                if request.user.is_staff:
+                    redirect_url = '/admin'
+    return HttpResponseRedirect(redirect_url)
 
 
 def logout_user(request):
