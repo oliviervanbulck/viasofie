@@ -153,16 +153,11 @@
             </div>
         </div>
     </div>
-    <div id="panden" class="container-fluid" class="row">
+    <div id="panden" class="container-fluid">
+    <div class="row">
         {% for pand in panden %}
             {# Afhankelijk van het aantal panden die er actief zijn moet de layout worden aangepast #}
-            {% if aantal_panden == 1 %}
-                <div class="col-md-12 text-center">
-            {% elif aantal_panden == 2 %}
-                <div class="col-md-6 text-center">
-            {% else %}
-                <div class="col-md-4 text-center">
-            {% endif %}
+            <div class="col-md-{% if aantal_panden == 1 %}12{% elif aantal_panden == 2 %}6{% else %}4{% endif %} text-center">
                 {% with pand.foto_set.all|first as foto %}
                     <img class="img-rounded" src="{{ foto }}" style="max-width:100%;">
                 {% endwith %}
@@ -171,6 +166,7 @@
             </div>
         {% endfor %}
     </div><!-- /.row -->
+    </div>
     <div id="references" class="container">
         <div class="row">
             <div class="col-md-4 text-center">
@@ -190,12 +186,12 @@
                             <h4 class="modal-title">Aanmelden voor nieuwsbrief</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form">
+                            <form method="post" action="">
                                 <div class="form-group">
                                     <label for="email">Email address:</label>
                                     <input type="email" class="form-control" id="email">
                                 </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-default">Inschrijven</button>
                             </form>
                         </div>
                     </div>
@@ -204,7 +200,6 @@
             <div class="col-md-4 text-center">
                 <img class="img-rounded" src="{% static "ViaSofie/logo.png" %}" style="max-width:100%;">
                 <a href="{% url 'ViaSofie.contact' %}" class="button"> Contact </a>
-
             </div>
         </div>
     </div><!-- /.row -->
