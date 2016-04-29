@@ -76,6 +76,21 @@ class Foto(models.Model):
         return "/admin/panden/foto/%d/" % self.id
 
 
+# ERD tabel CarouselFoto
+class CarouselFoto(models.Model):
+    class Meta:
+        verbose_name_plural = "Foto's voor carousel"
+
+    foto = models.ImageField()
+    actief = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.foto.url
+
+    def get_admin_url(self):
+        return "/admin/panden/carousel-foto/%d/" % self.id
+
+
 # ERD tabel PandKenmerkPerPand
 class PandKenmerkPerPand(models.Model):
     class Meta:

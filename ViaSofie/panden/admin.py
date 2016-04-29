@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.admin import SimpleListFilter
 
-from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand
+from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
 
 
 class PandFotoFilter(admin.SimpleListFilter):
@@ -33,6 +33,17 @@ class FotoAdmin(admin.ModelAdmin):
     pand_foto.allow_tags = True
 
 
+class CarouselFotoAdmin(admin.ModelAdmin):
+    list_display = ('carousel_foto','actief')
+    list_per_page = 10
+    readonly_fields = ('carousel_foto',)
+
+    def carousel_foto(self, obj):
+        return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
+
+    carousel_foto.allow_tags = True
+
+
 class PandAdmin(admin.ModelAdmin):
     readonly_fields = ('fotos',)
 
@@ -52,4 +63,5 @@ admin.site.register(Type)
 admin.site.register(Kenmerk)
 admin.site.register(PandImmoLink)
 admin.site.register(Foto, FotoAdmin)
+admin.site.register(CarouselFoto, CarouselFotoAdmin)
 admin.site.register(PandKenmerkPerPand)

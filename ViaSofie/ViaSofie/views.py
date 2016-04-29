@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response
 # Create your views here.
 from django.template import RequestContext
 
-from panden.models import Foto
+from panden.models import Foto, CarouselFoto
 from .functions import get_random_actieve_panden
 
 
@@ -18,13 +18,15 @@ def index(request):
     AANTAL_PANDEN = 3
 
     foto = Foto.objects.first()
+    carousel_fotos = CarouselFoto.objects.filter(actief=True)
     panden = get_random_actieve_panden(AANTAL_PANDEN)
 
     context = {
         'panden': panden,
         'aantal_panden': len(panden),
         'foto': foto,
-        'nbar': 'home'
+        'nbar': 'home',
+        'carousel': carousel_fotos,
     }
 
     return render(request, 'ViaSofie/index.html', context)
