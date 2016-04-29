@@ -29,9 +29,9 @@
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'panden.index' %}">Panden</a></li>
-                <li><a href="{% url 'ViaSofie.about' %}">Over ons</a></li>
-                <li><a href="{% url 'ViaSofie.contact' %}">Contact</a></li>
+                <li class="{% if nbar == 'home' %}active{% endif %}"><a href="{% url 'panden.index' %}">Panden</a></li>
+                <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a></li>
+                <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}">Contact</a></li>
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
@@ -106,8 +106,8 @@
             <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Disclaimer</a></li>
-            <li><a href="#">Privacy</a></li>
+            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="#">Disclaimer</a></li>
+            <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="#">Privacy</a></li>
         </ul>
     </div>
 </nav>

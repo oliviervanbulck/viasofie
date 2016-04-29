@@ -8,7 +8,7 @@ from .functions import get_random_actieve_panden
 
 
 def handler404(request):
-    response = render_to_response('ViaSofie/templates/404.html', {},
+    response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
     response.status_code = 404
     return response
@@ -22,17 +22,18 @@ def index(request):
     context = {
         'panden': get_random_actieve_panden(AANTAL_PANDEN),
         'foto': foto,
+        'nbar': 'home'
     }
 
     return render(request, 'ViaSofie/index.html', context)
 
 
 def about(request):
-    return render(request, 'ViaSofie/about.html', {})
+    return render(request, 'ViaSofie/about.html', {'nbar': 'about'})
 
 
 def contact(request):
-    return render(request, 'ViaSofie/contact.html', {})
+    return render(request, 'ViaSofie/contact.html', {'nbar': 'contact'})
 
 
 def services(request):
