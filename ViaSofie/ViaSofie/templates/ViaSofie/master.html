@@ -66,7 +66,7 @@
                 <h4 class="modal-title">Inloggen</h4>
             </div>
             <div class="modal-body">
-                <form role="form" action="{% url 'gebruikers.login' %}" method="post">
+                <form action="{% url 'gebruikers.login' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username">E-mail:</label>
