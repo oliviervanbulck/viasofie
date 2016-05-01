@@ -167,7 +167,7 @@
                     {% with pand.foto_set.all|first as foto %}
                         <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
-                        <div style="width: 100%; height: 400px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;">&nbsp</div>
+                        <div style="width: 100%; height: 400px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
                         <h2>{{ pand.type }} </h2>
                         <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
                     {% endwith %}
