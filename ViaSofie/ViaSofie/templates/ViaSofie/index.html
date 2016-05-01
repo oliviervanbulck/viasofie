@@ -159,18 +159,22 @@
         </div>
     </div>
     <div id="panden" class="container-fluid">
-    <div class="row">
-        {% for pand in panden %}
-            {# Afhankelijk van het aantal panden die er actief zijn moet de layout worden aangepast #}
-            <div class="col-md-{% if aantal_panden == 1 %}12{% elif aantal_panden == 2 %}6{% else %}4{% endif %} text-center">
-                {% with pand.foto_set.all|first as foto %}
-                    <img class="img-rounded" src="{{ foto }}" style="max-width:100%;">
-                {% endwith %}
-                <h2>{{ pand.type }} </h2>
-                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-            </div>
-        {% endfor %}
-    </div><!-- /.row -->
+
+        <!-- Panden worden hier weergegeven!!! -->
+        <div class="row vertical-align">
+            {% for pand in panden %}
+                <div class="{{ pand_kolom_class }} text-center">
+                    {% with pand.foto_set.all|first as foto %}
+                        <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+
+                        <div style="width: 100%; height: 400px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
+                        <h2>{{ pand.type }} </h2>
+                        <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
+                    {% endwith %}
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
     <div id="references" class="container">
         <div class="row">
