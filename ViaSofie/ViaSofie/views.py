@@ -20,10 +20,15 @@ def index(request):
     foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
     panden = get_random_actieve_panden(AANTAL_PANDEN)
+    aantal_panden = len(panden)
+    pand_kolom_class = ''
+    if aantal_panden != 0:
+        pand_kolom_class = 'col-md-' + str(12 / aantal_panden)  # 12 is het aantal kolommen in Bootstrap
 
     context = {
         'panden': panden,
-        'aantal_panden': len(panden),
+        'aantal_panden': aantal_panden,
+        'pand_kolom_class': pand_kolom_class,
         'foto': foto,
         'nbar': 'home',
         'carousel': carousel_fotos,
