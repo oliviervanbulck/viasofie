@@ -39,6 +39,11 @@
                         src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=180&height=70&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=false&appId"></iframe>-->
             </div>
             <div class="col-md-6 col-xl-4">
+                {% if succes %}
+                <div class="alert alert-success" role="alert">Bericht verzonden</div>
+                {% elif error %}
+                <div class="alert alert-danger" role="alert">Oops! Er is iets misgelopen</div>
+                {% endif %}
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form method="post">
@@ -58,6 +63,7 @@
             </div>
         </div>
     </div><!-- /.row -->
+
 
 
 
