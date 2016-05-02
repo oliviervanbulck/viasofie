@@ -1,4 +1,7 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 # Create your views here.
 from django.template import RequestContext
@@ -42,7 +45,15 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'ViaSofie/contact.html', {'nbar': 'contact'})
+    if request.POST:
+        sender = request.POST.get('email')
+        question = request.POST.get('question')
+
+        email = EmailMessage('', sender + '\n\n' + question, to=['michael.vanderborght.mv@gmail.com'])
+        email.send()
+        return render(request, 'ViaSofie/contact.html', {'nbar': 'contact'})
+    else:
+        return render(request, 'ViaSofie/contact.html', {'nbar': 'contact'})
 
 
 def services(request):
