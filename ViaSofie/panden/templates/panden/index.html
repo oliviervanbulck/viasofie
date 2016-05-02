@@ -2,6 +2,137 @@
 {% load staticfiles %}
 
 {% block content %}
-<h1>Dit is een test...</h1><br />
-    <img src="{% static 'panden/possemiers.jpg' %}" alt="Philippe Possemiers" />
+    <style>
+        #main {
+            font-family: "Ropa Sans Pro";
+
+        }
+
+        #panden {
+            padding-top: 40px;
+            padding-bottom: 60px;
+            margin-top: 40px;
+            display: inline-block;
+            float: left;
+            width: 80%;
+
+        }
+
+        #advanced {
+            float: right;
+            width: 20%;
+            display: inline-block;
+            border-style: ridge;
+            text-align: center;
+            border-radius: 25px;
+        }
+
+        .checkbox {
+
+            font-size: 16px;
+        }
+
+        #search {
+            text-align: center;
+            width: 600px;
+            height: 30px;
+            padding-left: 13px;
+            padding-right: 13px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        #soort, #gemeente, #prijs {
+            width: 80%;
+            display: table-cell;
+            vertical-align: middle
+
+        }
+
+        #boxes {
+            text-align: left;
+            padding-left: 15px;
+        }
+
+    </style>
+    <div id="search">
+        <!-- zoekbalk bovenaan -->
+
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <input type="text" id="search" name="search"
+                       placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+                <button type="button" id="btnsearch" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span> Zoeken
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="main" class="container">
+
+
+        <div id="panden">
+            <!-- Panden worden hier weergegeven!!! -->
+            <div class="row">
+                {% for pand in panden %}
+                    <div class="{{ pand_kolom_class }} text-center">
+                        {% with pand.foto_set.all|first as foto %}
+                            <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+
+                            <div style="width: 100%; height: 400px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
+                        {% endwith %}
+                        <h2>{{ pand.type }} </h2>
+                        <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div id="advanced">
+            <!-- zoekmenu opzij -->
+            <h1>Geavanceerd zoeken</h1>
+
+            <div id="boxes">
+                <p>extra's:</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">tuin</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">balkon</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">lift</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="soort">Soort pand:</label>
+                <select class="form-control" id="soort">
+                    <option>Appartement</option>
+                    <option>Rijhuis</option>
+                    <option>Villa</option>
+                    <option>Studio</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gemeente">Gemeente:</label>
+                <select class="form-control" id="gemeente">
+                    <option>Kontich</option>
+                    <option>Edegem</option>
+                    <option>Antwerpen</option>
+                    <option>Duffel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="prijsklasse">Prijsklasse:</label>
+                <select class="form-control" id="prijs">
+                    <option>€0 < €100.000</option>
+                    <option>€100.000 < €500.000</option>
+                    <option>€500.000 < €1.000.000</option>
+                    <option>€1.000.000+</option>
+                </select>
+            </div>
+        </div>
+    </div>
 {% endblock %}
