@@ -20,6 +20,7 @@ def handler404(request):
 def index(request):
     AANTAL_PANDEN = 3
 
+    foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
     panden = get_random_actieve_panden(AANTAL_PANDEN)
     aantal_panden = len(panden)
