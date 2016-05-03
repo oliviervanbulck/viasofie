@@ -40,9 +40,9 @@
             </div>
             <div class="col-md-6 col-xl-4">
                 {% if succes %}
-                <div class="alert alert-success" role="alert">Bericht verzonden</div>
+                <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden</div>
                 {% elif error %}
-                <div class="alert alert-danger" role="alert">Oops! Er is iets misgelopen</div>
+                <div class="alert alert-danger" role="alert" name="errorAlert">Oops! Er is iets misgelopen</div>
                 {% endif %}
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -50,13 +50,13 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="question">Uw vraag:</label>
-                                <textarea class="form-control" name="question"></textarea>
+                                <textarea class="form-control" name="question" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-default" name="sendMail">Submit</button>
                         </form>
                     </div>
                 </div>

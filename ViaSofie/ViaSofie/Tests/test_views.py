@@ -59,3 +59,39 @@ class ViaSofieSeleniumTests(SeleniumLiveTestCase):
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Over ons")
         self.browser.find_element_by_link_text("Contact").click()
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Contact")
+
+    def testContactUsPositive(self):
+        self.browser.get('localhost:8000/contact/')
+        self.browser.find_element_by_name('email').send_keys('test@test.com')
+        self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.find_element_by_name('sendMail').click()
+        self.assertTrue(self.browser.find_element_by_name('successAlert'))
+
+    def testContactUsNegative(self):
+        self.browser.get('localhost:8000/contact/')
+        self.browser.find_element_by_name('email').send_keys('test@test.com')
+        self.browser.find_element_by_name('sendMail').click()
+        try:
+            self.browser.find_element_by_name('successAlert').is_displayed()
+            raise Exception()
+        except:
+            self.assertTrue(True)
+
+        self.browser.get('localhost:8000/contact/')
+        self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.find_element_by_name('sendMail').click()
+        try:
+            self.browser.find_element_by_name('successAlert').is_displayed()
+            raise Exception()
+        except:
+            self.assertTrue(True)
+
+        self.browser.get('localhost:8000/contact/')
+        self.browser.find_element_by_name('email').send_keys('test.com')
+        self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.find_element_by_name('sendMail').click()
+        try:
+            self.assertFalse(self.browser.find_element_by_name('successAlert').is_displayed())
+            raise Exception()
+        except:
+            self.assertTrue(True)
