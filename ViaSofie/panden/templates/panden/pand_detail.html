@@ -14,8 +14,9 @@
         #info {
             display: inline-block;
             width: 50%;
-            border-style:ridge;
+            border-style: ridge;
             margin-top: 100px;
+
         }
 
         #profile {
@@ -26,12 +27,19 @@
             border-radius: 15px;
 
         }
-    #foto1, #foto2, #foto3 {
-        padding: 20px;
-        height:110px;
-    
 
-    }
+        #foto1, #foto2, #foto3 {
+            padding: 20px;
+            height: 110px;
+
+        }
+        #immo {
+        padding:30px;
+            margin-left: 40px;
+            margin-right:auto;
+            border-style:ridge;
+            width:30%;
+        }
     </style>
 
 
@@ -46,24 +54,24 @@
             <div id="more">
                 <div id="foto1" class="col-md-4">
                     {% with pand.foto_set.all|first as foto %}
-                <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+                        <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
-                <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
-            {% endwith %}
+                        <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
+                    {% endwith %}
                 </div>
                 <div id="foto2" class="col-md-4">
                     {% with pand.foto_set.all|first as foto %}
-                <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+                        <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
-                <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
-            {% endwith %}
+                        <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
+                    {% endwith %}
                 </div>
                 <div id="foto3" class="col-md-4">
                     {% with pand.foto_set.all|first as foto %}
-                <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+                        <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
-                <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
-            {% endwith %}
+                        <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
+                    {% endwith %}
                 </div>
             </div>
 
@@ -71,8 +79,15 @@
         <div id="info" class="col-md-8">
             <h1 style="text-align: left">Info:</h1>
             <p><b>Adres:</b> &emsp;{{ pand.adres }} </p>
-            <p> <b>Prijs:</b> &emsp;€{{ pand.prijs|floatformat:2 }}</p>
+            <p><b>Prijs:</b> &emsp;€{{ pand.prijs|floatformat:2 }}</p>
+            <p><b>Oppervlakte:</b> &emsp;{{ pand.oppervlakte }} </p>
+            <p><b>Bouwjaar:</b> &emsp;{{ pand.bouwjaar }} </p>
+            <p><b>Beschrijving:</b> &emsp;{{ pand.algemene_beschrijving }} </p>
 
         </div>
+    </div>
+    <div id="immo">
+link immoweb
+
     </div>
 {% endblock %}
