@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
+
 from dossiers.models import Dossier, StavazaLijn, Stavaza, DossierDocLijn, DossierDocStatus, DossierDocBeschrijving
+
 
 admin.site.register(Dossier)
 admin.site.register(StavazaLijn)

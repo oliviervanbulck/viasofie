@@ -2,9 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib.admin import SimpleListFilter
+from django.contrib.contenttypes import forms
 
 from dossiers.models import Dossier
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
+from django.forms.models import BaseInlineFormSet, ModelForm
 
 
 class PandFotoFilter(admin.SimpleListFilter):
@@ -22,10 +24,18 @@ class PandFotoFilter(admin.SimpleListFilter):
             return queryset
 
 
+class AlwaysChangedModelForm(ModelForm):
+    def has_changed(self):
+        """ Should returns True if data differs from initial.
+        By always returning true even unchanged inlines will get validated and saved."""
+        return True
+
+
 class DossierInline(admin.TabularInline):
     model = Dossier
     can_delete = False
     verbose_name_plural = 'dossiers'
+    form = AlwaysChangedModelForm
 
 
 class FotoAdmin(admin.ModelAdmin):
@@ -51,6 +61,14 @@ class CarouselFotoAdmin(admin.ModelAdmin):
     carousel_foto.allow_tags = True
 
 
+"""class PandForm(forms.ModelForm):
+    def save(self, *args, **kwargs):
+        pand = super(PandForm, self).save(commit=False)
+        pand.save()
+        Dossier.objects.get_or_create(pand=pand)
+        return pand"""
+
+
 class PandAdmin(admin.ModelAdmin):
     readonly_fields = ('fotos',)
     inlines = (DossierInline,)
@@ -65,13 +83,14 @@ class PandAdmin(admin.ModelAdmin):
 
     fotos.allow_tags = True
 
-    def save_model(self, request, obj, form, change):
+    # def save_model(self, request, obj, form, change):
         # print change
         # dossier = Dossier.objects.filter(pand_id__exact=obj.id).first()
         # print dossier
         # if dossier is None:
         #     Dossier.objects.create(pand=obj)
-        Dossier.objects.get_or_create(pand=obj)
+        # obj.save()
+        # Dossier.objects.get_or_create(pand=obj)
 
 
 admin.site.register(Pand, PandAdmin)
