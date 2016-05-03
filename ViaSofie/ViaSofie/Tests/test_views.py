@@ -15,7 +15,6 @@ class ViaSofieViewsTest(TestCase):
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'home')
 
-
     def test_dossier(self):
         resp = self.client.get('/dossiers/')
         self.assertEqual(resp.status_code, 200)
@@ -55,8 +54,10 @@ class ViaSofieSeleniumTests(SeleniumLiveTestCase):
         self.browser.get('localhost:8000')
         self.browser.find_element_by_link_text("Panden").click()
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Panden")
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_link_text("Over ons").click()
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Over ons")
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_link_text("Contact").click()
         self.assertEqual(self.browser.find_element_by_class_name("active").text, "Contact")
 
@@ -64,34 +65,32 @@ class ViaSofieSeleniumTests(SeleniumLiveTestCase):
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('email').send_keys('test@test.com')
         self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_name('sendMail').click()
+        self.browser.implicitly_wait(1)
         self.assertTrue(self.browser.find_element_by_name('successAlert'))
 
     def testContactUsNegative(self):
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('email').send_keys('test@test.com')
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_name('sendMail').click()
+        self.browser.implicitly_wait(1)
         self.assertTrue(self.browser.find_element_by_name('errorAlert'))
-        """try:
-            self.browser.find_element_by_name('successAlert').is_displayed()
-            raise Exception()
-        except:
-            self.assertTrue(True)"""
 
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_name('sendMail').click()
+        self.browser.implicitly_wait(1)
         self.assertTrue(self.browser.find_element_by_name('errorAlert'))
-        """try:
-            self.browser.find_element_by_name('successAlert').is_displayed()
-            raise Exception()
-        except:
-            self.assertTrue(True)"""
 
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('email').send_keys('test.com')
         self.browser.find_element_by_name('question').send_keys('test')
+        self.browser.implicitly_wait(1)
         self.browser.find_element_by_name('sendMail').click()
+        self.browser.implicitly_wait(1)
         try:
             self.assertFalse(self.browser.find_element_by_name('successAlert').is_displayed())
             raise Exception()
