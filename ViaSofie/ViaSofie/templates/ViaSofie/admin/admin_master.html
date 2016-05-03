@@ -1,0 +1,17 @@
+{% extends "ViaSofie/master.html" %}
+{% load staticfiles %}
+
+{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/base.css" %}" />
+    <style>
+        .dropdown-menu li {
+            list-style-type: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container admin-master">
+        {% block inhoud %}{% endblock %}
+    </div>
+{% endblock %}

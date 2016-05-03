@@ -44,7 +44,7 @@ class Pand(models.Model):
     gebruiker = models.ForeignKey('gebruikers.Gebruiker', on_delete=models.CASCADE)
     adres = models.OneToOneField('gebruikers.Adres', on_delete=models.CASCADE, null=True)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
-    dossier = models.OneToOneField('dossiers.Dossier', on_delete=models.CASCADE, null=True)
+    # dossier = models.OneToOneField('dossiers.Dossier', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)

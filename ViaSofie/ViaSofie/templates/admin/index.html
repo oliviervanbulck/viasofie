@@ -1,7 +1,8 @@
-{% extends "admin/base_site.html" %}
+{# extends "admin/base_site.html" #}
+{% extends "ViaSofie/admin/admin_dashboard.html" %}
 {% load i18n admin_static %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{# block extrastyle %} #}{% block headcontent %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{{ block.super }}{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -9,7 +10,8 @@
 
 {% block breadcrumbs %}{% endblock %}
 
-{% block content %}
+{# block content %} #}
+{% block pagina %}
 <div id="content-main">
 
 {% if app_list %}
@@ -28,13 +30,13 @@
             {% endif %}
 
             {% if model.add_url %}
-                <td><a href="{{ model.add_url }}" class="addlink">{% trans 'Add' %}</a></td>
+                <td><a href="{{ model.add_url }}" class="addlink">{# trans 'Add' #}Toevoegen</a></td>
             {% else %}
                 <td>&nbsp;</td>
             {% endif %}
 
             {% if model.admin_url %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                <td><a href="{{ model.admin_url }}" class="changelink">{# trans 'Change' #}Wijzigen</a></td>
             {% else %}
                 <td>&nbsp;</td>
             {% endif %}
@@ -52,12 +54,12 @@
 {% block sidebar %}
 <div id="content-related">
     <div class="module" id="recent-actions-module">
-        <h2>{% trans 'Recent Actions' %}</h2>
-        <h3>{% trans 'My Actions' %}</h3>
+        <h2>{# trans 'Recent Actions' #}Recente acties</h2>
+        <h3>{# trans 'My Actions' #}Mijn acties</h3>
             {% load log %}
             {% get_admin_log 10 as admin_log for_user user %}
             {% if not admin_log %}
-            <p>{% trans 'None available' %}</p>
+            <p>{# trans 'None available' #}Geen informatie</p>
             {% else %}
             <ul class="actionlist">
             {% for entry in admin_log %}

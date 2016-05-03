@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.admin import SimpleListFilter
 
+from dossiers.models import Dossier
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
 
 
@@ -19,6 +20,12 @@ class PandFotoFilter(admin.SimpleListFilter):
             return queryset.filter(pand__id__exact=self.value())
         else:
             return queryset
+
+
+class DossierInline(admin.TabularInline):
+    model = Dossier
+    can_delete = False
+    verbose_name_plural = 'dossiers'
 
 
 class FotoAdmin(admin.ModelAdmin):
@@ -46,6 +53,7 @@ class CarouselFotoAdmin(admin.ModelAdmin):
 
 class PandAdmin(admin.ModelAdmin):
     readonly_fields = ('fotos',)
+    inlines = (DossierInline,)
 
     def fotos(self, obj):
         html = ""
@@ -56,6 +64,14 @@ class PandAdmin(admin.ModelAdmin):
         return html
 
     fotos.allow_tags = True
+
+    def save_model(self, request, obj, form, change):
+        # print change
+        # dossier = Dossier.objects.filter(pand_id__exact=obj.id).first()
+        # print dossier
+        # if dossier is None:
+        #     Dossier.objects.create(pand=obj)
+        Dossier.objects.get_or_create(pand=obj)
 
 
 admin.site.register(Pand, PandAdmin)
