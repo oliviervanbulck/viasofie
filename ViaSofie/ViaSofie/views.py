@@ -48,11 +48,14 @@ def contact(request):
     if request.POST:
         sender = request.POST.get('email')
         question = request.POST.get('question')
-
+        print request.POST.get('email')
         try:
-            email = EmailMessage('', sender + '\n\n' + question, to=['michael.vanderborght.mv@gmail.com'])
-            email.send()
-            return render(request, 'ViaSofie/contact.html', {'nbar': 'contact','succes': True})
+            if sender and question:
+                email = EmailMessage('', sender + '\n\n' + question, to=['michael.vanderborght.mv@gmail.com'])
+                email.send()
+                return render(request, 'ViaSofie/contact.html', {'nbar': 'contact','succes': True})
+            else:
+                return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'error': True})
         except:
             return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'error': True})
 
