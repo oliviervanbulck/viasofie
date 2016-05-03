@@ -71,20 +71,22 @@ class ViaSofieSeleniumTests(SeleniumLiveTestCase):
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('email').send_keys('test@test.com')
         self.browser.find_element_by_name('sendMail').click()
-        try:
+        self.assertTrue(self.browser.find_element_by_name('errorAlert'))
+        """try:
             self.browser.find_element_by_name('successAlert').is_displayed()
             raise Exception()
         except:
-            self.assertTrue(True)
+            self.assertTrue(True)"""
 
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('question').send_keys('test')
         self.browser.find_element_by_name('sendMail').click()
-        try:
+        self.assertTrue(self.browser.find_element_by_name('errorAlert'))
+        """try:
             self.browser.find_element_by_name('successAlert').is_displayed()
             raise Exception()
         except:
-            self.assertTrue(True)
+            self.assertTrue(True)"""
 
         self.browser.get('localhost:8000/contact/')
         self.browser.find_element_by_name('email').send_keys('test.com')
