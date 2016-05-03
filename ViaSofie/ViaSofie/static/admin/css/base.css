@@ -5,7 +5,10 @@
 @import url(fonts.css);
 
 body {
-    margin: 0;
+    /*margin: 0;*/
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     padding: 0;
     font-size: 14px;
     font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
@@ -94,16 +97,16 @@ h5 {
     letter-spacing: 1px;
 }
 
-ul li {
+.admin-master ul li {
     list-style-type: square;
     padding: 1px 0;
 }
 
-li ul {
+.admin-master li ul {
     margin-bottom: 0;
 }
 
-li, dt, dd {
+.admin-master li, .admin-master dt, .admin-master dd {
     font-size: 13px;
     line-height: 20px;
 }
@@ -767,13 +770,16 @@ table#change-history tbody th {
 }
 
 #content-main {
-    float: left;
+    /*float: left;*/
     width: 100%;
 }
 
 #content-related {
-    float: right;
-    width: 260px;
+    /*float: right;
+    width: 260px;*/
+    width: 100%; /*Added by Olivier Van Bulck*/
+    border-color: dimgrey;
+    border-width: 1px;
     position: relative;
     margin-right: -300px;
 }

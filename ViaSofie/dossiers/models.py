@@ -13,10 +13,12 @@ class Dossier(models.Model):
     class Meta:
         verbose_name_plural = "Dossiers"
     actief = models.BooleanField(default=True)
+    pand = models.OneToOneField('panden.Pand', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        pand = Pand.objects.filter(dossier_id=self.id)
-        return 'Dossier: ' + (str(pand.first()) if pand.count() == 1 else 'Nog niet gekoppeld aan een pand')
+        # pand = Pand.objects.filter(dossier_id=self.id)
+        # return 'Dossier: ' + (str(pand.first()) if pand.count() == 1 else 'Nog niet gekoppeld aan een pand')
+        return 'Dossier: ' + str(self.pand)
 
 
 # ERD tabel StavazaLijnen

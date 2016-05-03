@@ -1,0 +1,15 @@
+{% extends "ViaSofie/admin/admin_master.html" %}
+{% block inhoud %}
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-8">
+            {% block pagina %}
+            {% endblock %}
+        </div>
+        <div class="col-md-4">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
