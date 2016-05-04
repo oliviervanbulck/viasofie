@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals
 
+import os
+
 from django.contrib import admin
 from django.db import models
 
@@ -9,6 +11,8 @@ from django.db import models
 # Create your models here.
 
 # ERD tabel Type
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -26,6 +30,7 @@ class Kenmerk(models.Model):
     class Meta:
         verbose_name_plural = "Kenmerken"
     benaming = models.CharField(max_length=50)
+    is_aantal = models.BooleanField()
 
     def __str__(self):
         return str(self.benaming)
@@ -76,6 +81,35 @@ class Foto(models.Model):
         return "/admin/panden/foto/%d/" % self.id
 
 
+@receiver(models.signals.post_delete, sender=Foto)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    if instance.foto:
+        if os.path.isfile(instance.foto.path):
+            os.remove(instance.foto.path)
+
+
+@receiver(models.signals.pre_save, sender=Foto)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `MediaFile` object is changed.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_file = Foto.objects.get(pk=instance.pk).foto
+    except Foto.DoesNotExist:
+        return False
+
+    new_file = instance.foto
+    if not old_file == new_file:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
+
+
 # ERD tabel CarouselFoto
 class CarouselFoto(models.Model):
     class Meta:
@@ -89,6 +123,35 @@ class CarouselFoto(models.Model):
 
     def get_admin_url(self):
         return "/admin/panden/carousel-foto/%d/" % self.id
+
+
+@receiver(models.signals.post_delete, sender=CarouselFoto)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    if instance.foto:
+        if os.path.isfile(instance.foto.path):
+            os.remove(instance.foto.path)
+
+
+@receiver(models.signals.pre_save, sender=CarouselFoto)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `MediaFile` object is changed.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_file = Foto.objects.get(pk=instance.pk).foto
+    except CarouselFoto.DoesNotExist:
+        return False
+
+    new_file = instance.foto
+    if not old_file == new_file:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
 
 
 # ERD tabel PandKenmerkPerPand

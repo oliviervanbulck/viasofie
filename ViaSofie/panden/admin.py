@@ -4,9 +4,32 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.contrib.contenttypes import forms
 
-from dossiers.models import Dossier
+from dossiers.models import Dossier, StavazaLijn
+from gebruikers.models import Adres
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
 from django.forms.models import BaseInlineFormSet, ModelForm
+
+
+# Basis ModelAdmin voor AdminModel objecten die niet zichtbaar mogen zijn op indexpagina van adminpaneel.
+class HiddenAdminModel(admin.ModelAdmin):
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
+
+
+# Fix om ervoor te zorgen dat een inline sowieso wordt aangemaakt.
+class AlwaysChangedModelForm(ModelForm):
+    def has_changed(self):
+        """ Should returns True if data differs from initial.
+        By always returning true even unchanged inlines will get validated and saved."""
+        return True
+
+
+"""
+Filters
+"""
 
 
 class PandFotoFilter(admin.SimpleListFilter):
@@ -24,25 +47,51 @@ class PandFotoFilter(admin.SimpleListFilter):
             return queryset
 
 
-class AlwaysChangedModelForm(ModelForm):
-    def has_changed(self):
-        """ Should returns True if data differs from initial.
-        By always returning true even unchanged inlines will get validated and saved."""
-        return True
+"""
+Inlines
+"""
 
 
 class DossierInline(admin.TabularInline):
     model = Dossier
     can_delete = False
-    verbose_name_plural = 'dossiers'
+    verbose_name_plural = 'dossier'
     form = AlwaysChangedModelForm
+    extra = 0
+    fields = ('actief', 'get_admin_url',)
+    readonly_fields = ('get_admin_url',)
+
+    def get_admin_url(self, obj):
+        return '<a href="/admin/dossiers/dossier/%s/change/" target="_blank">Wijzig dossier</a>' % str(obj.id)
+
+    get_admin_url.allow_tags = True
+    get_admin_url.short_description = 'Wijzig dossier'
 
 
-class FotoAdmin(admin.ModelAdmin):
-    list_display = ('pand_foto',)
-    list_per_page = 10
+class PandKenmerkPerPandInline(admin.TabularInline):
+    model = PandKenmerkPerPand
+    can_delete = True
+    verbose_name_plural = 'Pandkenmerken'
+    form = AlwaysChangedModelForm
+    extra = 0
+
+
+class PandImmoLinkInline(admin.TabularInline):
+    model = PandImmoLink
+    can_delete = True
+    verbose_name_plural = 'Links'
+    form = AlwaysChangedModelForm
+    extra = 0
+
+
+class FotoInline(admin.TabularInline):
+    model = Foto
+    can_delete = True
+    verbose_name_plural = 'Foto\'s'
+    form = AlwaysChangedModelForm
+    fields = ('pand_foto', 'foto',)
     readonly_fields = ('pand_foto',)
-    list_filter = (PandFotoFilter,)
+    extra = 0
 
     def pand_foto(self, obj):
         return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
@@ -50,8 +99,38 @@ class FotoAdmin(admin.ModelAdmin):
     pand_foto.allow_tags = True
 
 
+"""
+AdminModels - Hidden
+"""
+
+
+class FotoAdmin(HiddenAdminModel):
+    pass
+
+
+class KenmerkAdmin(HiddenAdminModel):
+    pass
+
+
+class PandKenmerkPerPandAdmin(HiddenAdminModel):
+    pass
+
+
+class PandImmoLinkAdmin(HiddenAdminModel):
+    pass
+
+
+class TypeAdmin(HiddenAdminModel):
+    pass
+
+
+"""
+AdminModels - Shown
+"""
+
+
 class CarouselFotoAdmin(admin.ModelAdmin):
-    list_display = ('carousel_foto','actief')
+    list_display = ('carousel_foto', 'actief',)
     list_per_page = 10
     readonly_fields = ('carousel_foto',)
 
@@ -61,42 +140,14 @@ class CarouselFotoAdmin(admin.ModelAdmin):
     carousel_foto.allow_tags = True
 
 
-"""class PandForm(forms.ModelForm):
-    def save(self, *args, **kwargs):
-        pand = super(PandForm, self).save(commit=False)
-        pand.save()
-        Dossier.objects.get_or_create(pand=pand)
-        return pand"""
-
-
 class PandAdmin(admin.ModelAdmin):
-    readonly_fields = ('fotos',)
-    inlines = (DossierInline,)
-
-    def fotos(self, obj):
-        html = ""
-        for obj in Foto.objects.filter(pand_id__exact=obj.id):
-            html += '<a href="%s"><img src="%s" style="max-width: 150px;max-height:150px;margin-right:10px;" /></a>'\
-                    % (obj.get_admin_url(), obj.foto.url)
-        html += '<br /><br /><p><a href="/admin/panden/foto/add/?pand=%s">+ Foto toevoegen</a></p>' % obj.pand_id
-        return html
-
-    fotos.allow_tags = True
-
-    # def save_model(self, request, obj, form, change):
-        # print change
-        # dossier = Dossier.objects.filter(pand_id__exact=obj.id).first()
-        # print dossier
-        # if dossier is None:
-        #     Dossier.objects.create(pand=obj)
-        # obj.save()
-        # Dossier.objects.get_or_create(pand=obj)
+    inlines = (DossierInline, PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline,)
 
 
 admin.site.register(Pand, PandAdmin)
-admin.site.register(Type)
-admin.site.register(Kenmerk)
-admin.site.register(PandImmoLink)
+admin.site.register(Type, TypeAdmin)
+admin.site.register(Kenmerk, KenmerkAdmin)
+admin.site.register(PandImmoLink, PandImmoLinkAdmin)
 admin.site.register(Foto, FotoAdmin)
 admin.site.register(CarouselFoto, CarouselFotoAdmin)
-admin.site.register(PandKenmerkPerPand)
+admin.site.register(PandKenmerkPerPand, PandKenmerkPerPandAdmin)
