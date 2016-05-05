@@ -1,4 +1,4 @@
-{% extends "admin/base_site.html" %}
+{% extends "ViaSofie/admin/admin_master.html" %}
 {% load i18n admin_urls admin_static admin_list %}
 
 {% block extrastyle %}
@@ -46,7 +46,7 @@
 
 {% block coltype %}flex{% endblock %}
 
-{% block content %}
+{% block inhoud %}
   <div id="content-main">
     {% block object-tools %}
       {% if has_add_permission %}

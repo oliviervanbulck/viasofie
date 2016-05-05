@@ -142,6 +142,8 @@ class CarouselFotoAdmin(admin.ModelAdmin):
 
 class PandAdmin(admin.ModelAdmin):
     inlines = (DossierInline, PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline,)
+    raw_id_fields = ('gebruiker',)
+    search_fields = ('adres__straat', 'adres__gemeente', 'adres__postcode', 'adres__huisnummer', 'type__type',)
 
 
 admin.site.register(Pand, PandAdmin)

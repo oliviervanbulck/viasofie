@@ -16,6 +16,10 @@ body {
     background: #fff;
 }
 
+.admin-master table {
+    width: 100%;
+}
+
 /* LINKS */
 
 a:link, a:visited {
@@ -669,13 +673,17 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
     background: url(../img/icon-deletelink.svg) 0 1px no-repeat;
 }
 
-a.deletelink:link, a.deletelink:visited {
+/*a.deletelink:link, a.deletelink:visited {
     color: #CC3434;
 }
 
 a.deletelink:focus, a.deletelink:hover {
     color: #993333;
     text-decoration: none;
+}*/
+
+.btn-delete-override {
+    color: white !important;
 }
 
 /* OBJECT TOOLS */

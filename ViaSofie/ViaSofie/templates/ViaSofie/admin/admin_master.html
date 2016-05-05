@@ -11,8 +11,11 @@
 {% endblock %}
 
 {% block content %}
+    <!--<div class="container">
+        {# block breadcrumbs #}{# endblock #}
+    </div>-->
     <div class="container">
-        {% block breadcrumbs %}{% endblock %}
+        <h1>{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}</h1>
     </div>
     <div class="container admin-master">
         {% block inhoud %}{% endblock %}

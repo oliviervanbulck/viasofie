@@ -33,7 +33,7 @@ class StavazaLijn(models.Model):
     stavaza = models.OneToOneField('Stavaza', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return str(self.dossier.pand) + str(self.stavaza.status)
+        return str(self.dossier.pand) + ' | ' + str(self.stavaza.status)
 
 
 # ERD tabel Stavaza
@@ -57,7 +57,7 @@ class DossierDocLijn(models.Model):
     bestand = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return '%s: %s (%s)' % (str(self.dossier), str(self.beschrijving), str(self.status))
+        return '%s | %s (%s)' % (str(self.dossier), str(self.beschrijving), str(self.status))
 
 
 @receiver(models.signals.post_delete, sender=DossierDocLijn)

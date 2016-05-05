@@ -1,7 +1,8 @@
-{% extends "admin/base_site.html" %}
+{# extends "admin/base_site.html" #}
+{% extends "ViaSofie/admin/admin_master.html" %}
 {% load i18n admin_urls admin_static admin_modify %}
 
-{% block extrahead %}{{ block.super }}
+{# block extrahead #}{% block headcontent %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {{ media }}
 {% endblock %}
@@ -23,14 +24,14 @@
 {% endblock %}
 {% endif %}
 
-{% block content %}<div id="content-main">
+{% block inhoud %}<div id="content-main">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">
     {% block object-tools-items %}
     <li>
         {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
-        <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
+        <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "Historiek" %}</a>
     </li>
     {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
     {% endblock %}
