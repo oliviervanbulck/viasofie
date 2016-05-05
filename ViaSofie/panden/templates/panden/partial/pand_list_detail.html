@@ -1,0 +1,9 @@
+<div class="{{ pand_kolom_class }} text-center">
+    {% with pand.foto_set.all|first as foto %}
+        <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+
+        <div style="width: 100%; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: cover; padding-bottom: 56.25%;"></div>
+    {% endwith %}
+    <h2>{{ pand.type }} </h2>
+    <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
+</div>
