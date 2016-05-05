@@ -49,6 +49,9 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            {% if user.is_superuser %}
+                                <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span> Beheer</a></li>
+                            {% endif %}
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
                             <li><a href="{% url "gebruikers.logout" %}"><span class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
