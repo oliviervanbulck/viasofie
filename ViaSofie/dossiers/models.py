@@ -30,7 +30,7 @@ class StavazaLijn(models.Model):
         verbose_name_plural = "Stavazalijnen"
     datum = models.DateField(default=datetime.date.today)
     dossier = models.ForeignKey('Dossier', on_delete=models.CASCADE)
-    stavaza = models.OneToOneField('Stavaza', on_delete=models.CASCADE, null=True)
+    stavaza = models.ForeignKey('Stavaza', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.dossier.pand) + ' | ' + str(self.stavaza.status)

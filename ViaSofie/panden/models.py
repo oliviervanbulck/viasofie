@@ -42,14 +42,13 @@ class Pand(models.Model):
     class Meta:
         verbose_name_plural = "Panden"
     prijs = models.FloatField()
-    bouwjaar = models.DateField()
+    bouwjaar = models.PositiveSmallIntegerField()
     oppervlakte = models.FloatField()
     algemene_beschrijving = models.TextField()
     type = models.ForeignKey('Type', on_delete=models.CASCADE)
     gebruiker = models.ForeignKey('gebruikers.Gebruiker', on_delete=models.CASCADE)
     adres = models.OneToOneField('gebruikers.Adres', on_delete=models.CASCADE, null=True)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
-    # dossier = models.OneToOneField('dossiers.Dossier', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)
