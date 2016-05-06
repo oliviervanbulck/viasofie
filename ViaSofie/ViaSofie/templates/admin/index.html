@@ -5,6 +5,8 @@
 {# block extrastyle %} #}{% block headcontent %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{{ block.super }}{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
+{% block col_left %}12{% endblock %}
+{% block col_right %}0{% endblock %}
 
 {% block bodyclass %}{{ block.super }} dashboard{% endblock %}
 

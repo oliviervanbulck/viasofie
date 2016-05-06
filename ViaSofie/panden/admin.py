@@ -144,6 +144,7 @@ class PandAdmin(admin.ModelAdmin):
     inlines = (DossierInline, PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline,)
     raw_id_fields = ('gebruiker',)
     search_fields = ('adres__straat', 'adres__gemeente', 'adres__postcode', 'adres__huisnummer', 'type__type',)
+    list_filter = ('type', 'bouwjaar', 'adres__land',)
 
 
 admin.site.register(Pand, PandAdmin)

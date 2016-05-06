@@ -2,14 +2,14 @@
 {% block inhoud %}
 <div class="dashboard">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-{% block col_left %}12{% endblock %}">
             {% block pagina %}
             {% endblock %}
         </div>
-        <!--<div class="col-md-4">
-            {# block sidebar #}
-            {# endblock #}
-        </div>-->
+        <div class="col-md-{% block col_right %}0{% endblock %}">
+            {% block sidebar %}{% endblock %}
+            {% block filters %}{% endblock %}
+        </div>
     </div>
 </div>
 {% endblock %}

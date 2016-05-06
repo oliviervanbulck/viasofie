@@ -1,5 +1,5 @@
 {# extends "admin/base_site.html" #}
-{% extends "ViaSofie/admin/admin_master.html" %}
+{% extends "ViaSofie/admin/admin_dashboard.html" %}
 {% load i18n admin_urls admin_static admin_modify %}
 
 {# block extrahead #}{% block headcontent %}{{ block.super }}
@@ -10,6 +10,8 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
 
 {% block coltype %}colM{% endblock %}
+{% block col_left %}12{% endblock %}
+{% block col_right %}0{% endblock %}
 
 {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
 
@@ -24,7 +26,7 @@
 {% endblock %}
 {% endif %}
 
-{% block inhoud %}<div id="content-main">
+{% block pagina %}<div id="content-main">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">

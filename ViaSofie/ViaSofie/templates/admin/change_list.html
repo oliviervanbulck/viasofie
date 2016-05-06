@@ -1,4 +1,4 @@
-{% extends "ViaSofie/admin/admin_master.html" %}
+{% extends "ViaSofie/admin/admin_dashboard.html" %}
 {% load i18n admin_urls admin_static admin_list %}
 
 {% block extrastyle %}
@@ -46,7 +46,19 @@
 
 {% block coltype %}flex{% endblock %}
 
-{% block inhoud %}
+{% block col_left %}{% if cl.has_filters %}9{% else %}12{% endif %}{% endblock %}
+{% block col_right %}{% if cl.has_filters %}3{% else %}0{% endif %}{% endblock %}
+
+{% block filters %}
+{% if cl.has_filters %}
+  <div id="changelist-filter">
+    <h2>{% trans 'Filter' %}</h2>
+    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block pagina %}
   <div id="content-main">
     {% block object-tools %}
       {% if has_add_permission %}
@@ -72,14 +84,7 @@
       {% block search %}{% search_form cl %}{% endblock %}
       {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
 
-      {% block filters %}
-        {% if cl.has_filters %}
-          <div id="changelist-filter">
-            <h2>{% trans 'Filter' %}</h2>
-            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-          </div>
-        {% endif %}
-      {% endblock %}
+      {# Hier stonden filters #}
 
       <form id="changelist-form" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
       {% if cl.formset %}
