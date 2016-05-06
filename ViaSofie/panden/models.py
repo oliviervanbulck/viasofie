@@ -58,8 +58,8 @@ class Pand(models.Model):
 class PandImmoLink(models.Model):
     class Meta:
         verbose_name_plural = "Immolinks"
-    site_beschrijving = models.CharField(max_length=255)
-    site_link = models.CharField(max_length=255)
+    site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
+    site_link = models.CharField(max_length=255, verbose_name='link')
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -81,17 +81,19 @@ class Foto(models.Model):
 
 
 @receiver(models.signals.post_delete, sender=Foto)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
+def auto_delete_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is deleted.
     """
     if instance.foto:
+        print 'ok1'
         if os.path.isfile(instance.foto.path):
+            print 'ok2'
             os.remove(instance.foto.path)
 
 
 @receiver(models.signals.pre_save, sender=Foto)
-def auto_delete_file_on_change(sender, instance, **kwargs):
+def auto_delete_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is changed.
     """
@@ -125,7 +127,7 @@ class CarouselFoto(models.Model):
 
 
 @receiver(models.signals.post_delete, sender=CarouselFoto)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
+def auto_delete_carousel_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is deleted.
     """
@@ -135,7 +137,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
 
 
 @receiver(models.signals.pre_save, sender=CarouselFoto)
-def auto_delete_file_on_change(sender, instance, **kwargs):
+def auto_delete_carousel_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is changed.
     """
@@ -157,7 +159,8 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)
-        verbose_name_plural = "Kenmerken per pand"
+        verbose_name_plural = "Pandkenmerken"
+        verbose_name = 'Pandkenmerk'
     aantal = models.PositiveSmallIntegerField()
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     kenmerk = models.ForeignKey('Kenmerk', on_delete=models.CASCADE)

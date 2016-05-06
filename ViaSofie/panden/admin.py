@@ -97,6 +97,7 @@ class FotoInline(admin.TabularInline):
         return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
 
     pand_foto.allow_tags = True
+    pand_foto.short_description = 'Voorbeeld'
 
 
 """
