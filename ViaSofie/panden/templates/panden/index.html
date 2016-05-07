@@ -222,19 +222,17 @@
             <div class="form-group">
                 <label for="soort">Soort pand:</label>
                 <select class="form-control" id="soort">
-                    <option>Appartement</option>
-                    <option>Rijhuis</option>
-                    <option>Villa</option>
-                    <option>Studio</option>
+                    {% for pand_type in pand_types %}
+                    <option>{{ pand_type }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="gemeente">Gemeente:</label>
                 <select class="form-control" id="gemeente">
-                    <option>Kontich</option>
-                    <option>Edegem</option>
-                    <option>Antwerpen</option>
-                    <option>Duffel</option>
+                    {% for gemeente in gemeentes %}
+                    <option>{{ gemeente }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
