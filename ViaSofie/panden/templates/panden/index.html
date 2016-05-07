@@ -5,80 +5,76 @@
 
 {% block headcontent %}
     <style>
-        #main {
-            font-family: "Ropa Sans Pro";
+        /*
+            #main {
+                font-family: "Ropa Sans Pro";
 
-        }
+            }
 
-        #panden {
-            padding-top: 40px;
-            padding-bottom: 60px;
-            padding-left: 40px;;
-            margin-top: 40px;
-            display: inline-block;
-            /*float: left;*/
-            width: 70%;
+            #panden {
+                padding-top: 40px;
+                padding-bottom: 60px;
+                padding-left: 40px;;
+                margin-top: 40px;
+                display: inline-block;
+                float: left;
+                width: 70%;
 
-        }
+            }
 
-        #advanced {
-            float: right;
-            display: inline-block;
-            border-style: ridge;
-            text-align: center;
-            border-radius: 25px;
-            width: 20%;
-            padding: 20px;
-            margin-right: 30px;
-        }
+            #advanced {
+                float: right;
+                display: inline-block;
+                border-style: ridge;
+                text-align: center;
+                border-radius: 25px;
+                width: 20%;
+                padding: 20px;
+                margin-right: 30px;
+            }
 
-        .checkbox {
+            .checkbox {
 
-            font-size: 16px;
-        }
+                font-size: 16px;
+            }
 
-        #search {
-            text-align: center;
-            width: 600px;
-            height: 30px;
-            padding-left: 13px;
-            padding-right: 13px;
-            margin-left: auto;
-            margin-right: auto;
+            #search {
+                text-align: center;
+                width: 600px;
+                height: 30px;
+                padding-left: 13px;
+                padding-right: 13px;
+                margin-left: auto;
+                margin-right: auto;
 
-        }
+            }
 
-        #soort, #gemeente, #prijs {
-            width: 80%;
-            display: table-cell;
-            vertical-align: middle
+            #soort, #gemeente, #prijs {
+                width: 80%;
+                display: table-cell;
+                vertical-align: middle
 
-        }
+            }
 
-        #boxes {
-            text-align: left;
-            padding-left: 15px;
-        }
+            #boxes {
+                text-align: left;
+                padding-left: 15px;
+            }
+            */
     </style>
 {% endblock %}
 
 {% block content %}
-    <div id="main" class="row">
+    <div id="main">
+        <!-- Zoekbalk bovenaan -->
+        <div class="container">
+            <input type="text" id="search" name="search" size="100" placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+            <button type="button" id="btnsearch" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span> Zoeken
+            </button>
+        </div>
+
         <div id="panden" class="col-md-8">
-            <div id="search">
-                <!-- zoekbalk bovenaan -->
-
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <input type="text" id="search" name="search"
-                               placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-                        <button type="button" id="btnsearch" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> Zoeken
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             {# Panden worden hier weergegeven! #}
             {% for rij in panden_rijen %}
                 <div class="row">
@@ -87,56 +83,49 @@
                     {% endfor %}
                 </div>
             {% endfor %}
-
-
-
-            <div id="advanced" class="col-md-4">
-                <!-- zoekmenu opzij -->
-                <h1>Geavanceerd zoeken</h1>
-
-                <div id="boxes">
-                    <p>Extra's:</p>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Tuin</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Balkon</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Lift</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="soort">Soort pand:</label>
-                    <select class="form-control" id="soort">
-                        {% for pand_type in pand_types %}
-                            <option>{{ pand_type }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="gemeente">Gemeente:</label>
-                    <select class="form-control" id="gemeente">
-                        {% for gemeente in gemeentes %}
-                            <option>{{ gemeente }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="prijsklasse">Prijsklasse:</label>
-                    <select class="form-control" id="prijs">
-                        <option>€0 < €100.000</option>
-                        <option>€100.000 < €500.000</option>
-                        <option>€500.000 < €1.000.000</option>
-                        <option>€1.000.000+</option>
-                    </select>
-                </div>
-            </div>
         </div>
 
+        <div id="advanced" class="col-md-4">
+            <!-- Zoekmenu opzij -->
+            <h1>Geavanceerd zoeken</h1>
 
-
-
-
-
+            <div id="boxes">
+                <p>Extra's:</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Tuin</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Balkon</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Lift</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="soort">Soort pand:</label>
+                <select class="form-control" id="soort">
+                    {% for pand_type in pand_types %}
+                        <option>{{ pand_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gemeente">Gemeente:</label>
+                <select class="form-control" id="gemeente">
+                    {% for gemeente in gemeentes %}
+                        <option>{{ gemeente }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="prijsklasse">Prijsklasse:</label>
+                <select class="form-control" id="prijs">
+                    <option>€0 < €100.000</option>
+                    <option>€100.000 < €500.000</option>
+                    <option>€500.000 < €1.000.000</option>
+                    <option>€1.000.000+</option>
+                </select>
+            </div>
+        </div>
+    </div>
 {% endblock %}
