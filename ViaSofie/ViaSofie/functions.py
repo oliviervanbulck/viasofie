@@ -22,9 +22,6 @@ def chunks(l, n):
 
 
 def get_alle_actieve_panden_in_rijen(panden_per_rij):
-    """
-    vul_op_met_none -> als er niet voldoende panden zijn om de laatste rij vol te krijen, wordt die verder opgevuld met None
-    """
     rijen = chunks(Pand.objects.filter(dossier__actief=True), panden_per_rij)
     return rijen
 
