@@ -1,210 +1,100 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
 
-{% block content %}
+{% block title %}Panden{% endblock %}
+
+{% block headcontent %}
     <style>
-        #main {
-            font-family: "Ropa Sans Pro";
+        /*
+            #main {
+                font-family: "Ropa Sans Pro";
 
-        }
+            }
 
-        #panden {
-            padding-top: 40px;
-            padding-bottom: 60px;
-            padding-left: 40px;;
-            margin-top: 40px;
-            display: inline-block;
-            float: left;
-            width: 70%;
+            #panden {
+                padding-top: 40px;
+                padding-bottom: 60px;
+                padding-left: 40px;;
+                margin-top: 40px;
+                display: inline-block;
+                float: left;
+                width: 70%;
 
-        }
+            }
 
-        #advanced {
-            float: right;
-            display: inline-block;
-            border-style: ridge;
-            text-align: center;
-            border-radius: 25px;
-            width: 20%;
-            padding: 20px;
-            margin-right: 30px;
-        }
+            #advanced {
+                float: right;
+                display: inline-block;
+                border-style: ridge;
+                text-align: center;
+                border-radius: 25px;
+                width: 20%;
+                padding: 20px;
+                margin-right: 30px;
+            }
 
-        .checkbox {
+            .checkbox {
 
-            font-size: 16px;
-        }
+                font-size: 16px;
+            }
 
-        #search {
-            text-align: center;
-            width: 600px;
-            height: 30px;
-            padding-left: 13px;
-            padding-right: 13px;
-            margin-left: auto;
-            margin-right: auto;
+            #search {
+                text-align: center;
+                width: 600px;
+                height: 30px;
+                padding-left: 13px;
+                padding-right: 13px;
+                margin-left: auto;
+                margin-right: auto;
 
-        }
+            }
 
-        #soort, #gemeente, #prijs {
-            width: 80%;
-            display: table-cell;
-            vertical-align: middle
+            #soort, #gemeente, #prijs {
+                width: 80%;
+                display: table-cell;
+                vertical-align: middle
 
-        }
+            }
 
-        #boxes {
-            text-align: left;
-            padding-left: 15px;
-        }
+            #boxes {
+                text-align: left;
+                padding-left: 15px;
+            }
+            */
 
-        #foto {
-            text-align: left;
+    #panden {
+        margin-top: 10px;
+    }
 
-        }
-
-        #foto1, #foto2, #foto3, #foto4, #foto5, #foto6 {
-            padding-top: 40px;
-            padding-bottom: 20px;
-            padding-right: 20px;
-            padding-left: 20px;
-
-
-        }
-
-
+    .row {
+        padding-bottom: 20px;
+    }
     </style>
+{% endblock %}
 
+{% block content %}
+    <div id="main">
+        <!-- Zoekbalk bovenaan -->
+        <div class="container">
+            <input type="text" id="search" name="search" size="100" placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+            <button type="button" id="btnsearch" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span> Zoeken
+            </button>
+        </div>
 
-    <div id="main" class="row">
         <div id="panden" class="col-md-8">
-            <div id="search">
-                <!-- zoekbalk bovenaan -->
-
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <input type="text" id="search" name="search"
-                               placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-                        <button type="button" id="btnsearch" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> Zoeken
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div id="foto1" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
+            {# Panden worden hier weergegeven! #}
+            {% for rij in panden_rijen %}
                 <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
+                    {% for pand in rij %}
+                        {% include 'panden/partial/pand_list_detail.html' %}
                     {% endfor %}
                 </div>
-
-            </div>
-            <div id="foto2" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
-                <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-
-            </div>
-            <div id="foto3" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
-                <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div id="foto4" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
-                <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div id="foto5" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
-                <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div id="foto6" class="col-md-4">
-                <!-- Panden worden hier weergegeven!!! -->
-                <div class="row">
-                    {% for pand in panden %}
-                        <a href="{% url 'panden.detail' pand.id %}">
-                            <div id="foto" class="{{ pand_kolom_class }} text-center">
-                                {% with pand.foto_set.all|first as foto %}
-                                    <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-
-                                    <div style="width: 100%; height: 200px; background-image: url('{{ foto }}'); background-repeat: no-repeat; background-size: contain;"></div>
-                                {% endwith %}
-                                <h2>{{ pand.type }} </h2>
-                                <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
         <div id="advanced" class="col-md-4">
-            <!-- zoekmenu opzij -->
+            <!-- Zoekmenu opzij -->
             <h1>Geavanceerd zoeken</h1>
 
             <div id="boxes">
@@ -223,7 +113,7 @@
                 <label for="soort">Soort pand:</label>
                 <select class="form-control" id="soort">
                     {% for pand_type in pand_types %}
-                    <option>{{ pand_type }}</option>
+                        <option>{{ pand_type }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -231,7 +121,7 @@
                 <label for="gemeente">Gemeente:</label>
                 <select class="form-control" id="gemeente">
                     {% for gemeente in gemeentes %}
-                    <option>{{ gemeente }}</option>
+                        <option>{{ gemeente }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -246,10 +136,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 {% endblock %}

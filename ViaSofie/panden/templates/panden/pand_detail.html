@@ -62,7 +62,7 @@
             {% with pand.foto_set.all|first as foto %}
                 <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
-                <div id="profile" style=" background-image: url('{{ foto }}'); "></div>
+                <div id="profile" style=" background-image: url('{{ foto }}'); background-size: cover;"></div>
             {% endwith %}
             <div id="more">
                 <div id="foto1" class="col-md-4">
