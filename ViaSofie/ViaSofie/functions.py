@@ -24,4 +24,3 @@ def chunks(l, n):
 def get_alle_actieve_panden_in_rijen(panden_per_rij):
     rijen = chunks(Pand.objects.filter(dossier__actief=True), panden_per_rij)
     return rijen
-
