@@ -66,3 +66,5 @@ def contact(request):
 def services(request):
     return render(request, 'ViaSofie/services.html', {})
 
+def faq(request):
+    return render(request, 'ViaSofie/faq.html', {})
