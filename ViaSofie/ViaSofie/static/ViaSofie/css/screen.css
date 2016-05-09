@@ -33,3 +33,10 @@ html {
 body {
     margin-bottom: 50px;
 }
+
+.foto {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 56.25%;
+}
