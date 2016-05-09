@@ -85,6 +85,8 @@ def auto_delete_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is deleted.
     """
+    if kwargs.get('raw'):
+        return
     if instance.foto:
         if os.path.isfile(instance.foto.path):
             os.remove(instance.foto.path)
@@ -95,6 +97,8 @@ def auto_delete_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is changed.
     """
+    if kwargs.get('raw'):
+        return
     if not instance.pk:
         return False
 
@@ -129,6 +133,8 @@ def auto_delete_carousel_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is deleted.
     """
+    if kwargs.get('raw'):
+        return
     if instance.foto:
         if os.path.isfile(instance.foto.path):
             os.remove(instance.foto.path)
@@ -139,6 +145,8 @@ def auto_delete_carousel_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
     when corresponding `MediaFile` object is changed.
     """
+    if kwargs.get('raw'):
+        return
     if not instance.pk:
         return False
 
