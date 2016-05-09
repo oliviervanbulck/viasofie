@@ -70,12 +70,12 @@ def services(request):
 
 
 def faq(request):
-    return render(request, 'ViaSofie/faq.html', {})
+    return render(request, 'ViaSofie/faq.html', {'nbar': 'faq'})
 
 
 def disclaimer(request):
-    return render(request, 'ViaSofie/disclaimer.html', {})
+    return render(request, 'ViaSofie/disclaimer.html', {'nbar': 'disclaimer'})
 
 
 def privacy(request):
-    return render(request, 'ViaSofie/privacy.html', {})
+    return render(request, 'ViaSofie/privacy.html', {'nbar': 'privacy'})

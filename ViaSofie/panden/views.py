@@ -17,7 +17,7 @@ def index(request):
 
     context = {
         'test': test,
-        'nbar': 'panden',
+        'nbar': 'kopen',
         'panden_rijen': panden_rijen,
         'pand_types': pand_types,
         'gemeentes': gemeentes,

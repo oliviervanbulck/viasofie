@@ -43,13 +43,12 @@ margin-top: 5%;
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="{% if nbar == 'te koop' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te koop</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te koop</a>
                 </li>
-                <li class="{% if nbar == 'te huur' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te huur</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te huur</a>
                 </li>
                 <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a>
                 </li>
-                <li class="{% if nbar == 'F.A.Q' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">FAQ</a></li>
                 <li class="{% if nbar == 'contact' %}active{% endif %}"><a
                         href="{% url 'ViaSofie.contact' %}">Contact</a></li>
             </ul>
@@ -130,12 +129,13 @@ margin-top: 5%;
         </ul>
     </div>
 </footer>-->
-<nav class="navbar-default footer">
+<nav class="navbar navbar-default footer">
     <div class="container-fluid">
         <div class="navbar-header">
             <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
         </div>
         <ul class="nav navbar-nav navbar-right">
+            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">FAQ</a></li>
             <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.disclaimer' %}">Disclaimer</a>
             </li>
             <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.privacy' %}">Privacy</a>
