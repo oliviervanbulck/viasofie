@@ -30,8 +30,10 @@
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="{% if nbar == 'panden' %}active{% endif %}"><a href="{% url 'panden.index' %}">Panden</a></li>
+                <li class="{% if nbar == 'te koop' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te koop</a></li>
+                <li class="{% if nbar == 'te huur' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te huur</a></li>
                 <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a></li>
+                <li class="{% if nbar == 'F.A.Q' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">F.A.Q</a></li>
                 <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}">Contact</a></li>
             </ul>
             {% if not user.is_authenticated %}

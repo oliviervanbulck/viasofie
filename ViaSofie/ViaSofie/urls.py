@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='ViaSofie.about'),
     url(r'^contact/$', views.contact, name='ViaSofie.contact'),
+    url(r'^faq/$', views.faq, name='ViaSofie.faq'),
     url(r'^about/services/$', views.services, name='ViaSofie.services'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
