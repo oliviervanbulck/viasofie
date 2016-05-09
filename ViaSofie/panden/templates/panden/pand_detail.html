@@ -33,30 +33,33 @@
             height: 110px;
 
         }
+
         #immo {
-        padding:30px;
+            padding: 30px;
             margin-top: 40px;
             margin-left: 25px;
-            margin-right:auto;
-            border-style:ridge;
+            margin-right: auto;
+            border-style: ridge;
             display: inline-block;
-            width:30%;
-            margin-bot:0;
+            width: 30%;
+            margin-bot: 0;
         }
-    #google{
-        display: inline-block;
-        margin-right:0;
-        margin-left:50px;
-        height:400px;
-    }
-    #map{
-        width:100%;
-        height:100%;
-    }
+
+        #google {
+            display: inline-block;
+            margin-right: 0;
+            margin-left: 50px;
+            height: 400px;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
 
-    <div id="main" class="row" ;>
+    <div id="main" class="row">
         <div id="foto" class="col-md-4">
 
             {% with pand.foto_set.all|first as foto %}
@@ -100,13 +103,13 @@
         </div>
     </div>
     <div id="immo" class="col-md-6">
-<h1 style="font-size: 24px">Bekijk ook op:</h1>
-    link immoweb
+        <h1 style="font-size: 24px">Bekijk ook op:</h1>
+        link immoweb
 
     </div>
     <div id="google" class="col-md-6">
-     <iframe id="map" class="googleMaps"
-                        src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d14132.274223900284!2d4.4153278906692925!3d51.23276649094736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x4171becbc9fedc3b%3A0x46b248d36dfe64!2sArtesis+Plantijn+Hogeschool+Antwerpen%2C+Lange+Nieuwstraat+101%2C+2000+Antwerpen!3m2!1d51.2196857!2d4.4119934!5e0!3m2!1snl!2sbe!4v1461846821030"
-                        allowfullscreen></iframe>
+        <iframe id="map" class="googleMaps"
+                src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d14132.274223900284!2d4.4153278906692925!3d51.23276649094736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x4171becbc9fedc3b%3A0x46b248d36dfe64!2sArtesis+Plantijn+Hogeschool+Antwerpen%2C+Lange+Nieuwstraat+101%2C+2000+Antwerpen!3m2!1d51.2196857!2d4.4119934!5e0!3m2!1snl!2sbe!4v1461846821030"
+                allowfullscreen></iframe>
     </div>
 {% endblock %}
