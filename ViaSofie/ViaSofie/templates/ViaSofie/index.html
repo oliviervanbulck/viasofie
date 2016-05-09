@@ -99,6 +99,10 @@
             padding-top: 40px;
             font-family: "Ropa Sans Pro";
         }
+
+        .img-rounded {
+            max-width: 100%;
+        }
     </style>
 {% endblock %}
 
@@ -170,15 +174,17 @@
         </div>
 
     </div>
+
+    <!--
     <div id="references" class="container">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img class="img-rounded" src="{% static "ViaSofie/logo.png" %}" style="max-width:100%;">
+                <img class="img-rounded" src="{% static "ViaSofie/logo.png" %}">
                 <a href="{% url 'ViaSofie.services' %}" class="button"> Services </a>
 
             </div>
             <div class="col-md-4 text-center">
-                <img class="img-rounded" src="{% static "ViaSofie/logo.png" %}" style="max-width:100%;">
+                <img class="img-rounded" src="{% static "ViaSofie/logo.png" %}">
                 <a href="#" class="button" data-toggle="modal" data-target="#Nieuwsbrief">Nieuwsbrief </a>
                 <div id="Nieuwsbrief" class="modal fade" role="dialog">
                     <div class="modal-dialog">
