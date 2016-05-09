@@ -112,8 +112,8 @@
             <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="#">Disclaimer</a></li>
-            <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="#">Privacy</a></li>
+            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.disclaimer' %}">Disclaimer</a></li>
+            <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.privacy' %}">Privacy</a></li>
         </ul>
     </div>
 </nav>

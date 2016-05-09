@@ -66,5 +66,14 @@ def contact(request):
 def services(request):
     return render(request, 'ViaSofie/services.html', {})
 
+
 def faq(request):
     return render(request, 'ViaSofie/faq.html', {})
+
+
+def disclaimer(request):
+    return render(request, 'ViaSofie/disclaimer.html', {})
+
+
+def privacy(request):
+    return render(request, 'ViaSofie/privacy.html', {})
