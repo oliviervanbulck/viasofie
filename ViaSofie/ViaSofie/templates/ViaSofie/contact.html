@@ -14,11 +14,10 @@
             resize: none;
 
         }
-#contact {
-     height: 450px;
-}
-    #contactform{
-         height: 450px;
+
+
+    #sendMail {
+        margin-top: 10px;
     }
 
 
@@ -46,13 +45,13 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="email">
+                                <p>{{ form.email }}</p>
                             </div>
                             <div class="form-group">
                                 <label for="question">Uw vraag:</label>
-                                <textarea  class="form-control" name="question"></textarea>
+                                <p>{{ form.message }}</p>
                             </div>
-                            <button type="submit" class="btn btn-default" name="sendMail">Submit</button>
+                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Submit</button>
                         </form>
                     </div>
                 </div>
