@@ -82,34 +82,11 @@ WSGI_APPLICATION = 'ViaSofie.wsgi.application'
 
 # Dit is slechts een test server!!
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'viasofie',
-        'USER': 'adminViaSofie',
-        'PASSWORD': 'Test123',
-        'HOST': 'octamir.eu',
-        'PORT': '3306',
-    }
+   'default': {
+      'ENGINE': 'django_mongodb_engine',
+      'NAME': 'viasofie'
+   }
 }
-
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'viasofie',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}"""
-
-# Originele SQLite connectie
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
 
 
 # Password validation
@@ -157,7 +134,7 @@ ADMIN_SITE_HEADER = "ViaSofie Admin"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'info.viasofie@gmail.com'
 EMAIL_HOST_PASSWORD = 'geentest123'
 EMAIL_PORT = 587
