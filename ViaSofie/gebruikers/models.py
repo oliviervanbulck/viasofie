@@ -2,8 +2,11 @@
 
 from __future__ import unicode_literals
 
+from django.core.mail import EmailMessage
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -44,3 +47,18 @@ class Gebruiker(models.Model):
 
     def __str__(self):
         return '%s %s (%s)' % (self.user.first_name, self.user.last_name, self.user.email)
+
+
+# Mailtje wordt naar de user gestuurd wanneer zijn account wordt aangemaakt.
+@receiver(post_save, sender=Gebruiker)
+def auto_mail_user_on_save(sender, instance, **kwargs):
+    if kwargs.get('raw'):
+        return
+    if not instance.pk:
+        return False
+
+    # Niet opnieuw mailen als er een change op is
+    if kwargs['created']:
+        # Username = email!!!
+        email = EmailMessage('Uw account is klaar!', 'Uw account op ViaSofie.be is aangemaakt!', to=[instance.user.username])
+        email.send()
