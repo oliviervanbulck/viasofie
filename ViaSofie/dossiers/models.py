@@ -67,9 +67,9 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     """
     if kwargs.get('raw'):
         return
-    if instance.foto:
-        if os.path.isfile(instance.foto.path):
-            os.remove(instance.foto.path)
+    if instance.bestand:
+        if os.path.isfile(instance.bestand.path):
+            os.remove(instance.bestand.path)
 
 
 @receiver(models.signals.pre_save, sender=DossierDocLijn)
