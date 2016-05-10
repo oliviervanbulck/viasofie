@@ -6,13 +6,9 @@
 {% block headcontent %}
     <style>
 
-    #panden {
-        margin-top: 10px;
-    }
-
-    .row {
-        padding-bottom: 20px;
-    }
+        #panden {
+            margin-top: 10px;
+        }
 
     </style>
 {% endblock %}
@@ -21,63 +17,66 @@
     <div id="main">
         <!-- Zoekbalk bovenaan -->
         <div class="container">
-            <input type="text" id="search" name="search" size="100" placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+            <input type="text" id="search" name="search" size="100"
+                   placeholder="Zoek op gemeente, postcode, provincie, ..."/>
             <button type="button" id="btnsearch" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span> Zoeken
             </button>
         </div>
 
-        <div id="panden" class="col-md-8">
-            {# Panden worden hier weergegeven! #}
-            {% for rij in panden_rijen %}
-                <div class="row">
-                    {% for pand in rij %}
-                        {% include 'panden/partial/pand_list_detail.html' %}
-                    {% endfor %}
+        <div class="container-fluid">
+            <div class="row">
+                <div id="panden" class="col-md-8">
+                    {# Panden worden hier weergegeven! #}
+                        <div class="row">
+                            {% for pand in panden %}
+                                {% include 'panden/partial/pand_list_detail.html' %}
+                            {% endfor %}
+                        </div>
                 </div>
-            {% endfor %}
-        </div>
 
-        <div id="advanced" class="col-md-4">
-            <!-- Zoekmenu opzij -->
-            <h1>Geavanceerd zoeken</h1>
+                <div id="advanced" class="col-md-4">
+                    <!-- Zoekmenu opzij -->
+                    <h1>Geavanceerd zoeken</h1>
 
-            <div id="boxes">
-                <p>Extra's:</p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Tuin</label>
+                    <div id="boxes">
+                        <p>Extra's:</p>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Tuin</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Balkon</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Lift</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="soort">Soort pand:</label>
+                        <select class="form-control" id="soort">
+                            {% for pand_type in pand_types %}
+                                <option>{{ pand_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gemeente">Gemeente:</label>
+                        <select class="form-control" id="gemeente">
+                            {% for gemeente in gemeentes %}
+                                <option>{{ gemeente }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prijsklasse">Prijsklasse:</label>
+                        <select class="form-control" id="prijs">
+                            <option>€0 < €100.000</option>
+                            <option>€100.000 < €500.000</option>
+                            <option>€500.000 < €1.000.000</option>
+                            <option>€1.000.000+</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Balkon</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Lift</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="soort">Soort pand:</label>
-                <select class="form-control" id="soort">
-                    {% for pand_type in pand_types %}
-                        <option>{{ pand_type }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gemeente">Gemeente:</label>
-                <select class="form-control" id="gemeente">
-                    {% for gemeente in gemeentes %}
-                        <option>{{ gemeente }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="prijsklasse">Prijsklasse:</label>
-                <select class="form-control" id="prijs">
-                    <option>€0 < €100.000</option>
-                    <option>€100.000 < €500.000</option>
-                    <option>€500.000 < €1.000.000</option>
-                    <option>€1.000.000+</option>
-                </select>
             </div>
         </div>
     </div>

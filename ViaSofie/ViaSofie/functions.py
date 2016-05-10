@@ -14,13 +14,6 @@ def get_alle_gemeentes():
     return [gemeente['gemeente'] for gemeente in Adres.objects.values('gemeente').distinct()]
 
 
-def chunks(l, n):
-    """
-    Source: http://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks-in-python
-    """
-    return [l[i:i+n] for i in xrange(0, len(l), n)]
-
-
-def get_alle_actieve_panden_in_rijen(panden_per_rij):
-    rijen = chunks(Pand.objects.filter(dossier__actief=True), panden_per_rij)
-    return rijen
+def get_alle_actieve_panden():
+    rij = Pand.objects.filter(dossier__actief=True)
+    return rij

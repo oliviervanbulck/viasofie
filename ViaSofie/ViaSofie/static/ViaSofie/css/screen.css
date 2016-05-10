@@ -2,8 +2,12 @@
 Algemeen
 */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 50px;
 }
 
 /*
@@ -12,7 +16,7 @@ Menubalk
 
 .navbar-default {
     background-color: #0d3532;
-    border:none;
+    border: none;
     border-radius: 0;
 }
 
@@ -27,6 +31,10 @@ Menubalk
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
     background-color: #eac8c6;
 }
+
+/*
+Footer
+*/
 
 .footer {
     position: absolute;
@@ -51,14 +59,102 @@ Menubalk
     margin: 0 !important;
 }
 
-body {
-    margin-bottom: 50px;
-}
-
 .foto {
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     padding-bottom: 56.25%;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+/*
+Pandpartial
+*/
+
+.pand-partial {
+    margin-bottom: 60px;
+}
+
+.pandinfobox {
+    position: absolute;
+    left: 50%;
+    bottom: -26px;
+    margin-left: -115px;
+    width: 230px;
+    height: 52px;
+}
+
+.pandinfobox-left {
+    float: left;
+    border-right: 15px solid #6C6;
+    border-top: 26px solid transparent;
+    border-bottom: 26px solid transparent;
+}
+
+.pandinfobox-right {
+    float: left;
+    border-left: 15px solid #6C6;
+    border-top: 26px solid transparent;
+    border-bottom: 26px solid transparent;
+}
+
+.pandinfobox-middle {
+    float: left;
+    width: 200px;
+    height: 52px;
+    background-color: #6C6;
+}
+
+.hexagon {
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    height: 50px;
+    background: #fff;
+}
+
+.hexagon:not(.inner) {
+    margin-left: -100px;
+    bottom: -26px;
+}
+
+.hexagon:after,
+.hexagon:before {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    top: 0;
+    width: 0px;
+    border-top: 25px transparent solid;
+    border-bottom: 25px transparent solid;
+}
+
+.hexagon:before {
+    left: -30px;
+    border-right: 30px #fff solid;
+}
+
+.hexagon:after {
+    right: -30px;
+    border-left: 30px #fff solid;
+}
+
+.hexagon.inner {
+    background-color: #eac8c6;
+    top: 2px;
+    z-index: 2;
+    left: 0;
+    -webkit-filter: drop-shadow(0px 2px 2px rgba(130,130,130,1));
+    filter        : drop-shadow(0px 2px 2px rgba(130,130,130,1));
+    -ms-filter    : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+    filter        : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+}
+
+.hexagon.inner:before {
+    border-right: 30px solid #eac8c6;
+}
+
+.hexagon.inner:after {
+    border-left: 30px solid #eac8c6;
 }

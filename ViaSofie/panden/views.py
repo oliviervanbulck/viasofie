@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ViaSofie.functions import get_alle_actieve_panden_in_rijen
+from ViaSofie.functions import get_alle_actieve_panden
 from ViaSofie.functions import get_alle_gemeentes
 from .models import Pand
 from .models import Type
@@ -11,14 +11,13 @@ def index(request):
     pand_types = Type.objects.all()
     gemeentes = get_alle_gemeentes()
 
-    PANDEN_PER_RIJ = 3
-    panden_rijen = get_alle_actieve_panden_in_rijen(PANDEN_PER_RIJ)
-    pand_kolom_class = 'col-md-' + str(12 / PANDEN_PER_RIJ)
+    panden = get_alle_actieve_panden()
+    pand_kolom_class = 'col-lg-4 col-md-6'
 
     context = {
         'test': test,
         'nbar': 'kopen',
-        'panden_rijen': panden_rijen,
+        'panden': panden,
         'pand_types': pand_types,
         'gemeentes': gemeentes,
         'pand_kolom_class': pand_kolom_class,

@@ -1,13 +1,23 @@
-<div class="{{ pand_kolom_class }} text-center">
+<div class="{{ pand_kolom_class }} text-center pand-partial">
     {% if pand != None %}
-        <a href="{% url 'panden.detail' pand.id %}">
-            {% with pand.foto_set.all|first as foto %}
-                <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
 
+        {% with pand.foto_set.all|first as foto %}
+            <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
+            <a href="{% url 'panden.detail' pand.id %}">
                 <div class="foto" style="background-image: url('{{ foto }}');"></div>
-            {% endwith %}
-            <h2>{{ pand.type }} </h2>
-            <p>{{ pand.adres }} &emsp; €{{ pand.prijs|floatformat:2 }}</p>
-        </a>
+            </a>
+            <!--<div class="pandinfobox">
+                <div class="pandinfobox-left"></div>
+                <div class="pandinfobox-middle"><strong>{{ pand.type }}</strong><br/>€ {{ pand.prijs|floatformat:2 }}</div>
+                <div class="pandinfobox-right"></div>
+            </div>-->
+            <div class="hexagon">
+                <div class="hexagon inner">
+                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0 }} | {{ pand.adres.gemeente }}
+                </div>
+            </div>
+        {% endwith %}
+        <!--<h2>{# pand.type #} </h2>
+            <p>{# pand.adres #} &emsp; €{# pand.prijs|floatformat:2 #}</p>-->
     {% endif %}
 </div>
