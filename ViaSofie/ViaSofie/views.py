@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 # Create your views here.
 from django.template import RequestContext
 
-from panden.models import Foto, CarouselFoto
+from panden.models import Foto, CarouselFoto, MongoModel
 from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
@@ -20,8 +20,6 @@ def handler404(request):
 
 def index(request):
     AANTAL_PANDEN = 3
-
-    foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
     panden = get_random_actieve_panden(AANTAL_PANDEN)
     aantal_panden = len(panden)
@@ -33,7 +31,6 @@ def index(request):
         'panden': panden,
         'aantal_panden': aantal_panden,
         'pand_kolom_class': pand_kolom_class,
-        'foto': foto,
         'nbar': 'home',
         'carousel': carousel_fotos,
     }
@@ -78,4 +75,7 @@ def disclaimer(request):
 
 
 def privacy(request):
-    return render(request, 'ViaSofie/privacy.html', {'nbar': 'privacy'})
+    mg = MongoModel(text="Hello world!")
+    mg.save()
+    return render(request, 'ViaSofie/privacy.html', {'nbar': 'privacy', 'mg': mg})
+

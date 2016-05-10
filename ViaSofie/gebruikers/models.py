@@ -9,6 +9,9 @@ from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
 #ERD tabel Landen
+from ViaSofie import settings
+
+
 @python_2_unicode_compatible
 class Land(models.Model):
     class Meta:
@@ -38,7 +41,7 @@ class Adres(models.Model):
 # Gebruiker is extent van User object
 @python_2_unicode_compatible
 class Gebruiker(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     telefoonnummer = models.CharField(max_length=255)
     adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
 

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import mongoengine
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,11 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_mongoengine',
+    'django_mongoengine.mongo_auth',
+    'django_mongoengine.mongo_admin.sites',
+    'django_mongoengine.mongo_admin',
     'dossiers',
     'gebruikers',
     'panden',
     'talen',
 ]
+
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+
+AUTHENTICATION_BACKENDS = (
+    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
+)
+
+SESSION_ENGINE = 'django_mongoengine.sessions'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,13 +95,31 @@ WSGI_APPLICATION = 'ViaSofie.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 # Dit is slechts een test server!!
-DATABASES = {
+"""DATABASES = {
    'default': {
-      'ENGINE': 'django_mongodb_engine',
-      'NAME': 'viasofie'
+      'ENGINE': ''
    }
+}"""
+
+"""MONGODB_DATABASES = {
+    "default": {
+        "name": 'viasofie',
+        "host": 'localhost'
+        # "password": database_password,
+        # "username": database_user,
+        # "tz_aware": True, # if you using timezones in django (USE_TZ = True)
+    },
+}"""
+
+MONGODB_DATABASES = {
+    'default': {'name': 'viasofie'}
 }
 
+
+DATABASES = {
+    'default': {'ENGINE': 'django.db.backends.dummy'}
+}
+# SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

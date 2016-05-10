@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
+
+from django_mongoengine.mongo_auth.models import MongoUser
 from models import Gebruiker, Land, Adres
 
 
@@ -12,7 +14,7 @@ class GebruikerInline(admin.StackedInline):
 
 
 # Define a new User admin
-class UserAdmin(BaseUserAdmin):
+class UserAdmin(admin.ModelAdmin):
     inlines = (GebruikerInline, )
 
 
@@ -34,7 +36,7 @@ class AdresAdmin(HiddenAdminModel):
 
 
 # Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+# admin.site.unregister(MongoUser)
+admin.site.register(MongoUser, UserAdmin)
 admin.site.register(Land, LandAdmin)
 admin.site.register(Adres, AdresAdmin)
