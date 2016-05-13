@@ -78,5 +78,3 @@ def disclaimer(request):
     return render(request, 'ViaSofie/disclaimer.html', {'nbar': 'disclaimer'})
 
 
-def privacy(request):
-    return render(request, 'ViaSofie/privacy.html', {'nbar': 'privacy'})
