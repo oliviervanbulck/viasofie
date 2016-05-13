@@ -16,19 +16,6 @@
     {% block extrastyle %}{% endblock %}
 </head>
 <body>
-<style>
-    #goedDoel {
-        background-image: url({% static "ViaSofie/goedDoel.png" %});
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 100px;
-        height: 40px;
-margin-top: 5%;
-
-    }
-
-</style>
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header navbar-logo">
@@ -43,7 +30,7 @@ margin-top: 5%;
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}">Kopen</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><div class="icon"></div> Kopen</a>
                 </li>
                 <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}">Huren</a>
                 </li>
@@ -51,7 +38,7 @@ margin-top: 5%;
                 </li>
                 <li class="{% if nbar == 'contact' %}active{% endif %}"><a
                         href="{% url 'ViaSofie.contact' %}">Contact</a></li>
-            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">Advies</a></li>
+                <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">Advies</a></li>
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
@@ -60,8 +47,8 @@ margin-top: 5%;
                             <span class="glyphicon glyphicon-log-in"></span> Login
                         </a>
                     </li>
-                    <li id="goedDoel" >
-                       <a href="http://www.welzijnszorg.be/"></a>
+                    <li id="goedDoel">
+                        <a href="http://www.welzijnszorg.be/"></a>
                     </li>
                 </ul>
             {% else %}
@@ -120,15 +107,6 @@ margin-top: 5%;
 </div>
 {% block content %}
 {% endblock %}
-<!--<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</p>
-        <ul class="nav navbar-nav navbar-right">
-            <li>Disclaimer</li>
-            <li>Privacy</li>
-        </ul>
-    </div>
-</footer>-->
 <nav class="navbar navbar-default footer">
     <div class="container-fluid">
         <div class="navbar-header">
