@@ -11,6 +11,7 @@ from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
 
+
 def handler404(request):
     response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
