@@ -51,7 +51,7 @@ margin-top: 5%;
                 </li>
                 <li class="{% if nbar == 'contact' %}active{% endif %}"><a
                         href="{% url 'ViaSofie.contact' %}">Contact</a></li>
-            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">FAQ</a></li>
+            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">Advies</a></li>
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
