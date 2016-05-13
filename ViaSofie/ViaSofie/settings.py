@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'gebruikers',
     'panden',
     'talen',
+    'nocaptcha_recaptcha',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -161,3 +162,8 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER = 'info.viasofie@gmail.com'
 EMAIL_HOST_PASSWORD = 'geentest123'
 EMAIL_PORT = 587
+
+NORECAPTCHA_SITE_KEY = "6LdIzh8TAAAAABWM6APBVN8w4Ge0Znnz7DlaeLjs"
+NORECAPTCHA_SECRET_KEY = "6LdIzh8TAAAAADO6tO38KF0NCqSRowUCklQuErdW"
+
+

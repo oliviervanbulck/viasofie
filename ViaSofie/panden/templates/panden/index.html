@@ -9,17 +9,18 @@
         <div class="container">
             <form action="{% url 'panden.index' %}" method="post">
                 {% csrf_token %}
+                <button type="submit" class="default-button-handler" aria-hidden="true" tabindex="-1"></button>
                 <div class="input-group">
                     {% if search %}
                         <span class="input-group-btn">
-                            <button type="submit" name="clearPanden" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" name="clearPanden">
                                 <span class="glyphicon glyphicon-th"></span> Alles tonen
                             </button>
                         </span>
                     {% endif %}
                     <input type="text" id="search" name="search"
                            placeholder="Zoek op gemeente, postcode, provincie, ..." value="{{ search }}"
-                           class="form-control"/>
+                           class="form-control" />
                     <span class="input-group-btn">
                         <button type="submit" id="btnsearch" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span> Zoeken
