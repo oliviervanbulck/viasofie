@@ -17,22 +17,37 @@
     <div id="main">
         <!-- Zoekbalk bovenaan -->
         <div class="container">
-            <input type="text" id="search" name="search" size="100"
-                   placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-            <button type="button" id="btnsearch" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span> Zoeken
-            </button>
+            <form action="{% url 'panden.index' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    {% if search %}
+                        <span class="input-group-btn">
+                            <button type="submit" name="clearPanden" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-th"></span> Alles tonen
+                            </button>
+                        </span>
+                    {% endif %}
+                    <input type="text" id="search" name="search"
+                           placeholder="Zoek op gemeente, postcode, provincie, ..." value="{{ search }}"
+                           class="form-control"/>
+                    <span class="input-group-btn">
+                        <button type="submit" id="btnsearch" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span> Zoeken
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
 
         <div class="container-fluid">
             <div class="row">
                 <div id="panden" class="col-md-8">
                     {# Panden worden hier weergegeven! #}
-                        <div class="row">
-                            {% for pand in panden %}
-                                {% include 'panden/partial/pand_list_detail.html' %}
-                            {% endfor %}
-                        </div>
+                    <div class="row">
+                        {% for pand in panden %}
+                            {% include 'panden/partial/pand_list_detail.html' %}
+                        {% endfor %}
+                    </div>
                 </div>
 
                 <div id="advanced" class="col-md-4">

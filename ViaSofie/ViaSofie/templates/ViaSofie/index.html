@@ -116,16 +116,17 @@
                     <li data-target="#myCarousel" data-slide-to="1"></li>
                     <li data-target="#myCarousel" data-slide-to="2"></li>-->
                     {% for image in carousel %}
-                        <li data-target="#viaSofieCarousel" data-slide-to="{{ forloop.counter0 }}"{% if forloop.counter0 == 0 %} class="active"{% endif %}></li>
+                        <li data-target="#viaSofieCarousel" data-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.counter0 == 0 %} class="active"{% endif %}></li>
                     {% endfor %}
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     {% for image in carousel %}
-                    <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
-                        <img src="{{ image }}" alt="Woning" style="margin: 0 auto;">
-                    </div>
+                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
+                            <img src="{{ image }}" alt="Woning" style="margin: 0 auto;">
+                        </div>
                     {% endfor %}
 
                     <!--<div id="two" class="item">
@@ -152,11 +153,14 @@
             <div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <input type="text" id="search" name="search"
-                               placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-                        <button type="button" id="btnsearch" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> Zoeken
-                        </button>
+                        <form method="post" action="{% url 'panden.index' %}">
+                            {% csrf_token %}
+                            <input type="text" id="search" name="search"
+                                   placeholder="Zoek op gemeente, postcode, provincie, ..."/>
+                            <button type="submit" id="btnsearch" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span> Zoeken
+                            </button>
+                        </form>
                     </div>
                 </div>
 
