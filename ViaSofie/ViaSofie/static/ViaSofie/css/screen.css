@@ -196,7 +196,12 @@ Pandpartial
 .hexagon.inner:after {
     border-left: 30px solid #eac8c6;
 }
+#panden {
+    background-image: url("../dark-city.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
 
+}
 /*
 Pagina panden.index
 */

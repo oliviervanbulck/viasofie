@@ -2,6 +2,9 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block headcontent %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
 {% block content %}
     <div class="container-fluid">
         <div class="row">
@@ -23,14 +26,16 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="email">Email adres:</label>
+                                <label>Email adres:</label>
                                 <p>{{ form.email }}</p>
                             </div>
                             <div class="form-group">
-                                <label for="question">Bericht:</label>
+                                <label>Bericht:</label>
                                 <p>{{ form.message }}</p>
                             </div>
+                            <div>{{ form.captcha }}</div>
                             <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden</button>
+
                         </form>
                     </div>
                 </div>
