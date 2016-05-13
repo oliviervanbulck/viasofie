@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <title>{% block title %}{% endblock %} | ViaSofie</title>
+    <title>{% block title %}{% endblock %} | Via Sofie</title>
     {% block headcontent %}
     {% endblock %}
     {% block extrahead %}{% endblock %}
@@ -39,18 +39,19 @@ margin-top: 5%;
             </button>
             <a style="float: left;" href="{% url 'index' %}"><img src="{% static "ViaSofie/logo.png" %}" alt="Logo"
                                                                   class="logo"/></a>
-            <a class="navbar-brand" href="{% url 'index' %}">ViaSofie</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Via Sofie</a>
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te koop</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}">Kopen</a>
                 </li>
-                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}">Te huur</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}">Huren</a>
                 </li>
                 <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a>
                 </li>
                 <li class="{% if nbar == 'contact' %}active{% endif %}"><a
                         href="{% url 'ViaSofie.contact' %}">Contact</a></li>
+            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">FAQ</a></li>
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
@@ -134,7 +135,7 @@ margin-top: 5%;
             <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">FAQ</a></li>
+
             <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.disclaimer' %}">Disclaimer</a>
             </li>
             <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.privacy' %}">Privacy</a>
