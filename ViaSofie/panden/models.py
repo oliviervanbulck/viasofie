@@ -116,7 +116,8 @@ def auto_delete_foto_on_change(sender, instance, **kwargs):
 # ERD tabel CarouselFoto
 class CarouselFoto(models.Model):
     class Meta:
-        verbose_name_plural = "Foto's voor carousel"
+        verbose_name_plural = "Slideshow"
+        verbose_name = "foto voor slideshow"
 
     foto = models.ImageField()
     actief = models.BooleanField(default=True)
