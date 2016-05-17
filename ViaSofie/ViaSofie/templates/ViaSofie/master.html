@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load viasofie_filters %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
             <ul class="nav navbar-nav">
                 <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><div class="icon"></div> Kopen</a>
                 </li>
-                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}">Huren</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}">Huren</a>
                 </li>
                 <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a>
                 </li>
@@ -59,12 +60,14 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            {% if user.is_superuser %}
+                            {% if user|has_group:'Makelaar' %}
                                 <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
                                     Beheer</a></li>
                             {% endif %}
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                            {% if user|has_group:'Verkoper' %}
+                                <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                            {% endif %}
                             <li><a href="{% url "gebruikers.logout" %}"><span
                                     class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
                         </ul>

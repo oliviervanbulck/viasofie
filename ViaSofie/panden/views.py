@@ -33,6 +33,30 @@ def index(request):
     return render(request, 'panden/index.html', context)
 
 
+def huren(request):
+    pand_types = Type.objects.all()
+    gemeentes = get_alle_gemeentes()
+
+    context = {
+        'nbar': 'huren',
+        'pand_types': pand_types,
+        'gemeentes': gemeentes,
+        'form': NameForm()
+    }
+
+    if request.POST and request.POST['search'] and ('clearPanden' not in request.POST):
+        panden = keyword_search(Pand, request.POST['search'],
+                                ('adres__straat', 'adres__gemeente', 'adres__postcode', 'adres__huisnummer',
+                                 'type__type',))
+        context['search'] = request.POST['search']
+    else:
+        panden = get_alle_actieve_panden()
+    context['pand_kolom_class'] = 'col-lg-4 col-md-6'
+    context['panden'] = panden
+
+    return render(request, 'panden/index.html', context)
+
+
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
     context = {

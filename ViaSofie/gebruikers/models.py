@@ -6,7 +6,7 @@ from django.core import validators
 from django.core.exceptions import ValidationError
 from django.core.mail import EmailMessage
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
@@ -47,18 +47,6 @@ class Adres(models.Model):
 @python_2_unicode_compatible
 class Gebruiker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    """username = models.CharField(
-        _('username'),
-        max_length=30,
-        unique=True,
-        help_text=_('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.'),
-        validators=[
-            validators.EmailValidator(),
-        ],
-        error_messages={
-            'unique': _("A user with that username already exists."),
-        },
-    )"""
     telefoonnummer = models.CharField(max_length=255)
     adres = models.ForeignKey('Adres', on_delete=models.CASCADE)
 

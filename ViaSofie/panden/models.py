@@ -11,7 +11,6 @@ from django.db import models
 # Create your models here.
 
 # ERD tabel Type
-from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 

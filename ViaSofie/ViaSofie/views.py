@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group, Permission
 from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.core.mail import send_mail
@@ -11,7 +12,6 @@ from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
 
-
 def handler404(request):
     response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
@@ -20,6 +20,7 @@ def handler404(request):
 
 
 def index(request):
+    print Permission.objects.all()
     AANTAL_PANDEN = 3
 
     foto = Foto.objects.first()
