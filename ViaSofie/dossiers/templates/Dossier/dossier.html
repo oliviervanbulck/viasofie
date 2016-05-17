@@ -7,11 +7,9 @@
 <style>
 #pand_img{
     max-width: 100%;
+    margin-left: 15px;
 }
 
-#pand_info{
-    border: 1px solid black;
-}
 
 #dossier_checklist{
     margin-top: 10px;
@@ -29,9 +27,17 @@
             <div class="col-md-3">
                 <img src="{% static "ViaSofie/huis1.jpg" %}" class="img-rounded" id="pand_img">
             </div>
-            <div class="col-md-8" id="pand_info">
-                <h4>Pand</h4>
-                <p>ayy testje</p>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Pand
+                    </div>
+                    <div class="panel-body">
+                        <p>ayy</p>
+                        <p>testje</p>
+                        <p>woela</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,18 +45,24 @@
     <div class="container-fluid">
         <div class="col-md-5">
             <div class="panel panel-default" id="dossier_checklist">
-                <div class="panel body">
-                        <div class="col-md-5 " >
-                            <h4>Checklist</h4>
+                <div class="panel-heading">
+                    Checklist
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-5 ">
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
             <div class="panel panel-default" id="stavaza_comm">
-                <div class="panel body">
-                        <div class="col-md-5 " >
-                            <h4>Stavaza</h4>
+                <div class="panel-heading">
+                    Stavaza
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-5 " >
+
                     </div>
                 </div>
             </div>
