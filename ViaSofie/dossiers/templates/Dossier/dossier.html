@@ -1,0 +1,104 @@
+{% extends "ViaSofie/master.html" %}
+{% load staticfiles %}
+
+{% block title %}Dossier{% endblock %}
+
+{% block headcontent %}
+<style>
+#pand_img{
+    max-width: 100%;
+    margin-left: 15px;
+}
+
+
+#dossier_checklist{
+    margin-top: 10px;
+}
+
+#stavaza_comm{
+    margin-top: 10px;
+}
+
+#header_checklist{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#header_stavaza{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#header_details{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{% static "ViaSofie/huis1.jpg" %}" class="img-rounded" id="pand_img">
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 id="header_details">Pand details</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>ayy</p>
+                        <p>testje</p>
+                        <p>woela</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <div class="panel panel-default" id="dossier_checklist">
+                <div class="panel-heading">
+                    <h4 id="header_checklist">Checklist</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-5 ">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+            <div class="panel panel-default" id="stavaza_comm">
+                <div class="panel-heading">
+                    <h4 id="header_stavaza">Stavaza</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-5 " >
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <div id="contactform" class="panel panel-default">
+                    <div class="panel-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Bericht:</label>
+                                <p>{{ form.message }}</p>
+                            </div>
+                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden</button>
+
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
