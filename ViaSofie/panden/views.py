@@ -5,6 +5,7 @@ from ViaSofie.functions import get_alle_gemeentes
 from ViaSofie.functions import keyword_search
 from .models import Pand
 from .models import Type
+from .forms import NameForm
 
 
 # Create your views here.
@@ -16,6 +17,7 @@ def index(request):
         'nbar': 'kopen',
         'pand_types': pand_types,
         'gemeentes': gemeentes,
+        'form': NameForm()
     }
 
     if request.POST and request.POST['search'] and ('clearPanden' not in request.POST):

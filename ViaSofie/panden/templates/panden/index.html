@@ -3,6 +3,12 @@
 
 {% block title %}Te koop{% endblock %}
 
+{% block headcontent %}
+<link rel="stylesheet" type="text/css" href="{% static 'ViaSofie/css/nouislider.min.css' %}">
+    <script src="{% static 'ViaSofie/js/nouislider.min.js' %}"></script>
+    <script src="{% static 'ViaSofie/js/main.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div id="main">
         <!-- Zoekbalk bovenaan -->
@@ -41,20 +47,17 @@
                     </div>
                 </div>
 
-                <div id="advanced" class="col-md-4">
-                    <!-- Zoekmenu opzij -->
+                <!--<div id="advanced" class="col-md-4">
                     <h1>Geavanceerd zoeken</h1>
 
-                    <div id="boxes">
+                    <form action="" method="get">
+                        <div id="boxes">
                         <p>Extra's:</p>
                         <div class="checkbox">
                             <label><input type="checkbox" value="">Tuin</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="">Balkon</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">Lift</label>
+                            <label><input type="checkbox" value="">Zwembad</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,16 +77,29 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="prijsklasse">Prijsklasse:</label>
-                        <select class="form-control" id="prijsklasse">
-                            <option>€0 < €100.000</option>
-                            <option>€100.000 < €500.000</option>
-                            <option>€500.000 < €1.000.000</option>
-                            <option>€1.000.000+</option>
-                        </select>
+                        <span>Prijsklasse:</span>
+                        <div id="prijs-slider"></div>
+                        <label for="prijs-lower-value">Min</label><input type="text" id="prijs-lower-value">
+                        <label for="prijs-upper-value">Max</label><input type="text" id="prijs-upper-value">
                     </div>
-                </div>
+
+                    <input type="submit" value="Zoek!" />
+                    </form>
+
+                </div> -->
+
+                <form action="/your-name/" method="get" id="advanced" class="col-md-4">
+                    Gemeente: {{ form.gemeentes }}<br>
+                    Tuin: {{ form.tuin }}<br>
+                    Zwembad: {{ form.zwembad }}
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         </div>
     </div>
+
+    <script>
+        // Slider voor prijsklasse
+        makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', 0, 10000000, 5000, 1000000);
+    </script>
 {% endblock %}
