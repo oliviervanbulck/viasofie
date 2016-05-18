@@ -33,7 +33,7 @@ Menubalk
 
 @font-face {
     font-family: RopaSans;
-    src: url("../fonts/RopaSansSCPPro-Regular.otf")
+    src: url('../fonts/RopaSansSCPro-Regular.otf');
 }
 
 .navbar-default .logo {
