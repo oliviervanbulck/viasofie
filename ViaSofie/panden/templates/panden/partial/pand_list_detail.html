@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="{{ pand_kolom_class }} text-center pand-partial">
     {% if pand != None %}
 
@@ -13,7 +14,7 @@
             </div>-->
             <div class="hexagon">
                 <div class="hexagon inner">
-                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0 }} | {{ pand.adres.gemeente }}
+                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0|intcomma }} | {{ pand.adres.gemeente }}
                 </div>
             </div>
         {% endwith %}
