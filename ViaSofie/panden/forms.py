@@ -3,7 +3,7 @@ from ViaSofie.functions import get_alle_gemeentes
 from panden.models import Type
 
 
-class NameForm(forms.Form):
+class AdvancedSearchForm(forms.Form):
     KEUZES = [('ja', 'Ja'),
               ('nee', 'Nee'),
               ('eender', 'Eender')]
