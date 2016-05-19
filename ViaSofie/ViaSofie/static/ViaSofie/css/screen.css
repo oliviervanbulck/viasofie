@@ -207,7 +207,7 @@ Pandpartial
     border-left: 30px solid #bad5ce;
 }
 #panden {
-    background-image: url("../grey.jpg");
+    /*background-image: url("../grey.jpg");*/
     background-repeat: no-repeat;
     background-size: 100%;
     margin-top:2%;

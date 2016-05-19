@@ -58,56 +58,77 @@
             <div class="row">
                 <div id="pandenLijst" class="col-md-8">
                     {# Panden worden hier weergegeven! #}
-                    <div class="row">
-                        {% for pand in panden %}
-                            {% include 'panden/partial/pand_list_detail.html' %}
-                        {% endfor %}
-                    </div>
+                    {% for pand in panden %}
+                        {% include 'panden/partial/pand_list_detail.html' %}
+                    {% endfor %}
                 </div>
 
                 <div class="col-md-4">
-                    <form action="?" method="get" id="advanced">
-                        <h1>Geavanceerd zoeken</h1>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h1>Geavanceerd zoeken</h1></div>
 
-                        {# Normale velden #}
-                        {% for field in form %}
-                            <div class="row">
-                                <div class="col-md-3">{{ field.label_tag }}</div>
 
-                                <div class="col-md-9">{{ field }}</div>
+                            <div class="panel-body">
+                                <form action="?" method="get" id="advanced">
+                                {# Normale velden #}
+                                <div class="row">
+                                    <div class="col-md-3">{{ form.gemeente.label_tag }}</div>
+                                    <div class="col-md-9">{{ form.gemeente }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">{{ form.soort.label_tag }}</div>
+                                    <div class="col-md-9">{{ form.soort }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">{{ form.zwembad.label_tag }}</div>
+                                    <div class="col-md-9">{{ form.zwembad }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">{{ form.tuin.label_tag }}</div>
+                                    <div class="col-md-9">{{ form.tuin }}</div>
+                                </div>
+
+                                {# Sliders #}
+                                <div class="row" class="slider">
+                                    <div class="col-md-10"><label>Aantal slaapkamers:</label></div>
+                                    <div class="col-md-10" id="slaapkamers-slider"></div>
+
+                                    <div class="col-md-5">
+                                        <!--<label for="slaapkamers-lower-value">Min</label>
+                                        <input type="text" id="slaapkamers-lower-value" name="slaapkamers-lower-value"/>-->
+                                        {{ form.slaapkamer_lower.label_tag }}
+                                        {{ form.slaapkamer_lower }}
+                                    </div>
+                                    <div class="col-md-5 text-right">
+                                        <!--<label for="slaapkamers-upper-value">Max</label>
+                                        <input type="text" id="slaapkamers-upper-value" name="slaapkamers-upper-value"/>-->
+                                        {{ form.slaapkamer_upper.label_tag }}
+                                        {{ form.slaapkamer_upper }}
+                                    </div>
+                                </div>
+
+                                <div class="row" class="slider">
+                                    <div class="col-md-10"><label>Prijsklasse:</label></div>
+                                    <div class="col-md-10" id="prijs-slider"></div>
+
+                                    <div class="col-md-5">
+                                        <!--<label for="slaapkamers-lower-value">Min</label>
+                                        <input type="text" id="slaapkamers-lower-value" name="slaapkamers-lower-value"/>-->
+                                        {{ form.prijs_lower.label_tag }}
+                                        {{ form.prijs_lower }}
+                                    </div>
+                                    <div class="col-md-5 text-right">
+                                        <!--<label for="slaapkamers-upper-value">Max</label>
+                                        <input type="text" id="slaapkamers-upper-value" name="slaapkamers-upper-value"/>-->
+                                        {{ form.prijs_upper.label_tag }}
+                                        {{ form.prijs_upper }}
+                                    </div>
+                                </div>
+                                <input type="submit" value="Submit"/>
+                                    </form>
                             </div>
-                        {% endfor %}
 
-                        {# Sliders #}
-                        <div class="row" class="slider">
-                            <div class="col-md-10"><label>Aantal slaapkamers:</label></div>
-                            <div class="col-md-10" id="slaapkamers-slider"></div>
-
-                            <div class="col-md-5">
-                                <label for="slaapkamers-lower-value">Min</label>
-                                <input type="text" id="slaapkamers-lower-value" name="slaapkamers-lower-value"/>
-                            </div>
-                            <div class="col-md-5 text-right">
-                                <label for="slaapkamers-upper-value">Max</label>
-                                <input type="text" id="slaapkamers-upper-value" name="slaapkamers-upper-value"/>
-                            </div>
-                        </div>
-
-                        <div class="row" class="slider">
-                            <div class="col-md-10"><label>Prijsklasse:</label></div>
-                            <div class="col-md-10" id="prijs-slider"></div>
-
-                            <div class="col-md-5">
-                                <label for="prijs-lower-value">Min</label>
-                                <input type="text" id="prijs-lower-value" name="prijs-lower-value"/>
-                            </div>
-                            <div class="col-md-5 text-right">
-                                <label for="prijs-upper-value">Max</label>
-                                <input type="text" id="prijs-upper-value" name="prijs-upper-value"/>
-                            </div>
-                        </div>
-                        <input type="submit" value="Submit"/>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
