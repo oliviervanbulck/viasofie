@@ -90,8 +90,6 @@ Menubalk
     background-color: #bad5ce;
 }
 
-<<<<<<< HEAD
-=======
 #goedDoel {
     background-image: url(../goedDoel.png);
     background-size: contain;
@@ -100,7 +98,6 @@ Menubalk
     height: 40px;
     margin-top: 5%;
 }
->>>>>>> ed623ffd53ad868858666584d6356ebe3d1ab2e4
 
 /*
 Footer
@@ -127,17 +124,17 @@ Footer
 }
 
 .footer li > a {
-    line-height: 20px;
+    line-height: 45px;
 }
 
 .footer .navbar-brand {
-    line-height: 20px;
+    line-height: 45px;
 }
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin: 0 !important;
 }
-.navbar-header {
+.navbar-brand.text-muted {
      pointer-events: none;
 }
 /*
@@ -215,9 +212,6 @@ Pandpartial
     background-size: 100%;
     margin-top:2%;
     margin-bottom: 8%;
-
-
-
 }
 /*
 Pagina panden.index
