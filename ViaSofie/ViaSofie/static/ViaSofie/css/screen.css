@@ -26,9 +26,9 @@ Menubalk
     background-color: #0d3532;
     border: none;
     border-radius: 0;
-    min-height: 75px;
+    min-height: 100px;
     font-family: "RopaSans";
-    font-size: 18px;
+    font-size: 28px;
 }
 
 @font-face {
@@ -37,14 +37,14 @@ Menubalk
 }
 
 .navbar-default .logo {
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
     margin-right: 20px;
 }
 
 .navbar-brand {
-    line-height: 45px;
-    font-size: 24px;
+    line-height: 70px;
+    font-size: 28px;
 
 }
 .navbar-center {
@@ -53,10 +53,11 @@ Menubalk
     color: #ffffff;
     text-align: center;
     font-style:italic;
+
 }
 
 .navbar-nav > li > a {
-    line-height: 45px;
+    line-height: 70px;
 }
 
 .nav > li > a {
@@ -137,6 +138,7 @@ Footer
 .navbar-brand.text-muted {
      pointer-events: none;
 }
+
 /*
 Pandpartial
 */
@@ -206,13 +208,7 @@ Pandpartial
 .hexagon.inner:after {
     border-left: 30px solid #bad5ce;
 }
-#panden {
-    background-image: url("../grey.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin-top:2%;
-    margin-bottom: 8%;
-}
+
 /*
 Pagina panden.index
 */
