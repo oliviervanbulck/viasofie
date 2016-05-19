@@ -1,21 +1,25 @@
-#Models voor gebruikers gebaseerd op het ERD
+# Models voor gebruikers gebaseerd op het ERD
 
 from __future__ import unicode_literals
 
+from django.core import validators
+from django.core.exceptions import ValidationError
 from django.core.mail import EmailMessage
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import ugettext_lazy as _
 
 
 # Create your models here.
-#ERD tabel Landen
+# ERD tabel Landen
 @python_2_unicode_compatible
 class Land(models.Model):
     class Meta:
         verbose_name_plural = "Landen"
+
     naam = models.CharField(max_length=255)
     landcode = models.CharField(max_length=2)
 
@@ -28,6 +32,7 @@ class Land(models.Model):
 class Adres(models.Model):
     class Meta:
         verbose_name_plural = "Adressen"
+
     straat = models.CharField(max_length=255)
     huisnummer = models.CharField(max_length=10)
     postcode = models.CharField(max_length=10)
@@ -60,5 +65,11 @@ def auto_mail_user_on_save(sender, instance, **kwargs):
     # Niet opnieuw mailen als er een change op is
     if kwargs['created']:
         # Username = email!!!
-        email = EmailMessage('Uw account is klaar!', 'Uw account op ViaSofie.be is aangemaakt!', to=[instance.user.username])
+        email = EmailMessage('Uw account is klaar!', 'Uw account op ViaSofie.be is aangemaakt!',
+                             to=[instance.user.username])
         email.send()
+
+
+@receiver(models.signals.pre_save, sender=User)
+def auto_fill_in_email(sender, instance, **kwargs):
+    instance.email = instance.username

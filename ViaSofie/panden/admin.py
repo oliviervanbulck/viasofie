@@ -139,6 +139,7 @@ class CarouselFotoAdmin(admin.ModelAdmin):
         return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
 
     carousel_foto.allow_tags = True
+    carousel_foto.short_description = 'Foto'
 
 
 class PandAdmin(admin.ModelAdmin):

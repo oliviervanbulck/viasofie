@@ -1,9 +1,11 @@
 {% load staticfiles %}
+{% load viasofie_filters %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'ViaSofie/logo_vorig.png' %}"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -16,19 +18,6 @@
     {% block extrastyle %}{% endblock %}
 </head>
 <body>
-<style>
-    #goedDoel {
-        background-image: url({% static "ViaSofie/goedDoel.png" %});
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 100px;
-        height: 40px;
-margin-top: 5%;
-
-    }
-
-</style>
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header navbar-logo">
@@ -43,15 +32,15 @@ margin-top: 5%;
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li id="kopen" class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><img src="{% static "ViaSofie/icons/kopen.png" %}">Kopen</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><div class="icon"></div> Kopen</a>
                 </li>
-                <li id ="huren" class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.index' %}"><img src="{% static "ViaSofie/icons/huren.png" %}">Huren</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}">Huren</a>
                 </li>
                 <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span> Over ons</a>
                 </li>
-                <li id="contact" class="{% if nbar == 'contact' %}active{% endif %}"><a
-                        href="{% url 'ViaSofie.contact' %}"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
-            <li id="faq" class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span class="glyphicon glyphicon-question-sign"></span> Advies</a></li>
+                <li class="{% if nbar == 'contact' %}active{% endif %}"><a
+                        href="{% url 'ViaSofie.contact' %}">Contact</a></li>
+                <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">Advies</a></li>
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
@@ -60,8 +49,8 @@ margin-top: 5%;
                             <span class="glyphicon glyphicon-log-in"></span> Login
                         </a>
                     </li>
-                    <li id="goedDoel" >
-                       <a href="http://www.welzijnszorg.be/"></a>
+                    <li id="goedDoel">
+                        <a href="http://www.welzijnszorg.be/"></a>
                     </li>
                 </ul>
             {% else %}
@@ -72,12 +61,14 @@ margin-top: 5%;
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            {% if user.is_superuser %}
+                            {% if user|has_group:'Makelaar' %}
                                 <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
                                     Beheer</a></li>
                             {% endif %}
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                            {% if user|has_group:'Verkoper' %}
+                                <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                            {% endif %}
                             <li><a href="{% url "gebruikers.logout" %}"><span
                                     class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
                         </ul>
@@ -120,15 +111,6 @@ margin-top: 5%;
 </div>
 {% block content %}
 {% endblock %}
-<!--<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</p>
-        <ul class="nav navbar-nav navbar-right">
-            <li>Disclaimer</li>
-            <li>Privacy</li>
-        </ul>
-    </div>
-</footer>-->
 <nav class="navbar navbar-default footer">
     <div class="container-fluid">
         <div class="navbar-header">

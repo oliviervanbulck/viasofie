@@ -124,8 +124,8 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     {% for image in carousel %}
-                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
-                            <img src="{{ image }}" alt="Woning" style="margin: 0 auto;">
+                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}" style="background-size: cover; background-image: url('{{ image }}'); padding-bottom: 30%;background-position: center;max-height:450px;">
+                            <!--<img src="{{ image }}" alt="Woning" style="margin: 0 auto;">-->
                         </div>
                     {% endfor %}
 
