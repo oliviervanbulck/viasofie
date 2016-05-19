@@ -32,15 +32,17 @@
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
-                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><div class="icon"></div> Kopen</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span class="glyphicon glyphicon-home"></span> Kopen</a>
                 </li>
-                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}">Huren</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span class="glyphicon glyphicon-usd"></span> Huren</a>
                 </li>
-                <li class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}">Over ons</a>
+               <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span class="glyphicon glyphicon-question-sign"></span> Advies</a>
+               </li>
+                <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span> Over ons</a>
                 </li>
-                <li class="{% if nbar == 'contact' %}active{% endif %}"><a
-                        href="{% url 'ViaSofie.contact' %}">Contact</a></li>
-                <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}">Advies</a></li>
+                <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
+                </li>
+
             </ul>
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
@@ -115,12 +117,21 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
+
         </div>
+        <div class="nav navbar-nav navbar-center">
+            build by AP hogeschool
+          <a href="#"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
+          <a href="#">  <img src="{% static "ViaSofie/icons/twitter.png" %}"></a>
+
+
+        </div>
+
         <ul class="nav navbar-nav navbar-right">
 
             <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.disclaimer' %}">Disclaimer</a>
             </li>
-            <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.privacy' %}">Privacy</a>
+            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.disclaimer' %}">Privacy</a>
             </li>
         </ul>
     </div>

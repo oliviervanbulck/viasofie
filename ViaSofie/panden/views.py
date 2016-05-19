@@ -10,7 +10,7 @@ from .forms import AdvancedSearchForm
 
 def panden_general(request, nbar_val):
     def check_get_parameters():
-        required_params = ['gemeente', 'soort', 'zwembad', 'tuin', 'slaapkamers-lower-value', 'slaapkamers-upper-value', 'prijs-lower-value', 'prijs-upper-value']
+        required_params = ['gemeente', 'soort', 'zwembad', 'tuin', 'slaapkamer_lower', 'slaapkamer_upper', 'prijs_lower', 'prijs_upper']
         for param in required_params:
             if param not in request.GET:
                 return False
@@ -38,17 +38,19 @@ def panden_general(request, nbar_val):
         panden = get_alle_actieve_panden()
 
         # Prijs filter
-        panden = [pand for pand in panden if int(request.GET['prijs-lower-value']) <= pand.prijs <= int(request.GET['prijs-upper-value'])]
+        panden = [pand for pand in panden if int(request.GET['prijs_lower']) <= pand.prijs <= int(request.GET['prijs_upper'])]
 
         # Slaapkamers filter
         panden = [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming='Aantal slaapkamers')
-                  and (int(request.GET['slaapkamers-lower-value']) <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming='Aantal slaapkamers')[0].aantal <= int(request.GET['slaapkamers-upper-value']))]
+                  and (int(request.GET['slaapkamer_lower']) <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming='Aantal slaapkamers')[0].aantal <= int(request.GET['slaapkamer_upper']))]
 
         # Gemeente filter
-        panden = [pand for pand in panden if pand.adres.gemeente == request.GET['gemeente']]
+        if request.GET['gemeente'] != '':
+            panden = [pand for pand in panden if pand.adres.gemeente == request.GET['gemeente']]
 
         # Soort filter
-        panden = [pand for pand in panden if pand.type.type == request.GET['soort']]
+        if request.GET['soort'] != '':
+            panden = [pand for pand in panden if pand.type.type == request.GET['soort']]
 
         # Zwembad filter
         zwembad = request.GET['zwembad']

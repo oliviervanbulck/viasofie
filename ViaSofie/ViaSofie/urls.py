@@ -37,12 +37,10 @@ urlpatterns = [
       url(r'^dossier/', include('dossiers.urls')),
       url(r'^panden/', include('panden.urls')),
       url(r'^gebruiker/', include('gebruikers.urls')),
-
       url(r'^$', views.index, name='index'),
       url(r'^about/$', views.about, name='ViaSofie.about'),
       url(r'^contact/$', views.contact, name='ViaSofie.contact'),
       url(r'^faq/$', views.faq, name='ViaSofie.faq'),
       url(r'^disclaimer/$', views.disclaimer, name='ViaSofie.disclaimer'),
-      url(r'^privacy/$', views.privacy, name='ViaSofie.privacy'),
       url(r'^about/services/$', views.services, name='ViaSofie.services'),
   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
