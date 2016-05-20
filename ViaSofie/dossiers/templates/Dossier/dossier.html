@@ -39,7 +39,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <img src="{% static "ViaSofie/huis1.jpg" %}" class="img-rounded" id="pand_img">
+                <img src="{{ foto }}" class="img-rounded" id="pand_img">
             </div>
             <div class="col-md-9">
                 <div class="panel panel-default">
@@ -47,9 +47,27 @@
                         <h4 id="header_details"><b>Pand details</b></h4>
                     </div>
                     <div class="panel-body">
-                        <p>ayy</p>
-                        <p>testje</p>
-                        <p>woela</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    {% for kenmerk in basis_kenmerken %}
+                                    <div class="col-md-12">
+                                        <b>{{ kenmerk.1 }} : </b>
+                                        <p>{{ kenmerk.0 }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    {% for kenmerk in kenmerken %}
+                                    <div class="col-md-12">
+                                        <p><b>{{ kenmerk.kenmerk.benaming }} : </b> {{ kenmerk.aantal }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,9 +81,24 @@
                     <div class="panel-heading">
                         <h4 id="header_checklist"><b>Checklist</b></h4>
                     </div>
-                    <div class="panel-body">
 
-                    </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Beschrijving</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            {% for doclijn in doclijnen %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ doclijn.beschrijving }}</td>
+                                        <td>{{ doclijn.status }}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    
                 </div>
             </div>
             <div class="col-md-6">
