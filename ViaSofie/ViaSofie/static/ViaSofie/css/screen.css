@@ -29,6 +29,7 @@ Menubalk
     min-height: 100px;
     font-family: "RopaSans";
     font-size: 28px;
+   /* margin-bottom:0;*/
 }
 
 @font-face {
@@ -239,70 +240,10 @@ textarea {
     margin-top: 10px;
 }
 
-/*
-index pagina
-*/
 
 
 
-/*
-Carrousel
-*/
 
-.carousel-indicators li {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    margin: 10px;
-    text-indent: 0;
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
-
-    box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-indicators .active {
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-
-}
-
-.carousel-control.left, .carousel-control.right {
-    background-image: none
-}
-
-.carousel .item {
-    width: 100%; /*slider width*/
-    max-height: 600px; /*slider height*/
-    user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-}
-
-.carousel .item img {
-    width: 100%; /*img width*/
-    max-height: 600px;
-}
-
-/*full width container*/
-@media (max-width: 767px) and (min-width: 768px) {
-    .block {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-}
-
-.slide-wrapper {
-    position: relative
-}
-
-.carousel input:focus {
-    outline-width: 0;
-}
 
 /*
 About pagina
@@ -334,7 +275,8 @@ Disclaimer pagina
 FAQ pagina
 */
 #faq {
-    font-family: RopaSansPro-Italic;
+    font-family: RopaSans;
+    font-size:16px;
 }
 
 #nota {
