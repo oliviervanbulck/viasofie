@@ -26,18 +26,20 @@
     <div class="container-fluid ">
         <div class="row row-centered">
             {% for pand in panden %}
-            <div class="col-md-4 col-centered">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><b>{{ pand }}</b></h4>
-                    </div>
-                    <div class="panel-body">
-                        {% with pand.foto_set.all|first as foto %}
-                            <div class="foto img-rounded" style="background-image: url('{{ foto }}');"></div>
-                        {% endwith %}
+            <a href="{{ pand.dossier.id }}">
+                <div class="col-md-4 col-centered">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4><b>{{ pand }}</b></h4>
+                        </div>
+                        <div class="panel-body">
+                            {% with pand.foto_set.all|first as foto %}
+                                <div class="foto img-rounded" style="background-image: url('{{ foto }}');"></div>
+                            {% endwith %}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
