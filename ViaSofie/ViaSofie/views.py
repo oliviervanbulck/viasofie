@@ -20,7 +20,6 @@ def handler404(request):
 
 
 def index(request):
-    print Permission.objects.all()
     AANTAL_PANDEN = 3
 
     foto = Foto.objects.first()
