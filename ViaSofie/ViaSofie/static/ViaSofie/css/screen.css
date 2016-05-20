@@ -53,6 +53,7 @@ Menubalk
     color: #ffffff;
     text-align: center;
     font-style:italic;
+    margin-left: 25%;
 
 }
 
@@ -97,7 +98,7 @@ Menubalk
     background-repeat: no-repeat;
     width: 100px;
     height: 40px;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 /*
