@@ -131,6 +131,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
+                {% if succes %}
+                <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
+                {% elif error %}
+                <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en bericht in.</div>
+                {% endif %}
                 <div id="contactform" class="panel panel-default">
                     <div class="panel-body">
                         <form method="post">
