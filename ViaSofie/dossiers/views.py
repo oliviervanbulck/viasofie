@@ -11,7 +11,8 @@ from panden.models import Pand
 def index(request):
     panden = request.user.gebruiker.pand_set.all()
     context = {
-        'panden': panden
+        'panden': panden,
+        'nbar': 'dossier'
     }
     return render(request, "Dossier/index.html", context)
 
@@ -33,6 +34,7 @@ def dossier(request, dossier_id):
         'form': ContactFormDossier(),
     }
     if request.method == 'GET':
+        context.update({'nbar': 'dossier'})
         return render(request, "Dossier/dossier.html", context)
 
     elif request.method == 'POST':
