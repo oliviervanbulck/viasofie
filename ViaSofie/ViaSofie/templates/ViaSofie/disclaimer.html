@@ -2,25 +2,13 @@
 {% load staticfiles %}
 
 {% block title %}Disclaimer{% endblock %}
-
+{% block headcontent %}
+ <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
+{% endblock %}
 {% block content %}
-    <style>
-        #main {
-            font-family: RopaSans;
-            margin-left: 30%;
-            margin-right: 30%;
-            margin-top: 10%;
-            margin-bot: 50%;
-            font-size: 24px;
-            text-align: justify;
-            color: #0d3532;
-        }
-#body {
-    /*background-color: #e8e8e8;*/
-}
-    </style>
+
     <div id="body">
-        <div id="main" class="container-fluid bg-2 text-center">
+        <div id="disclaimer" class="container-fluid bg-2 text-center">
             <p><b> Disclaimer</b></p><br>
 
             Via Sofie besteedt veel aandacht en zorg aan haar website en streeft ernaar dat alle informatie zo volledig,

@@ -2,21 +2,12 @@
 {% load staticfiles %}
 
 {% block title %}Veelgestelde vragen{% endblock %}
-
+{% block headcontent %}
+ <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
+{% endblock %}
 {% block content %}
-    <style>
 
-        #main {
-            font-family: RopaSansPro-Italic;
-        }
-    #disclaimer{
-        font-style: italic;
-    }
-
-    </style>
-
-
-    <div id="main" class="container-fluid bg-2 text-left ">
+    <div id="faq" class="container-fluid bg-2 text-left ">
         <p><b> Frequently asked questions</b></p><br>
         <p> Wilt u een woning kopen/huren of verkopen/verhuren dan moet u rekening houden met een hele hoop zaken. <br>
             Hieronder vindt u een aantal algemene begrippen en FAQ’s van belang bij de verkoop of verhuur. <br>
@@ -120,7 +111,7 @@ Kijk ook op: https://www.notaris.be/rekenmodules/aankoop , deze rekenmodule geef
 De kosten van de koopovereenkomst en andere bijkomende kosten zijn in principe voor de koper (artikel 1593 van het burgerlijk wetboek). <br>
         Het is echter aan de partijen toegestaan om dit anders te regelen. In het laatste geval is het aan te raden om dit op te nemen in de compromis.<br>
 <br>
-<p id="disclaimer">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen geenszins als <br>
+<p id="nota">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen geenszins als <br>
         sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke omstandigheden worden beschouwd.</p><br>
 <br>
 

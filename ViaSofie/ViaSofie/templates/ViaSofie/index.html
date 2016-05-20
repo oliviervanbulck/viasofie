@@ -4,105 +4,46 @@
 {% block title %}Home{% endblock %}
 
 {% block headcontent %}
+      <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
     <style>
-        .navbar {
-            margin-bottom: 0 !important;
-        }
+    #panden {
+    padding-top: 40px;
+    font-family: RopaSans;
 
-        .carousel-indicators li {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            margin: 10px;
-            text-indent: 0;
-            cursor: pointer;
-            border: none;
-            border-radius: 50%;
+}
+/*
+Search balk index pagina
+*/
+#search {
+    background-color: rgba(80, 80, 80, 0.7);
+    width: 700px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 6px;
+    color: white;
+    padding-left: 13px;
+    padding-right: 13px;
+}
 
-            box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
-        }
-
-        .carousel-indicators .active {
-            width: 10px;
-            height: 10px;
-            margin: 10px;
-
-        }
-
-        .carousel-control.left, .carousel-control.right {
-            background-image: none
-        }
-
-        .carousel .item {
-            width: 100%; /*slider width*/
-            max-height: 600px; /*slider height*/
-            user-select: none;
-            -moz-user-select: none;
-            -khtml-user-select: none;
-            -webkit-user-select: none;
-            -o-user-select: none;
-        }
-
-        .carousel .item img {
-            width: 100%; /*img width*/
-            max-height: 600px;
-        }
-
-        /*full width container*/
-        @media (max-width: 767px) and (min-width: 768px) {
-            .block {
-                margin-left: -20px;
-                margin-right: -20px;
-            }
-        }
-
-        .slide-wrapper {
-            position: relative
-        }
-
-        .carousel input:focus {
-            outline-width: 0;
-        }
-
-        #search {
-            background-color: rgba(80, 80, 80, 0.7);
-            width: 700px;
-            height: 50px;
-            border: 1px solid white;
-            border-radius: 6px;
-            color: white;
-            padding-left: 13px;
-            padding-right: 13px;
-        }
-
-        #btnsearch {
-            background-color: rgba(80, 80, 80, 0.7);
-            color: white;
-            height: 50px;
-            margin-top: -3px;
-            border-radius: 6px;
-            border-color: white;
-        }
-
-        #panden {
-            padding-top: 40px;
-            font-family: RopaSans;
-
-        }
+#btnsearch {
+    background-color: rgba(80, 80, 80, 0.7);
+    color: white;
+    height: 50px;
+    margin-top: -3px;
+    border-radius: 6px;
+    border-color: white;
+}
 
         .header {
             padding-left: 0 !important;
             padding-right: 0 !important;
         }
 
-        #references {
+      /*  #references {
             padding-top: 40px;
             font-family: RopaSans;
-        }
+        }*/
 
-        .img-rounded {
-            max-width: 100%;
-        }
     </style>
 {% endblock %}
 
@@ -129,13 +70,7 @@
                         </div>
                     {% endfor %}
 
-                    <!--<div id="two" class="item">
-                        <img src="{% static "ViaSofie/huis2.jpg" %}" alt="h2" style="margin: 0 auto;">
-                    </div>
 
-                    <div id="three" class="item">
-                        <img src="{% static "ViaSofie/huis3.jpg" %}" alt="h3" style="margin: 0 auto;">
-                    </div>-->
                 </div>
                 <a class="left carousel-control" href="#viaSofieCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
