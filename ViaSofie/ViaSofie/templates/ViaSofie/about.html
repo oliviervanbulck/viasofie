@@ -2,25 +2,11 @@
 {% load staticfiles %}
 
 {% block title %}Over ons{% endblock %}
-
+{% block headcontent %}
+ <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
+{% endblock %}
 {% block content %}
-    <style>
 
-
-
-
-        #mainbody {
-            font-family: RopaSans;
-            font-size: 16px;
-            margin-left:30%;
-            margin-right:30%;
-
-        }
-
-        #profile {
-
-        }
-    </style>
     <div class="container-fluid bg-2 text-right ">
         <div id="profile" class="panel panel-default">
             <img src="{% static "ViaSofie/placeholder.png" %}" alt="profile"
