@@ -318,16 +318,18 @@ About pagina
 /*
 Disclaimer pagina
 */
-#disclaimer {
+#disclaimer , #privacy{
     font-family: RopaSans;
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 10%;
     margin-bot: 50%;
     font-size: 24px;
-    text-align: justify;
+    text-align: left;
+    font-style: italic;
     color: #0d3532;
 }
+
  /*
 FAQ pagina
 */
