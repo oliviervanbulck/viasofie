@@ -162,7 +162,7 @@ ADMIN_SITE_HEADER = "ViaSofie Admin"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER = 'info.viasofie@gmail.com'
+EMAIL_HOST_USER = 'contact.viasofie@gmail.com'
 EMAIL_HOST_PASSWORD = 'geentest123'
 EMAIL_PORT = 587
 

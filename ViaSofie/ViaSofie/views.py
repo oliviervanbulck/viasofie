@@ -9,7 +9,7 @@ from django.template import RequestContext
 
 from panden.models import Foto, CarouselFoto
 from .functions import get_random_actieve_panden
-from .forms import ContactForm
+from .forms import ContactFormDossier
 
 
 def handler404(request):
@@ -48,20 +48,20 @@ def about(request):
 
 def contact(request):
     if request.POST:
-        form = ContactForm(request.POST)
+        form = ContactFormDossier(request.POST)
         try:
             if form.is_valid():
                 email = form.cleaned_data['email']
                 message = form.cleaned_data['message']
                 email = EmailMessage('', email + '\n\n' + message, to=['michael.vanderborght.mv@gmail.com'])
                 email.send()
-                return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'succes': True,'form': ContactForm()})
+                return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'succes': True,'form': ContactFormDossier()})
             else:
                 raise Exception()
         except:
             return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'error': True, 'form': form})
     else:
-        form = ContactForm()
+        form = ContactFormDossier()
 
     return render(request, 'ViaSofie/contact.html', {'form': form})
 
