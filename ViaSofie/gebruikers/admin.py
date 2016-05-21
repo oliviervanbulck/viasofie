@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext, ugettext_lazy as _
 from djangotoolbox.admin import UserForm
 
-from models import Gebruiker, Land, Adres
+from models import Gebruiker, Land, Adres, Woonplaats
 
 
 # Register your models here.
@@ -91,3 +91,4 @@ admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Land, LandAdmin)
 admin.site.register(Adres, AdresAdmin)
+admin.site.register(Woonplaats)

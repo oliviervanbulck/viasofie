@@ -14,26 +14,16 @@ from django.dispatch import receiver
 from panden.models import Pand
 
 
-class Dossier(models.Model):
-    class Meta:
-        verbose_name_plural = "Dossiers"
-    actief = models.BooleanField(default=True)
-    pand = models.OneToOneField('panden.Pand', on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return 'Dossier: ' + str(self.pand)
-
-
 # ERD tabel StavazaLijnen
 class StavazaLijn(models.Model):
     class Meta:
         verbose_name_plural = "Stavazalijnen"
     datum = models.DateField(default=datetime.date.today)
-    dossier = models.ForeignKey('Dossier', on_delete=models.CASCADE)
+    pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     stavaza = models.ForeignKey('Stavaza', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.dossier.pand) + ' | ' + str(self.stavaza.status)
+        return str(self.pand) + ' | ' + str(self.stavaza.status)
 
 
 # ERD tabel Stavaza
@@ -50,14 +40,14 @@ class Stavaza(models.Model):
 class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
-    dossier = models.ForeignKey('Dossier', on_delete=models.CASCADE)
+    pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     status = models.OneToOneField('DossierDocStatus', on_delete=models.CASCADE, null=True)
     beschrijving = models.OneToOneField('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
     beschrijving.verbose_name = 'Document'
     bestand = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return '%s | %s (%s)' % (str(self.dossier), str(self.beschrijving), str(self.status))
+        return '%s | %s (%s)' % (self.pand, self.beschrijving, self.status)
 
 
 @receiver(models.signals.post_delete, sender=DossierDocLijn)

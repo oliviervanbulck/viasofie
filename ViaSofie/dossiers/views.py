@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.template import loader
 
 from dossiers.forms import ContactFormDossier
-from dossiers.models import Dossier
 from panden.models import Pand
 
 
@@ -18,7 +17,7 @@ def index(request):
 
 
 def dossier(request, dossier_id):
-    dossier_obj = Dossier.objects.get(id=dossier_id)
+    """dossier_obj = Dossier.objects.get(id=dossier_id)
     pand = Pand.objects.get(id=dossier_obj.pand_id)
     doclijnen = dossier_obj.dossierdoclijn_set.all()
     stavaza = dossier_obj.stavazalijn_set.all()
@@ -52,5 +51,5 @@ def dossier(request, dossier_id):
                 raise Exception()
         except:
             context.update({'error': True, 'form': form})
-            return render(request, 'Dossier/dossier.html', context)
+            return render(request, 'Dossier/dossier.html', context)"""
 

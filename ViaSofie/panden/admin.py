@@ -4,8 +4,7 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.contrib.contenttypes import forms
 
-from dossiers.models import Dossier, StavazaLijn
-from gebruikers.models import Adres
+from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
 from django.forms.models import BaseInlineFormSet, ModelForm
 
@@ -52,20 +51,20 @@ Inlines
 """
 
 
-class DossierInline(admin.TabularInline):
-    model = Dossier
-    can_delete = False
-    verbose_name_plural = 'dossier'
-    form = AlwaysChangedModelForm
+class StavazaLijnenInline(admin.TabularInline):
+    model = StavazaLijn
+    can_delete = True
     extra = 0
-    fields = ('actief', 'get_admin_url',)
-    readonly_fields = ('get_admin_url',)
+    verbose_name_plural = 'Stavaza'
+    verbose_name = 'Stand van zaken'
 
-    def get_admin_url(self, obj):
-        return '<a href="/admin/dossiers/dossier/%s/change/" target="_blank">Wijzig dossier</a>' % str(obj.id)
 
-    get_admin_url.allow_tags = True
-    get_admin_url.short_description = 'Wijzig dossier'
+class DocLijnenInline(admin.TabularInline):
+    model = DossierDocLijn
+    can_delete = True
+    extra = 0
+    verbose_name_plural = 'Documenten'
+    verbose_name = 'Document'
 
 
 class PandKenmerkPerPandInline(admin.TabularInline):
@@ -143,9 +142,9 @@ class CarouselFotoAdmin(admin.ModelAdmin):
 
 
 class PandAdmin(admin.ModelAdmin):
-    inlines = (DossierInline, PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline,)
+    inlines = (PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline, StavazaLijnenInline, DocLijnenInline)
     raw_id_fields = ('gebruiker',)
-    search_fields = ('adres__straat', 'adres__gemeente', 'adres__postcode', 'adres__huisnummer', 'type__type',)
+    search_fields = ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer', 'type__type',)
     list_filter = ('type', 'bouwjaar', 'adres__land',)
 
 

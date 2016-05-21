@@ -27,6 +27,17 @@ class Land(models.Model):
         return '%s - %s' % (str(self.landcode), self.naam)
 
 
+class Woonplaats(models.Model):
+    class Meta:
+        verbose_name_plural = "Woonplaatsen"
+
+    postcode = models.CharField(max_length=10)
+    gemeente = models.CharField(max_length=255)
+
+    def __str__(self):
+        return '%s %s' % (self.postcode, self.gemeente)
+
+
 @python_2_unicode_compatible
 # ERD tabel Adres
 class Adres(models.Model):
@@ -35,12 +46,11 @@ class Adres(models.Model):
 
     straat = models.CharField(max_length=255)
     huisnummer = models.CharField(max_length=10)
-    postcode = models.CharField(max_length=10)
-    gemeente = models.CharField(max_length=255)
+    woonplaats = models.ForeignKey('Woonplaats', on_delete=models.CASCADE)
     land = models.ForeignKey('Land', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s %s, %s %s' % (self.straat, self.huisnummer, self.postcode, self.gemeente)
+        return '%s %s, %s %s' % (self.straat, self.huisnummer, self.woonplaats.postcode, self.woonplaats.gemeente)
 
 
 # Gebruiker is extent van User object

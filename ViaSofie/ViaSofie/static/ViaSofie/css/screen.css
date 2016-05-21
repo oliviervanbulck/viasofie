@@ -28,8 +28,21 @@ Menubalk
     border-radius: 0;
     min-height: 100px;
     font-family: "RopaSans";
-    font-size: 28px;
+    font-size: 20px;
    /* margin-bottom:0;*/
+}
+
+/* Center navigatie */
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
 }
 
 @font-face {
@@ -46,7 +59,6 @@ Menubalk
 .navbar-brand {
     line-height: 70px;
     font-size: 28px;
-
 }
 
 .navbar-nav > li > a {
@@ -57,18 +69,54 @@ Menubalk
     padding: 15px 15px;
 }
 
-.nav > li > a > .icon {
-    width: 30px;
-    height: 30px;
-    background-image: url('../icons/home.png');
-    background-size: 30px 30px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: -1px;
+/* Smaller when resizing screen to smaller width */
+@media(max-width: 1150px) and (min-width: 768px) {
+    .nav > li > a {
+        padding: 15px 5px;
+        line-height: 40px;
+    }
+
+    .navbar-brand {
+        font-size: 22px;
+        line-height: 40px;
+    }
+
+    .navbar-default {
+        font-size: 14px;
+        min-height: 70px;
+    }
+
+    .navbar-default .logo {
+        width: 70px;
+        height: 70px;
+    }
 }
 
-.nav > li:hover > a > .icon {
-    background-image: url('../icons/home-groen.png')
+@media(max-width: 1150px) and (min-width: 900px) {
+    .navbar-default {
+        font-size: 16px;
+    }
+}
+
+/* Making navbar smaller when mobile */
+@media(max-width: 768px) {
+    .navbar-default {
+        min-height: 50px;
+    }
+
+    .navbar-default .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar-brand {
+        line-height: 20px;
+        font-size: 24px;
+    }
+
+    .navbar-nav > li > a {
+        line-height: 20px;
+    }
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {

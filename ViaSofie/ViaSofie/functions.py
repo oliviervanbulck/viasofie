@@ -13,7 +13,7 @@ def get_random_actieve_panden(aantal):
 # Kan mogelijk efficienter
 def get_alle_gemeentes():
     # Vreemde data is gereturned als het anders wordt uitgevoerd (volledige objecten van adres)
-    return [gemeente['gemeente'] for gemeente in Adres.objects.values('gemeente').distinct()]
+    return [gemeente['gemeente'] for gemeente in Adres.objects.values('woonplaats__gemeente').distinct()]
 
 
 def get_alle_actieve_panden():
