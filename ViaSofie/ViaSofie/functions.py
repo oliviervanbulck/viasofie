@@ -1,23 +1,24 @@
 from django.db.models import Q
 
 from panden.models import Pand
+from gebruikers.models import Woonplaats
 from gebruikers.models import Adres
 import random
 
 
 def get_random_actieve_panden(aantal):
-    panden = Pand.objects.filter(dossier__actief=True)
+    panden = Pand.objects.filter(actief=True)
     return random.sample(panden, min(aantal, len(panden)))
 
 
 # Kan mogelijk efficienter
 def get_alle_gemeentes():
     # Vreemde data is gereturned als het anders wordt uitgevoerd (volledige objecten van adres)
-    return [gemeente['gemeente'] for gemeente in Adres.objects.values('woonplaats__gemeente').distinct()]
+    return Woonplaats.objects.all()
 
 
 def get_alle_actieve_panden():
-    rij = Pand.objects.filter(dossier__actief=True)
+    rij = Pand.objects.filter(actief=True)
     return rij
 
 
