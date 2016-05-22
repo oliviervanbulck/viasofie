@@ -16,14 +16,14 @@ def index(request):
     return render(request, "Dossier/index.html", context)
 
 
-def dossier(request, dossier_id):
-    """dossier_obj = Dossier.objects.get(id=dossier_id)
-    pand = Pand.objects.get(id=dossier_obj.pand_id)
-    doclijnen = dossier_obj.dossierdoclijn_set.all()
-    stavaza = dossier_obj.stavazalijn_set.all()
+def dossier(request, pand_id):
+    #dossier_obj = Dossier.objects.get(id=dossier_id)
+    pand = Pand.objects.get(id=pand_id)
+    doclijnen = pand.dossierdoclijn_set.all()
+    stavaza = pand.stavazalijn_set.all()
 
     context = {
-        'dossier': dossier_obj,
+        #'dossier': dossier_obj,
         'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
                             (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
@@ -51,5 +51,5 @@ def dossier(request, dossier_id):
                 raise Exception()
         except:
             context.update({'error': True, 'form': form})
-            return render(request, 'Dossier/dossier.html', context)"""
+            return render(request, 'Dossier/dossier.html', context)
 
