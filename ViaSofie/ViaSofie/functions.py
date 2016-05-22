@@ -11,9 +11,7 @@ def get_random_actieve_panden(aantal):
     return random.sample(panden, min(aantal, len(panden)))
 
 
-# Kan mogelijk efficienter
 def get_alle_gemeentes():
-    # Vreemde data is gereturned als het anders wordt uitgevoerd (volledige objecten van adres)
     return Woonplaats.objects.all()
 
 
@@ -46,6 +44,7 @@ def keyword_search(model, keywords, search_fields):
 
     return result_set
 
+
 def advanced_search(request):
     def filter_prijs(panden):
         return [pand for pand in panden if
@@ -59,7 +58,7 @@ def advanced_search(request):
 
     def filter_gemeente(panden):
         if request.GET['gemeente'] != '':
-            return [pand for pand in panden if pand.adres.gemeente == request.GET['gemeente']]
+            return [pand for pand in panden if pand.adres.woonplaats.gemeente == request.GET['gemeente']]
         return panden
 
     def filter_soort(panden):

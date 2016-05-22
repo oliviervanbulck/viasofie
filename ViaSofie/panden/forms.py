@@ -9,7 +9,7 @@ class AdvancedSearchForm(forms.Form):
               ('eender', 'Eender')]
 
     # De gemeentes & soorten moeten in een bepaald formaat!
-    GEMEENTES = [('', 'Eender')] + [(gemeente, gemeente) for gemeente in get_alle_gemeentes()]
+    GEMEENTES = [('', 'Eender')] + [(gemeente.gemeente, gemeente.gemeente) for gemeente in get_alle_gemeentes()]
     SOORTEN = [('', 'Eender')] + [(soort, soort) for soort in Type.objects.all()]
 
     gemeente = forms.ChoiceField(choices=GEMEENTES, label='Gemeentes', required=True)
