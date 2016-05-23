@@ -60,5 +60,4 @@ def pand_detail(request, pand_id):
     context = {
         'pand': pand
     }
-    pand.get_qr_code()
     return render(request, 'panden/pand_detail.html', context)
