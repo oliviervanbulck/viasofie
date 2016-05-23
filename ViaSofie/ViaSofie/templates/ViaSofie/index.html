@@ -20,7 +20,6 @@
             margin-bottom: 0;
         !important;
         }
-
     </style>
 {% endblock %}
 
@@ -81,19 +80,34 @@
             </div>
         </div>
     </div>
-    <div id="panden" class="container">
-        <div class="row">
-
+    <div class="container-fluid" id="panden">
+        <div class="container">
+            <div class="row h1 fancytitle">
+                <div class="fancy"><span>Meest recente panden</span></div>
+            </div>
+            <!-- Panden worden hier weergegeven!!! -->
+            <div class="row">
+                {% for pand in panden %}
+                    {% include "panden/partial/pand_list_detail.html" with pand=pand %}
+                {% endfor %}
+            </div>
         </div>
-        <!-- Panden worden hier weergegeven!!! -->
-        <div class="row">
-            {% for pand in panden %}
-                {% include "panden/partial/pand_list_detail.html" with pand=pand %}
-            {% endfor %}
-        </div>
-
     </div>
-
-
-
+    <div class="container">
+        <!--<div class="panel panel-default">
+            <div class="panel-heading">E-book</div>
+            <div class="panel-body">Inschrijven voor e-book</div>
+        </div>-->
+        <div class="row h1 fancytitle">
+            <div class="fancy"><span>E-book</span></div>
+        </div>
+        <div class="row">
+            <form role="form">
+                <div class="form-group">
+                    <label for="email">E-mailadres:</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
