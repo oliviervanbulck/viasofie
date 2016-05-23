@@ -272,6 +272,10 @@ Pagina panden.index
     margin-top: 20px;
 }
 
+#panden {
+    background-color: #f7f7f7;
+}
+
 /*
 Contact
 */
@@ -332,4 +336,40 @@ FAQ pagina
 
 #nota {
     font-style: italic;
+}
+
+.fancytitle {
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: RopaSans;
+}
+
+.fancy {
+  line-height: 1;
+  text-align: center;
+}
+.fancy span {
+  display: inline-block;
+  position: relative;
+}
+.fancy span:before,
+.fancy span:after {
+  content: "";
+  position: absolute;
+  height: 8px;
+    margin-top: 13px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  top: 0;
+  width: 6000px;
+}
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy span:after {
+  left: 100%;
+  margin-left: 15px;
 }
