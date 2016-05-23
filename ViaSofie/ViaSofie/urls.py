@@ -41,6 +41,5 @@ urlpatterns = [
       url(r'^about/$', views.about, name='ViaSofie.about'),
       url(r'^contact/$', views.contact, name='ViaSofie.contact'),
       url(r'^faq/$', views.faq, name='ViaSofie.faq'),
-      url(r'^disclaimer/$', views.disclaimer, name='ViaSofie.disclaimer'),
-      url(r'^about/services/$', views.services, name='ViaSofie.services'),
+      url(r'^legal/$', views.legal, name='ViaSofie.legal'),
   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
