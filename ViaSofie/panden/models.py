@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import os
 
 from django.contrib import admin
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -49,6 +50,30 @@ class Pand(models.Model):
     adres = models.OneToOneField('gebruikers.Adres', on_delete=models.CASCADE, null=True)
     kenmerken = models.ManyToManyField('Kenmerk', through='PandKenmerkPerPand')
     actief = models.BooleanField(default=True)
+
+    qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('events.views.details', args=[str(self.id)])
+
+    def generate_qrcode(self):
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=6,
+            border=0,
+        )
+        qr.add_data(self.get_absolute_url())
+        qr.make(fit=True)
+
+        img = qr.make_image()
+
+        buffer = StringIO.StringIO()
+        img.save(buffer)
+        filename = 'events-%s.png' % (self.id)
+        filebuffer = InMemoryUploadedFile(
+            buffer, None, filename, 'image/png', buffer.len, None)
+        self.qrcode.save(filename, filebuffer)
 
     def __str__(self):
         return str(self.type) + ' - ' + str(self.adres)
