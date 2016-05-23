@@ -14,7 +14,7 @@
             </div>-->
             <div class="hexagon">
                 <div class="hexagon inner">
-                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0|intcomma }} | {{ pand.adres.gemeente }}
+                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0|intcomma }} | {{ pand.adres.woonplaats.gemeente }}
                 </div>
             </div>
         {% endwith %}
