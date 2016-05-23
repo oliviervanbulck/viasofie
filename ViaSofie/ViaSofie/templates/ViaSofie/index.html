@@ -4,108 +4,118 @@
 {% block title %}Home{% endblock %}
 
 {% block headcontent %}
-
+    <script>
+        $(window).on('load resize', function () {
+            var width = $(window).width();
+            var navHeight = 100;
+            if (width <= 1150 && width >= 768)
+                navHeight = 70;
+            if (width < 768)
+                navHeight = 50;
+            $(".carousel,.item,.carousel-inner").css("height", $(window).height() - navHeight);
+        });
+    </script>
     <style>
-.navbar {
-    margin-bottom:0; !important;
-}
-    /*
-Carrousel
-*/
+        .navbar {
+            margin-bottom: 0;
+        !important;
+        }
 
-.carousel-indicators li {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    margin: 10px;
-    text-indent: 0;
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
+        /*
+    Carrousel
+    */
 
-    box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
+        .carousel-indicators li {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin: 10px;
+            text-indent: 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
 
-.carousel-indicators .active {
-    width: 10px;
-    height: 10px;
-    margin: 10px;
+            box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+        }
 
-}
+        .carousel-indicators .active {
+            width: 10px;
+            height: 10px;
+            margin: 10px;
 
-.carousel-control.left, .carousel-control.right {
-    background-image: none
-}
+        }
 
-.carousel .item {
-    width: 100%; /*slider width*/
-    max-height: 600px; /*slider height*/
-    user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-}
+        .carousel-control.left, .carousel-control.right {
+            background-image: none
+        }
 
-.carousel .item img {
-    width: 100%; /*img width*/
-    max-height: 600px;
-}
+        .carousel .item {
+            width: 100%; /*slider width*/
+            user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+        }
 
-/*full width container*/
-@media (max-width: 767px) and (min-width: 768px) {
-    .block {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-}
+        .carousel .item img {
+            width: 100%; /*img width*/
+        }
 
-.slide-wrapper {
-    position: relative
-}
+        /*full width container*/
+        @media (max-width: 767px) and (min-width: 768px) {
+            .block {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+        }
 
-.carousel input:focus {
-    outline-width: 0;
-}
+        .slide-wrapper {
+            position: relative
+        }
 
+        .carousel input:focus {
+            outline-width: 0;
+        }
 
-    #panden {
-    padding-top: 40px;
-    font-family: RopaSans;
+        #panden {
+            padding-top: 40px;
+            font-family: RopaSans;
 
-}
-/*
-Search balk index pagina
-*/
-#search {
-    background-color: rgba(80, 80, 80, 0.7);
-    width: 700px;
-    height: 50px;
-    border: 1px solid white;
-    border-radius: 6px;
-    color: white;
-    padding-left: 13px;
-    padding-right: 13px;
-}
+        }
 
-#btnsearch {
-    background-color: rgba(80, 80, 80, 0.7);
-    color: white;
-    height: 50px;
-    margin-top: -3px;
-    border-radius: 6px;
-    border-color: white;
-}
+        /*
+        Search balk index pagina
+        */
+        #search {
+            background-color: rgba(80, 80, 80, 0.7);
+            width: 700px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 6px;
+            color: white;
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+
+        #btnsearch {
+            background-color: rgba(80, 80, 80, 0.7);
+            color: white;
+            height: 50px;
+            margin-top: -3px;
+            border-radius: 6px;
+            border-color: white;
+        }
 
         .header {
             padding-left: 0 !important;
             padding-right: 0 !important;
         }
 
-      /*  #references {
-            padding-top: 40px;
-            font-family: RopaSans;
-        }*/
+        /*  #references {
+              padding-top: 40px;
+              font-family: RopaSans;
+          }*/
 
     </style>
 {% endblock %}
@@ -128,7 +138,8 @@ Search balk index pagina
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     {% for image in carousel %}
-                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}" style="background-size: cover; background-image: url('{{ image }}'); padding-bottom: 30%;background-position: center;max-height:450px;">
+                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}"
+                             style="background-size: cover; background-image: url('{{ image }}'); padding-bottom: 30%;background-position: center;">
                             <!--<img src="{{ image }}" alt="Woning" style="margin: 0 auto;">-->
                         </div>
                     {% endfor %}
