@@ -30,7 +30,8 @@ class StavazaLijn(models.Model):
 class Stavaza(models.Model):
     class Meta:
         verbose_name_plural = "Stavaza's"
-    status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    # status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    status = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.status)
@@ -89,7 +90,8 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 class DossierDocStatus(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Statussen"
-    status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    # status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    status = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.status)
@@ -99,8 +101,9 @@ class DossierDocStatus(models.Model):
 class DossierDocBeschrijving(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Beschrijvingen"
-    dossier_naam = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    # dossier_naam = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
+    dossier_naam = models.CharField(max_length=100)
     kan_doc_bevatten = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.dossier_naam.naam
+        return self.dossier_naam

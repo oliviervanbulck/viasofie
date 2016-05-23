@@ -74,7 +74,11 @@ def faq(request):
     return render(request, 'ViaSofie/faq.html', {'nbar': 'faq'})
 
 
-def disclaimer(request):
-    return render(request, 'ViaSofie/disclaimer.html', {'nbar': 'disclaimer'})
+def legal(request):
+    if request.GET.get('on') and (request.GET.get('on') == 'disclaimer' or request.GET.get('on') == 'privacy'):
+        page = request.GET['on']
+    else:
+        page = 'disclaimer'
+    return render(request, 'ViaSofie/disclaimer.html', {'nbar': page, 'default': page})
 
 
