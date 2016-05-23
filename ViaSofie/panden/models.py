@@ -13,15 +13,14 @@ import StringIO
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.contrib.sites.models import Site
 
+from django.dispatch import receiver
+from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
 
 # ERD tabel Type
-from django.dispatch import receiver
-from django.utils.encoding import python_2_unicode_compatible
-
-
 class Type(models.Model):
     class Meta:
         verbose_name_plural = "Types"
@@ -60,7 +59,7 @@ class Pand(models.Model):
     qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
     def get_absolute_url(self):
-        return 'http://viasofie.be' + reverse('panden.detail', args=[str(self.id)])
+        return 'http://' + str(Site.objects.get_current()) + reverse('panden.detail', args=[str(self.id)])
 
     def generate_qrcode(self):
         if not self.qrcode:
