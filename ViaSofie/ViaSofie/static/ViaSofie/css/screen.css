@@ -179,7 +179,7 @@ Footer
 }
 
 .navbar-header {
-    line-height: 75px;
+    line-height: 70px;
 
 }
 
@@ -344,3 +344,94 @@ FAQ pagina
 #nota {
     font-style: italic;
 }
+
+    /*
+    Carousel
+    */
+
+        .carousel-indicators li {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin: 10px;
+            text-indent: 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+
+            box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-indicators .active {
+            width: 10px;
+            height: 10px;
+            margin: 10px;
+
+        }
+
+        .carousel-control.left, .carousel-control.right {
+            background-image: none
+        }
+
+        .carousel .item {
+            width: 100%; /*slider width*/
+            user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+        }
+
+        .carousel .item img {
+            width: 100%; /*img width*/
+        }
+
+        /*full width container*/
+        @media (max-width: 767px) and (min-width: 768px) {
+            .block {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+        }
+
+        .slide-wrapper {
+            position: relative
+        }
+
+        .carousel input:focus {
+            outline-width: 0;
+        }
+
+        #panden {
+            padding-top: 40px;
+            font-family: RopaSans;
+
+        }
+
+        /*
+        Search balk index pagina
+        */
+        #search {
+            background-color: rgba(80, 80, 80, 0.7);
+            width: 700px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 6px;
+            color: white;
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+
+        #btnsearch {
+            background-color: rgba(80, 80, 80, 0.7);
+            color: white;
+            height: 50px;
+            margin-top: -3px;
+            border-radius: 6px;
+            border-color: white;
+        }
+
+        .header {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
