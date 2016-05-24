@@ -19,6 +19,10 @@ body {
     margin: 0;
 }
 
+.panel-default>.panel-heading {
+    background-color: #e8e8e8;
+}
+
 /*
 Menubalk
 */

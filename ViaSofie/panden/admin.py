@@ -150,8 +150,9 @@ class PandAdmin(admin.ModelAdmin):
     exclude = ('qrcode',)
 
     def qr_code(self, obj):
-        obj.generate_qrcode()
-        return '<img src="%s" />' % obj.qrcode.url
+        if obj.id:
+            obj.generate_qrcode()
+            return '<img src="%s" />' % obj.qrcode.url
 
     qr_code.allow_tags = True
     qr_code.short_description = "QR code"

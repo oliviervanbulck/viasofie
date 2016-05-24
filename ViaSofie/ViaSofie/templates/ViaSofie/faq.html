@@ -14,11 +14,11 @@
         <br> <br>
         <div class="container bg-2 text-left">
 
-            <div class="panel-group">
+            <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#compromis">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#compromis">
                         <h4 class="panel-title">
-                            Wat is een Compromis?</a>
+                           <span class="glyphicon glyphicon-plus-sign"></span>  Wat is een compromis?
                         </h4>
                     </div>
                     <div id="compromis" class="panel-collapse collapse">
@@ -54,17 +54,14 @@
                             nieuwe eigenaar van het onroerend goed.<br>
                             <br>
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#keuringverslag">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#keuringverslag">
                         <h4 class="panel-title">
-                            Wat indien ik mijn woning verkoop en ik een
-                                negatief keuringsverslag heb?</a>
+
+                           <span class="glyphicon glyphicon-plus-sign"></span> Wat indien ik mijn woning verkoop en ik een
+                            negatief keuringsverslag heb?
                         </h4>
                     </div>
                     <div id="keuringverslag" class="panel-collapse collapse">
@@ -106,20 +103,19 @@
                             wordt
                             aangeboden.<br>
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#kadastraal">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#kadastraal">
                         <h4 class="panel-title">
-                            Wat geeft het kadastraal inkomen weer?</a>
+
+                         <span class="glyphicon glyphicon-plus-sign"></span>   Wat geeft het kadastraal inkomen weer?
                         </h4>
                     </div>
                     <div id="kadastraal" class="panel-collapse collapse">
                         <div class="panel-body">
+                            <p><b>Algemeen</b></p>
+                            <br>
                             Het kadastraal inkomen van een onroerend goed is het gemiddeld normaal netto-inkomen van één
                             jaar van
                             een
@@ -140,21 +136,18 @@
                             genomen.<br>
                             <br>
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#notaris">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#notaris">
                         <h4 class="panel-title">
-                            Welke notaris mag de verkoopakte verlijden</a>
+
+                        <span class="glyphicon glyphicon-plus-sign"></span>    Welke notaris mag de verkoopakte verlijden?
                         </h4>
                     </div>
                     <div id="notaris" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Bi een verkoop uit de hand hebben zowel de eigenaar als de kandidaat-koper elk het recht om
+                            Bij een verkoop uit de hand hebben zowel de eigenaar als de kandidaat-koper elk het recht om
                             een notaris
                             aan te
                             duiden. <br>
@@ -195,21 +188,17 @@
                             verwachte aktekosten.<br>
                             <br>
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#kost">
+            <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#kost">
                         <h4 class="panel-title">
-                            Wie betaalt de kosten van de verkoop?</a>
+                       <span class="glyphicon glyphicon-plus-sign"></span>     Wie betaalt de kosten van de verkoop?
                         </h4>
                     </div>
                     <div id="kost" class="panel-collapse collapse">
                         <div class="panel-body">
-                            De kosten van de koopovereenkomst en andere bijkomende kosten zijn in principe voor de koper
+                             De kosten van de koopovereenkomst en andere bijkomende kosten zijn in principe voor de koper
                             (artikel
                             1593 van
                             het burgerlijk wetboek). <br>
@@ -219,18 +208,19 @@
                             dit op te nemen in de compromis.<br>
                             <br>
                         </div>
-
                     </div>
                 </div>
+
             </div>
+
+
+            <p id="nota">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen
+                geenszins
+                als <br>
+                sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke
+                omstandigheden worden beschouwd.</p><br>
+            <br>
+
+
         </div>
-
-        <p id="nota">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen geenszins
-            als <br>
-            sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke
-            omstandigheden worden beschouwd.</p><br>
-        <br>
-
-
-    </div>
 {% endblock %}
