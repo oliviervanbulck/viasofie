@@ -154,6 +154,7 @@ class PandAdmin(admin.ModelAdmin):
         return '<img src="%s" />' % obj.qrcode.url
 
     qr_code.allow_tags = True
+    qr_code.short_description = "QR code"
 
 
 admin.site.register(Pand, PandAdmin)
