@@ -18,12 +18,31 @@
     <style>
         .navbar {
             margin-bottom: 0;
-        !important;
         }
     </style>
 {% endblock %}
 
 {% block content %}
+    <div class="keywordsearch">
+        <div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <form method="post" action="{% url 'panden.index' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default submit-button">
+                            <span class="glyphicon glyphicon-search"></span> Zoeken
+                        </button>
+                        <div class="text-input-container">
+                            <input type="text" name="search"
+                                   placeholder="Zoek op gemeente, postcode, provincie, ..." class="text-input"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
     <div class="container-fluid header">
         <section class="block">
             <div id="viaSofieCarousel" class="carousel slide" data-ride="carousel">
@@ -59,26 +78,6 @@
                 </a>
             </div>
         </section>
-
-        <div class="bg-2 text-center"
-             style="position: absolute;top:300px; bottom: 0; left: 0;right: 0; margin-left: 200px; margin-right: 200px;">
-            <div>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <form method="post" action="{% url 'panden.index' %}">
-                            {% csrf_token %}
-                            <input type="text" id="search" name="search"
-                                   placeholder="Zoek op gemeente, postcode, provincie, ..."/>
-                            <button type="submit" id="btnsearch" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search"></span> Zoeken
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
     </div>
     <div class="container-fluid" id="panden">
         <div class="container">
@@ -101,13 +100,8 @@
         <div class="row h1 fancytitle">
             <div class="fancy"><span>E-book</span></div>
         </div>
-        <div class="row">
-            <form role="form">
-                <div class="form-group">
-                    <label for="email">E-mailadres:</label>
-                    <input type="email" class="form-control" id="email">
-                </div>
-            </form>
+        <div class="row text-center">
+            <button class="btn btn-lg btn-default" type="button">Vraag hier je e-book aan</button>
         </div>
     </div>
 {% endblock %}
