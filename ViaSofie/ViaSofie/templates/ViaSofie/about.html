@@ -3,24 +3,34 @@
 
 {% block title %}Over ons{% endblock %}
 {% block headcontent %}
- <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
+    <style>
+        body {
+            /*  background-image: url('
+        {% static 'ViaSofie/skyline.jpg' %} ');
+            background-size: cover;
+            background-repeat: no-repeat;*/
+            background-color: #F7F7F7;
+        }
+
+
+    </style>
 {% endblock %}
 {% block content %}
+    <div class="container-fluid bg-2  ">
+        <div class="col-md-12">
 
-    <div class="container-fluid bg-2 text-right ">
-        <div id="profile" class="panel panel-default">
-            <img src="{% static "ViaSofie/placeholder.png" %}" alt="profile"
-                 style="width:304px;height:228px;padding-right: 15px;padding-top: 15px;">
+		  		<div id=mainbody" class="well">
+					<img class="img-circle" class=img-responsive" src="{% static "ViaSofie/SA.png" %}" alt="profile"
+                     style="width:304px;height:228px; float:left;border-radius:50%;border: 2px solid black;margin: 5px;">
+		  			<h2><strong>S</strong>ofie is juriste van opleiding (Master in de Rechten). Zij behaalde tevens  een postgraduaat Vastgoedkunde aan de KU Leuven.
+		  			<br>Zowel op juridisch als bouwtechnisch vlak loodst zij u graag doorheen het vastgoedlandschap en dit met het oog op een succesvolle verkoop of verhuur.<br>
+		  			Ook voor de opmaak van een taxatieverslag of adviesverlening kan u bij haar terecht.<br>   Sofie neemt de zorg voor de  verkoop of verhuur van uw woning uit handen. Zij regelt bezoeken, zorgt ervoor dat een verkoop- of verhuurdossier wordt opgesteld conform de wettelijke bepalingen en helpt bij een correcte prijszetting van uw pand aan de hand van een taxatieverslag en op basis van  vergelijkingspunten van een eigen opgebouwd databestand.<br><br>
+                    </h2>
+					<h3><i>Hebt u vragen of wil u weten wat Sofie voor u kan betekenen, contacteer haar vrijblijvend.</i></h3>
 
-            <div id="mainbody" class="panel-body text-center">
-               Sofie is juriste van opleiding (Master in de Rechten). Zij behaalde tevens  een postgraduaat Vastgoedkunde aan de KU Leuven.
-                Zowel op juridisch als bouwtechnisch vlak loodst zij u graag doorheen het vastgoedlandschap en dit met het oog op een succesvolle verkoop of verhuur.
-                Ook voor de opmaak van een taxatieverslag of adviesverlening kan u bij haar terecht.
-                Sofie neemt de zorg voor de  verkoop of verhuur van uw woning uit handen.
-                Zij regelt bezoeken, zorgt ervoor dat een verkoop- of verhuurdossier wordt opgesteld conform de wettelijke bepalingen en
-                helpt bij een correcte prijszetting van uw pand aan de hand van een taxatieverslag en op basis van  vergelijkingspunten van een eigen opgebouwd databestand.
-                Hebt u vragen of wil u weten wat Sofie voor u kan betekenen, contacteer haar vrijblijvend.
-            </div>
+		  		</div>
         </div>
+
     </div>
+
 {% endblock %}

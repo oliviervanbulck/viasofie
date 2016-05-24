@@ -29,7 +29,7 @@ Menubalk
     min-height: 100px;
     font-family: "RopaSans";
     font-size: 20px;
-   /* margin-bottom:0;*/
+    /* margin-bottom:0;*/
 }
 
 /* Center navigatie */
@@ -70,7 +70,7 @@ Menubalk
 }
 
 /* Smaller when resizing screen to smaller width */
-@media(max-width: 1150px) and (min-width: 768px) {
+@media (max-width: 1150px) and (min-width: 768px) {
     .nav > li > a {
         padding: 15px 5px;
         line-height: 40px;
@@ -92,14 +92,14 @@ Menubalk
     }
 }
 
-@media(max-width: 1150px) and (min-width: 900px) {
+@media (max-width: 1150px) and (min-width: 900px) {
     .navbar-default {
         font-size: 16px;
     }
 }
 
 /* Making navbar smaller when mobile */
-@media(max-width: 768px) {
+@media (max-width: 768px) {
     .navbar-default {
         min-height: 50px;
     }
@@ -140,8 +140,13 @@ Menubalk
     margin-top: 10%;
 }
 
-.carousel,.item,.active{height:100%;}
-.carousel-inner{height:100%;}
+.carousel, .item, .active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
 
 /*
 Footer
@@ -164,12 +169,18 @@ Footer
     line-height: 75px;
     color: #ffffff;
     text-align: center;
-    margin-left: 25%;
-
 }
-.navbar-header {
-    line-height: 75px;
 
+@media (min-width: 768px) {
+    .footer .navbar-center {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .footer .container-fluid {
+        text-align: center;
+    }
 }
 
 .footer > .container {
@@ -272,6 +283,10 @@ Pagina panden.index
     margin-top: 20px;
 }
 
+#panden {
+    background-color: #f7f7f7;
+}
+
 /*
 Contact
 */
@@ -292,29 +307,23 @@ textarea {
     margin-top: 10px;
 }
 
-
-
-
-
-
 /*
 About pagina
 */
+
+
+
 #mainbody {
     font-family: RopaSans;
-    font-size: 16px;
-    margin-left: 30%;
-    margin-right: 30%;
 
-
-
+    text-align: left;
 
 }
 
 /*
 Disclaimer pagina
 */
-#disclaimer , #privacy{
+#disclaimer, #privacy {
     font-family: RopaSans;
     margin-right: 30%;
     font-size: 20px;
@@ -322,14 +331,167 @@ Disclaimer pagina
     color: #0d3532;
 }
 
- /*
+/*
 FAQ pagina
 */
 #faq {
     font-family: RopaSans;
-    font-size:16px;
+    font-size: 16px;
 }
 
 #nota {
     font-style: italic;
 }
+
+.fancytitle {
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: RopaSans;
+}
+
+.fancy {
+    line-height: 1;
+    text-align: center;
+}
+
+.fancy span {
+    display: inline-block;
+    position: relative;
+}
+
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 8px;
+    margin-top: 13px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    top: 0;
+    width: 6000px;
+}
+
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+/*
+Carousel
+*/
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+
+    box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.carousel .item {
+    width: 100%; /*slider width*/
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.carousel .item img {
+    width: 100%; /*img width*/
+}
+
+/*full width container*/
+@media (max-width: 767px) and (min-width: 768px) {
+    .block {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+
+.slide-wrapper {
+    position: relative
+}
+
+.carousel input:focus {
+    outline-width: 0;
+}
+
+#panden {
+    padding-top: 40px;
+    font-family: RopaSans;
+
+}
+
+/*
+Search balk index pagina
+*/
+
+.header {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/*
+Keywordsearch
+*/
+
+.keywordsearch {
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    right: 0;
+    margin-left: 15%;
+    margin-right: 15%;
+    z-index: 1000;
+}
+
+.keywordsearch input {
+    padding-left: 13px;
+    padding-right: 13px;
+    width: 100%;
+}
+
+.keywordsearch button {
+    float: right;
+}
+
+.keywordsearch button, .keywordsearch input {
+    background-color: rgba(80, 80, 80, 0.7);
+    color: white;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid white;
+}
+
+.keywordsearch .text-input-container {
+    position: absolute;
+    right: 100px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+

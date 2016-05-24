@@ -146,6 +146,15 @@ class PandAdmin(admin.ModelAdmin):
     raw_id_fields = ('gebruiker',)
     search_fields = ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer', 'type__type',)
     list_filter = ('type', 'bouwjaar', 'adres__land',)
+    readonly_fields = ('qr_code',)
+    exclude = ('qrcode',)
+
+    def qr_code(self, obj):
+        obj.generate_qrcode()
+        return '<img src="%s" />' % obj.qrcode.url
+
+    qr_code.allow_tags = True
+    qr_code.short_description = "QR code"
 
 
 admin.site.register(Pand, PandAdmin)

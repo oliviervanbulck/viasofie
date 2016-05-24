@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
     'dossiers',
     'gebruikers',
     'panden',
@@ -169,4 +170,5 @@ EMAIL_PORT = 587
 NORECAPTCHA_SITE_KEY = "6LdIzh8TAAAAABWM6APBVN8w4Ge0Znnz7DlaeLjs"
 NORECAPTCHA_SECRET_KEY = "6LdIzh8TAAAAADO6tO38KF0NCqSRowUCklQuErdW"
 
-
+# Deze id staat in de databank in django_site, daar moet dan de juiste id van gebruikt worden
+SITE_ID = 2
