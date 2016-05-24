@@ -58,6 +58,11 @@ def huren(request):
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
     context = {
-        'pand': pand
+        'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
+                            (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
+        'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
+        'fotos': pand.foto_set.all(),
     }
-    return render(request, 'panden/pand_detail.html', context)
+    if request.method == 'GET':
+        context.update({'nbar': 'kopen'})
+        return render(request, "panden/pand_detail.html", context)
