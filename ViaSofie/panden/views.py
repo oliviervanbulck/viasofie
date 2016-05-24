@@ -29,7 +29,7 @@ def panden_general(request, nbar_val):
 
     if request.POST and request.POST['search'] and ('clearPanden' not in request.POST):
         panden = keyword_search(Pand, request.POST['search'],
-                                ('adres__straat', 'adres__gemeente', 'adres__postcode', 'adres__huisnummer',
+                                ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer',
                                  'type__type',))
         context['search'] = request.POST['search']
     elif check_get_parameters():
