@@ -46,67 +46,140 @@ def keyword_search(model, keywords, search_fields):
 
 
 def advanced_search(request):
+
+    """Filter voor prijs"""
     def filter_prijs(panden):
+        LOWER = int(request.GET['prijs_lower'])
+        UPPER = int(request.GET['prijs_upper'])
         return [pand for pand in panden if
-                int(request.GET['prijs_lower']) <= pand.prijs <= int(request.GET['prijs_upper'])]
+                LOWER <= pand.prijs <= UPPER]
 
-    def filter_slaapkamers(panden):
-        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming='Aantal slaapkamers')
-                and (int(request.GET['slaapkamer_lower']) <=
-                     pand.pandkenmerkperpand_set.filter(kenmerk__benaming='Aantal slaapkamers')[0].aantal <= int(
-            request.GET['slaapkamer_upper']))]
-
+    """Filter voor gemeente"""
     def filter_gemeente(panden):
-        if request.GET['gemeente'] != '':
+        if request.GET['gemeente'] != 'nvt':
             return [pand for pand in panden if pand.adres.woonplaats.gemeente == request.GET['gemeente']]
         return panden
 
-    def filter_soort(panden):
-        if request.GET['soort'] != '':
-            return [pand for pand in panden if pand.type.type == request.GET['soort']]
+    """Filter voor oppervlakte"""
+    def filter_oppervlake(panden):
+        LOWER = int(request.GET['oppervlakte_lower'])
+        UPPER = int(request.GET['oppervlakte_upper'])
+        return [pand for pand in panden if
+                LOWER <= pand.oppervlakte <= UPPER]
+
+    """Filter voor type"""
+    def filter_type(panden):
+        if request.GET['type'] != 'nvt':
+            return [pand for pand in panden if pand.type.type == request.GET['type']]
         return panden
 
-    def filter_zwembad(panden):
-        zwembad = request.GET['zwembad']
-        ZWEMBAD_KENMERK = 'Zwembad'
-        if zwembad != 'eender':
-            if zwembad == 'ja':
-                return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=ZWEMBAD_KENMERK)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=ZWEMBAD_KENMERK)[0].aantal == 1]
-            else:
-                return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=ZWEMBAD_KENMERK)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=ZWEMBAD_KENMERK)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=ZWEMBAD_KENMERK)[0].aantal == 0)]
-        return panden
+    """Filter voor aantal slaapkamer"""
+    def filter_slaapkamers(panden):
+        BENAMING = 'Aantal slaapkamers'
+        LOWER = int(request.GET['slaapkamer_lower'])
+        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                and (int(request.GET[LOWER]) <=
+                     pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
 
-    def filter_tuin(panden):
-        tuin = request.GET['tuin']
-        TUIN_KENMERK = 'Oppervlakte tuin'
-        if tuin != 'eender':
-            if tuin == 'ja':
+    """Filter voor badkamers"""
+    def filter_badkamers(panden):
+        BENAMING = 'Aantal badkamers'
+        LOWER = int(request.GET['badkamer_lower'])
+        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
+
+    """Filter voor Parking / Garage"""
+    def filter_parking(panden):
+        parking = request.GET['parking']
+        BENAMING = 'Parking / Garage'
+        if parking != 'nvt':
+            if parking == 'ja':
                 return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=TUIN_KENMERK)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=TUIN_KENMERK)[0].aantal > 0]
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
             else:
                 return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=TUIN_KENMERK)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=TUIN_KENMERK)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=TUIN_KENMERK)[
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
                                 0].aantal == 0)]
         return panden
 
+    """Filter voor Terras"""
+    def filter_terras(panden):
+        terras = request.GET['terras']
+        BENAMING = 'Terras'
+        if terras != 'nvt':
+            if terras == 'ja':
+                return [pand for pand in panden if
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+            else:
+                return [pand for pand in panden if
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                                0].aantal == 0)]
+        return panden
+
+    """Filter voor tuin"""
+    def filter_tuin(panden):
+        tuin = request.GET['tuin']
+        BENAMING = 'Oppervlakte tuin'
+        if tuin != 'nvt':
+            if tuin == 'ja':
+                return [pand for pand in panden if
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+            else:
+                return [pand for pand in panden if
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                                0].aantal == 0)]
+        return panden
+
+    """Filter voor bemeubeld"""
+    def filter_bemeubeld(panden):
+        bemeubeld = request.GET['bemeubeld']
+        BENAMING = 'Bemeubeld'
+        if bemeubeld != 'nvt':
+            if bemeubeld == 'ja':
+                return [pand for pand in panden if
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+            else:
+                return [pand for pand in panden if
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                                0].aantal == 0)]
+        return panden
+
+    """Filter bouwjaar"""
+    def filter_bouwjaar(panden):
+        BENAMING = int(request.GET['bouwjaar'])
+        return [pand for pand in panden if
+                BENAMING <= pand.oppervlakte]
+
+    """Combinatie van alle filters"""
     panden = get_alle_actieve_panden()
     filters = [filter_prijs,
-               filter_slaapkamers,
                filter_gemeente,
-               filter_soort,
+               filter_oppervlake,
+               filter_type,
+               filter_slaapkamers,
+               filter_badkamers,
+               filter_parking,
+               filter_terras,
                filter_tuin,
-               filter_zwembad]
+               filter_bemeubeld,
+               filter_bouwjaar]
 
     # Elke filter maakt de gevonden panden specifieker en specifieker, maar als we met een lege lijst zitten moet er niet verder gefilterd worden (break)
     for filter in filters:
+        print panden
+        print filter.__name__
         if panden:
             panden = filter(panden)
         else:

@@ -11,7 +11,9 @@ from .forms import AdvancedSearchForm
 
 def panden_general(request, nbar_val):
     def check_get_parameters():
-        required_params = ['gemeente', 'soort', 'zwembad', 'tuin', 'slaapkamer_lower', 'slaapkamer_upper', 'prijs_lower', 'prijs_upper']
+        required_params = ['prijs_upper', 'prijs_lower', 'gemeente', 'oppervlakte_upper', 'oppervlakte_lower',
+                           'type', 'slaapkamer_lower', 'badkamer_lower', 'parking', 'terras', 'tuin',
+                           'bemeubeld', 'bouwjaar']
         for param in required_params:
             if param not in request.GET:
                 return False
