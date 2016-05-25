@@ -229,6 +229,10 @@ Pandpartial
     box-shadow: 2px 2px 5px #888888;
 }
 
+.no-foto {
+    background-size: initial;
+}
+
 .pand-partial {
     margin-bottom: 60px;
 }
