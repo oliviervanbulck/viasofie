@@ -11,3 +11,13 @@ class GebruikerForm(forms.ModelForm):
         widgets = {
             'adres': autocomplete.ModelSelect2(url='adres-autocomplete')
         }
+
+
+class AdresForm(forms.ModelForm):
+    class Meta:
+        model = Gebruiker
+        fields = '__all__'
+        widgets = {
+            'woonplaats': autocomplete.ModelSelect2(url='woonplaats-autocomplete'),
+            'land': autocomplete.ModelSelect2(url='land-autocomplete')
+        }

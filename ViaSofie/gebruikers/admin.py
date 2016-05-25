@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from gebruikers.forms import GebruikerForm
+from gebruikers.forms import GebruikerForm, AdresForm
 from models import Gebruiker, Land, Adres, Woonplaats
 
 
@@ -62,7 +62,7 @@ class LandAdmin(HiddenAdminModel):
 
 
 class AdresAdmin(HiddenAdminModel):
-    pass
+    form = AdresForm
 
 
 def _user_clean(user):
