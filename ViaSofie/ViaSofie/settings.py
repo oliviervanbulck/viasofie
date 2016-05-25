@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -27,10 +26,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '172.16.196.149']
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
     'ViaSofie',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ViaSofie.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -94,7 +93,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 """DATABASES = {
     'default': {
@@ -116,7 +114,6 @@ DATABASES = {
 }
 """
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -135,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -149,7 +145,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -162,7 +157,7 @@ ADMIN_SITE_HEADER = "ViaSofie Admin"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'contact.viasofie@gmail.com'
 EMAIL_HOST_PASSWORD = 'geentest123'
 EMAIL_PORT = 587

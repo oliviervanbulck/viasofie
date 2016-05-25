@@ -33,18 +33,25 @@
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
                 {% if user.is_authenticated %}
-                    <li class="{% if nbar == 'dossier' %}active{% endif %}"><a href="{% url 'dossiers.index' %}"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Dossier</a>
+                    <li class="{% if nbar == 'dossier' %}active{% endif %}"><a href="{% url 'dossiers.index' %}"><span
+                            class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Dossier</a>
                     </li>
                 {% endif %}
-                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span class="glyphicon glyphicon-home"></span>&nbsp;Kopen</a>
+                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span
+                        class="glyphicon glyphicon-home"></span>&nbsp;Kopen</a>
                 </li>
-                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span class="glyphicon glyphicon-usd"></span>&nbsp;Huren</a>
+                <li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span
+                        class="glyphicon glyphicon-usd"></span>&nbsp;Huren</a>
                 </li>
-               <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Advies</a>
-               </li>
-                <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Over ons</a>
+                <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span
+                        class="glyphicon glyphicon-question-sign"></span>&nbsp;Advies</a>
                 </li>
-                <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a>
+                <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a
+                        href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Over
+                    ons</a>
+                </li>
+                <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span
+                        class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a>
                 </li>
 
             </ul>
@@ -80,6 +87,9 @@
                                     class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
                         </ul>
                     </li>
+                    <li id="goedDoel">
+                        <a href="http://www.welzijnszorg.be/"></a>
+                    </li>
                 </ul>
             {% endif %}
         </div>
@@ -105,9 +115,9 @@
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
+                        <label><input type="checkbox"> Onthouden</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Inloggen</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -121,21 +131,21 @@
 <nav class="navbar navbar-default footer">
     <div class="container-fluid">
         <div class="navbar-header">
-              <a href="https://www.facebook.com"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
-            <a href="https://twitter.com">  <img src="{% static "ViaSofie/icons/twitter.png" %}"></a>
-          <a href="https://www.linkedin.com/">  <img src="{% static "ViaSofie/icons/linkedin.png" %}"></a>
+            <a href="https://www.facebook.com"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
+            <a href="https://twitter.com"> <img src="{% static "ViaSofie/icons/twitter.png" %}"></a>
+            <a href="https://www.linkedin.com/"> <img src="{% static "ViaSofie/icons/linkedin.png" %}"></a>
 
         </div>
         <div class="nav navbar-nav navbar-center">
 
 
-
-<span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
+            <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | Alle rechten voorbehouden.</span>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
 
-            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=disclaimer">Disclaimer</a>
+            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a
+                    href="{% url 'ViaSofie.legal' %}?on=disclaimer">Disclaimer</a>
             </li>
             <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">Privacy</a>
             </li>

@@ -24,6 +24,30 @@
 {% endblock %}
 
 {% block content %}
+    <div id="ebookModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">E-book aanvragen</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{# url 'gebruikers.login' #}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Aanvragen</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="keywordsearch">
         <div>
             <div class="ui-grid-a">
@@ -100,7 +124,7 @@
             <div class="fancy"><span>E-book</span></div>
         </div>
         <div class="row text-center">
-            <button class="btn btn-lg btn-default" type="button">Vraag hier je e-book aan</button>
+            <a href="#" data-toggle="modal" data-target="#ebookModal"><button class="btn btn-lg btn-default" type="button">Vraag hier je e-book aan</button></a>
         </div>
     </div>
 {% endblock %}

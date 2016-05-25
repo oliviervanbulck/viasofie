@@ -1,12 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from django.contrib.admin import SimpleListFilter
-from django.contrib.contenttypes import forms
 
 from dossiers.models import StavazaLijn, DossierDocLijn
+from panden.forms import PandKenmerkPerPandForm, StavazaLijnForm, DossierDocLijnForm, PandForm
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
-from django.forms.models import BaseInlineFormSet, ModelForm
+from django.forms.models import ModelForm
 
 
 # Basis ModelAdmin voor AdminModel objecten die niet zichtbaar mogen zijn op indexpagina van adminpaneel.
@@ -53,6 +52,7 @@ Inlines
 
 class StavazaLijnenInline(admin.TabularInline):
     model = StavazaLijn
+    form = StavazaLijnForm
     can_delete = True
     extra = 0
     verbose_name_plural = 'Stavaza'
@@ -61,6 +61,7 @@ class StavazaLijnenInline(admin.TabularInline):
 
 class DocLijnenInline(admin.TabularInline):
     model = DossierDocLijn
+    form = DossierDocLijnForm
     can_delete = True
     extra = 0
     verbose_name_plural = 'Documenten'
@@ -69,9 +70,9 @@ class DocLijnenInline(admin.TabularInline):
 
 class PandKenmerkPerPandInline(admin.TabularInline):
     model = PandKenmerkPerPand
+    form = PandKenmerkPerPandForm
     can_delete = True
     verbose_name_plural = 'Pandkenmerken'
-    form = AlwaysChangedModelForm
     extra = 0
 
 
@@ -143,15 +144,16 @@ class CarouselFotoAdmin(admin.ModelAdmin):
 
 class PandAdmin(admin.ModelAdmin):
     inlines = (PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline, StavazaLijnenInline, DocLijnenInline)
-    raw_id_fields = ('gebruiker',)
     search_fields = ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer', 'type__type',)
     list_filter = ('type', 'bouwjaar', 'adres__land',)
     readonly_fields = ('qr_code',)
     exclude = ('qrcode',)
+    form = PandForm
 
     def qr_code(self, obj):
-        obj.generate_qrcode()
-        return '<img src="%s" />' % obj.qrcode.url
+        if obj.id:
+            obj.generate_qrcode()
+            return '<img src="%s" />' % obj.qrcode.url
 
     qr_code.allow_tags = True
     qr_code.short_description = "QR code"

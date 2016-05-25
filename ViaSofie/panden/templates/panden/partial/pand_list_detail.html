@@ -1,11 +1,12 @@
 {% load humanize %}
+{% load staticfiles %}
 <div class="{{ pand_kolom_class }} text-center pand-partial">
     {% if pand != None %}
 
         {% with pand.foto_set.all|first as foto %}
             <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
             <a href="{% url 'panden.detail' pand.id %}">
-                <div class="foto" style="background-image: url('{{ foto }}');"></div>
+                <div class="foto{% if not foto %} no-foto{% endif %}" style="background-image: url('{% if foto %}{{ foto }}{% else %}{% static 'ViaSofie/no-image.png' %}{% endif %}');"></div>
             </a>
             <!--<div class="pandinfobox">
                 <div class="pandinfobox-left"></div>

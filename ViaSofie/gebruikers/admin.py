@@ -5,14 +5,17 @@ from django.core.validators import EmailValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext, ugettext_lazy as _
-from djangotoolbox.admin import UserForm
 
+from gebruikers.forms import GebruikerForm, AdresForm
 from models import Gebruiker, Land, Adres, Woonplaats
 
 
 # Register your models here.
+
+
 class GebruikerInline(admin.StackedInline):
     model = Gebruiker
+    form = GebruikerForm
     can_delete = False
     verbose_name_plural = 'gebruiker'
 
@@ -59,7 +62,7 @@ class LandAdmin(HiddenAdminModel):
 
 
 class AdresAdmin(HiddenAdminModel):
-    pass
+    form = AdresForm
 
 
 def _user_clean(user):
