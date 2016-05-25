@@ -21,6 +21,8 @@ from django.utils.encoding import python_2_unicode_compatible
 # Create your models here.
 
 # ERD tabel Type
+
+
 class Type(models.Model):
     class Meta:
         verbose_name_plural = "Types"

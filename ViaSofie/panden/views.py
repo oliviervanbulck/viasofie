@@ -1,10 +1,14 @@
-from django.http import HttpResponseRedirect
+from dal import autocomplete
+from django.db.models import Value as V
+from django.db.models.functions import Concat
 from django.shortcuts import render
 from ViaSofie.functions import get_alle_actieve_panden
 from ViaSofie.functions import get_alle_gemeentes
 from ViaSofie.functions import keyword_search
 from ViaSofie.functions import advanced_search
-from .models import Pand
+from dossiers.models import Stavaza, DossierDocBeschrijving
+from gebruikers.models import Adres
+from .models import Pand, Kenmerk
 from .models import Type
 from .forms import AdvancedSearchForm
 
@@ -66,3 +70,88 @@ def pand_detail(request, pand_id):
     if request.method == 'GET':
         context.update({'nbar': 'kopen'})
         return render(request, "panden/pand_detail.html", context)
+
+
+class TypeAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated():
+            return Type.objects.none()
+
+        if not self.request.user.is_superuser:
+            return Type.objects.none()
+
+        qs = Type.objects.all()
+
+        if self.q:
+            qs = qs.filter(type__istartswith=self.q)
+
+        return qs
+
+
+class AdresAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated():
+            return Adres.objects.none()
+
+        if not self.request.user.is_superuser:
+            return Adres.objects.none()
+
+        qs = Adres.objects.all()
+
+        if self.q:
+            qs = qs.annotate(volledig_adres=Concat('straat', V(' '), 'huisnummer', V(', '), 'woonplaats__postcode', V(' '), 'woonplaats__gemeente')).filter(volledig_adres__icontains=self.q)
+
+        return qs
+
+
+class PandkenmerkAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated():
+            return Kenmerk.objects.none()
+
+        if not self.request.user.is_superuser:
+            return Kenmerk.objects.none()
+
+        qs = Kenmerk.objects.all()
+
+        if self.q:
+            qs = qs.filter(benaming__icontains=self.q)
+
+        return qs
+
+
+class StavazaAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated():
+            return Stavaza.objects.none()
+
+        if not self.request.user.is_superuser:
+            return Stavaza.objects.none()
+
+        qs = Stavaza.objects.all()
+
+        if self.q:
+            qs = qs.filter(status__icontains=self.q)
+
+        return qs
+
+
+class DossierdocAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated():
+            return DossierDocBeschrijving.objects.none()
+
+        if not self.request.user.is_superuser:
+            return DossierDocBeschrijving.objects.none()
+
+        qs = DossierDocBeschrijving.objects.all()
+
+        if self.q:
+            qs = qs.filter(status__icontains=self.q)
+
+        return qs

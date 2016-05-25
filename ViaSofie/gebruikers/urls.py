@@ -1,4 +1,6 @@
 from django.conf.urls import url
+
+from gebruikers import views as gviews
 from . import views
 
 urlpatterns = [
