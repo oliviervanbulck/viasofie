@@ -7,8 +7,14 @@ html {
 }
 
 body {
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     background-color:#F7F7F7;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-bottom: 223px;
+    }
 }
 
 .default-button-handler {
@@ -170,12 +176,6 @@ Footer
     padding-right: 25px;
 }
 
-.navbar-center {
-    line-height: 75px;
-    color: #ffffff;
-    text-align: center;
-}
-
 @media (min-width: 768px) {
     .footer .navbar-center {
         display: inline-block;
@@ -194,16 +194,22 @@ Footer
 }
 
 .footer .text-muted {
-    font-size: 20px !important;
+    font-size: 20px;
     pointer-events: none;
 }
 
+@media (max-width: 840px) {
+    .footer .text-muted {
+        font-size: 16px;
+    }
+}
+
 .footer li > a {
-    line-height: 45px;
+    line-height: 20px;
 }
 
 .footer .navbar-brand {
-    line-height: 45px;
+    line-height: 20px;
 }
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
