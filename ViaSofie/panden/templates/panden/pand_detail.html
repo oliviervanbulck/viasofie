@@ -1,4 +1,5 @@
 {% extends "ViaSofie/master.html" %}
+{% load viasofie_tags %}
 {% load staticfiles %}
 
 {% block title %}Pand{% endblock %}
@@ -80,22 +81,30 @@
         </div>
     </div>
     <div class="row">
+    <div class="hidden">
+        {% for image in fotos %}
+            <a href="{{ image }}" data-lightbox="test"></a>
+        {% endfor %}
+    </div>
     <div class="col-md-12">
       <div class="carousel slide multi-item-carousel" id="theCarousel">
+        <a href="{{ fotos.first }}" data-lightbox="test">
         <div class="carousel-inner">
+
           {% for image in fotos %}
               {% if forloop.counter0 %}
                   <div class="item active">
-                <div class="col-md-4"><a href="{{ image }}" data-lightbox="pand"><div class="foto" style="background-image: url('{{ image }}');"></div></a></div>
+                <div class="col-md-4"><div class="foto" style="background-image: url('{{ image }}');"></div></div>
              </div>
               {% endif %}
              <div class="item">
-                <div class="col-md-4"><a href="{{ image }}" data-lightbox="pand"><div class="foto" style="background-image: url('{{ image }}');"></div></a></div>
+                <div class="col-md-4"><div class="foto" style="background-image: url('{{ image }}');"></div></div>
              </div>
           {% endfor %}
         </div>
         <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
         <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </a>
       </div>
     </div>
   </div>
