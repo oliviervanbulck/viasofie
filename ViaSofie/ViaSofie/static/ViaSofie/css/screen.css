@@ -230,7 +230,7 @@ Pandpartial
 }
 
 .no-foto {
-    background-size: initial;
+    background-size: contain;
 }
 
 .pand-partial {
