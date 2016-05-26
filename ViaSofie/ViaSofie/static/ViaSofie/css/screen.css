@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     background-color:#F7F7F7;
 }
 
@@ -151,11 +151,11 @@ Menubalk
     margin-top: 10%;
 }
 
-.carousel, .item, .active {
+#viaSofieCarousel, #viaSofieCarousel .item, #viaSofieCarousel .active {
     height: 100%;
 }
 
-.carousel-inner {
+#viaSofieCarousel .carousel-inner {
     height: 100%;
 }
 
@@ -426,7 +426,7 @@ Carousel
     background-image: none
 }
 
-.carousel .item {
+#viaSofieCarousel .item {
     width: 100%; /*slider width*/
     user-select: none;
     -moz-user-select: none;
@@ -435,7 +435,7 @@ Carousel
     -o-user-select: none;
 }
 
-.carousel .item img {
+#viaSofieCarousel .item img {
     width: 100%; /*img width*/
 }
 
@@ -451,7 +451,7 @@ Carousel
     position: relative
 }
 
-.carousel input:focus {
+#viaSofieCarousel input:focus {
     outline-width: 0;
 }
 
@@ -512,4 +512,8 @@ Keywordsearch
 
 #ebook {
     padding-bottom: 20px;
+}
+
+#theCarousel .carousel-inner {
+    padding-bottom: 10px;
 }
