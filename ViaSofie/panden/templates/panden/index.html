@@ -24,13 +24,14 @@
         .noUi-connect {
             background-color: #eac8c6;
         }
+
     </style>
 {% endblock %}
 
 {% block content %}
     <div id="main">
         <!-- Zoekbalk bovenaan -->
-        <div class="container">
+        <div id="zoeken" class="container">
             <form action="{% url 'panden.index' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="default-button-handler" aria-hidden="true" tabindex="-1"></button>

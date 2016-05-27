@@ -294,8 +294,12 @@ Pandpartial
 Pagina panden.index
 */
 
+#zoeken {
+    margin-bottom: 20px;
+}
+
 #pandenLijst {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 #panden {
@@ -308,7 +312,7 @@ Contact
 
 .googleMaps {
     width: 100%;
-    height: 450px;
+    height: 480px;
     frameborder: 2;
     border: ridge;
 }
@@ -321,6 +325,7 @@ textarea {
 #sendMail {
     margin-top: 10px;
 }
+
 
 /*
 About pagina
