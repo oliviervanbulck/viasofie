@@ -151,9 +151,7 @@ class PandAdmin(admin.ModelAdmin):
     form = PandForm
 
     def qr_code(self, obj):
-        if obj.id:
-            obj.generate_qrcode()
-            return '<img src="%s" />' % obj.qrcode.url
+        return '<img src="%s" />' % obj.qrcode.url
 
     qr_code.allow_tags = True
     qr_code.short_description = "QR code"
