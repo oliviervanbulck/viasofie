@@ -51,10 +51,6 @@ def advanced_search(request):
         LOWER = int(request.GET['prijs_lower'])
         UPPER = int(request.GET['prijs_upper'])
 
-        for pand in panden:
-            print "Hmmm: " + str(pand.pandkenmerkperpand_set)
-            print "Hmmm: " + str(pand.kenmerken)
-
         return [pand for pand in panden if
                 LOWER <= pand.prijs <= UPPER]
 
@@ -82,15 +78,6 @@ def advanced_search(request):
         BENAMING = 'Aantal slaapkamers'
         LOWER = int(request.GET['slaapkamer_lower'])
 
-        print LOWER
-        for pand in panden:
-            print pand.pandkenmerkperpand_set
-            print pand.kenmerken
-
-            """test = pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-            if test:
-                print str(pand) + str(test[0].aantal)"""
-
         return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
                 and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
 
@@ -98,10 +85,6 @@ def advanced_search(request):
     def filter_badkamers(panden):
         BENAMING = 'Aantal badkamers'
         LOWER = int(request.GET['badkamer_lower'])
-
-        print LOWER
-        """for pand in panden:
-            print pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal"""
 
         return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
                 and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
@@ -186,17 +169,18 @@ def advanced_search(request):
                filter_oppervlake,
                filter_type,
                filter_slaapkamers,
-               # filter_badkamers,
+               filter_badkamers,
                filter_parking,
-               # filter_terras,
+               filter_terras,
                filter_tuin,
                filter_bemeubeld,
                filter_bouwjaar]
 
     # Elke filter maakt de gevonden panden specifieker en specifieker, maar als we met een lege lijst zitten moet er niet verder gefilterd worden (break)
     for filter in filters:
-        print panden
         print filter.__name__
+        print panden
+
         if panden:
             panden = filter(panden)
         else:
