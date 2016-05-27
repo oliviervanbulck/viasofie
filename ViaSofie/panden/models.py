@@ -87,6 +87,12 @@ class Pand(models.Model):
         return str(self.type) + ' - ' + str(self.adres)
 
 
+@receiver(models.signals.post_save, sender=Pand)
+def auto_create_qr_code_on_save(sender, instance, **kwargs):
+    """Voegt een QR code toe aan het pand bij opslaan"""
+    instance.generate_qrcode()
+
+
 # ERD tabel PandImmoLink
 class PandImmoLink(models.Model):
     class Meta:
