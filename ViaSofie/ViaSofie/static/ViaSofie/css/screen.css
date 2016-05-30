@@ -369,6 +369,18 @@ FAQ pagina
     font-size: 14px;
 }
 
+.panel-heading .glyphicon-plus-sign {
+    display: none;
+}
+
+.panel-heading.collapsed .glyphicon-plus-sign {
+    display: initial;
+}
+
+.panel-heading.collapsed .glyphicon-minus-sign {
+    display: none;
+}
+
 .fancytitle {
     margin-left: 0;
     margin-right: 0;
