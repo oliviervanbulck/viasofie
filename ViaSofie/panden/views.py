@@ -65,7 +65,7 @@ def huren(request):
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
     context = {
-        'maps_adres':pand.adres,
+        'maps_adres': pand.adres,
         'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
                             (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
@@ -157,6 +157,6 @@ class DossierdocAutocomplete(autocomplete.Select2QuerySetView):
         qs = DossierDocBeschrijving.objects.all()
 
         if self.q:
-            qs = qs.filter(status__icontains=self.q)
+            qs = qs.filter(dossier_naam__icontains=self.q)
 
         return qs
