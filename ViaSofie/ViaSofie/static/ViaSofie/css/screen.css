@@ -340,8 +340,9 @@ About pagina
 
 }
 
-#about{
-    margin-top: 15px;
+#aboutus{
+    margin-top: 70px;
+    font-size: 18px;
 }
 
 /*
@@ -365,6 +366,7 @@ FAQ pagina
 
 #nota {
     font-style: italic;
+    font-size: 14px;
 }
 
 .fancytitle {
