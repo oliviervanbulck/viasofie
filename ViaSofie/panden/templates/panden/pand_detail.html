@@ -96,7 +96,7 @@
                                     {% for kenmerk in kenmerken %}
                                         <div class="col-md-12">
                                             <b>{{ kenmerk.kenmerk.benaming }} : </b>
-                                            <p>{{ kenmerk.aantal }}</p>
+                                            {% if kenmerk.kenmerk.type == 'Prijs' %}  <p>{{ kenmerk.aantal }}</p>{% endif %}
                                         </div>
                                     {% endfor %}
                                 </div>
