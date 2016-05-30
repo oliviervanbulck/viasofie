@@ -58,10 +58,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="pandenLijst" class="col-md-8">
+                {% if panden %}
                     {# Panden worden hier weergegeven! #}
                     {% for pand in panden %}
                         {% include 'panden/partial/pand_list_detail.html' %}
                     {% endfor %}
+                {% else %}
+                    <h1>Er konden geen panden gevonden worden :(</h1>
+                {% endif %}
                 </div>
 
                 <div class="col-md-4">
