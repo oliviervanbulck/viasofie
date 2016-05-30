@@ -158,9 +158,9 @@ def advanced_search(request):
 
     """Filter bouwjaar"""
     def filter_bouwjaar(panden):
-        BENAMING = int(request.GET['bouwjaar'])
+        BOUWJAAR = int(request.GET['bouwjaar'])
         return [pand for pand in panden if
-                BENAMING <= pand.oppervlakte]
+                BOUWJAAR <= pand.bouwjaar]
 
     """Combinatie van alle filters"""
     panden = get_alle_actieve_panden()
@@ -178,9 +178,6 @@ def advanced_search(request):
 
     # Elke filter maakt de gevonden panden specifieker en specifieker, maar als we met een lege lijst zitten moet er niet verder gefilterd worden (break)
     for filter in filters:
-        print filter.__name__
-        print panden
-
         if panden:
             panden = filter(panden)
         else:
