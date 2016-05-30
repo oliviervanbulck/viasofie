@@ -71,6 +71,7 @@ def pand_detail(request, pand_id):
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'fotos': pand.foto_set.all(),
         'links': pand.pandimmolink_set.all(),
+        'pand': pand,
     }
     if request.method == 'GET':
         context.update({'nbar': 'kopen'})

@@ -14,6 +14,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib.sites.models import Site
+from django.template.defaultfilters import slice_filter, upper
 
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
@@ -69,7 +70,7 @@ class Pand(models.Model):
     qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
     def ref_number(self):
-        return self.type + str(self.id)
+        return slice_filter(self.type.type, ':3').upper() + '-' + "%03d" % self.id
 
     def get_absolute_url(self):
         return 'http://' + str(Site.objects.get_current()) + reverse('panden.detail', args=[str(self.id)])
