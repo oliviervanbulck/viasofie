@@ -47,6 +47,11 @@ def about(request):
 
 
 def contact(request):
+    context = {
+        'nbar': 'contact',
+        'form': ContactForm(),
+    }
+
     if request.POST:
         form = ContactForm(request.POST)
         try:
@@ -55,15 +60,15 @@ def contact(request):
                 message = form.cleaned_data['message']
                 email = EmailMessage('', email + '\n\n' + message, to=['michael.vanderborght.mv@gmail.com'])
                 email.send()
-                return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'succes': True,'form': ContactForm()})
+
+                context['succes'] = True
             else:
                 raise Exception()
         except:
-            return render(request, 'ViaSofie/contact.html', {'nbar': 'contact', 'error': True, 'form': form})
-    else:
-        form = ContactForm()
+            context['error'] = True
+            context['form'] = form
 
-    return render(request, 'ViaSofie/contact.html', {'form': form})
+    return render(request, 'ViaSofie/contact.html', context)
 
 
 def faq(request):
