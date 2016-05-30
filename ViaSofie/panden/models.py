@@ -105,6 +105,15 @@ def auto_create_qr_code_on_save(sender, instance, **kwargs):
     instance.generate_qrcode()
 
 
+@receiver(models.signals.post_delete, sender=Pand)
+def auto_delete_qr_code_on_delete(sender, instance, **kwargs):
+    """Verwijderd de QR code van een pand wanneer het pand wordt gedelete"""
+    if not kwargs.get('raw'):
+        if instance.qrcode:
+            if os.path.isfile(instance.qrcode.path):
+                os.remove(instance.qrcode.path)
+
+
 # ERD tabel PandImmoLink
 class PandImmoLink(models.Model):
     class Meta:
