@@ -67,6 +67,7 @@ def pand_detail(request, pand_id):
                             (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'fotos': pand.foto_set.all(),
+        'links': pand.pandimmolink_set.all(),
     }
     if request.method == 'GET':
         context.update({'nbar': 'kopen'})

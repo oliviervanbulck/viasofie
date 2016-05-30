@@ -7,7 +7,6 @@
 {% block headcontent %}
     <link href="{% static "ViaSofie/css/lightbox.css" %}" rel="stylesheet">
     <style>
-
         .multi-item-carousel .carousel-inner > .item {
             -webkit-transition: 500ms ease-in-out left;
             transition: 500ms ease-in-out left;
@@ -46,28 +45,28 @@
             background-image: none;
         }
 
-    /*.carousel-inner > .item.next,
-.carousel-inner > .item.active.right {
-    left: 0;
-    -webkit-transform: translate3d(33.33%, 0, 0);
-    -ms-transform: translate3d(33.33%, 0, 0);
-    -o-transform: translate3d(33.33%, 0, 0);
-    transform: translate3d(33.33%, 0, 0);
- }
+        /*.carousel-inner > .item.next,
+    .carousel-inner > .item.active.right {
+        left: 0;
+        -webkit-transform: translate3d(33.33%, 0, 0);
+        -ms-transform: translate3d(33.33%, 0, 0);
+        -o-transform: translate3d(33.33%, 0, 0);
+        transform: translate3d(33.33%, 0, 0);
+     }
 
-.carousel-inner > .item.prev,
-.carousel-inner > .item.active.left {
-  left: 0;
-  -webkit-transform: translate3d(-33.33%, 0, 0);
-  -ms-transform: translate3d(-33.33%, 0, 0);
-  -o-transform: translate3d(-33.33%, 0, 0);
-  transform: translate3d(-33.33%, 0, 0);
-}
+    .carousel-inner > .item.prev,
+    .carousel-inner > .item.active.left {
+      left: 0;
+      -webkit-transform: translate3d(-33.33%, 0, 0);
+      -ms-transform: translate3d(-33.33%, 0, 0);
+      -o-transform: translate3d(-33.33%, 0, 0);
+      transform: translate3d(-33.33%, 0, 0);
+    }
 
-.carousel-inner .active.left { left: -33.33%; }
-.carousel-inner .active.right { left: 33.33%; }
-.carousel-inner .next        { left:  33.33%; }
-.carousel-inner .prev        { left: -33.33%; }*/
+    .carousel-inner .active.left { left: -33.33%; }
+    .carousel-inner .active.right { left: 33.33%; }
+    .carousel-inner .next        { left:  33.33%; }
+    .carousel-inner .prev        { left: -33.33%; }*/
 
     </style>
 {% endblock %}
@@ -75,7 +74,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-7" id="details_panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 id="header_details"><b>Pand details</b></h4>
@@ -106,7 +105,27 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <iframe seamless="seamless" style="border: 0; width:100%; height:320px;" frameborder="0" allowtransparency="true" scrolling="no" src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyDvDjOEBXpkc9oApCP_Xi3jngrSiE7aoJw&amp;q={{ maps_adres.straat }},{{ maps_adres.huisnummer }},{{ maps_adres.woonplaats.gemeente }},{{ maps_adres.woonplaats.postcode }},{{ maps_adres.land }}"> </iframe>
+
+                <div class="col-md-12">
+                    <iframe seamless="seamless" style="border: 0; width:100%; height:320px;" frameborder="0"
+                            allowtransparency="true" scrolling="no"
+                            src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyDvDjOEBXpkc9oApCP_Xi3jngrSiE7aoJw&amp;q={{ maps_adres.straat }},{{ maps_adres.huisnummer }},{{ maps_adres.woonplaats.gemeente }},{{ maps_adres.woonplaats.postcode }},{{ maps_adres.land }}"></iframe>
+                </div>
+
+                {% if links.count > 0 %}
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Vindt dit pand ook op : </h4></div>
+                        <div class="panel-body">
+                            {% for link in links %}
+                                <div class="col-md-6">
+                                <a href="{{ link.site_link }}">{{ link.site_beschrijving }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -129,12 +148,12 @@
                                     </div>
                                 </div>
                             {% else %}
-                            <div class="item">
-                                <div class="col-md-4">
-                                    <div class="foto" style="background-image: url('{{ image }}');"
-                                         onclick="document.getElementById('foto_{{ image.id }}').click()"></div>
+                                <div class="item">
+                                    <div class="col-md-4">
+                                        <div class="foto" style="background-image: url('{{ image }}');"
+                                             onclick="document.getElementById('foto_{{ image.id }}').click()"></div>
+                                    </div>
                                 </div>
-                            </div>
                             {% endif %}
                         {% endfor %}
                     </div>
