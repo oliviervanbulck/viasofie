@@ -62,6 +62,7 @@ def huren(request):
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
     context = {
+        'maps_adres':pand.adres,
         'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
                             (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
