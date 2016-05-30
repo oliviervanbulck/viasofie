@@ -1,15 +1,15 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
+{% load viasofie_filters %}
 
 {% block title %}Dossier{% endblock %}
 
 {% block headcontent %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<style>
+    <style>
 
 
-
-</style>
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -28,20 +28,24 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     {% for kenmerk in basis_kenmerken %}
-                                    <div class="col-md-12">
-                                        <b>{{ kenmerk.1 }} : </b>
-                                        <p>{{ kenmerk.0 }}</p>
-                                    </div>
+                                        <div class="col-md-12">
+                                            <b>{{ kenmerk.1 }} : </b>
+                                            <p>{{ kenmerk.0 }}</p>
+                                        </div>
                                     {% endfor %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     {% for kenmerk in kenmerken %}
-                                    <div class="col-md-12">
-                                        <b>{{ kenmerk.kenmerk.benaming }} : </b>
-                                        <p>{{ kenmerk.aantal }}</p>
-                                    </div>
+                                        <div class="col-md-12">
+                                            <b>{{ kenmerk.kenmerk.benaming }} : </b>
+                                            {% if kenmerk.kenmerk.type.type == 'Prijs' %}
+                                                <p>{{ kenmerk.aantal | euro }}</p>
+                                            {% elif kenmerk.kenmerk.type.type == 'Oppervlakte' %}
+                                                <p>{{ kenmerk.aantal | opp }}</p>
+                                            {% else %}<p>{{ kenmerk.aantal }}</p>{% endif %}
+                                        </div>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -60,22 +64,22 @@
                         <h4 id="header_checklist"><b>Dossier inhoud</b></h4>
                     </div>
 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Beschrijving</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            {% for doclijn in doclijnen %}
-                                <tbody>
-                                    <tr>
-                                        <td>{{ doclijn.beschrijving }}</td>
-                                        <td>{{ doclijn.status }}</td>
-                                    </tr>
-                                </tbody>
-                            {% endfor %}
-                        </table>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Beschrijving</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        {% for doclijn in doclijnen %}
+                            <tbody>
+                            <tr>
+                                <td>{{ doclijn.beschrijving }}</td>
+                                <td>{{ doclijn.status }}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
 
                 </div>
             </div>
@@ -85,21 +89,21 @@
                         <h4 id="header_stavaza"><b>Actuele status</b></h4>
                     </div>
                     <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Datum</th>
-                                    <th>Stavaza</th>
-                                </tr>
-                            </thead>
-                            {% for stavaza in stavazalijnen %}
-                                <tbody>
-                                    <tr>
-                                        <td>{{ stavaza.datum }}</td>
-                                        <td>{{ stavaza.stavaza }}</td>
-                                    </tr>
-                                </tbody>
-                            {% endfor %}
-                        </table>
+                        <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Stavaza</th>
+                        </tr>
+                        </thead>
+                        {% for stavaza in stavazalijnen %}
+                            <tbody>
+                            <tr>
+                                <td>{{ stavaza.datum }}</td>
+                                <td>{{ stavaza.stavaza }}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
@@ -109,9 +113,11 @@
         <div class="row">
             <div class="col-md-6">
                 {% if succes %}
-                <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
+                    <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
                 {% elif error %}
-                <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en bericht in.</div>
+                    <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en
+                        bericht in.
+                    </div>
                 {% endif %}
                 <div id="contactform" class="panel panel-default">
                     <div class="panel-body">
@@ -122,7 +128,8 @@
                                 <p>{{ form.message }}</p>
                             </div>
                             <div>{{ form.captcha }}</div>
-                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden</button>
+                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden
+                            </button>
                         </form>
                     </div>
                 </div>
