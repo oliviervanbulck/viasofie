@@ -28,10 +28,10 @@ class AdvancedSearchForm(forms.Form):
     type = forms.ChoiceField(choices=TYPES, label='Types', required=True)
 
     # Slaapkamer: Textbox
-    slaapkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal slaapkamers:')
+    slaapkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal slaapkamers:', initial="2")
 
     # Badkamer: Textbox
-    badkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal badkamers:')
+    badkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal badkamers:', initial="1")
 
     # Parking/Garage: Checkbox
     parking = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Parking / Garage:', required=True, initial=KEUZES[-1][0])
@@ -46,7 +46,7 @@ class AdvancedSearchForm(forms.Form):
     bemeubeld = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Bemeubeld:', required=True, initial=KEUZES[-1][0])
 
     # Bouwjaar: Textbox
-    bouwjaar = forms.CharField(widget=forms.TextInput(), label='Bouwjaar:')
+    bouwjaar = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Bouwjaar:', initial="2000")
 
 
 # Fix om ervoor te zorgen dat een inline sowieso wordt aangemaakt.
