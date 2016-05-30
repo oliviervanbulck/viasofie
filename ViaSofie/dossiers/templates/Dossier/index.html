@@ -25,6 +25,7 @@
 {% block content %}
     <div class="container-fluid ">
         <div class="row row-centered">
+        {% if panden %}
             {% for pand in panden %}
             <a href="{{ pand.id }}">
                 <div class="col-md-4">
@@ -41,6 +42,9 @@
                 </div>
             </a>
             {% endfor %}
+        {% else %}
+            <h1 class="sad-face">Er konden geen dossiers gevonden worden :(</h1>
+        {% endif %}
         </div>
     </div>
 {% endblock %}
