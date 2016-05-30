@@ -21,7 +21,6 @@ def panden_general(request, nbar_val):
                            'bemeubeld', 'bouwjaar']
         for param in required_params:
             if param not in request.GET:
-                print param
                 return False
         return True
 
