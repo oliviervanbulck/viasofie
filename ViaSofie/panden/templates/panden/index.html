@@ -165,9 +165,18 @@
     </div>
 
     <script>
+    $(document).ready(function() {
         // Slider voor prijsklasse
-        makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', 0, 10000000, 50000, 1000000);
+        var MIN_PRIJS = 0;
+        var MAX_PRIJS = 10000000;
+        var STEP_PRIJS = 10000;
+        makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', MIN_PRIJS, MAX_PRIJS, STEP_PRIJS);
+
         // Slider voor Oppervlakte
-        makeSlider('oppervlakte-slider', 'oppervlakte-lower-value', 'oppervlakte-upper-value', 0, 1000, 150, 300);
+        var MIN_OPP = 0;
+        var MAX_OPP = 1000;
+        var STEP_OPP = 10;
+        makeSlider('oppervlakte-slider', 'oppervlakte-lower-value', 'oppervlakte-upper-value', MIN_OPP, MAX_OPP, STEP_OPP);
+    });
     </script>
 {% endblock %}

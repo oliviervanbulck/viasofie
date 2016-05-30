@@ -1,7 +1,7 @@
 /**
  * Created by Tim on 17/05/2016.
  */
-function makeSlider(elementId, lowerId, upperId, min, max, start, stop) {
+function makeSlider(elementId, lowerId, upperId, min, max, step) {
         var nonLinearSlider = document.getElementById(elementId);
 
         var lowerValue = document.getElementById(lowerId),
@@ -11,14 +11,14 @@ function makeSlider(elementId, lowerId, upperId, min, max, start, stop) {
         noUiSlider.create(nonLinearSlider, {
             connect: true,
             behaviour: 'tap',
-            start: [start, stop],
-            step: 1,
+            //start: [start, stop],
+            start: [parseInt(lowerValue.value), parseInt(upperValue.value)],
+            step: step,
             range: {
                 'min': [min],
                 'max': [max]
             }
         });
-
 
         // Display the slider value and how far the handle moved
         // from the left edge of the slider.
@@ -29,7 +29,7 @@ function makeSlider(elementId, lowerId, upperId, min, max, start, stop) {
                 upperValue.value = parseInt(values[handle]);
             }
         });
-
+        /*
         function changeValue() {
             nonLinearSlider.noUiSlider.set([parseFloat(lowerValue.value), parseFloat(upperValue.value)]);
         }
@@ -39,4 +39,5 @@ function makeSlider(elementId, lowerId, upperId, min, max, start, stop) {
 
         upperValue.oninput = changeValue;
         upperValue.onpropertychange = changeValue; // for IE8
+        */
     }

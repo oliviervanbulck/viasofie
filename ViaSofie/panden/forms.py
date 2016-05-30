@@ -12,16 +12,16 @@ class AdvancedSearchForm(forms.Form):
               ('nvt', 'N.v.t.')]
 
     # Prijs: Textboxen voor slider (lower / upper limit)
-    prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value'}), label='Min')
-    prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value'}), label='Max')
+    prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value', 'readonly': True, 'size': 10}), label='Min', initial=50000)
+    prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value', 'readonly': True, 'size': 10}), label='Max', initial=1000000)
 
     # Gemeente: Dropdownmenu
     GEMEENTES = [KEUZES[-1]] + [(gemeente.gemeente, gemeente.gemeente) for gemeente in get_alle_gemeentes()]
     gemeente = forms.ChoiceField(choices=GEMEENTES, label='Gemeentes', required=True)
 
     # Oppervlakte: Textboxen voor slider (lower / upper limit)
-    oppervlakte_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-lower-value'}), label='Min')
-    oppervlakte_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-upper-value'}), label='Max')
+    oppervlakte_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-lower-value', 'readonly': True, 'size': 10}), label='Min', initial=150)
+    oppervlakte_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-upper-value', 'readonly': True, 'size': 10}), label='Max', initial=300)
 
     # Type: Dropdownmenu
     TYPES = [KEUZES[-1]] + [(type, type) for type in Type.objects.all()]
