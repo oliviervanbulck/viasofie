@@ -127,6 +127,10 @@ class TypeAdmin(HiddenAdminModel):
     pass
 
 
+class KenmerkTypeAdmin(HiddenAdminModel):
+    pass
+
+
 """
 AdminModels - Shown
 """
@@ -157,10 +161,6 @@ class PandAdmin(admin.ModelAdmin):
 
     qr_code.allow_tags = True
     qr_code.short_description = "QR code"
-
-
-class KenmerkTypeAdmin(admin.ModelAdmin):
-    pass
 
 admin.site.register(Pand, PandAdmin)
 admin.site.register(Type, TypeAdmin)
