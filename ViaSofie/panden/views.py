@@ -11,6 +11,7 @@ from gebruikers.models import Adres
 from .models import Pand, Kenmerk
 from .models import Type
 from .forms import AdvancedSearchForm
+from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
 
 def panden_general(request, nbar_val):
@@ -66,8 +67,8 @@ def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
     context = {
         'maps_adres': pand.adres,
-        'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
-                            (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
+        'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
+                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'fotos': pand.foto_set.all(),
         'links': pand.pandimmolink_set.all(),

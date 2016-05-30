@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.forms import PandKenmerkPerPandForm, StavazaLijnForm, DossierDocLijnForm, PandForm
-from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
+from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto, KenmerkType
 from django.forms.models import ModelForm
 
 
@@ -159,6 +159,9 @@ class PandAdmin(admin.ModelAdmin):
     qr_code.short_description = "QR code"
 
 
+class KenmerkTypeAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Pand, PandAdmin)
 admin.site.register(Type, TypeAdmin)
 admin.site.register(Kenmerk, KenmerkAdmin)
@@ -166,3 +169,4 @@ admin.site.register(PandImmoLink, PandImmoLinkAdmin)
 admin.site.register(Foto, FotoAdmin)
 admin.site.register(CarouselFoto, CarouselFotoAdmin)
 admin.site.register(PandKenmerkPerPand, PandKenmerkPerPandAdmin)
+admin.site.register(KenmerkType, KenmerkTypeAdmin)

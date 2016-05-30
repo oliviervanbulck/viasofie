@@ -2,6 +2,7 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
 from dossiers.forms import ContactFormDossier
 from panden.models import Pand
@@ -24,8 +25,8 @@ def dossier(request, pand_id):
 
     context = {
         #'dossier': dossier_obj,
-        'basis_kenmerken': [(pand.adres, 'Adres'), (pand.prijs, 'Prijs'), (pand.type, 'Type'),
-                            (pand.bouwjaar, 'Bouwjaar'), (pand.oppervlakte, 'Oppervlakte')],
+        'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
+                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'foto': pand.foto_set.first(),
         'doclijnen': doclijnen,
