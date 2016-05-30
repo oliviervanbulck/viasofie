@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.forms import PandKenmerkPerPandForm, StavazaLijnForm, DossierDocLijnForm, PandForm
-from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto
+from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto, KenmerkType
 from django.forms.models import ModelForm
 
 
@@ -55,8 +55,9 @@ class StavazaLijnenInline(admin.TabularInline):
     form = StavazaLijnForm
     can_delete = True
     extra = 0
-    verbose_name_plural = 'Stavaza'
-    verbose_name = 'Stand van zaken'
+    verbose_name_plural = 'Actuele statussen'
+    verbose_name = 'Actuele status'
+    fields = ('stavaza', 'datum',)
 
 
 class DocLijnenInline(admin.TabularInline):
@@ -64,8 +65,8 @@ class DocLijnenInline(admin.TabularInline):
     form = DossierDocLijnForm
     can_delete = True
     extra = 0
-    verbose_name_plural = 'Documenten'
-    verbose_name = 'Document'
+    verbose_name_plural = 'Dossierinhoud'
+    verbose_name = 'Dossierinhoud'
 
 
 class PandKenmerkPerPandInline(admin.TabularInline):
@@ -74,6 +75,7 @@ class PandKenmerkPerPandInline(admin.TabularInline):
     can_delete = True
     verbose_name_plural = 'Pandkenmerken'
     extra = 0
+    fields = ('kenmerk', 'aantal',)
 
 
 class PandImmoLinkInline(admin.TabularInline):
@@ -157,6 +159,9 @@ class PandAdmin(admin.ModelAdmin):
     qr_code.short_description = "QR code"
 
 
+class KenmerkTypeAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Pand, PandAdmin)
 admin.site.register(Type, TypeAdmin)
 admin.site.register(Kenmerk, KenmerkAdmin)
@@ -164,3 +169,4 @@ admin.site.register(PandImmoLink, PandImmoLinkAdmin)
 admin.site.register(Foto, FotoAdmin)
 admin.site.register(CarouselFoto, CarouselFotoAdmin)
 admin.site.register(PandKenmerkPerPand, PandKenmerkPerPandAdmin)
+admin.site.register(KenmerkType, KenmerkTypeAdmin)

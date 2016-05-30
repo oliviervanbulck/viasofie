@@ -21,6 +21,7 @@ class StavazaLijn(models.Model):
     datum = models.DateField(default=datetime.date.today)
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     stavaza = models.ForeignKey('Stavaza', on_delete=models.CASCADE)
+    stavaza.verbose_name = 'Actuele status'
 
     def __str__(self):
         return str(self.pand) + ' | ' + str(self.stavaza.status)
@@ -42,9 +43,9 @@ class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
-    status = models.OneToOneField('DossierDocStatus', on_delete=models.CASCADE, null=True)
     beschrijving = models.OneToOneField('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
     beschrijving.verbose_name = 'Document'
+    status = models.OneToOneField('DossierDocStatus', on_delete=models.CASCADE, null=True)
     bestand = models.FileField(null=True, blank=True)
 
     def __str__(self):

@@ -38,9 +38,17 @@ class Kenmerk(models.Model):
         verbose_name_plural = "Kenmerken"
     benaming = models.CharField(max_length=50)
     is_aantal = models.BooleanField()
+    type = models.ForeignKey('KenmerkType', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.benaming)
+
+
+class KenmerkType(models.Model):
+    type = models.CharField(max_length=64)
+
+    def __str__(self):
+        return str(self.type)
 
 
 @python_2_unicode_compatible
@@ -60,6 +68,9 @@ class Pand(models.Model):
 
     qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
+    def ref_number(self):
+        return self.type + str(self.id)
+
     def get_absolute_url(self):
         return 'http://' + str(Site.objects.get_current()) + reverse('panden.detail', args=[str(self.id)])
 
@@ -78,7 +89,7 @@ class Pand(models.Model):
 
             buffer = StringIO.StringIO()
             img.save(buffer)
-            filename = 'panden-%s.png' % (self.id)
+            filename = 'panden-%s.png' % self.id
             filebuffer = InMemoryUploadedFile(
                 buffer, None, filename, 'image/png', buffer.len, None)
             self.qrcode.save(filename, filebuffer)

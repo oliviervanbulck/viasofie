@@ -1,5 +1,6 @@
 {% extends "ViaSofie/master.html" %}
 {% load viasofie_tags %}
+{% load viasofie_filters %}
 {% load staticfiles %}
 
 {% block title %}Pand{% endblock %}
@@ -96,7 +97,11 @@
                                     {% for kenmerk in kenmerken %}
                                         <div class="col-md-12">
                                             <b>{{ kenmerk.kenmerk.benaming }} : </b>
-                                            <p>{{ kenmerk.aantal }}</p>
+                                            {% if kenmerk.kenmerk.type.type == 'Prijs' %}
+                                                <p>{{ kenmerk.aantal | euro }}</p>
+                                            {% elif kenmerk.kenmerk.type.type == 'Oppervlakte' %}
+                                                <p>{{ kenmerk.aantal | opp }}</p>
+                                            {% else %}<p>{{ kenmerk.aantal }}</p>{% endif %}
                                         </div>
                                     {% endfor %}
                                 </div>
