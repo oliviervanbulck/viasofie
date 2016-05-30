@@ -39,7 +39,8 @@
                                 <div class="row">
                                     {% for kenmerk in kenmerken %}
                                     <div class="col-md-12">
-                                        <p><b>{{ kenmerk.kenmerk.benaming }} : </b> {{ kenmerk.aantal }}</p>
+                                        <b>{{ kenmerk.kenmerk.benaming }} : </b>
+                                        <p>{{ kenmerk.aantal }}</p>
                                     </div>
                                     {% endfor %}
                                 </div>
