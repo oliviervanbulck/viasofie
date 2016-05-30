@@ -162,7 +162,7 @@ Menubalk
     padding-bottom: 34px;
 }
 
-#viaSofieCarousel, #viaSofieCarousel .item, #viaSofieCarousel .active {
+#viaSofieCarousel, #viaSofieCarousel .item, #viaSofieCarousel .carousel-inner .active {
     height: 100%;
 }
 
