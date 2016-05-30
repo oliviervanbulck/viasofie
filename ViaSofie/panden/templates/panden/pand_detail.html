@@ -95,7 +95,8 @@
                                 <div class="row">
                                     {% for kenmerk in kenmerken %}
                                         <div class="col-md-12">
-                                            <p><b>{{ kenmerk.kenmerk.benaming }} : </b> {{ kenmerk.aantal }}</p>
+                                            <b>{{ kenmerk.kenmerk.benaming }} : </b>
+                                            <p>{{ kenmerk.aantal }}</p>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -113,18 +114,18 @@
                 </div>
 
                 {% if links.count > 0 %}
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Vindt dit pand ook op : </h4></div>
-                        <div class="panel-body">
-                            {% for link in links %}
-                                <div class="col-md-6">
-                                <a href="{{ link.site_link }}">{{ link.site_beschrijving }}</a>
-                                </div>
-                            {% endfor %}
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Vindt dit pand ook op : </h4></div>
+                            <div class="panel-body">
+                                {% for link in links %}
+                                    <div class="col-md-6">
+                                        <a href="{{ link.site_link }}">{{ link.site_beschrijving }}</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endif %}
             </div>
         </div>
