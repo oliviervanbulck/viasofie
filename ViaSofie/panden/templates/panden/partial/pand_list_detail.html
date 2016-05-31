@@ -6,7 +6,7 @@
     {% load viasofie_filters %}
     {% load viasofie_tags %}
     <div class="{{ pand_kolom_class }} text-center pand-partial">
-    <a href="{% url 'panden.detail' pand.id %}">
+    <a href="{% if dossier %}{% url 'dossiers.dossier' pand.id %}{% else %}{% url 'panden.detail' pand.id %}{% endif %}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
@@ -18,7 +18,6 @@
             </div>
 
             {% with pand.foto_set.all|first as foto %}
-
                     <div class="foto" style="background-image: url('{{ foto }}');"></div>
             {% endwith %}
 
