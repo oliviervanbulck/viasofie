@@ -1,50 +1,57 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
+{% load viasofie_tags %}
 
 {% block title %}Dossier{% endblock %}
 
 {% block headcontent %}
-<style>
-#pand_img{
-    max-width: 100%;
-}
+    <style>
+        #pand_img {
+            max-width: 100%;
+        }
 
-.row-centered{
-    text-align: center;
-}
+        .row-centered {
+            text-align: center;
+        }
 
-.col-centered{
-    display: inline-block;
-    float: none;
-    text-align: left;
-    margin: 0 auto;
-}
-</style>
+        .col-centered {
+            display: inline-block;
+            float: none;
+            text-align: left;
+            margin: 0 auto;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     <div class="container-fluid ">
         <div class="row row-centered">
-        {% if panden %}
-            {% for pand in panden %}
-            <a href="{{ pand.id }}">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4><b>{{ pand.type.type }} | {{ pand.adres.straat }} {{ pand.adres.huisnummer }}<br />{{ pand.adres.woonplaats }}</b></h4>
+            {% if panden %}
+                {% for pand in panden %}
+                    <a href="{{ pand.id }}">
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>
+                                        <b>{{ pand.type.type }} <br /> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }}<br/>{% pand_ref pand %}
+                                        </b></h4>
+                                </div>
+                                <div class="panel-body">
+                                    {% with pand.foto_set.all|first as foto %}
+                                        <div class="foto img-rounded"
+                                             style="background-image: url('{{ foto }}');"></div>
+                                    {% endwith %}
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            {% with pand.foto_set.all|first as foto %}
-                                <div class="foto img-rounded" style="background-image: url('{{ foto }}');"></div>
-                            {% endwith %}
-                        </div>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        {% else %}
-            {% include 'panden/partial/sad_face.html' %}
-        {% endif %}
+                    </a>
+                    {% if forloop.counter|divisibleby:3 %}
+                        <div class="clearfix"></div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <h1 class="sad-face">Er konden geen dossiers gevonden worden &#9785;</h1>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

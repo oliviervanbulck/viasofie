@@ -1,6 +1,7 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
 {% load viasofie_filters %}
+{% load viasofie_tags %}
 
 {% block title %}Dossier{% endblock %}
 
@@ -21,7 +22,7 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 id="header_details"><b>Pand details</b></h4>
+                        <h4 id="header_details"><b>Pand details - {{ ref_nummer }}</b></h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">

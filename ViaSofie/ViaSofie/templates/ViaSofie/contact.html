@@ -16,11 +16,13 @@
                 <!--<iframe id="facebook"
                         src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=180&height=70&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=false&appId"></iframe>-->
             </div>
-            <div id="contact"class="col-md-6 col-xl-4">
+            <div id="contact" class="col-md-6 col-xl-4">
                 {% if succes %}
-                <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
+                    <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
                 {% elif error %}
-                <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en bericht in.</div>
+                    <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en
+                        bericht in.
+                    </div>
                 {% endif %}
                 <div id="contactform" class="panel panel-default">
                     <div class="panel-body">
@@ -35,13 +37,38 @@
                                 <p>{{ form.message }}</p>
                             </div>
                             <div>{{ form.captcha }}</div>
-                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden</button>
+                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden
+                            </button>
 
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="contactgegevens" class="container">
+            <div class="row">
+                <div id="c1" class="col-md-4">
+                  <p>Mussenhoevelaan 101</p>
+                  <p>  2530 Boechout</p>
+                  <p>Tel. +32 (0)483713710</p>
+                </div>
+                <div id="c2" class="col-md-4">
+                        <p>Erkend vastgoedmakelaar:</p>
+                    <p>Sofie Andriesen BIV 509141</p>
+                    <p>Ondernemingsnummer: 0541.508.141</p>
+                </div>
+                <div id="c3" class="col-md-4">
+
+
+                     <p>Openingsuren: contacteer mij voor een afspraak</p>
+                    <p>Onderworpen aan de controle van het</p>
+                        <p>Beroepsinstituut voor Vastgoedmakelaars</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     </div><!-- /.row -->
 
 

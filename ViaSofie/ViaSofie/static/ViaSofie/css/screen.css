@@ -199,6 +199,8 @@ Footer
     padding-right: 25px;
 }
 
+
+
 @media (min-width: 768px) {
     .footer .navbar-center {
         display: inline-block;
@@ -217,8 +219,9 @@ Footer
 }
 
 .footer .text-muted {
-    font-size: 20px;
+    font-size: 16px;
     pointer-events: none;
+
 }
 
 @media (max-width: 840px) {
@@ -363,7 +366,14 @@ textarea {
     margin-top: 10px;
 }
 
-
+#contactgegevens {
+    font-size: 18px;
+    font-family: RopaSans;
+    text-align: center;
+}
+#c1, #c2, #c3 {
+    padding-top: 40px;
+}
 /*
 About pagina
 */
@@ -377,10 +387,7 @@ About pagina
 
 }
 
-#aboutus{
-    margin-top: 70px;
-    font-size: 18px;
-}
+
 
 /*
 Disclaimer pagina
