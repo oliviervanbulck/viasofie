@@ -3,6 +3,8 @@ import string
 
 from django import template
 
+from panden.models import Switch
+
 register = template.Library()
 
 
@@ -14,3 +16,11 @@ def random_string(times):
 @register.simple_tag
 def pand_ref(pand):
     return pand.ref_number()
+
+
+@register.assignment_tag()
+def gebruik_zeshoeken():
+    print 'kittens'
+    print Switch.objects.all()
+    return True
+    # return Switch.objects.all().first().waarde

@@ -7,8 +7,10 @@ import random
 
 
 def get_random_actieve_panden(aantal):
-    panden = Pand.objects.filter(actief=True)
-    return random.sample(panden, min(aantal, len(panden)))
+    #panden = Pand.objects.filter(actief=True)
+    #return random.sample(panden, min(aantal, len(panden)))
+
+    return Pand.objects.filter(actief=True)[::-1][0:3]  # Reverse the resultset and get the first three (last three houses)
 
 
 def get_alle_gemeentes():

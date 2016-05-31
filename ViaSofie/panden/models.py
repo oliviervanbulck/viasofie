@@ -234,3 +234,12 @@ class PandKenmerkPerPand(models.Model):
 
     def __str__(self):
         return str(self.kenmerk) + ' - ' + str(self.aantal) + ' - ' + str(self.pand)
+
+
+class Switch(models.Model):
+    class Meta:
+        verbose_name = 'optie'
+        verbose_name_plural = 'opties'
+
+    naam = models.CharField(max_length=20)
+    waarde = models.BooleanField(default=False)

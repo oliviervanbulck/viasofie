@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.forms import PandKenmerkPerPandForm, StavazaLijnForm, DossierDocLijnForm, PandForm
-from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto, KenmerkType
+from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto, KenmerkType, Switch
 from django.forms.models import ModelForm
 
 
@@ -181,3 +181,4 @@ admin.site.register(Foto, FotoAdmin)
 admin.site.register(CarouselFoto, CarouselFotoAdmin)
 admin.site.register(PandKenmerkPerPand, PandKenmerkPerPandAdmin)
 admin.site.register(KenmerkType, KenmerkTypeAdmin)
+admin.site.register(Switch)
