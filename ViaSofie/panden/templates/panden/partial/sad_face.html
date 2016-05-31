@@ -1,2 +1,33 @@
-<h1 class="sad-face-text">Er konden geen panden gevonden worden</h1>
-<div class="sad-face">&#9785;</div>
+{% load staticfiles %}
+
+<div id="sad-face-container">
+    <h1 id="sad-face-text">Er konden geen panden gevonden worden</h1>
+    <div id="easter-egg">
+        <div id="made-by">Made by:</div>
+        <ul>
+            <li>Olivier</li>
+            <li>Michael</li>
+            <li>Tom</li>
+            <li>Glenn</li>
+            <li>Tim</li>
+        </ul>
+    </div>
+</div>
+<div id="sad-face">&#9785;</div>
+
+<script>
+    $(document).ready(function() {
+       setTimeout(function() {
+           var face = $('#sad-face');
+           var time = 500;
+
+           face.fadeOut(time, function() {
+               var smiley = "{% static 'ViaSofie/smiley_transparent.png' %}";
+               face.html('<img src="' + smiley + '">');
+
+               $('#easter-egg').fadeIn(time);
+               face.fadeIn(time);
+           });
+        }, 1000 * 60 * 2); // Wait for 2 minutes
+    });
+</script>

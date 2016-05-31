@@ -43,7 +43,7 @@
             </a>
             {% endfor %}
         {% else %}
-            <h1 class="sad-face">Er konden geen dossiers gevonden worden &#9785;</h1>
+            {% include 'panden/partial/sad_face.html' %}
         {% endif %}
         </div>
     </div>
