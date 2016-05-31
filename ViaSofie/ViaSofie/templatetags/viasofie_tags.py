@@ -20,7 +20,4 @@ def pand_ref(pand):
 
 @register.assignment_tag()
 def gebruik_zeshoeken():
-    print 'kittens'
-    print Switch.objects.all()
-    return True
-    # return Switch.objects.all().first().waarde
+    return Switch.objects.all().first().waarde
