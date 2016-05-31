@@ -30,19 +30,7 @@
                 {% for pand in panden %}
                     <a href="{{ pand.id }}">
                         <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4>
-                                        <b>{{ pand.type.type }} <br /> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }}<br/>{% pand_ref pand %}
-                                        </b></h4>
-                                </div>
-                                <div class="panel-body">
-                                    {% with pand.foto_set.all|first as foto %}
-                                        <div class="foto img-rounded"
-                                             style="background-image: url('{{ foto }}');"></div>
-                                    {% endwith %}
-                                </div>
-                            </div>
+                            {% include 'panden/partial/pand_list_detail.html' %}
                         </div>
                     </a>
                     {% if forloop.counter|divisibleby:3 %}

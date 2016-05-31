@@ -1,21 +1,25 @@
 {% load humanize %}
 {% load staticfiles %}
 {% load viasofie_filters %}
+{% load viasofie_tags %}
 <div class="{{ pand_kolom_class }} text-center pand-partial">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>
 
                 <b> {{ pand.type.type }}
-                    <br/> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }} <br/></b>
+                    <br/> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }} <br/>
+                    {% if dossier %} {% pand_ref pand %} {% endif %}
+                </b>
+
 
             </h4>
         </div>
 
-            {% with pand.foto_set.all|first as foto %}
-                <div class="foto"
-                     style="background-image: url('{{ foto }}');"></div>
-            {% endwith %}
+        {% with pand.foto_set.all|first as foto %}
+            <div class="foto"
+                 style="background-image: url('{{ foto }}');"></div>
+        {% endwith %}
 
         <div class="panel-heading">
             <h4><b>{{ pand.prijs|euro }}</b></h4>
