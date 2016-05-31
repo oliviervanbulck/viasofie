@@ -12,6 +12,7 @@ def index(request):
     panden = request.user.gebruiker.pand_set.all()
     context = {
         'panden': panden,
+        'dossier':True,
         'nbar': 'dossier'
     }
     return render(request, "Dossier/index.html", context)
