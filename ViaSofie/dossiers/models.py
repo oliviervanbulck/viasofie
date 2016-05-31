@@ -42,6 +42,7 @@ class Stavaza(models.Model):
 class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
+        unique_together = ('pand', 'beschrijving')
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     beschrijving = models.ForeignKey('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
     beschrijving.verbose_name = 'Document'
