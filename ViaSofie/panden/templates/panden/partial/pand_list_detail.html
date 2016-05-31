@@ -1,25 +1,26 @@
 {% load humanize %}
 {% load staticfiles %}
+{% load viasofie_filters %}
 <div class="{{ pand_kolom_class }} text-center pand-partial">
-    {% if pand != None %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>
 
-        {% with pand.foto_set.all|first as foto %}
-            <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
-            <a href="{% url 'panden.detail' pand.id %}">
-                <div class="foto{% if not foto %} no-foto{% endif %}" style="background-image: url('{% if foto %}{{ foto }}{% else %}{% static 'ViaSofie/no-image.png' %}{% endif %}');"></div>
-            </a>
-            <!--<div class="pandinfobox">
-                <div class="pandinfobox-left"></div>
-                <div class="pandinfobox-middle"><strong>{{ pand.type }}</strong><br/>€ {{ pand.prijs|floatformat:2 }}</div>
-                <div class="pandinfobox-right"></div>
-            </div>-->
-            <div class="hexagon">
-                <div class="hexagon inner">
-                    <strong>{{ pand.type }}</strong><br />€ {{ pand.prijs|floatformat:0|intcomma }} | {{ pand.adres.woonplaats.gemeente }}
-                </div>
-            </div>
-        {% endwith %}
-        <!--<h2>{# pand.type #} </h2>
-            <p>{# pand.adres #} &emsp; €{# pand.prijs|floatformat:2 #}</p>-->
-    {% endif %}
+                <b> {{ pand.type.type }}
+                    <br/> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }} <br/></b>
+
+            </h4>
+        </div>
+
+            {% with pand.foto_set.all|first as foto %}
+                <div class="foto"
+                     style="background-image: url('{{ foto }}');"></div>
+            {% endwith %}
+
+        <div class="panel-heading">
+            <h4><b>{{ pand.prijs|euro }}</b></h4>
+        </div>
+
+
+    </div>
 </div>
