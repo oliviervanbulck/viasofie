@@ -18,6 +18,7 @@
     {% block extrastyle %}{% endblock %}
 </head>
 <body>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header navbar-logo">
@@ -28,7 +29,7 @@
             </button>
             <a style="float: left;" href="{% url 'index' %}"><img src="{% static "ViaSofie/logo.png" %}" alt="Logo"
                                                                   class="logo"/></a>
-            <a class="navbar-brand" href="{% url 'index' %}"><i>Verdergaan in vastgoed</i></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><i>Via Sofie</i></a>
         </div>
         <div class="collapse navbar-collapse" id="viaSofieNavigation">
             <ul class="nav navbar-nav">
@@ -62,18 +63,10 @@
                             <span class="glyphicon glyphicon-log-in"></span> Login
                         </a>
                     </li>
-                    <li id="language" class="dropdown">
-                        <img class=" dropdown-toggle" data-toggle="dropdown"
-                             src="{% static "ViaSofie/icons/belgium.png" %}"/>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> French</a></li>
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
-                        </ul>
-                    </li>
-                   <!-- <li id="goedDoel">
-                        <a href="http://www.welzijnszorg.be/"></a>
-                    </li>-->
+
+                    <!-- <li id="goedDoel">
+                         <a href="http://www.welzijnszorg.be/"></a>
+                     </li>-->
                 </ul>
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
@@ -99,15 +92,7 @@
                     <!--  <li id="goedDoel">
                           <a href="http://www.welzijnszorg.be/"></a>
                       </li>-->
-                    <li id="language" class="dropdown">
-                        <img class=" dropdown-toggle" data-toggle="dropdown"
-                             src="{% static "ViaSofie/icons/belgium.png" %}"/>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> French</a></li>
-                            <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
-                        </ul>
-                    </li>
+
                 </ul>
             {% endif %}
         </div>
@@ -146,7 +131,7 @@
 </div>
 {% block content %}
 {% endblock %}
-<nav class="navbar navbar-default footer">
+<nav class="navbar navbar-default navbar-fixed-bottom footer">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="https://www.facebook.com"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
@@ -168,8 +153,18 @@
             </li>
             <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">Privacy</a>
             </li>
+            <li id="language" class="dropdown">
+                <img class=" dropdown-toggle" data-toggle="dropdown"
+                     src="{% static "ViaSofie/icons/belgium.png" %}"/>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
+                    <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> Francais</a></li>
+                    <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
+
 </body>
 </html>
