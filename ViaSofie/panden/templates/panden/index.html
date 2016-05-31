@@ -21,6 +21,10 @@
             padding-right: 5px;
         }
 
+        .hidden-box {
+            border: none;
+        }
+
         .noUi-connect {
             background-color: #eac8c6;
         }
@@ -64,7 +68,7 @@
                         {% include 'panden/partial/pand_list_detail.html' %}
                     {% endfor %}
                 {% else %}
-                    <h1 class="sad-face">Er konden geen panden gevonden worden &#9785;</h1>
+                    {% include 'panden/partial/sad_face.html' %}
                 {% endif %}
                 </div>
 

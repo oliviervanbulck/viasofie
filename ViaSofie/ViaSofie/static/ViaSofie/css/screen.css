@@ -29,9 +29,20 @@ body {
     background-color: #e8e8e8;
 }
 
-.sad-face {
-    text-align: center;
+.sad-face-text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
     font-family: RopaSans;
+}
+
+.sad-face {
+    z-index: -10;
+    position: absolute;
+    font-size: 300pt;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0.5;
 }
 
 /*
