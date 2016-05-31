@@ -43,9 +43,9 @@ class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
-    beschrijving = models.OneToOneField('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
+    beschrijving = models.ForeignKey('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
     beschrijving.verbose_name = 'Document'
-    status = models.OneToOneField('DossierDocStatus', on_delete=models.CASCADE, null=True)
+    status = models.ForeignKey('DossierDocStatus', on_delete=models.CASCADE, null=True)
     bestand = models.FileField(null=True, blank=True)
 
     def __str__(self):
