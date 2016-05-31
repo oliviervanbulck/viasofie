@@ -24,7 +24,7 @@ def dossier(request, pand_id):
     stavaza = pand.stavazalijn_set.all()
 
     context = {
-        #'dossier': dossier_obj,
+        'ref_nummer': pand.ref_number(),
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
                             (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
