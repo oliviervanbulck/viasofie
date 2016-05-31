@@ -8,6 +8,7 @@
 {% block headcontent %}
     <link href="{% static "ViaSofie/css/lightbox.min.css" %}" rel="stylesheet">
     <style>
+    @media(min-width: 992px) {
         .multi-item-carousel .carousel-inner > .item {
             -webkit-transition: 500ms ease-in-out left;
             transition: 500ms ease-in-out left;
@@ -45,6 +46,8 @@
         .multi-item-carousel .carousel-control.right {
             background-image: none;
         }
+    }
+
 
         /*.carousel-inner > .item.next,
     .carousel-inner > .item.active.right {
@@ -184,13 +187,13 @@
             if (!next.length) {
                 next = $(this).siblings(':first');
             }
-            next.children(':first-child').clone().appendTo($(this));
+            next.children(':first-child').clone().addClass('hidden-xs').addClass('hidden-sm').appendTo($(this));
 
             if (next.next().length > 0) {
-                next.next().children(':first-child').clone().appendTo($(this));
-            } else {
+                next.next().children(':first-child').clone().addClass('hidden-xs').addClass('hidden-sm').appendTo($(this));
+            } /*else {
                 $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-            }
+            }*/
         });
     </script>
     <script src="{% static "ViaSofie/js/lightbox.min.js" %}"></script>

@@ -136,26 +136,24 @@ AdminModels - Shown
 """
 
 
-def set_active(modeladmin, request, queryset):
-    queryset.update(actief=True)
-
-set_active.short_description = 'Maak slides actief'
-
-
-def set_inactive(modeladmin, request, queryset):
-    queryset.update(actief=False)
-
-set_inactive.short_description = 'Maak slides inactief'
-
-
 class CarouselFotoAdmin(admin.ModelAdmin):
     list_display = ('carousel_foto', 'actief',)
     list_per_page = 10
     readonly_fields = ('carousel_foto',)
-    actions = (set_active, set_inactive,)
+    actions = ['set_active', 'set_inactive']
 
     def carousel_foto(self, obj):
         return '<img src="%s" style="max-width: 150px;max-height:150px;" />' % obj.foto.url
+
+    def set_active(self, request, queryset):
+        queryset.update(actief=True)
+
+    set_active.short_description = 'Maak slides actief'
+
+    def set_inactive(self, request, queryset):
+        queryset.update(actief=False)
+
+    set_inactive.short_description = 'Maak slides inactief'
 
     carousel_foto.allow_tags = True
     carousel_foto.short_description = 'Foto'
