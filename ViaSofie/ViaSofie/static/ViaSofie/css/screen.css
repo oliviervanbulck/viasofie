@@ -613,3 +613,42 @@ Keywordsearch
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.admin-master {
+    font-family: RopaSans;
+}
+
+.admin-master .module h2, .admin-master .module caption, .admin-master .inline-group h2 {
+    background-color: #0d3532;
+}
+
+.horizontal-divider {
+    width: 40px;
+    display: inline-block;
+}
+
+.admin-menu {
+    height: 6em;
+    display: table;
+    margin: 0 auto 30px;
+}
+
+.admin-menu .icons {
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.admin-menu i {
+    font-size: 3em;
+    color: #0d3532;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+}
+
+.admin-menu i:hover {
+    font-size: 5em;
+    color: #bad5ce;
+}

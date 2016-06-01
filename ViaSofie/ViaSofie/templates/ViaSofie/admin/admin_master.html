@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block headcontent %}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/base.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/base.css" %}"/>
     <style>
         .dropdown-menu li {
             list-style-type: none;
@@ -15,14 +15,28 @@
         {# block breadcrumbs #}{# endblock #}
     </div>-->
     <div class="container">
+        <div class="admin-menu">
+            <div class="icons">
+                <a href="{% url 'admin:index' %}"><i class="fa fa-list" aria-hidden="true"></i></a>
+                <div class="horizontal-divider"></div>
+                <a href="{% url 'admin:auth_user_changelist' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                <a href="{% url 'admin:auth_group_changelist' %}"><i class="fa fa-users" aria-hidden="true"></i></a>
+                <a href="{% url 'admin:gebruikers_woonplaats_changelist' %}"><i class="fa fa-building" aria-hidden="true"></i></a>
+                <div class="horizontal-divider"></div>
+                <a href="{% url 'admin:panden_pand_changelist' %}"><i class="fa fa-home" aria-hidden="true"></i></a>
+                <a href="{% url 'admin:panden_carouselfoto_changelist' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <h1>{% block title %}{{ title }}{% endblock %}</h1>
     </div>
     <div class="container">
         {% block messages %}
             {% if messages %}
-            <ul class="messagelist">{% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-            {% endfor %}</ul>
+                <ul class="messagelist">{% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                {% endfor %}</ul>
             {% endif %}
         {% endblock messages %}
     </div>
