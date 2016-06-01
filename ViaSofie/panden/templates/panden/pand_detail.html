@@ -104,6 +104,8 @@
                                                 <p>{{ kenmerk.aantal | euro }}</p>
                                             {% elif kenmerk.kenmerk.type.type == 'Oppervlakte' %}
                                                 <p>{{ kenmerk.aantal | opp }}</p>
+                                            {% elif not kenmerk.kenmerk.is_aantal %}
+                                                <p>{{ kenmerk.aantal | ja_nee }}</p>
                                             {% else %}<p>{{ kenmerk.aantal }}</p>{% endif %}
                                         </div>
                                     {% endfor %}

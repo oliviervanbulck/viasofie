@@ -67,7 +67,8 @@ def pand_detail(request, pand_id):
     context = {
         'maps_adres': pand.adres,
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
-                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte')],
+                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte'),
+                            (pand.algemene_beschrijving, 'Beschrijving')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'fotos': pand.foto_set.all(),
         'links': pand.pandimmolink_set.all(),

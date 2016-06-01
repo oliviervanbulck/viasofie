@@ -21,3 +21,9 @@ def in_euro(waarde):
 @register.filter(name='opp')
 def in_opp(waarde):
     return "%s m²" % waarde
+
+@register.filter(name='ja_nee')
+def in_ja_nee(waarde):
+    if waarde == 0:
+        return ('Neen')
+    else: return ('Ja')

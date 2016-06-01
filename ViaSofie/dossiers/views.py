@@ -27,7 +27,8 @@ def dossier(request, pand_id):
     context = {
         'ref_nummer': pand.ref_number(),
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
-                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte')],
+                            (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte'),
+                            (pand.algemene_beschrijving, 'Beschrijving')],
         'kenmerken': pand.pandkenmerkperpand_set.all().order_by('kenmerk__benaming'),
         'foto': pand.foto_set.first(),
         'doclijnen': doclijnen,
