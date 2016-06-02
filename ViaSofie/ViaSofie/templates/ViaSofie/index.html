@@ -15,11 +15,11 @@
             $(".carousel,.item,.carousel-inner").css("height", $(window).height() - navHeight);
         });
     </script>
-   <!-- <script type="text/javascript">
+    <script type="text/javascript">
     $(window).load(function(){
         $('#myModal').modal('show');
     });
-</script>-->
+</script>
 
     <style>
         .navbar {
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block content %}
- <!--   <div id="myModal" class="modal fade">
+   <div id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -41,22 +41,23 @@
 
                 <form>
                     <div class="form-group">
-                        <input type="checkbox" id="chk1" placeholder="BE">
+                        <a id="chk1" href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"></a>
+
                         <label for="chk1">Nederlands</label>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" id="chk2" placeholder="UK">
+                         <a id="chk2" href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"></a>
                         <label for="chk2">English</label>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" id="chk3" placeholder="FR">
+                         <a id="chk3" href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"></a>
                         <label for="chk3">Francais</label>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>-->
+</div>
 
     <div id="ebookModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
