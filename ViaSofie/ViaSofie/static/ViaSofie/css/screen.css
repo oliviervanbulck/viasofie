@@ -328,6 +328,46 @@ Pagina panden.index
     /*margin-top: 20px;*/
 }
 
+#advancedsearch {
+    font-size: 18px;
+    font-family: RopaSans;
+}
+
+#advancedsearch input[type="number"] {
+    width: 35px;
+    text-align: right;
+    margin-bottom: 5px;
+
+}
+
+#advancedsearch select {
+    width: 150px;
+    text-align: right;
+    margin-bottom: 5px;
+
+}
+.noUi-horizontal .noUi-handle {
+    width:20px;
+    height: 22px;
+    top: -3px;
+}
+
+
+
+#prijs , #oppervlakte , #gemeente, #type , #bouwjaar {
+    margin-right:10px;
+    margin-left: 10px;
+}
+
+#type {
+    margin-bottom: 15px;
+}
+
+#aantallen {
+    line-height: 25px;
+
+}
+
 #panden {
     background-color: #f7f7f7;
 }

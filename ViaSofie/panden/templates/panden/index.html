@@ -62,25 +62,30 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="pandenLijst" class="col-md-9">
-                {% if panden %}
-                    {# Panden worden hier weergegeven! #}
-                    {% for pand in panden %}
-                        {% include 'panden/partial/pand_list_detail.html' %}
-                    {% endfor %}
-                {% else %}
-                    {% include 'panden/partial/sad_face.html' %}
-                {% endif %}
+                    {% if panden %}
+                        {# Panden worden hier weergegeven! #}
+                        {% for pand in panden %}
+                            {% include 'panden/partial/pand_list_detail.html' %}
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="clearfix visible-md"></div>
+                        {% elif forloop.counter|divisibleby:3 %}
+                            <div class="clearfix visible-lg"></div>
+                         {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% include 'panden/partial/sad_face.html' %}
+                    {% endif %}
                 </div>
 
                 <div class="col-md-3">
-                    <div class="panel panel-default">
+                    <div id="advancedsearch" class="panel panel-default">
                         <div class="panel-heading"><h3>Geavanceerd zoeken</h3></div>
 
 
                         <div class="panel-body">
                             <form action="?" method="get" id="advanced">
 
-                                <div class="row" class="slider">
+                                <div id="prijs" class="row" class="slider">
                                     <div class="col-md-10"><label>Prijsklasse:</label></div>
                                     <div class="col-md-10" id="prijs-slider"></div>
 
@@ -98,12 +103,12 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div id="gemeente" class="row">
                                     <div class="col-md-3">{{ form.gemeente.label_tag }}</div>
                                     <div class="col-md-9">{{ form.gemeente }}</div>
                                 </div>
 
-                                <div class="row" class="slider">
+                                <div id="oppervlakte" class="row" class="slider">
                                     <div class="col-md-10"><label>Oppervlakte:</label></div>
                                     <div class="col-md-10" id="oppervlakte-slider"></div>
 
@@ -117,42 +122,44 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div id="type" class="row">
                                     <div class="col-md-3">{{ form.type.label_tag }}</div>
                                     <div class="col-md-9">{{ form.type }}</div>
                                 </div>
+                                <div id="aantallen" class="well">
+                                    <div class="row">
+                                        <div class="col-md-8">{{ form.slaapkamer_lower.label_tag }}</div>
+                                        <div class="col-md-4">{{ form.slaapkamer_lower }}</div>
+                                    </div>
 
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.slaapkamer_lower.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.slaapkamer_lower }}</div>
+                                    <div class="row">
+                                        <div class="col-md-8">{{ form.badkamer_lower.label_tag }}</div>
+                                        <div class="col-md-4">{{ form.badkamer_lower }}</div>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="col-md-5">{{ form.parking.label_tag }}</div>
+                                        <div class="col-md-7">{{ form.parking }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5">{{ form.terras.label_tag }}</div>
+                                        <div class="col-md-7">{{ form.terras }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5">{{ form.tuin.label_tag }}</div>
+                                        <div class="col-md-7">{{ form.tuin }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5">{{ form.bemeubeld.label_tag }}</div>
+                                        <div class="col-md-7">{{ form.bemeubeld }}</div>
+                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.badkamer_lower.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.badkamer_lower }}</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.parking.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.parking }}</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.terras.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.terras }}</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.tuin.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.tuin }}</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">{{ form.bemeubeld.label_tag }}</div>
-                                    <div class="col-md-9">{{ form.bemeubeld }}</div>
-                                </div>
-
-                                <div class="row">
+                                <div id="bouwjaar" class="row">
                                     <div class="col-md-3">{{ form.bouwjaar.label_tag }}</div>
                                     <div class="col-md-9">{{ form.bouwjaar }}</div>
                                 </div>
@@ -169,18 +176,18 @@
     </div>
 
     <script>
-    $(document).ready(function() {
-        // Slider voor prijsklasse
-        var MIN_PRIJS = 0;
-        var MAX_PRIJS = 10000000;
-        var STEP_PRIJS = 10000;
-        makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', MIN_PRIJS, MAX_PRIJS, STEP_PRIJS);
+        $(document).ready(function () {
+            // Slider voor prijsklasse
+            var MIN_PRIJS = 0;
+            var MAX_PRIJS = 10000000;
+            var STEP_PRIJS = 10000;
+            makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', MIN_PRIJS, MAX_PRIJS, STEP_PRIJS);
 
-        // Slider voor Oppervlakte
-        var MIN_OPP = 0;
-        var MAX_OPP = 1000;
-        var STEP_OPP = 10;
-        makeSlider('oppervlakte-slider', 'oppervlakte-lower-value', 'oppervlakte-upper-value', MIN_OPP, MAX_OPP, STEP_OPP);
-    });
+            // Slider voor Oppervlakte
+            var MIN_OPP = 0;
+            var MAX_OPP = 1000;
+            var STEP_OPP = 10;
+            makeSlider('oppervlakte-slider', 'oppervlakte-lower-value', 'oppervlakte-upper-value', MIN_OPP, MAX_OPP, STEP_OPP);
+        });
     </script>
 {% endblock %}

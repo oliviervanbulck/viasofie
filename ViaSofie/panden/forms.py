@@ -1,5 +1,6 @@
 from dal import autocomplete
 from django import forms
+from datetime import date
 
 from ViaSofie.functions import get_alle_gemeentes
 from dossiers.models import StavazaLijn, DossierDocLijn
@@ -46,7 +47,11 @@ class AdvancedSearchForm(forms.Form):
     bemeubeld = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Bemeubeld:', required=True, initial=KEUZES[-1][0])
 
     # Bouwjaar: Textbox
-    bouwjaar = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Bouwjaar:', initial="2000")
+    #bouwjaar = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Bouwjaar:', initial="2000")
+    STARTJAAR = 1940
+    STANDAARDJAAR = 2000
+    BOUWJAREN = [(jaar, jaar) for jaar in range(STARTJAAR, date.today().year + 1)]
+    bouwjaar = forms.ChoiceField(choices=BOUWJAREN, label='Bouwjaar', initial=STANDAARDJAAR)
 
 
 # Fix om ervoor te zorgen dat een inline sowieso wordt aangemaakt.
