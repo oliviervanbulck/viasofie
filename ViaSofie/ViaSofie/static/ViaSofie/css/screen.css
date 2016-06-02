@@ -10,13 +10,7 @@ body {
     margin-bottom: 70px;
     background-color:#F7F7F7;
 }
-input[type=checkbox] + label {
-background: url("../icons/belgium.png") no-repeat;
-  height: 50px;
-  width: 50px;
-  display: block;
 
-}
 
 @media (max-width: 768px) {
     body {
