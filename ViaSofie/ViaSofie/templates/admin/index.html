@@ -2,7 +2,9 @@
 {% extends "ViaSofie/admin/admin_dashboard.html" %}
 {% load i18n admin_static %}
 
-{# block extrastyle %} #}{% block headcontent %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{{ block.super }}{% endblock %}
+{# block extrastyle %} #}{% block headcontent %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}"/>
+    {{ block.super }}{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 {% block col_left %}12{% endblock %}
@@ -14,14 +16,29 @@
 
 {# block content %} #}
 {% block pagina %}
-<div id="content-main">
+    <div id="content-main">
+        <!--<div class="row squares">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-sm-offset-2 col-md-offset-3 col-lg-offset-4"><i class="fa fa-home" aria-hidden="true"></i></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><i class="fa fa-building" aria-hidden="true"></i></div>
+        </div>
+        <div class="row squares">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-sm-offset-2 col-md-offset-3 col-lg-offset-4"><i class="fa fa-user" aria-hidden="true"></i></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+        </div>-->
+        <div class="admin-links">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <i class="fa fa-building" aria-hidden="true"></i>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
 
-{% if app_list %}
+        <!--{% if app_list %}
     {% for app in app_list %}
         <div class="app-{{ app.app_label }} module">
         <table>
         <caption>
-            <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+            <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the
+            {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
         </caption>
         {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}">
@@ -49,12 +66,12 @@
     {% endfor %}
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
-{% endif %}
-</div>
+{% endif %}-->
+    </div>
 {% endblock %}
 
 {% block sidebar %}
-<div id="content-related">
+    <!--<div id="content-related">
     <div class="module" id="recent-actions-module">
         <h2>{# trans 'Recent Actions' #}Recente acties</h2>
         <h3>{# trans 'My Actions' #}Mijn acties</h3>
@@ -65,7 +82,8 @@
             {% else %}
             <ul class="actionlist">
             {% for entry in admin_log %}
-            <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+            <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink
+        {% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
                 {% if entry.is_deletion or not entry.get_admin_url %}
                     {{ entry.object_repr }}
                 {% else %}
@@ -82,5 +100,5 @@
             </ul>
             {% endif %}
     </div>
-</div>
+</div>-->
 {% endblock %}

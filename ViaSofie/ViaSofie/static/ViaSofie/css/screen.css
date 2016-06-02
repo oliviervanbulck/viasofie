@@ -51,7 +51,7 @@ body {
 Menubalk
 */
 
-.navbar-default {
+.footer, .header {
     background-color: #0d3532;
     border: none;
     border-radius: 0;
@@ -79,84 +79,84 @@ Menubalk
     src: url('../fonts/RopaSansSCPro-Regular.otf');
 }
 
-.navbar-default .logo {
+.header .logo {
     width: 100px;
     height: 100px;
     margin-right: 20px;
 }
 
-.navbar-brand {
+.header .navbar-brand {
     line-height: 70px;
     font-size: 28px;
 }
 
-.navbar-nav > li > a {
+.header .navbar-nav > li > a {
     line-height: 70px;
 }
 
-.nav > li > a {
+.header .nav > li > a, .footer .nav > li > a {
     padding: 15px 15px;
 }
 
 /* Smaller when resizing screen to smaller width */
 @media (max-width: 1150px) and (min-width: 768px) {
-    .nav > li > a {
+    .header .nav > li > a {
         padding: 15px 5px;
         line-height: 40px;
     }
 
-    .navbar-brand {
+    .header .navbar-brand {
         font-size: 22px;
         line-height: 40px;
     }
 
-    .navbar-default {
+    .header {
         font-size: 14px;
         min-height: 70px;
     }
 
-    .navbar-default .logo {
+    .header .logo {
         width: 70px;
         height: 70px;
     }
 }
 
 @media (max-width: 1150px) and (min-width: 900px) {
-    .navbar-default {
+    .header, .footer {
         font-size: 16px;
     }
 }
 
 /* Making navbar smaller when mobile */
 @media (max-width: 768px) {
-    .navbar-default {
+    .header {
         min-height: 50px;
     }
 
-    .navbar-default .logo {
+    .header .logo {
         width: 50px;
         height: 50px;
     }
 
-    .navbar-brand {
+    .header .navbar-brand {
         line-height: 20px;
         font-size: 24px;
     }
 
-    .navbar-nav > li > a {
+    .header .navbar-nav > li > a {
         line-height: 20px;
     }
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
+.header .navbar-brand, .header .navbar-nav > li > a, .footer .navbar-brand, .footer .navbar-nav > li > a {
     color: #e8e8e8;
 }
 
-.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.header .navbar-brand:focus, .header .navbar-brand:hover, .header .navbar-nav > li > a:hover, .header .navbar-nav > li > a:focus, .footer .navbar-brand:focus, .footer .navbar-brand:hover, .footer .navbar-nav > li > a:hover, .footer .navbar-nav > li > a:focus {
     color: #bad5ce;
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+.header .navbar-nav > .active > a, .header .navbar-nav > .active > a:focus, .header .navbar-nav > .active > a:hover, .header .navbar-nav > .open > a, .header .navbar-nav > .open > a:focus, .header .navbar-nav > .open > a:hover, .footer .navbar-nav > .active > a, .footer .navbar-nav > .active > a:focus, .footer .navbar-nav > .active > a:hover, .footer .navbar-nav > .open > a, .footer .navbar-nav > .open > a:focus, .footer .navbar-nav > .open > a:hover {
     background-color: #bad5ce;
 }
 
@@ -667,28 +667,19 @@ Keywordsearch
     display: inline-block;
 }
 
-.admin-menu {
-    height: 6em;
-    display: table;
-    margin: 0 auto 30px;
+.admin-header {
+    margin-top: -20px;
+    background-color: #dddddd;
+    font-family: RopaSans;
 }
 
-.admin-menu .icons {
-    display: table-cell;
-    vertical-align: bottom;
-}
-
-.admin-menu i {
-    font-size: 3em;
+.admin-header .nav li a {
     color: #0d3532;
-    cursor: pointer;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
 }
 
-.admin-menu i:hover {
-    font-size: 5em;
-    color: #bad5ce;
+.divider-vertical {
+    height: 40px;
+    margin: 5px 9px;
+    border-left: 1px solid #c2c2c2;
+    border-right: 1px solid #ccc;
 }

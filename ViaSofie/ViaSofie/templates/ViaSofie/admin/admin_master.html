@@ -11,23 +11,30 @@
 {% endblock %}
 
 {% block content %}
+    <nav class="navbar navbar-default admin-header">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-logo">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#adminNavigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="adminNavigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'admin:index' %}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Beheer</a></li>
+                    <li><a href="{% url 'admin:auth_user_changelist' %}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Gebruikers</a></li>
+                    <li><a href="{% url 'admin:gebruikers_adres_changelist' %}"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Adressen</a></li>
+                    <li><a href="{% url 'admin:panden_pand_changelist' %}"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Panden</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="{% url 'admin:panden_carouselfoto_changelist' %}"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Slideshow</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!--<div class="container">
         {# block breadcrumbs #}{# endblock #}
     </div>-->
-    <div class="container">
-        <div class="admin-menu">
-            <div class="icons">
-                <a href="{% url 'admin:index' %}"><i class="fa fa-list" aria-hidden="true"></i></a>
-                <div class="horizontal-divider"></div>
-                <a href="{% url 'admin:auth_user_changelist' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
-                <a href="{% url 'admin:auth_group_changelist' %}"><i class="fa fa-users" aria-hidden="true"></i></a>
-                <a href="{% url 'admin:gebruikers_woonplaats_changelist' %}"><i class="fa fa-building" aria-hidden="true"></i></a>
-                <div class="horizontal-divider"></div>
-                <a href="{% url 'admin:panden_pand_changelist' %}"><i class="fa fa-home" aria-hidden="true"></i></a>
-                <a href="{% url 'admin:panden_carouselfoto_changelist' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
-            </div>
-        </div>
-    </div>
     <div class="container">
         <h1>{% block title %}{{ title }}{% endblock %}</h1>
     </div>
