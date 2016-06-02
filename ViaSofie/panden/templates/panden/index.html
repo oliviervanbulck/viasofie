@@ -66,11 +66,6 @@
                     {# Panden worden hier weergegeven! #}
                     {% for pand in panden %}
                         {% include 'panden/partial/pand_list_detail.html' %}
-                        {% if forloop.counter|divisibleby:2 %}
-                            <div class="clearfix visible-md"></div>
-                        {% elif forloop.counter|divisibleby:3 %}
-                            <div class="clearfix visible-lg"></div>
-                        {% endif %}
                     {% endfor %}
                 {% else %}
                     {% include 'panden/partial/sad_face.html' %}
