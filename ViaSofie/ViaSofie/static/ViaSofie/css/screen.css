@@ -47,6 +47,11 @@ body {
     opacity: 0.5;
 }
 
+.btn-back {
+    margin-top: -5px;
+    /*background-color: #0d3532;*/
+}
+
 /*
 Menubalk
 */
