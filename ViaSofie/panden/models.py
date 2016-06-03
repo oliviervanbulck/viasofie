@@ -121,6 +121,7 @@ class PandImmoLink(models.Model):
     site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
     site_link = models.CharField(max_length=255, verbose_name='link')
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
+    logo = models.ImageField(null=True)
 
     def __str__(self):
         return str(self.site_beschrijving) + ' - ' + str(self.pand)
