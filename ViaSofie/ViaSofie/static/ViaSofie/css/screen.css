@@ -71,14 +71,21 @@ $std_color: #0d3532;
 .btn-viasofie {
   margin-top: -7px;
   background-color: #0d3532;
-  color: white;
   font-family: RopaSans;
-  border-color: #124945; }
+  border-color: #124945;
+}
 
 .btn-viasofie:hover {
-  color: white;
   background-color: #124945;
-  border-color: #0d3532; }
+  border-color: #0d3532;
+}
+
+.btn-viasofie,
+.btn-viasofie:hover,
+.btn-viasofie:visited,
+.btn-viasofie:active {
+    color: white;
+}
 
 
 /*

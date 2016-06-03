@@ -81,8 +81,11 @@
             <div class="col-md-7" id="details_panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span id="header_details"><b>Pand details - {% pand_ref pand %}</b></span>
-                        {% if prev_url %}<a href="{{ prev_url }}" class="btn btn-viasofie pull-right" role="button">Terug</a>{% endif %}
+                        <h4 id="header_details">
+                            <b>Pand details - {% pand_ref pand %}</b>
+                            {% if prev_url %}<a href="{{ prev_url }}" class="btn btn-viasofie pull-right" role="button">Terug</a>{% endif %}
+                        </h4>
+
                     </div>
                     <div class="panel-body">
                         <div class="row">
