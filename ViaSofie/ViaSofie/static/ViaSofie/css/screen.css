@@ -14,7 +14,7 @@ body {
 
 @media (max-width: 768px) {
     body {
-        margin-bottom: 223px;
+        margin-bottom: 270px;
     }
 }
 
@@ -423,8 +423,6 @@ About pagina
 #mainbody {
     font-family: RopaSans;
     text-align: left;
-    margin-top:50px;
-
 }
 
 
