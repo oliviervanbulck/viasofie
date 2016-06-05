@@ -13,8 +13,8 @@ class AdvancedSearchForm(forms.Form):
               ('nvt', 'N.v.t.')]
 
     # Prijs: Textboxen voor slider (lower / upper limit)
-    prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Min', initial=50000)
-    prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Max', initial=1000000)
+    prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Min', initial=50000)
+    prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Max', initial=1000000)
 
     # Gemeente: Dropdownmenu
     GEMEENTES = [KEUZES[-1]] + [(gemeente.gemeente, gemeente.gemeente) for gemeente in get_alle_gemeentes()]

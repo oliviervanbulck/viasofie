@@ -118,12 +118,20 @@ def auto_delete_qr_code_on_delete(sender, instance, **kwargs):
 class PandImmoLink(models.Model):
     class Meta:
         verbose_name_plural = "Immolinks"
-    site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
     site_link = models.CharField(max_length=255, verbose_name='link')
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
+    website = models.ForeignKey('ImmoSite',on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.site_beschrijving) + ' - ' + str(self.pand)
+        return str(self.website.site_beschrijving) + ' - ' + str(self.pand)
+
+
+class ImmoSite(models.Model):
+    site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
+    logo = models.ImageField()
+
+    def __str__(self):
+        return str(self.site_beschrijving)
 
 
 # ERD tabel Foto

@@ -73,6 +73,7 @@ def pand_detail(request, pand_id):
         'fotos': pand.foto_set.all(),
         'links': pand.pandimmolink_set.all(),
         'pand': pand,
+        'prev_url': request.META.get('HTTP_REFERER', None),
     }
     if request.method == 'GET':
         context.update({'nbar': 'kopen'})

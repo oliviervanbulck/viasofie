@@ -12,7 +12,7 @@
                 <div class="panel-heading">
                     <h4>
                         <b> {{ pand.type.type }}
-                            <br/> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} {{ pand.adres.woonplaats }} <br/>
+                            <br/> {{ pand.adres.straat }} {{ pand.adres.huisnummer }} <br/>{{ pand.adres.woonplaats }} <br/>
                             {% if dossier %} {% pand_ref pand %} {% endif %}
                         </b>
                     </h4>

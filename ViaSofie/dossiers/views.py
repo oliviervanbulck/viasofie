@@ -34,6 +34,7 @@ def dossier(request, pand_id):
         'doclijnen': doclijnen,
         'stavazalijnen': stavaza,
         'form': ContactFormDossier(),
+        'prev_url': request.META.get('HTTP_REFERER', None),
     }
     if request.method == 'GET':
         context.update({'nbar': 'dossier'})

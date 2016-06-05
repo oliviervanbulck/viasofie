@@ -48,6 +48,47 @@ body {
 }
 
 /*
+SASS SOURCE
+
+$std_color: #0d3532;
+
+.btn-viasofie {
+    margin-top: -7px;
+    background-color: $std_color;
+    color: white;
+    font-family: RopaSans;
+    border-color: lighten($std_color, 5);
+}
+
+.btn-viasofie:hover {
+    color: white;
+
+	background-color: lighten($std_color, 5);
+	border-color: $std_color;
+}
+*/
+
+.btn-viasofie {
+  margin-top: -7px;
+  background-color: #0d3532;
+  font-family: RopaSans;
+  border-color: #124945;
+}
+
+.btn-viasofie:hover {
+  background-color: #124945;
+  border-color: #0d3532;
+}
+
+.btn-viasofie,
+.btn-viasofie:hover,
+.btn-viasofie:visited,
+.btn-viasofie:active {
+    color: white;
+}
+
+
+/*
 Menubalk
 */
 
@@ -261,6 +302,7 @@ Pandpartial
 
 .pand-partial {
     margin-bottom: 60px;
+    font-family: RopaSans;
 }
 
 .hexagon {

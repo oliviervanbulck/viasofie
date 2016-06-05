@@ -25,6 +25,10 @@
             border: none;
         }
 
+        .formatted {
+            display: none;
+        }
+
         .noUi-connect {
             background-color: #eac8c6;
         }
@@ -90,16 +94,14 @@
                                     <div class="col-md-10" id="prijs-slider"></div>
 
                                     <div class="col-md-5">
-                                        <!--<label for="slaapkamers-lower-value">Min</label>
-                                        <input type="text" id="slaapkamers-lower-value" name="slaapkamers-lower-value"/>-->
                                         {{ form.prijs_lower.label_tag }}
                                         {{ form.prijs_lower }}
+                                        <span id="prijs-lower-formatted">0</span>
                                     </div>
                                     <div class="col-md-5 text-right">
-                                        <!--<label for="slaapkamers-upper-value">Max</label>
-                                        <input type="text" id="slaapkamers-upper-value" name="slaapkamers-upper-value"/>-->
                                         {{ form.prijs_upper.label_tag }}
                                         {{ form.prijs_upper }}
+                                        <span id="prijs-upper-formatted">0</span>
                                     </div>
                                 </div>
 
@@ -181,7 +183,7 @@
             var MIN_PRIJS = 0;
             var MAX_PRIJS = 10000000;
             var STEP_PRIJS = 10000;
-            makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', MIN_PRIJS, MAX_PRIJS, STEP_PRIJS);
+            makeSlider('prijs-slider', 'prijs-lower-value', 'prijs-upper-value', MIN_PRIJS, MAX_PRIJS, STEP_PRIJS, 'prijs-lower-formatted', 'prijs-upper-formatted');
 
             // Slider voor Oppervlakte
             var MIN_OPP = 0;

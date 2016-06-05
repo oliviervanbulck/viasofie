@@ -8,46 +8,45 @@
 {% block headcontent %}
     <link href="{% static "ViaSofie/css/lightbox.min.css" %}" rel="stylesheet">
     <style>
-    @media(min-width: 992px) {
-        .multi-item-carousel .carousel-inner > .item {
-            -webkit-transition: 500ms ease-in-out left;
-            transition: 500ms ease-in-out left;
-            left: 0;
-        }
-
-        .multi-item-carousel .carousel-inner .active.left {
-            left: -33.33%;
-        }
-
-        .multi-item-carousel .carousel-inner .active.right {
-            left: 33.33%;
-        }
-
-        .multi-item-carousel .carousel-inner .next {
-            left: 33.33%;
-        }
-
-        .multi-item-carousel .carousel-inner .prev {
-            left: -33.33%;
-        }
-
-        @media all and (transform-3d), (-webkit-transform-3d) {
+        @media (min-width: 992px) {
             .multi-item-carousel .carousel-inner > .item {
-                -webkit-transition: 500ms ease-in-out all;
-                transition: 500ms ease-in-out all;
-                -webkit-backface-visibility: visible;
-                backface-visibility: visible;
-                -webkit-transform: none !important;
-                transform: none !important;
+                -webkit-transition: 500ms ease-in-out left;
+                transition: 500ms ease-in-out left;
+                left: 0;
+            }
+
+            .multi-item-carousel .carousel-inner .active.left {
+                left: -33.33%;
+            }
+
+            .multi-item-carousel .carousel-inner .active.right {
+                left: 33.33%;
+            }
+
+            .multi-item-carousel .carousel-inner .next {
+                left: 33.33%;
+            }
+
+            .multi-item-carousel .carousel-inner .prev {
+                left: -33.33%;
+            }
+
+            @media all and (transform-3d), (-webkit-transform-3d) {
+                .multi-item-carousel .carousel-inner > .item {
+                    -webkit-transition: 500ms ease-in-out all;
+                    transition: 500ms ease-in-out all;
+                    -webkit-backface-visibility: visible;
+                    backface-visibility: visible;
+                    -webkit-transform: none !important;
+                    transform: none !important;
+                }
+            }
+
+            .multi-item-carousel .carousel-control.left,
+            .multi-item-carousel .carousel-control.right {
+                background-image: none;
             }
         }
-
-        .multi-item-carousel .carousel-control.left,
-        .multi-item-carousel .carousel-control.right {
-            background-image: none;
-        }
-    }
-
 
         /*.carousel-inner > .item.next,
     .carousel-inner > .item.active.right {
@@ -81,7 +80,11 @@
             <div class="col-md-7" id="details_panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 id="header_details"><b>Pand details - {% pand_ref pand %}</b></h4>
+                        <h4 id="header_details">
+                            <b>Pand details - {% pand_ref pand %}</b>
+                            {% include 'ViaSofie/partial/back_button.html' %}
+                        </h4>
+
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -118,25 +121,13 @@
             <div class="col-md-5">
 
                 <div class="col-md-12">
-                    <iframe class="googleMaps" seamless="seamless" style="border: 0; width:100%; height: 400px" frameborder="0"
+                    <iframe class="googleMaps" seamless="seamless" style="border: 0; width:100%; height: 400px"
+                            frameborder="0"
                             allowtransparency="true" scrolling="no"
                             src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyDvDjOEBXpkc9oApCP_Xi3jngrSiE7aoJw&amp;q={{ maps_adres.straat }},{{ maps_adres.huisnummer }},{{ maps_adres.woonplaats.gemeente }},{{ maps_adres.woonplaats.postcode }},{{ maps_adres.land }}"></iframe>
                 </div>
 
-                {% if links.count > 0 %}
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Vindt dit pand ook op : </h4></div>
-                            <div class="panel-body">
-                                {% for link in links %}
-                                    <div class="col-md-6">
-                                        <a href="{{ link.site_link }}">{{ link.site_beschrijving }}</a>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+
             </div>
         </div>
     </div>
@@ -175,6 +166,20 @@
                 </div>
             </div>
         </div>
+        {% if links.count > 0 %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Vindt dit pand ook op : </h4></div>
+                    <div class="panel-body">
+                        {% for link in links %}
+                            <div class="col-md-4">
+                                <a href="{{ link.site_link }}"><img src="{{ link.website.logo.url }}" style="max-width: 30%; max-height: 150px"></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
     <script>
@@ -193,9 +198,10 @@
 
             if (next.next().length > 0) {
                 next.next().children(':first-child').clone().addClass('hidden-xs').addClass('hidden-sm').appendTo($(this));
-            } /*else {
-                $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-            }*/
+            }
+            /*else {
+             $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+             }*/
         });
     </script>
     <script src="{% static "ViaSofie/js/lightbox.min.js" %}"></script>
