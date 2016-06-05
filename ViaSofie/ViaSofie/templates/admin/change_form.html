@@ -26,6 +26,8 @@
 {% endblock %}
 {% endif %}
 
+{% block terug %}<a href="{% url opts|admin_urlname:'changelist' %}"><button class="btn btn-viasofie">Terug naar overzicht van {{ opts.verbose_name_plural }}</button>{# opts.verbose_name_plural|capfirst #}</a>{% endblock %}
+
 {% block pagina %}<div id="content-main">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}

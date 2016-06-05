@@ -45,6 +45,8 @@
 {% endblock %}
 {% endif %}
 
+{% block terug %}<a href="{% url 'admin:index' %}"><button class="btn btn-viasofie">Terug naar start</button></a>{% endblock %}
+
 {% block coltype %}flex{% endblock %}
 
 {% block col_left %}{% if cl.has_filters %}9{% else %}12{% endif %}{% endblock %}

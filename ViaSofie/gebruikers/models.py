@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 @python_2_unicode_compatible
 class Land(models.Model):
     class Meta:
-        verbose_name_plural = "Landen"
+        verbose_name_plural = "landen"
 
     naam = models.CharField(max_length=255)
     landcode = models.CharField(max_length=2)
@@ -29,7 +29,7 @@ class Land(models.Model):
 
 class Woonplaats(models.Model):
     class Meta:
-        verbose_name_plural = "Woonplaatsen"
+        verbose_name_plural = "woonplaatsen"
 
     postcode = models.CharField(max_length=10)
     gemeente = models.CharField(max_length=255)
@@ -42,7 +42,7 @@ class Woonplaats(models.Model):
 # ERD tabel Adres
 class Adres(models.Model):
     class Meta:
-        verbose_name_plural = "Adressen"
+        verbose_name_plural = "adressen"
 
     straat = models.CharField(max_length=255)
     huisnummer = models.CharField(max_length=10)

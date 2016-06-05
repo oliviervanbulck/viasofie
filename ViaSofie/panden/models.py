@@ -26,7 +26,7 @@ from django.utils.encoding import python_2_unicode_compatible
 
 class Type(models.Model):
     class Meta:
-        verbose_name_plural = "Types"
+        verbose_name_plural = "types"
     type = models.CharField(max_length=255)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class Type(models.Model):
 # ERD tabel Kenmerk
 class Kenmerk(models.Model):
     class Meta:
-        verbose_name_plural = "Kenmerken"
+        verbose_name_plural = "kenmerken"
     benaming = models.CharField(max_length=50)
     is_aantal = models.BooleanField()
     type = models.ForeignKey('KenmerkType', on_delete=models.CASCADE, null=True)
@@ -56,7 +56,7 @@ class KenmerkType(models.Model):
 # ERD tabel Pand
 class Pand(models.Model):
     class Meta:
-        verbose_name_plural = "Panden"
+        verbose_name_plural = "panden"
     prijs = models.FloatField()
     bouwjaar = models.PositiveSmallIntegerField()
     oppervlakte = models.FloatField()
@@ -117,7 +117,7 @@ def auto_delete_qr_code_on_delete(sender, instance, **kwargs):
 # ERD tabel PandImmoLink
 class PandImmoLink(models.Model):
     class Meta:
-        verbose_name_plural = "Immolinks"
+        verbose_name_plural = "immolinks"
     site_link = models.CharField(max_length=255, verbose_name='link')
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     website = models.ForeignKey('ImmoSite',on_delete=models.CASCADE)
@@ -137,7 +137,7 @@ class ImmoSite(models.Model):
 # ERD tabel Foto
 class Foto(models.Model):
     class Meta:
-        verbose_name_plural = "Foto's"
+        verbose_name_plural = "foto's"
     foto = models.ImageField(null=True)
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
 
@@ -184,7 +184,7 @@ def auto_delete_foto_on_change(sender, instance, **kwargs):
 # ERD tabel CarouselFoto
 class CarouselFoto(models.Model):
     class Meta:
-        verbose_name_plural = "Slideshow"
+        verbose_name_plural = "slideshow"
         verbose_name = "foto voor slideshow"
 
     foto = models.ImageField()
@@ -234,8 +234,8 @@ def auto_delete_carousel_foto_on_change(sender, instance, **kwargs):
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)
-        verbose_name_plural = "Pandkenmerken"
-        verbose_name = 'Pandkenmerk'
+        verbose_name_plural = "pandkenmerken"
+        verbose_name = 'pandkenmerk'
     aantal = models.PositiveSmallIntegerField()
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     kenmerk = models.ForeignKey('Kenmerk', on_delete=models.CASCADE)
