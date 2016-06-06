@@ -15,12 +15,6 @@ class FaqItem(models.Model):
         return self.titel
 
 
-@receiver(models.signals.pre_save, sender=FaqItem)
-def auto_change_newline_to_br(sender, instance, **kwargs):
-    """Verandert newlines bij opslaan naar <br>"""
-    instance.tekst = instance.tekst.replace('\r\n', '<br>').replace('\r', '<br>').replace('\n', '<br>')
-
-
 class Partner(models.Model):
     actief = models.BooleanField(default=True)
     naam = models.CharField(max_length=255)
