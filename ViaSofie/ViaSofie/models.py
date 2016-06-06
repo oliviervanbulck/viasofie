@@ -2,8 +2,10 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.dispatch import receiver
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class FaqItem(models.Model):
     class Meta:
         verbose_name = 'FAQ item'
@@ -15,6 +17,7 @@ class FaqItem(models.Model):
         return self.titel
 
 
+@python_2_unicode_compatible
 class Partner(models.Model):
     actief = models.BooleanField(default=True)
     naam = models.CharField(max_length=255)
