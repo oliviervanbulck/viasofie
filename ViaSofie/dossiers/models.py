@@ -105,7 +105,6 @@ class DossierDocBeschrijving(models.Model):
         verbose_name_plural = "Dossier Document Beschrijvingen"
     # dossier_naam = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
     dossier_naam = models.CharField(max_length=100)
-    kan_doc_bevatten = models.BooleanField(default=False)
 
     def __str__(self):
         return self.dossier_naam

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-
+from ViaSofie.templatetags.viasofie_filters import in_euro
 from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.forms import PandKenmerkPerPandForm, StavazaLijnForm, DossierDocLijnForm, PandForm
 from panden.models import Pand, Type, Kenmerk, PandImmoLink, Foto, PandKenmerkPerPand, CarouselFoto, KenmerkType, Switch, \
@@ -167,9 +167,27 @@ class PandAdmin(admin.ModelAdmin):
     readonly_fields = ('qr_code',)
     exclude = ('qrcode',)
     form = PandForm
+    actions = ('set_active', 'set_inactive',)
+    list_display = ('adres', 'type', 'get_prijs_format', 'actief',)
+    list_per_page = 25
 
     def qr_code(self, obj):
         return '<img src="%s" />' % obj.qrcode.url
+
+    def get_prijs_format(self, obj):
+        return in_euro(obj.prijs)
+
+    get_prijs_format.short_description = 'Prijs'
+
+    def set_active(self, request, queryset):
+        queryset.update(actief=True)
+
+    set_active.short_description = 'Maak panden actief'
+
+    def set_inactive(self, request, queryset):
+        queryset.update(actief=False)
+
+    set_inactive.short_description = 'Maak panden inactief'
 
     qr_code.allow_tags = True
     qr_code.short_description = "QR code"

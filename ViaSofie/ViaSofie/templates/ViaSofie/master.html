@@ -22,7 +22,7 @@
 
 </head>
 <body>
-
+{% if not is_popup %}
 <nav class="navbar navbar-default header">
     <div class="container-fluid">
         <div class="navbar-header navbar-logo">
@@ -132,8 +132,10 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% block content %}
 {% endblock %}
+{% if not is_popup %}
 <nav class="navbar navbar-default navbar-fixed-bottom footer">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -168,6 +170,6 @@
         </ul>
     </div>
 </nav>
-
+{% endif %}
 </body>
 </html>

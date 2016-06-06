@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.validators import EmailValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -31,6 +31,8 @@ User._meta.get_field('username').verbose_name = 'E-mailadres'
 class UserAdmin(BaseUserAdmin):
     inlines = (GebruikerInline, )
     exclude = ('email',)
+    actions = ('set_admin', 'set_active', 'set_inactive',)
+    list_display = ('username', 'first_name', 'last_name', 'is_staff', 'is_active',)
     # _and_fieldsets = ()
 
     def get_form(self, request, obj=None, **kwargs):
@@ -46,6 +48,24 @@ class UserAdmin(BaseUserAdmin):
         )
         form = super(UserAdmin, self).get_form(request, obj, **kwargs)
         return form
+
+    def set_admin(self, request, queryset):
+        queryset.update(is_staff=True, is_superuser=True)
+        group = Group.objects.get(name="Makelaar")
+        for user in queryset:
+            group.user_set.add(user)
+
+    set_admin.short_description = 'Geef gebruikers adminrechten'
+
+    def set_active(self, request, queryset):
+        queryset.update(is_active=True)
+
+    set_active.short_description = 'Maak gebruikers actief'
+
+    def set_inactive(self, request, queryset):
+        queryset.update(is_active=False)
+
+    set_inactive.short_description = 'Maak gebruikers inactief'
 
 
 # Basis ModelAdmin voor AdminModel objecten die niet zichtbaar mogen zijn op indexpagina van adminpaneel.
@@ -63,6 +83,7 @@ class LandAdmin(HiddenAdminModel):
 
 class AdresAdmin(HiddenAdminModel):
     form = AdresForm
+    list_per_page = 25
 
 
 def _user_clean(user):
