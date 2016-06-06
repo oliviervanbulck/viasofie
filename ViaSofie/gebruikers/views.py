@@ -27,11 +27,16 @@ def login_user(request):
         password = request.POST['password']
 
         user = authenticate(username=username, password=password)
+        print user
         if user is not None:
             if user.is_active:
                 login(request, user)
                 if request.user.is_staff:
                     redirect_url = '/admin'
+            else:
+                return HttpResponseRedirect(redirect_url + '?le=2')
+        else:
+            return HttpResponseRedirect(redirect_url + '?le=1')
     return HttpResponseRedirect(redirect_url)
 
 

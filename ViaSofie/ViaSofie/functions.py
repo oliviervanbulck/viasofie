@@ -6,6 +6,16 @@ from gebruikers.models import Adres
 import random
 
 
+def validate_email(email):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False
+
+
 def get_random_actieve_panden(aantal):
     #panden = Pand.objects.filter(actief=True)
     #return random.sample(panden, min(aantal, len(panden)))

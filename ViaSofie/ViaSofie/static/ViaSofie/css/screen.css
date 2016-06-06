@@ -69,22 +69,22 @@ $std_color: #0d3532;
 */
 
 .btn-viasofie {
-  margin-top: -7px;
-  background-color: #0d3532;
-  font-family: RopaSans;
-  border-color: #124945;
+  margin-top: -7px !important;
+  background-color: #0d3532 !important;
+  font-family: RopaSans !important;
+  border-color: #124945 !important;
 }
 
 .btn-viasofie:hover {
-  background-color: #124945;
-  border-color: #0d3532;
+  background-color: #124945 !important;
+  border-color: #0d3532 !important;
 }
 
 .btn-viasofie,
 .btn-viasofie:hover,
 .btn-viasofie:visited,
 .btn-viasofie:active {
-    color: white;
+    color: white !important;
 }
 
 
@@ -100,6 +100,7 @@ Menubalk
     font-family: "RopaSans";
     font-size: 20px;
     /* margin-bottom:0;*/
+    z-index: 1001;
 }
 
 /* Center navigatie */
@@ -202,9 +203,8 @@ Menubalk
 }
 
 #goedDoel {
-    background-image: url(../goedDoel.png);
     background-size: contain;
-    background-repeat: no-repeat;
+    background: url(../goedDoel.png) no-repeat;
     width: 100px;
     height: 40px;
     margin-top: 10%;
@@ -612,7 +612,7 @@ Carousel
 Search balk index pagina
 */
 
-.header {
+.headerimage {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -622,13 +622,18 @@ Keywordsearch
 */
 
 .keywordsearch {
-    position: absolute;
+    position: relative;
     top: 50vh;
     left: 0;
     right: 0;
     margin-left: 15%;
     margin-right: 15%;
     z-index: 1000;
+}
+
+.keywordsearch > div {
+    position: absolute;
+    width: 100%;
 }
 
 .keywordsearch input {

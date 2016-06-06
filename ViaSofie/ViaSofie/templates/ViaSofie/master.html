@@ -19,157 +19,180 @@
     {% block extrastyle %}{% endblock %}
 
     <link rel="stylesheet" href="{% static "ViaSofie/css/screen.css" %}">
+    {% if loginerror %}
+        <script>
+            $(window).load(function () {
+                $('#loginModal').modal('show');
+            });
+        </script>
+    {% endif %}
 
 </head>
 <body>
 {% if not is_popup %}
-<nav class="navbar navbar-default header">
-    <div class="container-fluid">
-        <div class="navbar-header navbar-logo">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#viaSofieNavigation">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a style="float: left;" href="{% url 'index' %}"><img src="{% static "ViaSofie/logo.png" %}" alt="Logo"
-                                                                  class="logo"/></a>
-            <a class="navbar-brand" href="{% url 'index' %}"><i>Via Sofie</i></a>
-        </div>
-        <div class="collapse navbar-collapse" id="viaSofieNavigation">
-            <ul class="nav navbar-nav">
-                {% if user.is_authenticated %}
-                    <li class="{% if nbar == 'dossier' %}active{% endif %}"><a href="{% url 'dossiers.index' %}"><span
-                            class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Dossier</a>
+    <nav class="navbar navbar-default header">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-logo">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#viaSofieNavigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="float: left;" href="{% url 'index' %}"><img src="{% static "ViaSofie/logo.png" %}" alt="Logo"
+                                                                      class="logo"/></a>
+                <a class="navbar-brand" href="{% url 'index' %}"><i>Via Sofie</i></a>
+            </div>
+            <div class="collapse navbar-collapse" id="viaSofieNavigation">
+                <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="{% if nbar == 'dossier' %}active{% endif %}"><a
+                                href="{% url 'dossiers.index' %}"><span
+                                class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Dossier</a>
+                        </li>
+                    {% endif %}
+                    <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span
+                            class="glyphicon glyphicon-home"></span>&nbsp;Kopen</a>
                     </li>
-                {% endif %}
-                <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span
-                        class="glyphicon glyphicon-home"></span>&nbsp;Kopen</a>
-                </li>
-                <!--<li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span
+                    <!--<li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span
                         class="glyphicon glyphicon-usd"></span>&nbsp;Huren</a>-->
-                </li>
-                <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span
-                        class="glyphicon glyphicon-question-sign"></span>&nbsp;Advies</a>
-                </li>
-                <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a
-                        href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Over
-                    ons</a>
-                </li>
-                <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span
-                        class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a>
-                </li>
-
-            </ul>
-            {% if not user.is_authenticated %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#loginModal">
-                            <span class="glyphicon glyphicon-log-in"></span> Login
-                        </a>
                     </li>
-                    <!-- <li id="goedDoel">
-                         <a href="http://www.welzijnszorg.be/"></a>
-                     </li>-->
-                </ul>
-            {% else %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown"
-                           href="#"><span class="glyphicon glyphicon-user"></span> {{ user.first_name }}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">{{ user.first_name }} {{ user.last_name }}</li>
-                            {% if user|has_group:'Makelaar' %}
-                                <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
-                                    Beheer</a></li>
-                            {% endif %}
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
-                            {% if user|has_group:'Verkoper' %}
-                                <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
-                            {% endif %}
-                            <li><a href="{% url "gebruikers.logout" %}"><span
-                                    class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
-                        </ul>
+                    <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span
+                            class="glyphicon glyphicon-question-sign"></span>&nbsp;Advies</a>
                     </li>
-                    <!--  <li id="goedDoel">
-                          <a href="http://www.welzijnszorg.be/"></a>
-                      </li>-->
+                    <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a
+                            href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Over
+                        ons</a>
+                    </li>
+                    <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span
+                            class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a>
+                    </li>
 
                 </ul>
-            {% endif %}
+                {% if not user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#loginModal">
+                                <span class="glyphicon glyphicon-log-in"></span> Login
+                            </a>
+                        </li>
+                        <!-- <li id="goedDoel">
+                             <a href="http://www.welzijnszorg.be/"></a>
+                         </li>-->
+                    </ul>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               href="#"><span class="glyphicon glyphicon-user"></span> {{ user.first_name }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">{{ user.first_name }} {{ user.last_name }}</li>
+                                {% if user|has_group:'Makelaar' %}
+                                    <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
+                                        Beheer</a></li>
+                                {% endif %}
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
+                                {% if user|has_group:'Verkoper' %}
+                                    <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                                {% endif %}
+                                <li><a href="{% url "gebruikers.logout" %}"><span
+                                        class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
+                            </ul>
+                        </li>
+                        <!--  <li id="goedDoel">
+                              <a href="http://www.welzijnszorg.be/"></a>
+                          </li>-->
+
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Inloggen</h4>
+                </div>
+                <div class="modal-body">
+                    {% if loginerror %}
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>
+                                {% if loginerror == '2' %}
+                                    Je gebruikersaccount is momenteel niet actief.
+                                {% elif loginerror == '3' %}
+                                    Gelieve eerst aan te melden.
+                                {% else %}
+                                    Deze combinatie van e-mail en wachtwoord is niet correct.
+                                {% endif %}
+                            </strong>
+                        </div>
+                    {% endif %}
+                    <form action="{% url 'gebruikers.login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">E-mail:</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Wachtwoord:</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Onthouden</label>
+                        </div>
+                        <button type="submit" class="btn btn-viasofie">Inloggen</button>
+                    </form>
+                <div><br /><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-<div id="loginModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Inloggen</h4>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'gebruikers.login' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">E-mail:</label>
-                        <input type="text" class="form-control" id="username" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Wachtwoord:</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox"> Onthouden</label>
-                    </div>
-                    <button type="submit" class="btn btn-viasofie">Inloggen</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-            </div>
-        </div>
-    </div>
-</div>
 {% endif %}
 {% block content %}
 {% endblock %}
 {% if not is_popup %}
-<nav class="navbar navbar-default navbar-fixed-bottom footer">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="https://www.facebook.com"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
-            <a href="https://twitter.com"> <img src="{% static "ViaSofie/icons/twitter.png" %}"></a>
-            <a href="https://www.linkedin.com/"> <img src="{% static "ViaSofie/icons/linkedin.png" %}"></a>
+    <nav class="navbar navbar-default navbar-fixed-bottom footer">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="https://www.facebook.com"> <img src="{% static "ViaSofie/icons/facebook.png" %}"></a>
+                <a href="https://twitter.com"> <img src="{% static "ViaSofie/icons/twitter.png" %}"></a>
+                <a href="https://www.linkedin.com/"> <img src="{% static "ViaSofie/icons/linkedin.png" %}"></a>
 
+            </div>
+            <div class="nav navbar-nav navbar-center">
+
+
+                <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | BIV : 509141. </span>
+
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a
+                        href="{% url 'ViaSofie.legal' %}?on=disclaimer">Disclaimer</a>
+                </li>
+                <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">Privacy</a>
+                </li>
+                <li id="language" class="dropdown">
+                    <img class=" dropdown-toggle" data-toggle="dropdown"
+                         src="{% static "ViaSofie/icons/belgium.png" %}"/>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
+                        <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> Francais</a></li>
+                        <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="nav navbar-nav navbar-center">
-
-
-            <span class="navbar-brand text-muted">Copyright &copy; 2016 ViaSofie | BIV : 509141. </span>
-
-        </div>
-
-        <ul class="nav navbar-nav navbar-right">
-
-            <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a
-                    href="{% url 'ViaSofie.legal' %}?on=disclaimer">Disclaimer</a>
-            </li>
-            <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">Privacy</a>
-            </li>
-            <li id="language" class="dropdown">
-                <img class=" dropdown-toggle" data-toggle="dropdown"
-                     src="{% static "ViaSofie/icons/belgium.png" %}"/>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
-                    <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> Francais</a></li>
-                    <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 {% endif %}
 </body>
 </html>
