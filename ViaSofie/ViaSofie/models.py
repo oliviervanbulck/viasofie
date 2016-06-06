@@ -12,7 +12,7 @@ class FaqItem(models.Model):
 
 
 class Partner(models.Model):
-    actief = models.BooleanField()
+    actief = models.BooleanField(default=True)
     naam = models.CharField(max_length=255)
     link = models.URLField()
     logo = models.ImageField()
