@@ -23,7 +23,6 @@ def index(request):
 
 def dossier(request, pand_id):
     if request.user.is_authenticated():
-        #dossier_obj = Dossier.objects.get(id=dossier_id)
         pand = Pand.objects.get(id=pand_id)
         if request.user.id == pand.gebruiker.user.id:
             doclijnen = pand.dossierdoclijn_set.all()
