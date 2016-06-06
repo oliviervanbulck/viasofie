@@ -167,3 +167,5 @@ NORECAPTCHA_SECRET_KEY = "6LdIzh8TAAAAADO6tO38KF0NCqSRowUCklQuErdW"
 
 # Deze id staat in de databank in django_site, daar moet dan de juiste id van gebruikt worden
 SITE_ID = 2
+
+LOGIN_URL = '/?le=3'

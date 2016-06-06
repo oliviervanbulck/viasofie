@@ -39,6 +39,9 @@ def index(request):
         'carousel': carousel_fotos,
     }
 
+    if request.GET.get('le') is not None:
+        context['loginerror'] = request.GET.get('le')
+
     return render(request, 'ViaSofie/index.html', context)
 
 

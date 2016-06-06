@@ -16,10 +16,10 @@
         });
     </script>
     <script type="text/javascript">
-    $(window).load(function(){
-        $('#myModal').modal('show');
-    });
-</script>
+        $(window).load(function () {
+            //$('#languageModal').modal('show');
+        });
+    </script>
 
     <style>
         .navbar {
@@ -30,34 +30,34 @@
 {% endblock %}
 
 {% block content %}
-   <div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Kies uw taal</h4>
-            </div>
-            <div class="modal-body">
+    <div id="languageModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Kies uw taal</h4>
+                </div>
+                <div class="modal-body">
 
-                <form>
-                    <div class="form-group">
-                        <a id="chk1" href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"></a>
+                    <form>
+                        <div class="form-group">
+                            <a id="chk1" href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"></a>
 
-                        <label for="chk1"><a href="#">Nederlands</a></label>
-                    </div>
-                    <div class="form-group">
-                         <a id="chk2" href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"></a>
-                        <label for="chk2"><a href="#">English</a></label>
-                    </div>
-                    <div class="form-group">
-                         <a id="chk3" href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"></a>
-                        <label for="chk3"><a href="#">Francais</a></label>
-                    </div>
-                </form>
+                            <label for="chk1"><a href="#">Nederlands</a></label>
+                        </div>
+                        <div class="form-group">
+                            <a id="chk2" href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"></a>
+                            <label for="chk2"><a href="#">English</a></label>
+                        </div>
+                        <div class="form-group">
+                            <a id="chk3" href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"></a>
+                            <label for="chk3"><a href="#">Francais</a></label>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <div id="ebookModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div class="keywordsearch">
+    <!--<div class="keywordsearch">
         <div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
@@ -102,8 +102,26 @@
 
 
         </div>
-    </div>
-    <div class="container-fluid header">
+    </div>-->
+    <div class="container-fluid headerimage">
+        <div class="keywordsearch">
+            <div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <form method="post" action="{% url 'panden.index' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-default submit-button">
+                                <span class="glyphicon glyphicon-search"></span> Zoeken
+                            </button>
+                            <div class="text-input-container">
+                                <input type="text" name="search"
+                                       placeholder="Zoek op gemeente, postcode, provincie, ..." class="text-input"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="block">
             <div id="viaSofieCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -150,7 +168,7 @@
             </div>
         </div>
     </div>
-    <div id="ebook" class="container">
+    <div id="ebook" class="container-fluid">
         <!--<div class="panel panel-default">
             <div class="panel-heading">E-book</div>
             <div class="panel-body">Inschrijven voor e-book</div>
@@ -159,7 +177,21 @@
             <div class="fancy"><span>E-book</span></div>
         </div>
         <div class="row text-center">
-            <a href="#" data-toggle="modal" data-target="#ebookModal"><button class="btn btn-lg btn-viasofie" type="button">Vraag hier je e-book aan</button></a>
+            <a href="#" data-toggle="modal" data-target="#ebookModal">
+                <button class="btn btn-lg btn-viasofie" type="button">Vraag hier je e-book aan</button>
+            </a>
+        </div>
+    </div>
+    <div id="partners" class="container-fluid">
+        <!--<div class="panel panel-default">
+            <div class="panel-heading">E-book</div>
+            <div class="panel-body">Inschrijven voor e-book</div>
+        </div>-->
+        <div class="row h1 fancytitle">
+            <div class="fancy"><span>Partners</span></div>
+        </div>
+        <div class="row text-center">
+            <img src="http://www.campusspoornoord.be/images/AP_logo.png" />
         </div>
     </div>
 {% endblock %}
