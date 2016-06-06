@@ -15,4 +15,4 @@ class Partner(models.Model):
     actief = models.BooleanField(default=True)
     naam = models.CharField(max_length=255)
     link = models.URLField()
-    logo = models.ImageField()
+    logo = models.ImageField(upload_to='partner-img')
