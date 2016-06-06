@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.template import RequestContext
 
 from panden.models import Foto, CarouselFoto
+from .models import Partner
 from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
@@ -24,6 +25,7 @@ def index(request):
 
     foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
+    partners = Partner.objects.filter(actief=True)
     panden = get_random_actieve_panden(AANTAL_PANDEN)
     aantal_panden = len(panden)
     pand_kolom_class = ''
@@ -37,6 +39,7 @@ def index(request):
         'foto': foto,
         'nbar': 'home',
         'carousel': carousel_fotos,
+        'partners': partners,
     }
 
     if request.GET.get('le') is not None:
