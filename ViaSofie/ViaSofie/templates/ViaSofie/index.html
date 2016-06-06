@@ -26,6 +26,11 @@
             margin-bottom: 0;
         }
 
+        .partner {
+            max-height: 50px;
+            width: auto;
+        }
+
     </style>
 {% endblock %}
 
@@ -191,7 +196,10 @@
             <div class="fancy"><span>Partners</span></div>
         </div>
         <div class="row text-center">
-            <img src="http://www.campusspoornoord.be/images/AP_logo.png" />
+            <!--<img src="http://www.campusspoornoord.be/images/AP_logo.png" />-->
+            {% for partner in partners %}
+                <a href="{{ partner.link }}"><img src="{{ partner.logo.url }}" class="partner"></a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
