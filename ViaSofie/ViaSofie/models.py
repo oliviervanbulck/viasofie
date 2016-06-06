@@ -8,3 +8,10 @@ class FaqItem(models.Model):
         verbose_name = 'FAQ item'
     titel = models.CharField(max_length=255)
     tekst = models.TextField()
+
+
+class Partner(models.Model):
+    actief = models.BooleanField()
+    naam = models.CharField(max_length=255)
+    link = models.URLField()
+    logo = models.ImageField()
