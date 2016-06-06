@@ -6,6 +6,7 @@ from django.db import models
 class FaqItem(models.Model):
     class Meta:
         verbose_name = 'FAQ item'
+    actief = models.BooleanField(default=True)
     titel = models.CharField(max_length=255)
     tekst = models.TextField()
 
