@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.dispatch import receiver
 
 
 class FaqItem(models.Model):
@@ -12,6 +13,12 @@ class FaqItem(models.Model):
 
     def __str__(self):
         return self.titel
+
+
+@receiver(models.signals.pre_save, sender=FaqItem)
+def auto_change_newline_to_br(sender, instance, **kwargs):
+    """Verandert newlines bij opslaan naar <br>"""
+    instance.tekst = instance.tekst.replace('\r\n', '<br>').replace('\r', '<br>').replace('\n', '<br>')
 
 
 class Partner(models.Model):

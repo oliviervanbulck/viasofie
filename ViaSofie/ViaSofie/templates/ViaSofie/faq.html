@@ -15,6 +15,23 @@
         <div class="container bg-2 text-left">
 
             <div class="panel-group" id="accordion">
+
+                {% for item in faq_items %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#compromis" style="cursor: pointer;">
+                            <h4 class="panel-title">
+                                <span class="glyphicon glyphicon-plus-sign"></span> <span class="glyphicon glyphicon-minus-sign"></span>{{ item.titel }}
+                            </h4>
+                        </div>
+                        <div id="compromis" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                {{ item.tekst|safe }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!--
                 <div class="panel panel-default">
                     <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion"
                          href="#compromis" style="cursor: pointer;">
@@ -58,6 +75,12 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
                 <div class="panel panel-default">
                     <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion"
                          href="#keuringverslag" style="cursor: pointer;">
@@ -219,7 +242,12 @@
                             <br>
                         </div>
                     </div>
-                </div>
+                </div>-->
+
+
+
+
+
 
             </div>
         </div>

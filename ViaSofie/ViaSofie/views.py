@@ -8,7 +8,7 @@ from django.core.mail import EmailMessage
 from django.template import RequestContext
 
 from panden.models import Foto, CarouselFoto
-from .models import Partner
+from .models import Partner, FaqItem
 from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
@@ -78,7 +78,12 @@ def contact(request):
 
 
 def faq(request):
-    return render(request, 'ViaSofie/faq.html', {'nbar': 'faq'})
+    context = {
+        'nbar': 'faq',
+        'faq_items': FaqItem.objects.filter(actief=True),
+    }
+
+    return render(request, 'ViaSofie/faq.html', context)
 
 
 def legal(request):
