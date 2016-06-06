@@ -25,6 +25,7 @@
                         <h4 id="header_details">
                             <b>Pand details - {{ ref_nummer }}</b>
                             {% include 'ViaSofie/partial/back_button.html' %}
+                            <a href="{% url 'panden.detail' pand.id %}" class="btn btn-viasofie pull-right" role="button" target="_blank">Toon pand</a>
                         </h4>
                     </div>
                     <div class="panel-body">

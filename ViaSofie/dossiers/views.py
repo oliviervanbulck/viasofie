@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -18,6 +19,7 @@ def index(request):
     return render(request, "Dossier/index.html", context)
 
 
+@login_required
 def dossier(request, pand_id):
     #dossier_obj = Dossier.objects.get(id=dossier_id)
     pand = Pand.objects.get(id=pand_id)
@@ -25,6 +27,7 @@ def dossier(request, pand_id):
     stavaza = pand.stavazalijn_set.all()
 
     context = {
+        'pand': pand,
         'ref_nummer': pand.ref_number(),
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
                             (pand.bouwjaar, 'Bouwjaar'), (in_opp(pand.oppervlakte), 'Oppervlakte'),
