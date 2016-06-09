@@ -1,25 +1,32 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
-
+{% load i18n %}
 {% block title %}Veelgestelde vragen{% endblock %}
 
 {% block content %}
 
     <div id="faq" class="container-fluid bg-2 text-center ">
-        <p><b> Frequently asked questions</b></p><br>
-        <p> Wilt u een woning kopen/huren of verkopen/verhuren dan moet u rekening houden met een hele hoop zaken. <br>
-            Hieronder vindt u een aantal algemene begrippen en FAQ’s van belang bij de verkoop of verhuur. <br>
-            Hebt u vragen over onderstaande topics of staat uw vraag hier niet tussen, aarzel niet om me te contacteren,
-            ik help u graag verder.</p>
-        <br> <br>
+        {% blocktrans %}
+            <p><b> Frequently asked questions</b></p><br>
+            <p> Wilt u een woning kopen/huren of verkopen/verhuren dan moet u rekening houden met een hele hoop zaken.
+                <br>
+                Hieronder vindt u een aantal algemene begrippen en FAQ’s van belang bij de verkoop of verhuur. <br>
+                Hebt u vragen over onderstaande topics of staat uw vraag hier niet tussen, aarzel niet om me te
+                contacteren,
+                ik help u graag verder.</p>
+            <br> <br>
+        {% endblocktrans %}
         <div class="container bg-2 text-left">
 
             <div class="panel-group" id="accordion">
                 {% for item in faq_items %}
                     <div class="panel panel-default">
-                        <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq{{ item.id }}" style="cursor: pointer;">
+
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion"
+                             href="#faq{{ item.id }}" style="cursor: pointer;">
                             <h4 class="panel-title">
-                                <span class="glyphicon glyphicon-plus-sign"></span> <span class="glyphicon glyphicon-minus-sign"></span>{{ item.titel }}
+                                <span class="glyphicon glyphicon-plus-sign"></span> <span
+                                    class="glyphicon glyphicon-minus-sign"></span>{{ item.titel }}
                             </h4>
                         </div>
                         <div id="faq{{ item.id }}" class="panel-collapse collapse">
@@ -27,25 +34,27 @@
                                 {{ item.tekst|safe|linebreaksbr }}
                             </div>
                         </div>
+
                     </div>
                 {% endfor %}
             </div>
         </div>
         <div>
-            <p> Hebt u nog vragen? Ik help u graag verder!</p>
+            {% blocktrans %}
+                <p> Hebt u nog vragen? Ik help u graag verder!</p>
 
-            <p> Hebt u vragen over het te koop stellen van een onroerend goed? Wilt u er zeker van zijn dat uw
-                verkoopdossier volledig is?
-                Neem vrijblijvend contact op!</p>
-            <br>
-            <p id="nota">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen
-                geenszins
-                als <br>
-                sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke
-                omstandigheden worden beschouwd.</p><br>
+                <p> Hebt u vragen over het te koop stellen van een onroerend goed? Wilt u er zeker van zijn dat uw
+                    verkoopdossier volledig is?
+                    Neem vrijblijvend contact op!</p>
+                <br>
+                <p id="nota">De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen
+                    geenszins
+                    als <br>
+                    sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke
+                    omstandigheden worden beschouwd.</p><br>
 
-            <br>
-
+                <br>
+            {% endblocktrans %}
 
         </div>
     </div>
