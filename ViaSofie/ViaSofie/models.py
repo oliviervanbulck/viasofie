@@ -12,6 +12,7 @@ class FaqItem(models.Model):
     actief = models.BooleanField(default=True)
     titel = models.CharField(max_length=255)
     tekst = models.TextField()
+    prioriteit = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.titel
