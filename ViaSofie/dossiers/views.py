@@ -1,9 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.template import loader
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
@@ -65,4 +63,4 @@ def dossier(request, pand_id):
             return redirect('dossiers.index')
     else:
         # Redirect the user to the login if he's not logged in
-        return redirect(reverse('index') + '?le=3')
+        return redirect(settings.LOGIN_URL)
