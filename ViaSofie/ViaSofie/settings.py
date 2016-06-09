@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '172.16.196.149', '*']
 INSTALLED_APPS = [
     'dal',
     'dal_select2',
+    'modeltranslation',
     'ViaSofie',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -140,6 +141,13 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('nl', gettext('Dutch')),
+    ('en', gettext('English')),
+    ('fr', gettext('French')),
+)
 
 USE_L10N = True
 
