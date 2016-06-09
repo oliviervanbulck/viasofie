@@ -10,6 +10,7 @@ from django.template import RequestContext
 from panden.models import Foto, CarouselFoto
 from .models import Partner, FaqItem
 from .functions import get_random_actieve_panden
+from .functions import set_cookie
 from .forms import ContactForm
 
 
@@ -45,7 +46,12 @@ def index(request):
     if request.GET.get('le') is not None:
         context['loginerror'] = request.GET.get('le')
 
-    return render(request, 'ViaSofie/index.html', context)
+    response = render(request, 'ViaSofie/index.html', context)
+
+    if request.COOKIES.get('cookieNotificationCookie') and request.GET.get('lang', None):
+        set_cookie(response, 'langCookie', request.GET.get('lang'))
+
+    return response
 
 
 def about(request):
