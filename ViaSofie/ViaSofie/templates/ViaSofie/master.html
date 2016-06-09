@@ -11,6 +11,7 @@
     <script src="{% static 'ViaSofie/js/jquery-2.2.4.min.js' %}"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/aa98d5477b.js"></script>
+    <script src="{% static 'ViaSofie/js/cookies.js' %}"></script>
 
     <title>{% block title %}{% endblock %} | Via Sofie</title>
     {% block headcontent %}
@@ -29,6 +30,38 @@
 
 </head>
 <body>
+    <script>
+
+        $(window).load(function () {
+            if (!getCookie('cookieNotificationCookie')) {
+                $('#cookieModal').modal('show');
+            }
+        });
+
+        function setCookieNotificationCookie() {
+            setCookie('cookieNotificationCookie', true, 365);
+        }
+
+        function closeNotification() {
+            $('#cookieModal').modal('hide');
+        }
+    </script>
+     <div id="cookieModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Deze website gebruikt cookies om uw surfervaring gemakkelijker en aangenamer te maken en om onze inhoud  beter af te stemmen op uw behoeften en voorkeuren.
+                </div>
+                <div class="modal-body">
+
+                    <button onclick="setCookieNotificationCookie();closeNotification()">OK</button>
+                    <button onclick="closeNotification()">Niet OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% if not is_popup %}
     <nav class="navbar navbar-default header">
         <div class="container-fluid">
@@ -192,6 +225,14 @@
                 </li>
             </ul>
         </div>
+
+
+
+
+
+
+
+
     </nav>
 {% endif %}
 </body>
