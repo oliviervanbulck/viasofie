@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load viasofie_filters %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,24 +91,24 @@
                     {% if user.is_authenticated %}
                         <li class="{% if nbar == 'dossier' %}active{% endif %}"><a
                                 href="{% url 'dossiers.index' %}"><span
-                                class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Dossier</a>
+                                class="glyphicon glyphicon-folder-open"> </span>{% blocktrans %} &nbsp;&nbsp;Dossier{% endblocktrans %}</a>
                         </li>
                     {% endif %}
                     <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span
-                            class="glyphicon glyphicon-home"></span>&nbsp;Kopen</a>
+                            class="glyphicon glyphicon-home"></span>{% blocktrans %}&nbsp;Kopen{% endblocktrans %}</a>
                     </li>
                     <!--<li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span
-                        class="glyphicon glyphicon-usd"></span>&nbsp;Huren</a>-->
+                        class="glyphicon glyphicon-usd"></span>{% blocktrans %}&nbsp;Huren{% endblocktrans %}</a>-->
                     </li>
                     <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span
-                            class="glyphicon glyphicon-question-sign"></span>&nbsp;Advies</a>
+                            class="glyphicon glyphicon-question-sign"></span>{% blocktrans %}&nbsp;Advies{% endblocktrans %}</a>
                     </li>
                     <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a
-                            href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Over
-                        ons</a>
+                            href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>{% blocktrans %}&nbsp;Over
+                        ons{% endblocktrans %}</a>
                     </li>
                     <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span
-                            class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a>
+                            class="glyphicon glyphicon-envelope"></span>{% blocktrans %}&nbsp;Contact{% endblocktrans %}</a>
                     </li>
 
                 </ul>
@@ -135,12 +136,12 @@
                                     <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
                                         Beheer</a></li>
                                 {% endif %}
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mijn profiel</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {% blocktrans %}Mijn profiel{% endblocktrans %}</a></li>
                                 {% if user|has_group:'Verkoper' %}
-                                    <li><a href="#"><span class="glyphicon glyphicon-file"></span> Mijn dossier</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-file"></span> {% blocktrans %}Mijn dossier{% endblocktrans %}</a></li>
                                 {% endif %}
                                 <li><a href="{% url "gebruikers.logout" %}"><span
-                                        class="glyphicon glyphicon-log-out"></span> Uitloggen</a></li>
+                                        class="glyphicon glyphicon-log-out"></span> {% blocktrans %}Uitloggen{% endblocktrans %}</a></li>
                             </ul>
                         </li>
                         <!--  <li id="goedDoel">
@@ -166,11 +167,17 @@
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>
                                 {% if loginerror == '2' %}
+                                    {% blocktrans %}
                                     Je gebruikersaccount is momenteel niet actief.
+                                    {% endblocktrans %}
                                 {% elif loginerror == '3' %}
+                                    {% blocktrans %}
                                     Gelieve eerst aan te melden.
+                                    {% endblocktrans %}
                                 {% else %}
+                                    {% blocktrans %}
                                     Deze combinatie van e-mail en wachtwoord is niet correct.
+                                    {% endblocktrans %}
                                 {% endif %}
                             </strong>
                         </div>
@@ -182,18 +189,18 @@
                             <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="form-group">
-                            <label for="password">Wachtwoord:</label>
+                          {% blocktrans %}  <label for="password">Wachtwoord:</label>{% endblocktrans %}
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox"> Onthouden</label>
+                            <label><input type="checkbox"> {% blocktrans %}Onthouden{% endblocktrans %}</label>
                         </div>
-                        <button type="submit" class="btn btn-viasofie">Inloggen</button>
+                        <button type="submit" class="btn btn-viasofie">{% blocktrans %}Inloggen{% endblocktrans %}</button>
                     </form>
-                <div><br /><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></div>
+                <div><br /><a href="{% url 'password_reset' %}">{% blocktrans %}Wachtwoord vergeten?{% endblocktrans %}</a></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Sluiten{% endblocktrans %}</button>
                 </div>
             </div>
         </div>

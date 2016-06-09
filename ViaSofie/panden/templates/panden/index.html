@@ -83,14 +83,21 @@
 
                 <div class="col-md-3">
                     <div id="advancedsearch" class="panel panel-default">
-                        <div class="panel-heading"><h3>Geavanceerd zoeken</h3></div>
-
+                        <div class="panel-heading">
+                            {% blocktrans %}
+                            <h3>Geavanceerd zoeken</h3></div>
+                            {% endblocktrans %}
 
                         <div class="panel-body">
                             <form action="?" method="get" id="advanced">
 
                                 <div id="prijs" class="row" class="slider">
-                                    <div class="col-md-10"><label>Prijsklasse:</label></div>
+                                    <div class="col-md-10">
+                                       {% blocktrans %}
+                                        <label>Prijsklasse:</label>
+                                    {% endblocktrans %}
+                                    </div>
+
                                     <div class="col-md-10" id="prijs-slider"></div>
 
                                     <div class="col-md-5">
@@ -111,7 +118,11 @@
                                 </div>
 
                                 <div id="oppervlakte" class="row" class="slider">
-                                    <div class="col-md-10"><label>Oppervlakte:</label></div>
+                                    <div class="col-md-10">
+                                        {% blocktrans %}
+                                        <label>Oppervlakte:</label>
+                                        {% endblocktrans %}
+                                    </div>
                                     <div class="col-md-10" id="oppervlakte-slider"></div>
 
                                     <div class="col-md-5">
@@ -166,8 +177,9 @@
                                     <div class="col-md-9">{{ form.bouwjaar }}</div>
                                 </div>
 
-
+                            {% blocktrans %}
                                 <input type="submit" value="Zoek!" class="btn btn-viasofie"/>
+                            {% endblocktrans %}
                             </form>
                         </div>
 

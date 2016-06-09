@@ -1,6 +1,6 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
-
+{% load i18n %}
 {% block title %}Home{% endblock %}
 
 {% block headcontent %}
@@ -170,7 +170,9 @@
     <div class="container-fluid" id="panden">
         <div class="container-fluid">
             <div class="row h1 fancytitle">
-                <div class="fancy"><span>Meest recente panden</span></div>
+{% blocktrans %}
+                <div class="fancy"> <span>Meest recente panden</span></div>
+{% endblocktrans %}
             </div>
             <!-- Panden worden hier weergegeven!!! -->
             <div class="row row-centered">
@@ -186,11 +188,15 @@
             <div class="panel-body">Inschrijven voor e-book</div>
         </div>-->
         <div class="row h1 fancytitle">
+            {% blocktrans %}
             <div class="fancy"><span>E-book</span></div>
+            {% endblocktrans %}
         </div>
         <div class="row text-center">
             <a href="#" data-toggle="modal" data-target="#ebookModal">
+                {% blocktrans %}
                 <button class="btn btn-lg btn-viasofie" type="button">Vraag hier je e-book aan</button>
+                {% endblocktrans %}
             </a>
         </div>
     </div>
@@ -200,7 +206,9 @@
             <div class="panel-body">Inschrijven voor e-book</div>
         </div>-->
         <div class="row h1 fancytitle">
+            {% blocktrans %}
             <div class="fancy"><span>Partners</span></div>
+            {% endblocktrans %}
         </div>
         <div class="row text-center">
             <!--<img src="http://www.campusspoornoord.be/images/AP_logo.png" />-->

@@ -1,6 +1,6 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
-
+{% load i18n %}
 {% block title %}Disclaimer{% endblock %}
 
 {% block content %}
@@ -16,6 +16,7 @@
                     </div>
                     <div id="disclaimer" class="panel-collapse collapse{% if default == 'disclaimer' %} in{% endif %}">
                         <div class="panel-body">
+                            {% blocktrans %}
                            <p>Via Sofie besteedt veel aandacht en zorg aan haar website en streeft ernaar dat alle
                             informatie zo volledig, juist, begrijpelijk, nauwkeurig en actueel mogelijk is.</p>
 
@@ -32,6 +33,7 @@
                             die ontstaat door het gebruik van de website of van de op of via de website ter beschikking gestelde
                             informatie. Ongeautoriseerd of oneigenlijk gebruik van de content of delen daarvan maken inbreuk op
                             intellectuele rechten.</p>
+                             {% endblocktrans %}
                         </div>
                     </div>
                 </div>
@@ -44,6 +46,7 @@
                     </div>
                     <div id="privacy" class="panel-collapse collapse{% if default == 'privacy' %} in{% endif %}">
                         <div class="panel-body">
+                            {% blocktrans %}
                          <p>  Via Sofie hecht veel belang aan het beschermen van de privacy van de bezoekers van haar
                             website. Ons privacybeleid is van toepassing op de diensten geleverd door Via Sofie.
                             We zijn echter niet verantwoordelijk voor het privacybeleid van andere sites en bronnen.</p>
@@ -64,7 +67,7 @@
 
                            <p> Als u uw gegevens aan wilt passen of uzelf uit onze bestanden wilt laten halen, kunt u
                             contact met ons op nemen.</p>
-
+ {% endblocktrans %}
                         </div>
                     </div>
                 </div>
