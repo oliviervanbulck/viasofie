@@ -2,7 +2,6 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
 from dossiers.forms import ContactFormDossier

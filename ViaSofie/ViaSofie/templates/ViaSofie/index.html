@@ -173,7 +173,7 @@
                 <div class="fancy"><span>Meest recente panden</span></div>
             </div>
             <!-- Panden worden hier weergegeven!!! -->
-            <div class="row">
+            <div class="row row-centered">
                 {% for pand in panden %}
                     {% include "panden/partial/pand_list_detail.html" with pand=pand %}
                 {% endfor %}

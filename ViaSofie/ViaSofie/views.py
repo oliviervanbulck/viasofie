@@ -1,10 +1,6 @@
-from django.contrib.auth.models import Group, Permission
-from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
-from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
-# Create your views here.
 from django.template import RequestContext
 
 from panden.models import Foto, CarouselFoto
@@ -31,12 +27,13 @@ def index(request):
     aantal_panden = len(panden)
     pand_kolom_class = ''
     if aantal_panden != 0:
-        pand_kolom_class = 'col-md-' + str(12 / aantal_panden)  # 12 is het aantal kolommen in Bootstrap
+        #pand_kolom_class = 'col-md-' + str(12 / aantal_panden)  # 12 is het aantal kolommen in Bootstrap
+        pass
 
     context = {
         'panden': panden,
         'aantal_panden': aantal_panden,
-        'pand_kolom_class': pand_kolom_class,
+        #'pand_kolom_class': pand_kolom_class,
         'foto': foto,
         'nbar': 'home',
         'carousel': carousel_fotos,
