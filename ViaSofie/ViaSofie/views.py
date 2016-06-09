@@ -25,7 +25,7 @@ def index(request):
 
     foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
-    partners = Partner.objects.filter(actief=True)
+    partners = Partner.objects.filter(actief=True).order_by('-prioriteit')
     panden = get_random_actieve_panden(AANTAL_PANDEN)
     aantal_panden = len(panden)
     pand_kolom_class = ''
@@ -80,7 +80,7 @@ def contact(request):
 def faq(request):
     context = {
         'nbar': 'faq',
-        'faq_items': FaqItem.objects.filter(actief=True),
+        'faq_items': FaqItem.objects.filter(actief=True).order_by('-prioriteit'),
     }
 
     return render(request, 'ViaSofie/faq.html', context)

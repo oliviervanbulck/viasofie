@@ -6,7 +6,7 @@ from .models import FaqItem, Partner
 
 class FaqItemAdmin(admin.ModelAdmin):
     actions = ('set_active', 'set_inactive',)
-    list_display = ('titel', 'actief',)
+    list_display = ('titel', 'prioriteit', 'actief',)
 
     def set_active(self, request, queryset):
         queryset.update(actief=True)
@@ -20,8 +20,8 @@ class FaqItemAdmin(admin.ModelAdmin):
 
 class PartnerAdmin(admin.ModelAdmin):
     actions = ('set_active', 'set_inactive',)
-    list_display = ('naam', 'klein_logo', 'actief',)
-    fields = ('actief', 'naam', 'link', 'klein_logo', 'logo',)
+    list_display = ('naam', 'klein_logo', 'prioriteit', 'actief',)
+    fields = ('actief', 'naam', 'link', 'prioriteit', 'klein_logo', 'logo',)
     readonly_fields = ('klein_logo',)
     #exclude = ('logo',)
 
