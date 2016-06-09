@@ -25,6 +25,7 @@ def in_opp(waarde):
     """Returned een waarde met een m² er na"""
     return "%s m²" % waarde
 
+
 @register.filter(name='ja_nee')
 def in_ja_nee(waarde):
     """Returned Nee indien de gegeven waarde O is, anders is het Ja"""

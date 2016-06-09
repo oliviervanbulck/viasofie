@@ -47,6 +47,10 @@ body {
     opacity: 0.5;
 }
 
+.btn-viasofie-space-right {
+    margin-right: 5px;
+}
+
 .row-centered {
     text-align:center;
 }

@@ -20,16 +20,12 @@ def handler404(request):
 def index(request):
     AANTAL_PANDEN = 3
 
-    foto = Foto.objects.first()
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
     partners = Partner.objects.filter(actief=True).order_by('-prioriteit')
     panden = get_random_actieve_panden(AANTAL_PANDEN)
-    aantal_panden = len(panden)
 
     context = {
         'panden': panden,
-        'aantal_panden': aantal_panden,
-        'foto': foto,
         'nbar': 'home',
         'carousel': carousel_fotos,
         'partners': partners,
@@ -62,7 +58,7 @@ def contact(request):
             if form.is_valid():
                 email = form.cleaned_data['email']
                 message = form.cleaned_data['message']
-                email = EmailMessage('', email + '\n\n' + message, to=['michael.vanderborght.mv@gmail.com'])
+                email = EmailMessage('', email + '\n\n' + message, to=['contact.viasofie@gmail.com'])
                 email.send()
 
                 context['succes'] = True

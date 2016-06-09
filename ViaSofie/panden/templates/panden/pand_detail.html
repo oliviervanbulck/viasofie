@@ -84,7 +84,7 @@
                             <b>Pand details - {% pand_ref pand %}</b>
                             {% include 'ViaSofie/partial/back_button.html' %}
                             {% if user.is_authenticated and user.id == pand.gebruiker.user.id %}
-                                <a href="{% url 'dossiers.dossier' pand.id %}" class="btn btn-viasofie pull-right" role="button" target="_blank">Naar dossier</a>
+                                <a href="{% url 'dossiers.dossier' pand.id %}" class="btn btn-viasofie btn-viasofie-space-right pull-right" role="button" target="_blank">Naar dossier</a>
                             {% endif %}
                         </h4>
 
