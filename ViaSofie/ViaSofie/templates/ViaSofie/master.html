@@ -235,9 +235,9 @@
                     <img class=" dropdown-toggle" data-toggle="dropdown"
                          src="{% static "ViaSofie/icons/belgium.png" %}"/>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</a></li>
-                        <li><a href="#"><img src="{% static "ViaSofie/icons/frans.png" %}"> Francais</a></li>
-                        <li><a href="#"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</a></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}">Nederlands</button></form></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="en"><img src="{% static "ViaSofie/icons/uk.png" %}">English</button></form></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}">français</button></form></li>
                     </ul>
                 </li>
             </ul>
