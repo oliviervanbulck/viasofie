@@ -149,6 +149,8 @@ LANGUAGES = (
     ('fr', gettext('French')),
 )
 
+MODELTRANSLATION_AUTO_POPULATE = 'default'
+
 USE_L10N = True
 
 USE_TZ = True
