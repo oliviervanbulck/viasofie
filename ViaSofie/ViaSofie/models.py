@@ -24,6 +24,7 @@ class Partner(models.Model):
     naam = models.CharField(max_length=255)
     link = models.URLField()
     logo = models.ImageField(upload_to='partner-img')
+    prioriteit = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.naam
