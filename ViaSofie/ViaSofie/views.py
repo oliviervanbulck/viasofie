@@ -40,7 +40,7 @@ def index(request):
 
     response = render(request, 'ViaSofie/index.html', context)
 
-    if request.COOKIES.get('cookieNotificationCookie') and request.GET.get('lang', None):
+    if request.GET.get('lang', None):
         set_cookie(response, 'langCookie', request.GET.get('lang'))
 
     return response
