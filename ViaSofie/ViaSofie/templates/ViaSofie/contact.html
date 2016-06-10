@@ -35,7 +35,7 @@
                 {% endif %}
                 <div id="contactform" class="panel panel-default">
                     <div class="panel-body">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
                                 {% blocktrans %}
@@ -48,6 +48,9 @@
                                 <label>Bericht:</label>
                                 {% endblocktrans %}
                                 <p>{{ form.message }}</p>
+                            </div>
+                            <div class="form-group">
+                                {{ form.attachment }}
                             </div>
                             <div>{{ form.captcha }}</div>
                             {% blocktrans %}

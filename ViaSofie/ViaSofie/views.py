@@ -53,16 +53,20 @@ def contact(request):
     }
 
     if request.POST:
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
         try:
             if form.is_valid():
                 email = form.cleaned_data['email']
                 message = form.cleaned_data['message']
+                attachment = request.FILES['attachment']
                 email = EmailMessage('', email + '\n\n' + message, to=['contact.viasofie@gmail.com'])
+                if attachment:
+                    email.attach(attachment.name, attachment.read(), attachment.content_type)
                 email.send()
 
                 context['succes'] = True
             else:
+                print 'test'
                 raise Exception()
         except:
             context['error'] = True
