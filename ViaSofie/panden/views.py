@@ -2,6 +2,7 @@ from dal import autocomplete
 from django.db.models import Value as V
 from django.db.models.functions import Concat
 from django.shortcuts import render
+from django.shortcuts import redirect
 from ViaSofie.functions import get_alle_actieve_panden
 from ViaSofie.functions import get_alle_gemeentes
 from ViaSofie.functions import keyword_search
@@ -64,6 +65,11 @@ def huren(request):
 
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
+
+    # Indien een pand inactief is moet het niet getoond worden
+    if not pand.actief:
+        return redirect('panden.index')
+
     context = {
         'maps_adres': pand.adres,
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
