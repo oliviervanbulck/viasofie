@@ -43,13 +43,16 @@ def dossier(request, pand_id):
                 return render(request, "Dossier/dossier.html", context)
 
             elif request.method == 'POST':
-                form = ContactFormDossier(request.POST)
+                form = ContactFormDossier(request.POST, request.FILES)
 
                 try:
                     if form.is_valid():
                         email = request.user.email
                         message = form.cleaned_data['message']
+                        attachment = request.FILES['attachment']
                         email = EmailMessage('', email + '\n\n' + message, to=['michael.vanderborght.mv@gmail.com'])
+                        if attachment:
+                            email.attach(attachment.name, attachment.read(), attachment.content_type)
                         email.send()
                         context.update({'succes': True, 'form': ContactFormDossier()})
                         return render(request, context, 'Dossier/dossier.html',context)
