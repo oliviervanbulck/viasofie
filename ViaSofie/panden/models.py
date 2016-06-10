@@ -39,10 +39,10 @@ class Kenmerk(models.Model):
         verbose_name_plural = "kenmerken"
     benaming = models.CharField(max_length=50)
     is_aantal = models.BooleanField()
-    type = models.ForeignKey('KenmerkType', on_delete=models.CASCADE, null=True)
+    type = models.ForeignKey('KenmerkType', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return str(self.benaming)
+        return str(self.benaming_nl)
 
 
 class KenmerkType(models.Model):

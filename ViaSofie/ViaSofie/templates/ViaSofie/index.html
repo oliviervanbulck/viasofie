@@ -32,11 +32,10 @@
 
 {% block content %}
      <script>
+        function setLangSelected() { setCookie('langSelected', true, 14) }
 
         $(window).load(function () {
-            console.log('eyoo');
-            if (!getCookie('langCookie')) {
-                console.log('lol');
+            if (!getCookie('langSelected')) {
                 $('#languageModal').modal('show');
             }
         });
@@ -50,20 +49,15 @@
                     <h4 class="modal-title">Kies uw taal</h4>
                 </div>
                 <div class="modal-body">
-
                     <form>
                         <div class="form-group">
-                            <a id="chk1" href="?lang=nl"><img src="{% static "ViaSofie/icons/belgium.png" %}"></a>
-
-                            <label for="chk1"><a href="?lang=nl">Nederlands</a></label>
+                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}">Nederlands</button></form>
                         </div>
                         <div class="form-group">
-                            <a id="chk2" href="?lang=en"><img src="{% static "ViaSofie/icons/uk.png" %}"></a>
-                            <label for="chk2"><a href="?lang=en">English</a></label>
+                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="en"><img src="{% static "ViaSofie/icons/uk.png" %}">English</button></form>
                         </div>
                         <div class="form-group">
-                            <a id="chk3" href="?lang=fr"><img src="{% static "ViaSofie/icons/frans.png" %}"></a>
-                            <label for="chk3"><a href="?lang=fr">Francais</a></label>
+                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}">français</button></form>
                         </div>
                     </form>
                 </div>
