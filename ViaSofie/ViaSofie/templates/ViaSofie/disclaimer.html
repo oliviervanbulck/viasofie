@@ -9,7 +9,7 @@
         <div class="container bg-2 text-left">
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
-                    <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#disclaimer" style="cursor: pointer;">
+                    <div class="panel-heading{% if not default == 'disclaimer' %} collapsed{% endif %}" data-toggle="collapse" data-parent="#accordion" href="#disclaimer" style="cursor: pointer;">
                         <h4 class="panel-title">
                          <span class="glyphicon glyphicon-plus-sign"></span> <span class="glyphicon glyphicon-minus-sign"></span>        Disclaimer
                         </h4>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#privacy" style="cursor: pointer;">
+                    <div class="panel-heading{% if not default == 'privacy' %} collapsed{% endif %}" data-toggle="collapse" data-parent="#accordion" href="#privacy" style="cursor: pointer;">
                         <h4 class="panel-title">
  <span class="glyphicon glyphicon-plus-sign"></span> <span class="glyphicon glyphicon-minus-sign"></span>
                                 Privacy

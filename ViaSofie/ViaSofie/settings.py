@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'dossiers',
     'gebruikers',
     'panden',
-    'talen',
     'nocaptcha_recaptcha',
 ]
 
