@@ -40,7 +40,7 @@ def dossier(request, pand_id):
             'prev_url': request.META.get('HTTP_REFERER', None),
         }
         if request.method == 'GET':
-            context.update({'nbar': 'dossier'})
+            context['nbar'] = 'dossier'
             return render(request, "Dossier/dossier.html", context)
 
         elif request.method == 'POST':
