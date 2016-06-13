@@ -60,11 +60,11 @@ def contact(request):
             if form.is_valid():
                 email_address = form.cleaned_data['email']
                 message = form.cleaned_data['message']
-                attachment = request.FILES['attachment']
                 email = EmailMessage('', email_address + '\n\n' + message, to=['contact.viasofie@gmail.com'])
-                if attachment:
-                    email.attach(attachment.name, attachment.read(), attachment.content_type)
                 email.send()
+                email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
+                message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+                email_bevestiging.send()
 
                 context['succes'] = True
             else:
