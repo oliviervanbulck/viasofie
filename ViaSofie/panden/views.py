@@ -54,7 +54,6 @@ def panden_general(request, nbar_val):
     return render(request, 'panden/index.html', context)
 
 
-# Create your views here.
 def index(request):
     return panden_general(request, 'kopen')
 
