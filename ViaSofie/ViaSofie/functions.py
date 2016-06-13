@@ -101,16 +101,16 @@ def advanced_search(request):
         BENAMING = 'Aantal slaapkamers'
         LOWER = int(request.GET['slaapkamer_lower'])
 
-        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
+        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal)]
 
     """Filter voor badkamers"""
     def filter_badkamers(panden):
         BENAMING = 'Aantal badkamers'
         LOWER = int(request.GET['badkamer_lower'])
 
-        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal)]
+        return [pand for pand in panden if pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal)]
 
     """Filter voor Parking / Garage"""
     def filter_parking(panden):
@@ -119,13 +119,13 @@ def advanced_search(request):
         if parking != 'nvt':
             if parking == 'ja':
                 return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal > 0]
             else:
                 return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[
                                 0].aantal == 0)]
         return panden
 
@@ -136,13 +136,13 @@ def advanced_search(request):
         if terras != 'nvt':
             if terras == 'ja':
                 return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal > 0]
             else:
                 return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[
                                 0].aantal == 0)]
         return panden
 
@@ -153,13 +153,13 @@ def advanced_search(request):
         if tuin != 'nvt':
             if tuin == 'ja':
                 return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal > 0]
             else:
                 return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[
                                 0].aantal == 0)]
         return panden
 
@@ -170,13 +170,13 @@ def advanced_search(request):
         if bemeubeld != 'nvt':
             if bemeubeld == 'ja':
                 return [pand for pand in panden if
-                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal > 0]
+                        pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal > 0]
             else:
                 return [pand for pand in panden if
-                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)
-                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming=BENAMING)[0].aantal == 0)]
+                        not pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                        or (pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)
+                            and pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal == 0)]
         return panden
 
     """Filter bouwjaar"""
@@ -202,7 +202,9 @@ def advanced_search(request):
     # Elke filter maakt de gevonden panden specifieker en specifieker, maar als we met een lege lijst zitten moet er niet verder gefilterd worden (break)
     for filter in filters:
         if panden:
+            print 'Panden voor {0}: {1}'.format(filter.__name__, panden)
             panden = filter(panden)
+            print 'Panden na {0}: {1}'.format(filter.__name__, panden)
         else:
             break
     return panden
