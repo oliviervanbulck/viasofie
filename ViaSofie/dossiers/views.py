@@ -51,7 +51,7 @@ def dossier(request, pand_id):
                     email = request.user.email
                     message = form.cleaned_data['message']
                     attachment = request.FILES['attachment']
-                    email = EmailMessage('', email + '\n\n' + message, to=['michael.vanderborght.mv@gmail.com'])
+                    email = EmailMessage('', email + '\n\n' + message, to=['dringend.viasofie@gmail.com'])
                     if attachment:
                         email.attach(attachment.name, attachment.read(), attachment.content_type)
                     email.send()

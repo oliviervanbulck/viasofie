@@ -31,8 +31,11 @@
 {% endblock %}
 
 {% block content %}
-     <script>
-        function setLangSelected() { setCookie('langSelected', true, 14) }
+    <script>
+        function setLangSelected() {
+            console.log('eyoo');
+            setCookie('langSelected', true, 14)
+        }
 
         $(window).load(function () {
             if (!getCookie('langSelected')) {
@@ -49,17 +52,27 @@
                     <h4 class="modal-title">Kies uw taal</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
                         <div class="form-group">
-                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}" /> Nederlands</button></form>
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <button onclick="setLangSelected()" class="btn-lang" type="submit" name="language"
+                                        value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}"/> Nederlands
+                                </button>
+                            </form>
                         </div>
                         <div class="form-group">
-                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="en"><img src="{% static "ViaSofie/icons/uk.png" %}" /> English</button></form>
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <button onclick="setLangSelected()" class="btn-lang" type="submit" name="language"
+                                        value="en"><img src="{% static "ViaSofie/icons/uk.png" %}"/> English
+                                </button>
+                            </form>
                         </div>
                         <div class="form-group">
-                            <form onsubmit="setLangSelected()" action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}" /> Français</button></form>
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <button onclick="setLangSelected()" class="btn-lang" type="submit" name="language"
+                                        value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}"/> Français
+                                </button>
+                            </form>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -164,9 +177,9 @@
     <div class="container-fluid" id="panden">
         <div class="container-fluid">
             <div class="row h1 fancytitle">
-{% blocktrans %}
-                <div class="fancy"> <span>Meest recente panden</span></div>
-{% endblocktrans %}
+                {% blocktrans %}
+                    <div class="fancy"><span>Meest recente panden</span></div>
+                {% endblocktrans %}
             </div>
             <!-- Panden worden hier weergegeven!!! -->
             <div class="row row-centered">
@@ -183,13 +196,13 @@
         </div>-->
         <div class="row h1 fancytitle">
             {% blocktrans %}
-            <div class="fancy"><span>E-book</span></div>
+                <div class="fancy"><span>E-book</span></div>
             {% endblocktrans %}
         </div>
         <div class="row text-center">
             <a href="#" data-toggle="modal" data-target="#ebookModal">
                 {% blocktrans %}
-                <button class="btn btn-lg btn-viasofie" type="button">Vraag hier je e-book aan</button>
+                    <button class="btn btn-lg btn-viasofie" type="button">Vraag hier je e-book aan</button>
                 {% endblocktrans %}
             </a>
         </div>
@@ -201,7 +214,7 @@
         </div>-->
         <div class="row h1 fancytitle">
             {% blocktrans %}
-            <div class="fancy"><span>Partners</span></div>
+                <div class="fancy"><span>Partners</span></div>
             {% endblocktrans %}
         </div>
         <div class="row text-center">
