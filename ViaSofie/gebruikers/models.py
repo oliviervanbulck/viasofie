@@ -75,7 +75,7 @@ def auto_mail_user_on_save(sender, instance, **kwargs):
     # Niet opnieuw mailen als er een change op is
     if kwargs['created']:
         # Username = email!!!
-        email = EmailMessage('Uw account is klaar!', 'Uw account op ViaSofie.be is aangemaakt!',
+        email = EmailMessage('Uw account is klaar', 'Uw account op ViaSofie.be is aangemaakt.',
                              to=[instance.user.username])
         email.send()
 
