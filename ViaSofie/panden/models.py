@@ -4,9 +4,6 @@ from __future__ import unicode_literals
 
 import os
 
-from django.contrib import admin
-from django.db import models
-
 import qrcode
 import StringIO
 
@@ -19,11 +16,9 @@ from django.template.defaultfilters import slice_filter, upper
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 
-# Create your models here.
 
 # ERD tabel Type
-
-
+@python_2_unicode_compatible
 class Type(models.Model):
     class Meta:
         verbose_name_plural = "types"
@@ -34,6 +29,7 @@ class Type(models.Model):
 
 
 # ERD tabel Kenmerk
+@python_2_unicode_compatible
 class Kenmerk(models.Model):
     class Meta:
         verbose_name_plural = "kenmerken"
@@ -45,6 +41,7 @@ class Kenmerk(models.Model):
         return str(self.benaming_nl)
 
 
+@python_2_unicode_compatible
 class KenmerkType(models.Model):
     type = models.CharField(max_length=64)
 
@@ -115,6 +112,7 @@ def auto_delete_qr_code_on_delete(sender, instance, **kwargs):
 
 
 # ERD tabel PandImmoLink
+@python_2_unicode_compatible
 class PandImmoLink(models.Model):
     class Meta:
         verbose_name_plural = "immolinks"
@@ -126,6 +124,7 @@ class PandImmoLink(models.Model):
         return str(self.website.site_beschrijving) + ' - ' + str(self.pand)
 
 
+@python_2_unicode_compatible
 class ImmoSite(models.Model):
     site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
     logo = models.ImageField()
@@ -135,6 +134,7 @@ class ImmoSite(models.Model):
 
 
 # ERD tabel Foto
+@python_2_unicode_compatible
 class Foto(models.Model):
     class Meta:
         verbose_name_plural = "foto's"
@@ -182,6 +182,7 @@ def auto_delete_foto_on_change(sender, instance, **kwargs):
 
 
 # ERD tabel CarouselFoto
+@python_2_unicode_compatible
 class CarouselFoto(models.Model):
     class Meta:
         verbose_name_plural = "slideshow"
@@ -231,6 +232,7 @@ def auto_delete_carousel_foto_on_change(sender, instance, **kwargs):
 
 
 # ERD tabel PandKenmerkPerPand
+@python_2_unicode_compatible
 class PandKenmerkPerPand(models.Model):
     class Meta:
         unique_together = (('pand', 'kenmerk'),)
