@@ -40,7 +40,7 @@ def dossier(request, pand_id):
             'prev_url': request.META.get('HTTP_REFERER', None),
         }
         if request.method == 'GET':
-            context.update({'nbar': 'dossier'})
+            context['nbar'] = 'dossier'
             return render(request, "Dossier/dossier.html", context)
 
         elif request.method == 'POST':
@@ -48,13 +48,17 @@ def dossier(request, pand_id):
 
             try:
                 if form.is_valid():
-                    email = request.user.email
+                    email_address = request.user.email
                     message = form.cleaned_data['message']
-                    attachment = request.FILES['attachment']
-                    email = EmailMessage('', email + '\n\n' + message, to=['dringend.viasofie@gmail.com'])
+                    attachment = request.FILES.get('attachment')
+                    email = EmailMessage('', email_address + '\n\n' + message, to=['dringend.viasofie@gmail.com'])
                     if attachment:
                         email.attach(attachment.name, attachment.read(), attachment.content_type)
                     email.send()
+
+                    message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+                    email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
+                    email_bevestiging.send()
                     context.update({'succes': True, 'form': ContactFormDossier()})
                     return render(request, context, 'Dossier/dossier.html',context)
                 else:

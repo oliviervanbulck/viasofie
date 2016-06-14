@@ -1,15 +1,12 @@
-from django.contrib.auth.models import User
 from django.db.models.functions import Concat
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from dal import autocomplete
 from django.db.models import Value as V
 
-
-# Create your views here.
 from gebruikers.models import Woonplaats, Land
-from panden.models import Type
 
 
 def index(request):
@@ -19,30 +16,28 @@ def index(request):
 
 
 def login_user(request):
-    redirect_url = '/'
+    redirect_url = reverse('index')
     if request.POST:
         logout(request)
-        username = password = ''
         username = request.POST['username']
         password = request.POST['password']
 
         user = authenticate(username=username, password=password)
-        print user
         if user is not None:
             if user.is_active:
                 login(request, user)
                 if request.user.is_staff:
-                    redirect_url = '/admin'
+                    redirect_url = reverse('admin:index')
             else:
-                return HttpResponseRedirect(redirect_url + '?le=2')
+                redirect_url += '?le=2'
         else:
-            return HttpResponseRedirect(redirect_url + '?le=1')
-    return HttpResponseRedirect(redirect_url)
+            redirect_url += '?le=1'
+    return redirect(redirect_url)
 
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return redirect('index')
 
 
 class WoonplaatsAutocomplete(autocomplete.Select2QuerySetView):

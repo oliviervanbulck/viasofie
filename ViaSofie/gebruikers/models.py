@@ -2,18 +2,14 @@
 
 from __future__ import unicode_literals
 
-from django.core import validators
-from django.core.exceptions import ValidationError
 from django.core.mail import EmailMessage
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
 
 
-# Create your models here.
 # ERD tabel Landen
 @python_2_unicode_compatible
 class Land(models.Model):
@@ -72,10 +68,10 @@ def auto_mail_user_on_save(sender, instance, **kwargs):
     if not instance.pk:
         return False
 
-    # Niet opnieuw mailen als er een change op is
+    # Enkel mailen bij aanmaken account
     if kwargs['created']:
         # Username = email!!!
-        email = EmailMessage('Uw account is klaar!', 'Uw account op ViaSofie.be is aangemaakt!',
+        email = EmailMessage('Uw account is klaar', 'Uw account op ViaSofie.be is aangemaakt.',
                              to=[instance.user.username])
         email.send()
 
