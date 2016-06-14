@@ -8,50 +8,53 @@ from panden.models import Type, Pand, PandKenmerkPerPand
 
 
 class AdvancedSearchForm(forms.Form):
-    KEUZES = [('ja', 'Ja'),
-              ('nee', 'Nee'),
-              ('nvt', 'N.v.t.')]
+    try:
+        KEUZES = [('ja', 'Ja'),
+                  ('nee', 'Nee'),
+                  ('nvt', 'N.v.t.')]
 
-    # Prijs: Textboxen voor slider (lower / upper limit)
-    prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Min', initial=50000)
-    prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Max', initial=1000000)
+        # Prijs: Textboxen voor slider (lower / upper limit)
+        prijs_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Min', initial=50000)
+        prijs_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'prijs-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box formatted'}), label='Max', initial=1000000)
 
-    # Gemeente: Dropdownmenu
-    GEMEENTES = [KEUZES[-1]] + [(gemeente.gemeente, gemeente.gemeente) for gemeente in get_alle_gemeentes()]
-    gemeente = forms.ChoiceField(choices=GEMEENTES, label='Gemeentes', required=True)
+        # Gemeente: Dropdownmenu
+        GEMEENTES = [KEUZES[-1]] + [(gemeente.gemeente, gemeente.gemeente) for gemeente in get_alle_gemeentes()]
+        gemeente = forms.ChoiceField(choices=GEMEENTES, label='Gemeentes', required=True)
 
-    # Oppervlakte: Textboxen voor slider (lower / upper limit)
-    oppervlakte_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Min', initial=150)
-    oppervlakte_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Max', initial=300)
+        # Oppervlakte: Textboxen voor slider (lower / upper limit)
+        oppervlakte_lower = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-lower-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Min', initial=150)
+        oppervlakte_upper = forms.CharField(widget=forms.TextInput(attrs={'id': 'oppervlakte-upper-value', 'readonly': True, 'size': 10, 'class': 'hidden-box'}), label='Max', initial=300)
 
-    # Type: Dropdownmenu
-    TYPES = [KEUZES[-1]] + [(type, type) for type in Type.objects.all()]
-    type = forms.ChoiceField(choices=TYPES, label='Types', required=True)
+        # Type: Dropdownmenu
+        TYPES = [KEUZES[-1]] + [(type, type) for type in Type.objects.all()]
+        type = forms.ChoiceField(choices=TYPES, label='Types', required=True)
 
-    # Slaapkamer: Textbox
-    slaapkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal slaapkamers:', initial="2")
+        # Slaapkamer: Textbox
+        slaapkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal slaapkamers:', initial="2")
 
-    # Badkamer: Textbox
-    badkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal badkamers:', initial="1")
+        # Badkamer: Textbox
+        badkamer_lower = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Minimum aantal badkamers:', initial="1")
 
-    # Parking/Garage: Checkbox
-    parking = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Parking / Garage:', required=True, initial=KEUZES[-1][0])
+        # Parking/Garage: Checkbox
+        parking = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Parking / Garage:', required=True, initial=KEUZES[-1][0])
 
-    # Terras: Checkbox
-    terras = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Terras:', required=True, initial=KEUZES[-1][0])
+        # Terras: Checkbox
+        terras = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Terras:', required=True, initial=KEUZES[-1][0])
 
-    # Tuin: Checkbox
-    tuin = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Tuin:', required=True, initial=KEUZES[-1][0])
+        # Tuin: Checkbox
+        tuin = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Tuin:', required=True, initial=KEUZES[-1][0])
 
-    # Bemeubeld: Checkbox
-    bemeubeld = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Bemeubeld:', required=True, initial=KEUZES[-1][0])
+        # Bemeubeld: Checkbox
+        bemeubeld = forms.ChoiceField(choices=KEUZES, widget=forms.RadioSelect(), label='Bemeubeld:', required=True, initial=KEUZES[-1][0])
 
-    # Bouwjaar: Textbox
-    #bouwjaar = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Bouwjaar:', initial="2000")
-    STARTJAAR = 1940
-    STANDAARDJAAR = 2000
-    BOUWJAREN = [(jaar, jaar) for jaar in range(STARTJAAR, date.today().year + 1)]
-    bouwjaar = forms.ChoiceField(choices=BOUWJAREN, label='Bouwjaar', initial=STANDAARDJAAR)
+        # Bouwjaar: Textbox
+        #bouwjaar = forms.CharField(widget=forms.TextInput(attrs={'type':'number'}), label='Bouwjaar:', initial="2000")
+        STARTJAAR = 1940
+        STANDAARDJAAR = 2000
+        BOUWJAREN = [(jaar, jaar) for jaar in range(STARTJAAR, date.today().year + 1)]
+        bouwjaar = forms.ChoiceField(choices=BOUWJAREN, label='Bouwjaar', initial=STANDAARDJAAR)
+    except:
+        pass
 
 
 # Fix om ervoor te zorgen dat een inline sowieso wordt aangemaakt.
