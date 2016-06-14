@@ -13,6 +13,7 @@ from .models import Pand, Kenmerk
 from .models import Type
 from .forms import AdvancedSearchForm
 from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
+from django.utils.translation import get_language
 
 
 def panden_general(request, nbar_val):
@@ -37,8 +38,8 @@ def panden_general(request, nbar_val):
 
     if request.POST and request.POST['search'] and ('clearPanden' not in request.POST):
         panden = keyword_search(Pand, request.POST['search'],
-                                ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer',
-                                 'type__type',))
+                                ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode',
+                                 'adres__huisnummer', 'type__type_' + get_language(),))
         context['search'] = request.POST['search']
     elif check_get_parameters():
         # Make sure the form doesn't reset

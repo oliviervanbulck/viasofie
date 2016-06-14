@@ -136,10 +136,11 @@
                                     <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
                                         Beheer</a></li>
                                 {% endif %}
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {% blocktrans %}Mijn profiel{% endblocktrans %}</a></li>
                                 {% if user|has_group:'Verkoper' %}
                                     <li><a href="#"><span class="glyphicon glyphicon-file"></span> {% blocktrans %}Mijn dossier{% endblocktrans %}</a></li>
                                 {% endif %}
+                                <li><a href="{% url "password_change" %}"><span
+                                        class="glyphicon glyphicon-edit"></span> {% blocktrans %}Wachtwoord wijzigen{% endblocktrans %}</a></li>
                                 <li><a href="{% url "gebruikers.logout" %}"><span
                                         class="glyphicon glyphicon-log-out"></span> {% blocktrans %}Uitloggen{% endblocktrans %}</a></li>
                             </ul>
