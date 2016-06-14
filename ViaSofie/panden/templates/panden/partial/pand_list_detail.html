@@ -32,7 +32,7 @@
             {% with pand.foto_set.all|first as foto %}
                 <!-- <img class="img-rounded" src="{{ foto }}" style="max-width:100%;"> -->
                 <a href="{% url 'panden.detail' pand.id %}">
-                    <div class="foto{% if not foto %} no-foto{% endif %}" style="background-image: url('{% if foto %}{{ foto }}{% else %}{% static 'ViaSofie/no-image.png' %}{% endif %}');"></div>
+                    <div style="box-shadow: 2px 2px 5px #888888;" class="foto{% if not foto %} no-foto{% endif %}" style="background-image: url('{% if foto %}{{ foto }}{% else %}{% static 'ViaSofie/no-image.png' %}{% endif %}');"></div>
                 </a>
                 <!--<div class="pandinfobox">
                 <div class="pandinfobox-left"></div>

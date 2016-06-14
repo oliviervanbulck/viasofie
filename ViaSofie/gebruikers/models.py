@@ -23,6 +23,7 @@ class Land(models.Model):
         return '%s - %s' % (str(self.landcode), self.naam)
 
 
+@python_2_unicode_compatible
 class Woonplaats(models.Model):
     class Meta:
         verbose_name_plural = "woonplaatsen"

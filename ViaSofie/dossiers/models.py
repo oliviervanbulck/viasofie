@@ -7,17 +7,18 @@ import os
 
 from django.db import models
 
-
 # ERD tabel Dossier
 from django.dispatch import receiver
-
+from django.utils.encoding import python_2_unicode_compatible
 from panden.models import Pand
 
 
 # ERD tabel StavazaLijnen
+@python_2_unicode_compatible
 class StavazaLijn(models.Model):
     class Meta:
         verbose_name_plural = "Stavazalijnen"
+
     datum = models.DateField(default=datetime.date.today)
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     stavaza = models.ForeignKey('Stavaza', on_delete=models.CASCADE)
@@ -28,21 +29,25 @@ class StavazaLijn(models.Model):
 
 
 # ERD tabel Stavaza
+@python_2_unicode_compatible
 class Stavaza(models.Model):
     class Meta:
         verbose_name_plural = "Stavaza's"
+
     # status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
     status = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.status)
+        return self.status
 
 
 # ERD tabel DossierDocLijnen
+@python_2_unicode_compatible
 class DossierDocLijn(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Lijnen"
         unique_together = ('pand', 'beschrijving')
+
     pand = models.ForeignKey('panden.Pand', on_delete=models.CASCADE)
     beschrijving = models.ForeignKey('DossierDocBeschrijving', on_delete=models.CASCADE, null=True)
     beschrijving.verbose_name = 'Document'
@@ -89,20 +94,24 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
 
 # ERD tabel DossierDocStatus
+@python_2_unicode_compatible
 class DossierDocStatus(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Statussen"
+
     # status = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
     status = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.status)
+        return self.status
 
 
 # ERD tabel DossierDocBeschrijving
+@python_2_unicode_compatible
 class DossierDocBeschrijving(models.Model):
     class Meta:
         verbose_name_plural = "Dossier Document Beschrijvingen"
+
     # dossier_naam = models.ForeignKey('talen.Label', on_delete=models.CASCADE)
     dossier_naam = models.CharField(max_length=100)
 
