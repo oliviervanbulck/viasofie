@@ -38,7 +38,7 @@ class Stavaza(models.Model):
     status = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.status)
+        return self.status
 
 
 # ERD tabel DossierDocLijnen
@@ -103,7 +103,7 @@ class DossierDocStatus(models.Model):
     status = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.status)
+        return self.status
 
 
 # ERD tabel DossierDocBeschrijving

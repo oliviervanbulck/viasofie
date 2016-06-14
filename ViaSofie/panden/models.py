@@ -25,7 +25,7 @@ class Type(models.Model):
     type = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.type)
+        return self.type
 
 
 # ERD tabel Kenmerk
@@ -38,7 +38,7 @@ class Kenmerk(models.Model):
     type = models.ForeignKey('KenmerkType', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return str(self.benaming_nl)
+        return self.benaming_nl
 
 
 @python_2_unicode_compatible
@@ -130,7 +130,7 @@ class ImmoSite(models.Model):
     logo = models.ImageField()
 
     def __str__(self):
-        return str(self.site_beschrijving)
+        return self.site_beschrijving
 
 
 # ERD tabel Foto
