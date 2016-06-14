@@ -1,7 +1,11 @@
+import os
+from email.mime.image import MIMEImage
+
 from django.shortcuts import render, render_to_response
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 from django.template import RequestContext
+from django.template.loader import render_to_string
 
 from panden.models import Foto, CarouselFoto
 from .models import Partner, FaqItem
@@ -62,14 +66,41 @@ def contact(request):
                 message = form.cleaned_data['message']
                 email = EmailMessage('', email_address + '\n\n' + message, to=['contact.viasofie@gmail.com'])
                 email.send()
+                """message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
                 email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
-                message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
-                email_bevestiging.send()
+                email_bevestiging.send()"""
+
+                bev_content_text = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+                # bev_content_html = '<img src="cid:logo.png" alt="Logo Via Sofie" />Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+
+                msg = EmailMultiAlternatives("Contactverzoek", bev_content_text,
+                                             'contact.viasofie@gmail.com', [email_address])
+
+                msg.attach_alternative(render_to_string('ViaSofie/email/contact_confirmation.html'), "text/html")
+
+                msg.mixed_subtype = 'related'
+
+                for f in ['logo_email.png', 'sleutel_email.png']:
+                    print os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), 'static'), 'ViaSofie'), f)
+                    fp = open(os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), 'static'), 'ViaSofie'), f), 'rb')
+                    msg_img = MIMEImage(fp.read())
+                    fp.close()
+                    msg_img.add_header('Content-ID', '<{}>'.format(f))
+                    msg.attach(msg_img)
+
+                msg.send()
 
                 context['succes'] = True
-            else:
-                print 'test'
-                raise Exception()
+
+            """else:
+            print 'test'
+            raise Exception()
+
+            except:
+            context['error'] = True
+            context['form'] = form
+
+            return render(request, 'ViaSofie/contact.html', context)"""
         except:
             context['error'] = True
             context['form'] = form
@@ -92,5 +123,3 @@ def legal(request):
     else:
         page = 'disclaimer'
     return render(request, 'ViaSofie/disclaimer.html', {'nbar': page, 'default': page})
-
-

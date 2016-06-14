@@ -56,7 +56,7 @@ def dossier(request, pand_id):
                         email.attach(attachment.name, attachment.read(), attachment.content_type)
                     email.send()
 
-                    message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+                    message_bevestiging = 'Welkom bij Via Sofie!<a href=""></a> \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
                     email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
                     email_bevestiging.send()
                     context.update({'succes': True, 'form': ContactFormDossier()})
