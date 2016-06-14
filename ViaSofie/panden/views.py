@@ -9,7 +9,7 @@ from ViaSofie.functions import keyword_search
 from ViaSofie.functions import advanced_search
 from dossiers.models import Stavaza, DossierDocBeschrijving
 from gebruikers.models import Adres
-from .models import Pand, Kenmerk
+from .models import Pand, Kenmerk, Hit
 from .models import Type
 from .forms import AdvancedSearchForm
 from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
@@ -70,6 +70,13 @@ def pand_detail(request, pand_id):
     if not pand.actief:
         return redirect('panden.index')
 
+    check = Hit.objects.filter(pand_id__exact=pand.id, session=request.session.session_key).count()
+    if check == 0:
+        new_hit = Hit(pand=pand, session=request.session.session_key)
+        new_hit.save()
+
+    hits = Hit.objects.filter(pand_id=pand.id).count()
+
     context = {
         'maps_adres': pand.adres,
         'basis_kenmerken': [(pand.adres, 'Adres'), (in_euro(pand.prijs), 'Prijs'), (pand.type, 'Type'),
@@ -80,10 +87,10 @@ def pand_detail(request, pand_id):
         'links': pand.pandimmolink_set.all(),
         'pand': pand,
         'prev_url': request.META.get('HTTP_REFERER', None),
+        'hits': hits,
     }
-    if request.method == 'GET':
-        context.update({'nbar': 'kopen'})
-        return render(request, "panden/pand_detail.html", context)
+    context.update({'nbar': 'kopen'})
+    return render(request, "panden/pand_detail.html", context)
 
 
 class TypeAutocomplete(autocomplete.Select2QuerySetView):

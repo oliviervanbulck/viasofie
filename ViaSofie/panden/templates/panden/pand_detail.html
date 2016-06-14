@@ -86,6 +86,7 @@
                             {% if user.is_authenticated and user.id == pand.gebruiker.user.id %}
                                 <a href="{% url 'dossiers.dossier' pand.id %}" class="btn btn-viasofie btn-viasofie-space-right pull-right" role="button" target="_blank">Naar dossier</a>
                             {% endif %}
+                            <span class="badge">{{ hits }}</span>
                         </h4>
 
                     </div>

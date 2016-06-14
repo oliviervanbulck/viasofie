@@ -99,6 +99,11 @@ class Pand(models.Model):
         return str(self.type) + ' - ' + str(self.adres)
 
 
+class Hit(models.Model):
+    pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
+    session = models.CharField(max_length=32)
+
+
 @receiver(models.signals.post_save, sender=Pand)
 def auto_create_qr_code_on_save(sender, instance, **kwargs):
     """Voegt een QR code toe aan het pand bij opslaan"""
