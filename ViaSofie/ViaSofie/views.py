@@ -7,10 +7,9 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
-from panden.models import Foto, CarouselFoto
+from panden.models import CarouselFoto
 from .models import Partner, FaqItem
 from .functions import get_random_actieve_panden
-from .functions import set_cookie
 from .forms import ContactForm
 
 

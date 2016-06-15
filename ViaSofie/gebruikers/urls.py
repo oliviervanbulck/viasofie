@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-from gebruikers import views as gviews
 from gebruikers.views import WoonplaatsAutocomplete, LandAutocomplete
 from . import views
 

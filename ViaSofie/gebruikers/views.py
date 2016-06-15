@@ -1,5 +1,4 @@
 from django.db.models.functions import Concat
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout

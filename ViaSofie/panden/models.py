@@ -11,7 +11,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib.sites.models import Site
-from django.template.defaultfilters import slice_filter, upper
+from django.template.defaultfilters import slice_filter
 
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible

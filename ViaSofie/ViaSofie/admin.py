@@ -41,7 +41,6 @@ class PartnerAdmin(admin.ModelAdmin):
     klein_logo.allow_tags = True
 
 
-
 admin.autodiscover()  # Zonder autodiscover vindt Django het geregistreerde model niet!
 admin.site.unregister(Site)  # Dit model moet niet in het admin panel verschijnen
 admin.site.unregister(Group)

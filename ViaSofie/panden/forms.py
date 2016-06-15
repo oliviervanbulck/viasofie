@@ -8,6 +8,7 @@ from panden.models import Type, Pand, PandKenmerkPerPand
 
 
 class AdvancedSearchForm(forms.Form):
+    # When migrating this form is loaded but its tables don't exist yet, so a try block will prevent that crash.
     try:
         KEUZES = [('ja', 'Ja'),
                   ('nee', 'Nee'),
