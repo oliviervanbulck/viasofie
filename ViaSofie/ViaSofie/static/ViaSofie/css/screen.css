@@ -227,13 +227,7 @@ Menubalk
     background-color: #bad5ce;
 }
 
-#goedDoel {
-    background-size: contain;
-    background: url(../goedDoel.png) no-repeat;
-    width: 100px;
-    height: 40px;
-    margin-top: 10%;
-}
+
 
 #language {
 
