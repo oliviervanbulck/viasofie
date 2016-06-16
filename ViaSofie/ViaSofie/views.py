@@ -88,6 +88,8 @@ def contact(request):
                 msg.send()
 
                 context['succes'] = True
+            else:
+                raise Exception()
         except:
             context['error'] = True
             context['form'] = form
