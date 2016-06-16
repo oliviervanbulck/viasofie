@@ -11,7 +11,7 @@ from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
 from dossiers.forms import ContactFormDossier
 from panden.models import Pand
-from ViaSofie.settings import BASE_DIR
+from ViaSofie.settings import BASE_DIR, EMAIL_CONTACT, EMAIL_DRINGEND
 
 
 @login_required()
@@ -57,7 +57,7 @@ def dossier(request, pand_id):
                     email_address = request.user.email
                     message = form.cleaned_data['message']
                     attachment = request.FILES.get('attachment')
-                    email = EmailMessage('', email_address + '\n\n' + message, to=['dringend.viasofie@gmail.com'])
+                    email = EmailMessage('', email_address + '\n\n' + message, to=[EMAIL_DRINGEND])
                     if attachment:
                         email.attach(attachment.name, attachment.read(), attachment.content_type)
                     email.send()
@@ -66,7 +66,7 @@ def dossier(request, pand_id):
                     # bev_content_html = '<img src="cid:logo.png" alt="Logo Via Sofie" />Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
 
                     msg = EmailMultiAlternatives("Contactverzoek", bev_content_text,
-                                                 'contact.viasofie@gmail.com', [email_address])
+                                                 EMAIL_CONTACT, [email_address])
 
                     msg.attach_alternative(render_to_string('ViaSofie/email/contact_confirmation.html'), "text/html")
 

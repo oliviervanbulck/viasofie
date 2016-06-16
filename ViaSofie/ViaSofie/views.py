@@ -12,6 +12,8 @@ from .models import Partner, FaqItem
 from .functions import get_random_actieve_panden
 from .forms import ContactForm
 
+from ViaSofie.settings import EMAIL_CONTACT
+
 
 def handler404(request):
     response = render_to_response('404.html', {},
@@ -35,8 +37,8 @@ def index(request):
     }
     if request.POST:
         email_address = request.POST.get('email')
-        message = "heef een e-book aangevraagd."
-        email = EmailMessage('E-book', email_address + ' ' + message, to=['contact.viasofie@gmail.com'])
+        message = "heeft een e-book aangevraagd."
+        email = EmailMessage('E-book', email_address + ' ' + message, to=[EMAIL_CONTACT])
         email.send()
 
     if request.GET.get('le') is not None:
@@ -63,17 +65,13 @@ def contact(request):
             if form.is_valid():
                 email_address = form.cleaned_data['email']
                 message = form.cleaned_data['message']
-                email = EmailMessage('', email_address + '\n\n' + message, to=['contact.viasofie@gmail.com'])
+                email = EmailMessage('', email_address + '\n\n' + message, to=[EMAIL_CONTACT])
                 email.send()
-                """message_bevestiging = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
-                email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
-                email_bevestiging.send()"""
 
                 bev_content_text = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
-                # bev_content_html = '<img src="cid:logo.png" alt="Logo Via Sofie" />Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
 
                 msg = EmailMultiAlternatives("Contactverzoek", bev_content_text,
-                                             'contact.viasofie@gmail.com', [email_address])
+                                             EMAIL_CONTACT, [email_address])
 
                 msg.attach_alternative(render_to_string('ViaSofie/email/contact_confirmation.html'), "text/html")
 
@@ -90,16 +88,6 @@ def contact(request):
                 msg.send()
 
                 context['succes'] = True
-
-            """else:
-            print 'test'
-            raise Exception()
-
-            except:
-            context['error'] = True
-            context['form'] = form
-
-            return render(request, 'ViaSofie/contact.html', context)"""
         except:
             context['error'] = True
             context['form'] = form
