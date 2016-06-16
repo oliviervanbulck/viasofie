@@ -79,7 +79,7 @@ def contact(request):
 
                 msg.mixed_subtype = 'related'
 
-                for f in ['logo_email.png', 'sleutel_email.png']:
+                for f in ['ContactBevestiging.jpg']:
                     print os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), 'static'), 'ViaSofie'), f)
                     fp = open(os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), 'static'), 'ViaSofie'), f), 'rb')
                     msg_img = MIMEImage(fp.read())

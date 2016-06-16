@@ -1,11 +1,17 @@
-from django.core.mail import EmailMessage
+import os
+from email.mime.image import MIMEImage
+
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+
 from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 
 from dossiers.forms import ContactFormDossier
 from panden.models import Pand
+from ViaSofie.settings import BASE_DIR
 
 
 @login_required()
@@ -56,9 +62,30 @@ def dossier(request, pand_id):
                         email.attach(attachment.name, attachment.read(), attachment.content_type)
                     email.send()
 
-                    message_bevestiging = 'Welkom bij Via Sofie!<a href=""></a> \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
-                    email_bevestiging = EmailMessage('Contact verzoek', message_bevestiging, to=[email_address])
-                    email_bevestiging.send()
+                    bev_content_text = 'Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+                    # bev_content_html = '<img src="cid:logo.png" alt="Logo Via Sofie" />Welkom bij Via Sofie! \n\n Wij hebben uw mail goed ontvangen. \n U mag spoedig een antwoord van ons verwachten.\n\n Vriendelijke groet, \n\n Sofie'
+
+                    msg = EmailMultiAlternatives("Contactverzoek", bev_content_text,
+                                                 'contact.viasofie@gmail.com', [email_address])
+
+                    msg.attach_alternative(render_to_string('ViaSofie/email/contact_confirmation.html'), "text/html")
+
+                    msg.mixed_subtype = 'related'
+
+                    for f in ['ContactBevestiging.jpg']:
+                        """print os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), 'static'), 'ViaSofie'),
+                                           f)"""
+                        print os.path.join(os.path.join(os.path.join(os.path.join(BASE_DIR, 'ViaSofie'), 'static'), 'ViaSofie'), f)
+                        fp = open(
+                            os.path.join(
+                                os.path.join(os.path.join(os.path.join(BASE_DIR, 'ViaSofie'), 'static'), 'ViaSofie'), f), 'rb')
+                        msg_img = MIMEImage(fp.read())
+                        fp.close()
+                        msg_img.add_header('Content-ID', '<{}>'.format(f))
+                        msg.attach(msg_img)
+
+                    msg.send()
+
                     context.update({'succes': True, 'form': ContactFormDossier()})
                     return render(request, context, 'Dossier/dossier.html',context)
                 else:
