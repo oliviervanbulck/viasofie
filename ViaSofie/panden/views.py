@@ -1,4 +1,5 @@
 from dal import autocomplete
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Value as V
 from django.db.models.functions import Concat
 from django.shortcuts import render
@@ -36,11 +37,11 @@ def panden_general(request, nbar_val):
         'form': AdvancedSearchForm()
     }
 
-    if request.POST and request.POST['search'] and ('clearPanden' not in request.POST):
-        panden = keyword_search(Pand, request.POST['search'],
+    if request.GET and request.GET.get('search') and ('clearPanden' not in request.GET):
+        panden = keyword_search(Pand, request.GET['search'],
                                 ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode',
                                  'adres__huisnummer', 'type__type_' + get_language(),))
-        context['search'] = request.POST['search']
+        context['search'] = request.GET['search']
     elif check_get_parameters():
         # Make sure the form doesn't reset
         context['form'] = AdvancedSearchForm(request.GET)
@@ -49,6 +50,19 @@ def panden_general(request, nbar_val):
         panden = advanced_search(request)
     else:
         panden = get_alle_actieve_panden()
+
+    paginator = Paginator(panden, 12)  # Toon 12 panden per pagina
+
+    page = request.GET.get('page')
+    try:
+        panden = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        panden = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        panden = paginator.page(paginator.num_pages)
+
     context['pand_kolom_class'] = 'col-lg-4 col-md-6'
     context['panden'] = panden
 

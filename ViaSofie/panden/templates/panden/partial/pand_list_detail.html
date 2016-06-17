@@ -5,7 +5,7 @@
 {% load viasofie_filters %}
 
 {% if not zeshoek %}
-    <div class="col-xs-12 col-md-4 col-sm-12 text-center pand-partial col-centered">
+    <div class="col-xs-12 col-md-4 col-sm-12 text-center pand-partial col-centered" style="margin-bottom:0;">
         <a href="
                 {% if dossier %}{% url 'dossiers.dossier' pand.id %}{% else %}{% url 'panden.detail' pand.id %}{% endif %}">
             <div class="panel panel-default">

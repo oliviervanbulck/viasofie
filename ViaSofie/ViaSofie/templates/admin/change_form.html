@@ -4,6 +4,11 @@
 
 {# block extrahead #}{% block headcontent %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#id_password1, #id_password2').val("Test1234");
+    });
+    </script>
 {{ media }}
 {% endblock %}
 

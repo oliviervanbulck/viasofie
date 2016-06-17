@@ -23,7 +23,7 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display = ('naam', 'klein_logo', 'prioriteit', 'actief',)
     fields = ('actief', 'naam', 'link', 'prioriteit', 'klein_logo', 'logo',)
     readonly_fields = ('klein_logo',)
-    #exclude = ('logo',)
+    # exclude = ('logo',)
 
     def set_active(self, request, queryset):
         queryset.update(actief=True)

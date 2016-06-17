@@ -91,24 +91,23 @@
                     {% if user.is_authenticated %}
                         <li class="{% if nbar == 'dossier' %}active{% endif %}"><a
                                 href="{% url 'dossiers.index' %}"><span
-                                class="glyphicon glyphicon-folder-open"> </span>{% blocktrans %} &nbsp;&nbsp;Dossier{% endblocktrans %}</a>
+                                class="glyphicon glyphicon-folder-open"> </span>&nbsp;&nbsp;{% trans "Dossier" %}</a>
                         </li>
                     {% endif %}
                     <li class="{% if nbar == 'kopen' %}active{% endif %}"><a href="{% url 'panden.index' %}"><span
-                            class="glyphicon glyphicon-home"></span>{% blocktrans %}&nbsp;Kopen{% endblocktrans %}</a>
+                            class="glyphicon glyphicon-home"></span>&nbsp;{% trans "Kopen" %}</a>
                     </li>
                     <!--<li class="{% if nbar == 'huren' %}active{% endif %}"><a href="{% url 'panden.huren' %}"><span
-                        class="glyphicon glyphicon-usd"></span>{% blocktrans %}&nbsp;Huren{% endblocktrans %}</a>-->
+                        class="glyphicon glyphicon-usd"></span>&nbsp;{% trans "Huren" %}</a>-->
                     </li>
                     <li class="{% if nbar == 'faq' %}active{% endif %}"><a href="{% url 'ViaSofie.faq' %}"><span
-                            class="glyphicon glyphicon-question-sign"></span>{% blocktrans %}&nbsp;Advies{% endblocktrans %}</a>
+                            class="glyphicon glyphicon-question-sign"></span>&nbsp;{% trans "Advies" %}</a>
                     </li>
                     <li id="about" class="{% if nbar == 'about' %}active{% endif %}"><a
-                            href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>{% blocktrans %}&nbsp;Over
-                        ons{% endblocktrans %}</a>
+                            href="{% url 'ViaSofie.about' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;{% trans "Over ons" %}</a>
                     </li>
                     <li class="{% if nbar == 'contact' %}active{% endif %}"><a href="{% url 'ViaSofie.contact' %}"><span
-                            class="glyphicon glyphicon-envelope"></span>{% blocktrans %}&nbsp;Contact{% endblocktrans %}</a>
+                            class="glyphicon glyphicon-envelope"></span>&nbsp;{% trans "Contact" %}</a>
                     </li>
 
                 </ul>
@@ -132,15 +131,15 @@
                                 <li class="dropdown-header">{{ user.first_name }} {{ user.last_name }}</li>
                                 {% if user|has_group:'Makelaar' %}
                                     <li><a href="{% url "admin:index" %}"><span class="glyphicon glyphicon-cog"></span>
-                                        Beheer</a></li>
+                                        {% trans "Beheer" %}</a></li>
                                 {% endif %}
                                 {% if user|has_group:'Verkoper' %}
-                                    <li><a href="#"><span class="glyphicon glyphicon-file"></span> {% blocktrans %}Mijn dossier{% endblocktrans %}</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-file"></span> {% trans "Mijn dossier" %}</a></li>
                                 {% endif %}
                                 <li><a href="{% url "password_change" %}"><span
-                                        class="glyphicon glyphicon-edit"></span> {% blocktrans %}Wachtwoord wijzigen{% endblocktrans %}</a></li>
+                                        class="glyphicon glyphicon-edit"></span> {% trans "Wachtwoord wijzigen" %}</a></li>
                                 <li><a href="{% url "gebruikers.logout" %}"><span
-                                        class="glyphicon glyphicon-log-out"></span> {% blocktrans %}Uitloggen{% endblocktrans %}</a></li>
+                                        class="glyphicon glyphicon-log-out"></span> {% trans "Uitloggen" %}</a></li>
                             </ul>
                         </li>
 
@@ -156,7 +155,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Inloggen</h4>
+                    <h4 class="modal-title">{% trans "Inloggen" %}</h4>
                 </div>
                 <div class="modal-body">
                     {% if loginerror %}
@@ -164,17 +163,11 @@
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>
                                 {% if loginerror == '2' %}
-                                    {% blocktrans %}
-                                    Je gebruikersaccount is momenteel niet actief.
-                                    {% endblocktrans %}
+                                    {% trans "Je gebruikersaccount is momenteel niet actief." %}
                                 {% elif loginerror == '3' %}
-                                    {% blocktrans %}
-                                    Gelieve eerst aan te melden.
-                                    {% endblocktrans %}
+                                    {% trans "Gelieve eerst aan te melden." %}
                                 {% else %}
-                                    {% blocktrans %}
-                                    Deze combinatie van e-mail en wachtwoord is niet correct.
-                                    {% endblocktrans %}
+                                    {% trans "Deze combinatie van e-mail en wachtwoord is niet correct." %}
                                 {% endif %}
                             </strong>
                         </div>
@@ -182,22 +175,22 @@
                     <form action="{% url 'gebruikers.login' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="username">E-mail:</label>
+                            <label for="username">{% trans "E-mail:" %}</label>
                             <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="form-group">
-                          {% blocktrans %}  <label for="password">Wachtwoord:</label>{% endblocktrans %}
+                            <label for="password">{% trans "Wachtwoord:" %}</label>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox"> {% blocktrans %}Onthouden{% endblocktrans %}</label>
+                            <label><input type="checkbox"> {% trans "Onthouden" %}</label>
                         </div>
-                        <button type="submit" class="btn btn-viasofie">{% blocktrans %}Inloggen{% endblocktrans %}</button>
+                        <button type="submit" class="btn btn-viasofie">{% trans "Inloggen" %}</button>
                     </form>
-                <div><br /><a href="{% url 'password_reset' %}">{% blocktrans %}Wachtwoord vergeten?{% endblocktrans %}</a></div>
+                <div><br /><a href="{% url 'password_reset' %}">{% trans "Wachtwoord vergeten?" %}</a></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Sluiten{% endblocktrans %}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Sluiten" %}</button>
                 </div>
             </div>
         </div>
@@ -224,9 +217,9 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="{% if nbar == 'disclaimer' %}active{% endif %}"><a
-                        href="{% url 'ViaSofie.legal' %}?on=disclaimer">Disclaimer</a>
+                        href="{% url 'ViaSofie.legal' %}?on=disclaimer">{% trans "Disclaimer" %}</a>
                 </li>
-                <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">Privacy</a>
+                <li class="{% if nbar == 'privacy' %}active{% endif %}"><a href="{% url 'ViaSofie.legal' %}?on=privacy">{% trans "Privacy" %}</a>
                 </li>
                 <li id="language" class="dropdown">
                     {% get_current_language as LANGUAGE_CODE %}
@@ -236,21 +229,13 @@
                               {% elif LANGUAGE_CODE == 'fr' %}{% static 'ViaSofie/icons/frans.png' %}
                          {% endif %}"/>
                     <ul class="dropdown-menu">
-                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}">Nederlands</button></form></li>
-                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="en"><img src="{% static "ViaSofie/icons/uk.png" %}">English</button></form></li>
-                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}">français</button></form></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="nl"><img src="{% static "ViaSofie/icons/belgium.png" %}"> Nederlands</button></form></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="en"><img src="{% static "ViaSofie/icons/uk.png" %}"> English</button></form></li>
+                        <li><form action="{% url 'set_language' %}" method="post">{% csrf_token %}<button class="btn-lang" type="submit" name="language" value="fr"><img src="{% static "ViaSofie/icons/frans.png" %}"> Français</button></form></li>
                     </ul>
                 </li>
             </ul>
         </div>
-
-
-
-
-
-
-
-
     </nav>
 {% endif %}
 </body>

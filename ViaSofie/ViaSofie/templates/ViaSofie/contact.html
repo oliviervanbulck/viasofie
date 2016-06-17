@@ -23,41 +23,27 @@
             </div>
             <div id="contact" class="col-md-6 col-xl-4">
                 {% if succes %}
-                    {% blocktrans %}
-                    <div class="alert alert-success" role="alert" name="successAlert">Bericht verzonden.</div>
-                    {% endblocktrans %}
+                    <div class="alert alert-success" role="alert" name="successAlert">{% trans "Bericht verzonden." %}</div>
                 {% elif error %}
-                    {% blocktrans %}
-                    <div class="alert alert-danger" role="alert" name="errorAlert">Voer een geldig e-mail adres en
-                        bericht in.
-                    </div>
-                    {% endblocktrans %}
+                    <div class="alert alert-danger" role="alert" name="errorAlert">{% trans "Voer een geldig e-mail adres en bericht in." %}</div>
                 {% endif %}
                 <div id="contactform" class="panel panel-default">
                     <div class="panel-body">
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                {% blocktrans %}
-                                <label>Email adres:</label>
-                                {% endblocktrans %}
+                                <label>{% trans "E-mail adres" %}</label>
                                 <p>{{ form.email }}</p>
                             </div>
                             <div class="form-group">
-                                {% blocktrans %}
-                                <label>Bericht:</label>
-                                {% endblocktrans %}
+                                <label>{% trans "Bericht:" %}</label>
                                 <p>{{ form.message }}</p>
                             </div>
                             <!--<div class="form-group">
                                 {#  form.attachment #}
                             </div>-->
                             <div>{{ form.captcha }}</div>
-                            {% blocktrans %}
-                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">Verzenden
-                            </button>
-                            {% endblocktrans %}
-
+                            <button type="submit" class="btn btn-default" name="sendMail" id="sendMail">{% trans "Verzenden" %}</button>
                         </form>
                     </div>
                 </div>
@@ -90,7 +76,7 @@
         </div>
     </div>
 
-    </div><!-- /.row -->
+    <!--</div><!-- /.row -->
 
 
 

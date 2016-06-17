@@ -2,7 +2,9 @@
 
 from __future__ import unicode_literals
 
+from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
@@ -61,18 +63,22 @@ class Gebruiker(models.Model):
 
 
 # Mailtje wordt naar de user gestuurd wanneer zijn account wordt aangemaakt.
-@receiver(post_save, sender=Gebruiker)
+@receiver(post_save, sender=User)
 def auto_mail_user_on_save(sender, instance, **kwargs):
     if kwargs.get('raw'):
+        print "1"
         return
     if not instance.pk:
+        print "2"
         return False
 
     # Enkel mailen bij aanmaken account
     if kwargs['created']:
+        print "3"
         # Username = email!!!
-        email = EmailMessage('Uw account is klaar', 'Uw account op ViaSofie.be is aangemaakt.',
-                             to=[instance.user.username])
+        email = EmailMessage('Uw account is klaar',
+                             'Uw account op ViaSofie.be is aangemaakt. Gelieve je wachtwoord hier in te stellen: http://' + str(Site.objects.get_current()) + reverse('password_reset'),
+                             to=[instance.username])
         email.send()
 
 

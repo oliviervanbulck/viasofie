@@ -1,5 +1,6 @@
 {% extends "ViaSofie/master.html" %}
 {% load staticfiles %}
+{% load viasofie_tags %}
 {% load i18n %}
 
 {% block title %}Te koop{% endblock %}
@@ -41,7 +42,7 @@
     <div id="main">
         <!-- Zoekbalk bovenaan -->
         <div id="zoeken" class="container">
-            <form action="{% url 'panden.index' %}" method="post">
+            <form action="{% url 'panden.index' %}" method="get">
                 {% csrf_token %}
                 <button type="submit" class="default-button-handler" aria-hidden="true" tabindex="-1"></button>
                 <div class="input-group">
@@ -53,11 +54,11 @@
                         </span>
                     {% endif %}
                     <input type="text" id="search" name="search"
-                           placeholder="Zoek op gemeente, postcode, provincie, ..." value="{{ search }}"
+                           placeholder="{% trans "Zoek op gemeente, postcode, provincie, ..." %}" value="{{ search }}"
                            class="form-control"/>
                     <span class="input-group-btn">
                         <button type="submit" id="btnsearch" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> Zoeken
+                            <span class="glyphicon glyphicon-search"></span> {% trans "Zoeken" %}
                         </button>
                     </span>
                 </div>
@@ -71,32 +72,49 @@
                         {# Panden worden hier weergegeven! #}
                         {% for pand in panden %}
                             {% include 'panden/partial/pand_list_detail.html' %}
-                        {% if forloop.counter|divisibleby:2 %}
-                            <div class="clearfix visible-md"></div>
-                        {% elif forloop.counter|divisibleby:3 %}
-                            <div class="clearfix visible-lg"></div>
-                         {% endif %}
+                            {% if forloop.counter|divisibleby:2 %}
+                                <div class="clearfix visible-md"></div>
+                            {% elif forloop.counter|divisibleby:3 %}
+                                <div class="clearfix visible-lg"></div>
+                            {% endif %}
                         {% endfor %}
                     {% else %}
                         {% include 'panden/partial/sad_face.html' %}
                     {% endif %}
+                <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if panden.has_previous %}
+                                <a href="?{% url_replace request 'page' panden.previous_page_number %}">{% trans "vorige" %}</a>
+                            {% endif %}
+
+                            <span class="current">
+                                {% blocktrans %}Pagina {{ panden.number }} van {{ panden.paginator.num_pages }}.{% endblocktrans %}
+                            </span>
+
+                            {% if panden.has_next %}
+                                <a href="?{% url_replace request 'page' panden.next_page_number %}">{% trans "volgende" %}</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
                 </div>
 
                 <div class="col-md-3">
                     <div id="advancedsearch" class="panel panel-default">
                         <div class="panel-heading">
                             {% blocktrans %}
-                            <h3>Geavanceerd zoeken</h3></div>
+                                <h3>{% trans "Geavanceerd zoeken" %}</h3></div>
                             {% endblocktrans %}
 
                         <div class="panel-body">
                             <form action="?" method="get" id="advanced">
 
-                                <div id="prijs" class="row" class="slider">
+                                <div id="prijs" class="row slider">
                                     <div class="col-md-10">
-                                       {% blocktrans %}
-                                        <label>Prijsklasse:</label>
-                                    {% endblocktrans %}
+                                        <label>{% trans "Prijsklasse:" %}</label>
                                     </div>
 
                                     <div class="col-md-10" id="prijs-slider"></div>
@@ -118,11 +136,9 @@
                                     <div class="col-md-9">{{ form.gemeente }}</div>
                                 </div>
 
-                                <div id="oppervlakte" class="row" class="slider">
+                                <div id="oppervlakte" class="row slider">
                                     <div class="col-md-10">
-                                        {% blocktrans %}
-                                        <label>Oppervlakte:</label>
-                                        {% endblocktrans %}
+                                        <label>{% trans "Oppervlakte:" %}</label>
                                     </div>
                                     <div class="col-md-10" id="oppervlakte-slider"></div>
 
@@ -178,9 +194,7 @@
                                     <div class="col-md-9">{{ form.bouwjaar }}</div>
                                 </div>
 
-                            {% blocktrans %}
-                                <input type="submit" value="Zoek!" class="btn btn-viasofie"/>
-                            {% endblocktrans %}
+                                <input type="submit" value="<label>{% trans "Zoek!" %}</label>" class="btn btn-viasofie"/>
                             </form>
                         </div>
                     </div>
