@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Django default" uuid="f8e37869-a95e-4644-a929-b4b661a89a95">
+      <user-name>adminViaSofie</user-name>
+      <user-password>dffedfcfdfd9dfdedf9bdf98df99</user-password>
+      <schema-pattern>viasofie.*</schema-pattern>
+      <default-schemas>viasofie.*</default-schemas>
+    </data-source>
+  </component>
+</project>
