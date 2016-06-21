@@ -155,8 +155,8 @@ EMAIL_PORT = 587
 EMAIL_CONTACT = 'contact.viasofie@gmail.com'
 EMAIL_DRINGEND = 'dringend.viasofie@gmail.com'
 
-NORECAPTCHA_SITE_KEY = "6LdIzh8TAAAAABWM6APBVN8w4Ge0Znnz7DlaeLjs"
-NORECAPTCHA_SECRET_KEY = "6LdIzh8TAAAAADO6tO38KF0NCqSRowUCklQuErdW"
+NORECAPTCHA_SITE_KEY = "6LeXIiMTAAAAAKoYohpEDAfyIH4J2sE2lXzH5Gwe"
+NORECAPTCHA_SECRET_KEY = "6LeXIiMTAAAAADdtSwl-dNkCrrz-yU0kRPxLSBqH"
 
 # Deze id staat in de databank in django_site, daar moet dan de juiste id van gebruikt worden
 SITE_ID = 2
