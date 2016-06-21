@@ -116,9 +116,13 @@ def enforce_user_clean(sender, instance=None, **kwargs):
     instance.clean()
 
 
+class WoonplaatsAdmin(HiddenAdminModel):
+    pass
+
+
 # Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Land, LandAdmin)
 admin.site.register(Adres, AdresAdmin)
-admin.site.register(Woonplaats)
+admin.site.register(Woonplaats, WoonplaatsAdmin)
