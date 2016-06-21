@@ -7,6 +7,7 @@ from dossiers.models import StavazaLijn, DossierDocLijn
 from panden.models import Type, Pand, PandKenmerkPerPand
 
 
+# Formulier voor Advanced Search
 class AdvancedSearchForm(forms.Form):
     # When migrating this form is loaded but its tables don't exist yet, so a try block will prevent that crash.
     try:
@@ -66,6 +67,7 @@ class AlwaysChangedModelForm(forms.ModelForm):
         return True
 
 
+# Formulier voor autocomplete in admin bij panden
 class PandForm(forms.ModelForm):
     class Meta:
         model = Pand
@@ -76,6 +78,7 @@ class PandForm(forms.ModelForm):
         }
 
 
+# Formulier voor autocomplete in admin bij pandkenmerkenperpand
 class PandKenmerkPerPandForm(AlwaysChangedModelForm):
     class Meta:
         model = PandKenmerkPerPand
@@ -85,6 +88,7 @@ class PandKenmerkPerPandForm(AlwaysChangedModelForm):
         }
 
 
+# Formulier voor autocomplete in admin bij stavazalijnen
 class StavazaLijnForm(forms.ModelForm):
     class Meta:
         model = StavazaLijn
@@ -94,6 +98,7 @@ class StavazaLijnForm(forms.ModelForm):
         }
 
 
+# Formulier voor autocomplete in admin bij dossierdoclijnen
 class DossierDocLijnForm(forms.ModelForm):
     class Meta:
         model = DossierDocLijn

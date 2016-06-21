@@ -39,6 +39,7 @@ class Kenmerk(models.Model):
         return str(self.benaming)
 
 
+# ERD tabel KenmerkType
 class KenmerkType(models.Model):
     type = models.CharField(max_length=64)
 
@@ -93,17 +94,20 @@ class Pand(models.Model):
         return str(self.type) + ' - ' + str(self.adres)
 
 
+# ERD tabel Hit
 class Hit(models.Model):
     pand = models.ForeignKey('Pand', on_delete=models.CASCADE)
     session = models.CharField(max_length=32)
 
 
+# Automatisch qr code genereren bij het opslaan van een pand
 @receiver(models.signals.post_save, sender=Pand)
 def auto_create_qr_code_on_save(sender, instance, **kwargs):
     """Voegt een QR code toe aan het pand bij opslaan"""
     instance.generate_qrcode()
 
 
+# Automatisch verwijderen van qr code na verwijderen van pand
 @receiver(models.signals.post_delete, sender=Pand)
 def auto_delete_qr_code_on_delete(sender, instance, **kwargs):
     """Verwijderd de QR code van een pand wanneer het pand wordt gedelete"""
@@ -125,6 +129,7 @@ class PandImmoLink(models.Model):
         return str(self.website.site_beschrijving) + ' - ' + str(self.pand)
 
 
+# ERD tabel ImmoSite
 class ImmoSite(models.Model):
     site_beschrijving = models.CharField(max_length=255, verbose_name='beschrijving')
     logo = models.ImageField()
@@ -147,6 +152,7 @@ class Foto(models.Model):
         return "/admin/panden/foto/%d/" % self.id
 
 
+# Automatisch foto bestand verwijderen
 @receiver(models.signals.post_delete, sender=Foto)
 def auto_delete_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
@@ -159,6 +165,7 @@ def auto_delete_foto_on_delete(sender, instance, **kwargs):
             os.remove(instance.foto.path)
 
 
+# Automatisch foto verwijderen wanneer afbeelding wordt gewijzigd
 @receiver(models.signals.pre_save, sender=Foto)
 def auto_delete_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
@@ -196,6 +203,7 @@ class CarouselFoto(models.Model):
         return "/admin/panden/carousel-foto/%d/" % self.id
 
 
+# Automatisch foto bestand verwijderen
 @receiver(models.signals.post_delete, sender=CarouselFoto)
 def auto_delete_carousel_foto_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
@@ -208,6 +216,7 @@ def auto_delete_carousel_foto_on_delete(sender, instance, **kwargs):
             os.remove(instance.foto.path)
 
 
+# Automatisch foto verwijderen wanneer afbeelding wordt gewijzigd
 @receiver(models.signals.pre_save, sender=CarouselFoto)
 def auto_delete_carousel_foto_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem
@@ -244,6 +253,7 @@ class PandKenmerkPerPand(models.Model):
         return str(self.kenmerk) + ' - ' + str(self.aantal) + ' - ' + str(self.pand)
 
 
+# ERD tabel Switch
 class Switch(models.Model):
     class Meta:
         verbose_name = 'optie'

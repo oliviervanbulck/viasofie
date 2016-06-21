@@ -13,6 +13,7 @@ from models import Gebruiker, Land, Adres, Woonplaats
 # Register your models here.
 
 
+# Inline voor adminpaneel => Gebruiker in User
 class GebruikerInline(admin.StackedInline):
     model = Gebruiker
     form = GebruikerForm
@@ -20,6 +21,7 @@ class GebruikerInline(admin.StackedInline):
     verbose_name_plural = 'gebruiker'
 
 
+# Oplossing voor e-mailadres als username te gebruiken
 User._meta.get_field('username').max_length = 255  # Set max length of username to higher number
 User._meta.get_field('username').help_text = None  # Change help text for username
 User._meta.get_field('username').default_validators = []  # Remove basic validators
@@ -77,15 +79,18 @@ class HiddenAdminModel(admin.ModelAdmin):
         return {}
 
 
+# Land niet zichtbaar in adminpaneel
 class LandAdmin(HiddenAdminModel):
     pass
 
 
+# Adres niet zichtbaar in adminpaneel en opties toegepast
 class AdresAdmin(HiddenAdminModel):
     form = AdresForm
     list_per_page = 25
 
 
+# Oplossing om e-mail als username te kunnen gebruiken
 def _user_clean(user):
     """
     Require the value of `username` to be an email. The `email` field
@@ -101,6 +106,7 @@ def _user_clean(user):
 User.clean = _user_clean
 
 
+# Oplossing om e-mail als username te gebruiken
 @receiver(pre_save, sender=User)
 def enforce_user_clean(sender, instance=None, **kwargs):
     """

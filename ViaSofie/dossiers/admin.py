@@ -14,22 +14,27 @@ class HiddenAdminModel(admin.ModelAdmin):
         return {}
 
 
+# StavazaLijn niet laten weergeven in adminpaneel
 class StavazaLijnAdmin(HiddenAdminModel):
     pass
 
 
+# Stavaza niet laten weergeven in adminpaneel
 class StavazaAdmin(HiddenAdminModel):
     pass
 
 
+# DossierDocLijn niet laten weergeven in adminpaneel
 class DossierDocLijnAdmin(HiddenAdminModel):
     pass
 
 
+# DossierDocStatus niet laten weergeven in adminpaneel
 class DossierDocStatusAdmin(HiddenAdminModel):
     pass
 
 
+# DossierDocBeschrijving niet laten weergeven in adminpaneel
 class DossierDocBeschrijvingAdmin(HiddenAdminModel):
     pass
 

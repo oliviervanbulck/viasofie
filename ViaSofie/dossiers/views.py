@@ -14,6 +14,7 @@ from panden.models import Pand
 from ViaSofie.settings import BASE_DIR, EMAIL_CONTACT, EMAIL_DRINGEND
 
 
+# Overzicht eigen dossiers
 @login_required()
 def index(request):
     panden = request.user.gebruiker.pand_set.all()
@@ -25,6 +26,7 @@ def index(request):
     return render(request, "Dossier/index.html", context)
 
 
+# Bekijken eigen dossier
 @login_required()
 def dossier(request, pand_id):
     pand = Pand.objects.get(id=pand_id)

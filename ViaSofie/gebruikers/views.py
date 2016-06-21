@@ -8,12 +8,7 @@ from django.db.models import Value as V
 from gebruikers.models import Woonplaats, Land
 
 
-def index(request):
-    context = {
-    }
-    return render(request, 'gebruikers/profile.html', context)
-
-
+# Inloggen van gebruiker
 def login_user(request):
     redirect_url = reverse('index')
     if request.POST:
@@ -34,11 +29,13 @@ def login_user(request):
     return redirect(redirect_url)
 
 
+# Uitloggen van gebruiker
 def logout_user(request):
     logout(request)
     return redirect('index')
 
 
+# Autocomplete code voor adminpaneel - Woonplaats
 class WoonplaatsAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -56,6 +53,7 @@ class WoonplaatsAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+# Autocomplete code voor adminpaneel - Land
 class LandAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
