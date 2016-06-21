@@ -6,3 +6,9 @@
  */
 var django = django || {};
 django.jQuery = jQuery.noConflict(true);
+
+var django = django || {};
+django.jQuery = jQuery
+
+var yl = yl || {};
+yl.jQuery = django.jQuery
