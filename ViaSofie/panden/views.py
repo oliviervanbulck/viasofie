@@ -17,6 +17,7 @@ from ViaSofie.templatetags.viasofie_filters import in_euro, in_opp
 from django.utils.translation import get_language
 
 
+# Overzicht van panden voor zowel huren als kopen
 def panden_general(request, nbar_val):
     def check_get_parameters():
         required_params = ['prijs_upper', 'prijs_lower', 'gemeente', 'oppervlakte_upper', 'oppervlakte_lower',
@@ -69,14 +70,17 @@ def panden_general(request, nbar_val):
     return render(request, 'panden/index.html', context)
 
 
+# Overzicht panden kopen
 def index(request):
     return panden_general(request, 'kopen')
 
 
+# Overzicht panden huren
 def huren(request):
     return panden_general(request, 'huren')
 
 
+# Detailweergave van een pand
 def pand_detail(request, pand_id):
     pand = Pand.objects.get(id=pand_id)
 
@@ -107,6 +111,7 @@ def pand_detail(request, pand_id):
     return render(request, "panden/pand_detail.html", context)
 
 
+# Autocomplete voor Type in adminpaneel
 class TypeAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -124,6 +129,7 @@ class TypeAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+# Autocomplete voor Adres in adminpaneel
 class AdresAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -141,6 +147,7 @@ class AdresAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+# Autocomplete voor Pandkenmerk in adminpaneel
 class PandkenmerkAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -158,6 +165,7 @@ class PandkenmerkAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+# Autocomplete voor Stavaza in adminpaneel
 class StavazaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -175,6 +183,7 @@ class StavazaAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+# Autocomplete voor Dossierdoc in adminpaneel
 class DossierdocAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
