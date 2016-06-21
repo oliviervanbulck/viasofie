@@ -66,6 +66,7 @@ def panden_general(request, nbar_val):
 
     context['pand_kolom_class'] = 'col-lg-4 col-md-6'
     context['panden'] = panden
+    context['paginator'] = paginator
 
     return render(request, 'panden/index.html', context)
 

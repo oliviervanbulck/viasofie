@@ -82,6 +82,7 @@
                         {% include 'panden/partial/sad_face.html' %}
                     {% endif %}
                 <div class="row">
+                {% if paginator.count > 0 %}
                 <div class="col-md-12 text-center">
                     <div class="pagination">
                         <span class="step-links">
@@ -90,7 +91,7 @@
                             {% endif %}
 
                             <span class="current">
-                                {% blocktrans %}Pagina {{ panden.number }} van {{ panden.paginator.num_pages }}.{% endblocktrans %}
+                                Pagina {{ panden.number }} van {{ panden.paginator.num_pages }}.
                             </span>
 
                             {% if panden.has_next %}
@@ -99,6 +100,7 @@
                         </span>
                     </div>
                 </div>
+                {% endif %}
             </div>
                 </div>
 
