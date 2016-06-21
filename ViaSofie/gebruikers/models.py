@@ -25,6 +25,7 @@ class Land(models.Model):
         return '%s - %s' % (str(self.landcode), self.naam)
 
 
+# ERD Woonplaats
 class Woonplaats(models.Model):
     class Meta:
         verbose_name_plural = "woonplaatsen"
@@ -82,6 +83,7 @@ def auto_mail_user_on_save(sender, instance, **kwargs):
         email.send()
 
 
+# Oplossing om e-mail als username te gebruiken
 @receiver(models.signals.pre_save, sender=User)
 def auto_fill_in_email(sender, instance, **kwargs):
     instance.email = instance.username

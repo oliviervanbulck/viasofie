@@ -58,6 +58,7 @@ class DossierDocLijn(models.Model):
         return '%s | %s (%s)' % (self.pand, self.beschrijving, self.status)
 
 
+# Automatisch verwijderen van document bestand na verwijderen
 @receiver(models.signals.post_delete, sender=DossierDocLijn)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem
@@ -70,6 +71,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
             os.remove(instance.bestand.path)
 
 
+# Automatisch verwijderen van bestand bij wijzigen van document
 @receiver(models.signals.pre_save, sender=DossierDocLijn)
 def auto_delete_file_on_change(sender, instance, **kwargs):
     """Deletes file from filesystem

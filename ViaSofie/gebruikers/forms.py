@@ -4,6 +4,7 @@ from django import forms
 from gebruikers.models import Gebruiker
 
 
+# Formulier voor autocomplete van gebruikers in adminpaneel
 class GebruikerForm(forms.ModelForm):
     class Meta:
         model = Gebruiker
@@ -13,6 +14,7 @@ class GebruikerForm(forms.ModelForm):
         }
 
 
+# Formulier voor autocomplete van woonplaatsen en landen bij adres in adminpaneel
 class AdresForm(forms.ModelForm):
     class Meta:
         model = Gebruiker

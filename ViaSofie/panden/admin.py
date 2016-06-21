@@ -31,6 +31,7 @@ Filters
 """
 
 
+# Filter voor pandfoto's
 class PandFotoFilter(admin.SimpleListFilter):
     title = 'Pand'
     parameter_name = 'pand'
@@ -51,6 +52,7 @@ Inlines
 """
 
 
+# Inline voor StavazaLijn in Pand
 class StavazaLijnenInline(admin.TabularInline):
     model = StavazaLijn
     form = StavazaLijnForm
@@ -61,6 +63,7 @@ class StavazaLijnenInline(admin.TabularInline):
     fields = ('stavaza', 'datum',)
 
 
+# Inline voor DocLijn in Pand
 class DocLijnenInline(admin.TabularInline):
     model = DossierDocLijn
     form = DossierDocLijnForm
@@ -70,6 +73,7 @@ class DocLijnenInline(admin.TabularInline):
     verbose_name = 'Dossierinhoud'
 
 
+# Inline voor PandKenmerkPerPand in Pand
 class PandKenmerkPerPandInline(admin.TabularInline):
     model = PandKenmerkPerPand
     form = PandKenmerkPerPandForm
@@ -79,6 +83,7 @@ class PandKenmerkPerPandInline(admin.TabularInline):
     fields = ('kenmerk', 'aantal',)
 
 
+# Inline voor PandImmoLink in Pand
 class PandImmoLinkInline(admin.TabularInline):
     model = PandImmoLink
     can_delete = True
@@ -87,6 +92,7 @@ class PandImmoLinkInline(admin.TabularInline):
     extra = 0
 
 
+# Inline voor Foto in Pand
 class FotoInline(admin.TabularInline):
     model = Foto
     can_delete = True
@@ -137,6 +143,7 @@ AdminModels - Shown
 """
 
 
+# Adminopties voor Carouselfoto's
 class CarouselFotoAdmin(admin.ModelAdmin):
     list_display = ('carousel_foto', 'actief',)
     list_per_page = 10
@@ -160,6 +167,7 @@ class CarouselFotoAdmin(admin.ModelAdmin):
     carousel_foto.short_description = 'Foto'
 
 
+# Adminopties voor Panden
 class PandAdmin(admin.ModelAdmin):
     inlines = (PandKenmerkPerPandInline, PandImmoLinkInline, FotoInline, StavazaLijnenInline, DocLijnenInline)
     search_fields = ('adres__straat', 'adres__woonplaats__gemeente', 'adres__woonplaats__postcode', 'adres__huisnummer', 'type__type',)
