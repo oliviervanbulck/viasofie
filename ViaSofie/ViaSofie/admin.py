@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from .models import FaqItem, Partner
 
 
+# Aanpassingen adminpaneel voor vragen
 class FaqItemAdmin(admin.ModelAdmin):
     actions = ('set_active', 'set_inactive',)
     list_display = ('titel', 'prioriteit', 'actief',)
@@ -18,6 +19,7 @@ class FaqItemAdmin(admin.ModelAdmin):
     set_inactive.short_description = 'Maak FAQ items inactief'
 
 
+# Aanpassingen adminpaneel voor partners
 class PartnerAdmin(admin.ModelAdmin):
     actions = ('set_active', 'set_inactive',)
     list_display = ('naam', 'klein_logo', 'prioriteit', 'actief',)

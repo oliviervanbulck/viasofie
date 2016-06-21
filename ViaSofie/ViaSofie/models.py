@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 
 
+# Model voor veelgestelde vraag
 @python_2_unicode_compatible
 class FaqItem(models.Model):
     class Meta:
@@ -19,6 +20,7 @@ class FaqItem(models.Model):
         return self.titel
 
 
+# Model voor partner
 @python_2_unicode_compatible
 class Partner(models.Model):
     actief = models.BooleanField(default=True)
@@ -31,6 +33,7 @@ class Partner(models.Model):
         return self.naam
 
 
+# Automatisch verwijderen van partnerafbeeldingen
 @receiver(models.signals.post_delete, sender=Partner)
 def auto_delete_logo_on_delete(sender, instance, **kwargs):
     """Deletes file from filesystem

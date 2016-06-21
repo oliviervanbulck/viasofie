@@ -4,6 +4,7 @@ from panden.models import Pand
 from gebruikers.models import Woonplaats
 
 
+# Controleer e-mailadres
 def validate_email(email):
     from django.core.validators import validate_email
     from django.core.exceptions import ValidationError
@@ -14,22 +15,23 @@ def validate_email(email):
         return False
 
 
-def get_random_actieve_panden(aantal):
-    #panden = Pand.objects.filter(actief=True)
-    #return random.sample(panden, min(aantal, len(panden)))
-
-    return Pand.objects.filter(actief=True)[::-1][0:3]  # Reverse the resultset and get the first three (last three houses)
+# Haal laatste 3 panden op voor startpagina
+def get_recente_panden():
+    return Pand.objects.filter(actief=True)[::-1][0:3]  # Reverse the resultset and get the last three houses
 
 
+# Haal alle gemeentes op
 def get_alle_gemeentes():
     return Woonplaats.objects.all()
 
 
+# Haal alle panden op
 def get_alle_actieve_panden():
     rij = Pand.objects.filter(actief=True)
     return rij
 
 
+# Opzoeken afhankelijk van trefwoorden
 def keyword_search(model, keywords, search_fields):
     """Search according to fields defined in Admin's search_fields"""
     all_queries = None
@@ -38,7 +40,7 @@ def keyword_search(model, keywords, search_fields):
         keyword_query = None
 
         for field in search_fields:
-            each_query = Q(**{field+'__icontains': keyword})
+            each_query = Q(**{field + '__icontains': keyword})
 
             if not keyword_query:
                 keyword_query = each_query
@@ -55,8 +57,10 @@ def keyword_search(model, keywords, search_fields):
     return result_set
 
 
+# Uitgebreidde zoekfunctie
 def advanced_search(request):
     """Filter voor prijs"""
+
     def filter_prijs(panden):
         LOWER = int(request.GET['prijs_lower'])
         UPPER = int(request.GET['prijs_upper'])
@@ -65,12 +69,14 @@ def advanced_search(request):
                 LOWER <= pand.prijs <= UPPER]
 
     """Filter voor gemeente"""
+
     def filter_gemeente(panden):
         if request.GET['gemeente'] != 'nvt':
             return [pand for pand in panden if pand.adres.woonplaats.gemeente == request.GET['gemeente']]
         return panden
 
     """Filter voor oppervlakte"""
+
     def filter_oppervlake(panden):
         LOWER = int(request.GET['oppervlakte_lower'])
         UPPER = int(request.GET['oppervlakte_upper'])
@@ -78,12 +84,14 @@ def advanced_search(request):
                 LOWER <= pand.oppervlakte <= UPPER]
 
     """Filter voor type"""
+
     def filter_type(panden):
         if request.GET['type'] != 'nvt':
             return [pand for pand in panden if pand.type.type == request.GET['type']]
         return panden
 
     """Filter voor aantal slaapkamer"""
+
     def filter_slaapkamers(panden):
         BENAMING = 'Aantal slaapkamers'
         LOWER = int(request.GET['slaapkamer_lower'])
@@ -92,6 +100,7 @@ def advanced_search(request):
                 and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal)]
 
     """Filter voor badkamers"""
+
     def filter_badkamers(panden):
         BENAMING = 'Aantal badkamers'
         LOWER = int(request.GET['badkamer_lower'])
@@ -100,6 +109,7 @@ def advanced_search(request):
                 and (LOWER <= pand.pandkenmerkperpand_set.filter(kenmerk__benaming_nl=BENAMING)[0].aantal)]
 
     """Filter voor Parking / Garage"""
+
     def filter_parking(panden):
         parking = request.GET['parking']
         BENAMING = 'Parking / Garage'
@@ -117,6 +127,7 @@ def advanced_search(request):
         return panden
 
     """Filter voor Terras"""
+
     def filter_terras(panden):
         terras = request.GET['terras']
         BENAMING = 'Terras'
@@ -134,6 +145,7 @@ def advanced_search(request):
         return panden
 
     """Filter voor tuin"""
+
     def filter_tuin(panden):
         tuin = request.GET['tuin']
         BENAMING = 'Oppervlakte tuin'
@@ -151,6 +163,7 @@ def advanced_search(request):
         return panden
 
     """Filter voor bemeubeld"""
+
     def filter_bemeubeld(panden):
         bemeubeld = request.GET['bemeubeld']
         BENAMING = 'Bemeubeld'
@@ -167,6 +180,7 @@ def advanced_search(request):
         return panden
 
     """Filter bouwjaar"""
+
     def filter_bouwjaar(panden):
         BOUWJAAR = int(request.GET['bouwjaar'])
         return [pand for pand in panden if

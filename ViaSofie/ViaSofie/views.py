@@ -9,12 +9,13 @@ from django.template.loader import render_to_string
 
 from panden.models import CarouselFoto
 from .models import Partner, FaqItem
-from .functions import get_random_actieve_panden
+from .functions import get_recente_panden
 from .forms import ContactForm
 
 from ViaSofie.settings import EMAIL_CONTACT
 
 
+# Foutpagina wanneer pagina niet werd gevonden
 def handler404(request):
     response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
@@ -22,12 +23,11 @@ def handler404(request):
     return response
 
 
+# Startpagina
 def index(request):
-    AANTAL_PANDEN = 3
-
     carousel_fotos = CarouselFoto.objects.filter(actief=True)
     partners = Partner.objects.filter(actief=True).order_by('-prioriteit')
-    panden = get_random_actieve_panden(AANTAL_PANDEN)
+    panden = get_recente_panden()
 
     context = {
         'panden': panden,
@@ -49,10 +49,12 @@ def index(request):
     return response
 
 
+# Over ons pagina
 def about(request):
     return render(request, 'ViaSofie/about.html', {'nbar': 'about'})
 
 
+# Contactpagina
 def contact(request):
     context = {
         'nbar': 'contact',
@@ -97,6 +99,7 @@ def contact(request):
     return render(request, 'ViaSofie/contact.html', context)
 
 
+# Adviespagina
 def faq(request):
     context = {
         'nbar': 'faq',
@@ -106,6 +109,7 @@ def faq(request):
     return render(request, 'ViaSofie/faq.html', context)
 
 
+# Disclaimer/privacy pagina
 def legal(request):
     if request.GET.get('on') and (request.GET.get('on') == 'disclaimer' or request.GET.get('on') == 'privacy'):
         page = request.GET['on']

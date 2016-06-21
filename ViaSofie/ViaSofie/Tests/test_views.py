@@ -7,6 +7,9 @@ from selenium.webdriver.common.keys import Keys
 
 
 class ViaSofieViewsTest(TestCase):
+    """
+    Tests voor startpagina
+    """
     def test_index(self):
         resp = self.client.get('/')
         self.assertEqual(resp.status_code, 200)
@@ -15,30 +18,36 @@ class ViaSofieViewsTest(TestCase):
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'home')
 
+    """
+    Tests voor dossierpagina
+    """
     def test_dossier(self):
         resp = self.client.get('/dossiers/')
         self.assertEqual(resp.status_code, 200)
 
+    """
+    Tests voor pandenpagina
+    """
     def test_panden(self):
         resp = self.client.get('/panden/')
         self.assertEqual(resp.status_code, 200)
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'panden')
 
+    """
+    Tests voor "over ons"-pagina
+    """
     def test_about(self):
         resp = self.client.get('/about/')
         self.assertEqual(resp.status_code, 200)
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'about')
 
+    """
+    Tests voor contactpagina
+    """
     def test_contact(self):
         resp = self.client.get('/contact/')
-        self.assertEqual(resp.status_code, 200)
-        self.assertTrue('nbar' in resp.context)
-        self.assertEqual(resp.context['nbar'], 'contact')
-
-    def test_services(self):
-        resp = self.client.get('/services/')
         self.assertEqual(resp.status_code, 200)
         self.assertTrue('nbar' in resp.context)
         self.assertEqual(resp.context['nbar'], 'contact')
